@@ -1,4 +1,4 @@
-# PLANIGO 🍳: Votre Compagnon de Planification de Repas
+# PLANIGO 🍳: Organisez, cuisinez, économisez!
 
 Vous cherchez à simplifier la planification de vos repas ? Découvrez PLANIGO, une application conçue pour vous aider à organiser vos repas de la semaine efficacement. 
 Accédez à une large sélection de recettes ou ajoutez les vôtres, puis créez facilement votre menu hebdomadaire. 
@@ -9,6 +9,8 @@ En résumé, PLANIGO est un outil pratique pour mieux gérer vos repas, gagner d
 Yasmine Beddouch
 
 Simon Bégin
+
+Yanis Chabane
 
 Jonathan Chartier
 
