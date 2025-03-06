@@ -82,11 +82,15 @@ PLANIGO offre une solution complète pour gérer vos repas de la semaine.  Les u
 
 **Sprint 4:**  (Fonctionnalités additionnelles ou améliorations des sprints précédents).
 
-## Diagramme de cas d'utilisation
+## Diagrammes de cas d'utilisation
+![image](https://github.com/user-attachments/assets/66544cbf-5e2a-449f-a828-d90e79114805)
 ![image](https://github.com/user-attachments/assets/0d341761-e468-4c91-9da3-20ca307ce53b)
 
 ## Diagramme d'Architecture
 ![image](https://github.com/user-attachments/assets/0dae0432-fd48-4c76-9439-2377550d5c2f)
+
+## Diagramme de séquences
+![image](https://github.com/user-attachments/assets/3f45198c-1b81-4c5a-b391-0c054e36074a)
 
 ## Licence
 Ce projet est sous licence [MIT License](LICENSE).
