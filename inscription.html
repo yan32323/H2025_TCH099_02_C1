@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="assets/styles/styles.css">
+</head>
+<body>
+
+<main class="conteneur">
+    <div class="content-area">
+        <div class="boite-de-texte">
+            <div class="content-column">
+                <h2 class="title">Inscrivez vous a Planigo</h2>
+                <div class="membre">
+                    <span class="text-membre">Vous etes deja membre?</span>
+                    <a href="index.html" class="lien-membre">Connectez vous</a>
+            </div>
+        
+            <div class="erreur" id="inscriptionError"></div>
+            <div class="success" id="inscriptionSuccess"></div>
+
+    <form id="inscriptionForm">
+        <label class= "input-label" for="identifiant">Identifiant:</label>
+        <div class = "input-box">
+        <input class = "input-field" type="text" id="identifiant" name="identifiant" placeholder="Entrez un identifiant" required>
+        </div>
+
+
+        <label class="input-label" for="motDePasse">Mot de Passe:</label>
+        <div class = "input-box">
+        <input type="password" class= "input-field" id="motDePasse" name="motDePasse" placeholder="Entrez un Mot De Passe" required>
+        </div>
+
+        <div class="input-box confirm-password-box">
+            <input type="password" class="input-field" placeholder="Validez votre mot de passe...">
+        </div>
+        
+        <div class="erreur" id="passwordValidationError"></div> <button type="submit" class="inscrire">S'inscrire</button>
+
+    </form>
+</main>
+<script src="assets/js/inscription.js"></script>
+</body>
+</html>

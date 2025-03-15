@@ -1,0 +1,363 @@
+/* Basic Reset and Body Styles */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff; 
+    color: #000;      
+}
+
+.container {
+    padding-left: 20px;   
+    padding-right: 20px;
+    max-width: 1200px;  
+    margin-left: auto;    
+    margin-right: auto;
+}
+
+/* --- Typography --- */
+/* Headings */
+h1 {
+    font-size: 24px;   
+    font-weight: 600; 
+    margin: 0 0;      
+}
+
+h2 {
+    font-size: 20px;  
+    font-weight: 600;  
+    margin: 0 0;
+}
+
+h3 {
+    font-size: 18px;   
+    font-weight: 600;  
+    margin: 0 0;
+}
+
+/* Body text */
+.body-text {
+    font-size: 16px;  
+    line-height: 1.5; 
+    margin: 0 0;
+}
+
+.body-text-small {
+    font-size: 14px;   
+    margin: 0 0;
+}
+
+.caption-text {
+    font-size: 12px;  
+    margin: 0 0;
+}
+
+.subtitle {
+    font-size: 16px;   
+    font-weight: 500;  
+    margin: 0 0;
+}
+
+
+/* --- Colors --- */
+/* Primary Colors */
+.primary { color: #00BCD4; }         /* Primary color */
+.primary-light { color: #62EFFF; }   /* Lighter shade of primary */
+.primary-dark { color: #008BA3; }    /* Darker shade of primary */
+
+/* Background & Surface Colors */
+.bg-white { background-color: #fff; }    /* White background */
+.bg-light-gray { background-color: #F9FAFB; } /* Light gray surface */
+
+/* Text Colors */
+.text-dark { color: #000; }       /* Dark text */
+.text-gray { color: #78716C; }    /* Gray secondary text */
+
+/* Icon Background Colors - Category specific */
+.bg-breakfast-icon { background-color: #EEEEEE; }
+.bg-vegan-icon { background-color: #90EE90; }
+.bg-meat-icon { background-color: #FF6B6B; }
+.bg-dessert-icon { background-color: #FFD700; }
+.bg-lunch-icon { background-color: #FFA07A; }
+.bg-snack-icon { background-color: #8B4513; }
+
+/* Food item background colors */
+.bg-burger { background-color: #FF6B6B; }
+.bg-salmon { background-color: #FA8072; }
+.bg-pancake { background-color: #DEB887; }
+.bg-salad { background-color: #90EE90; }
+.bg-meatballs { background-color: #8B4513; }
+.bg-rice { background-color: #fff; }
+.bg-pasta { background-color: #FFE4B5; }
+
+
+/* --- Shapes --- */
+.rounded-small { border-radius: 4px; }
+.rounded-medium { border-radius: 16px; }
+.rounded-large { border-radius: 24px; }
+.rounded-circle { border-radius: 50%; }
+
+
+/* --- Header Styles --- */
+.header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;        
+    padding-bottom: 40px;
+}
+
+.header-mobile {
+    display: flex;
+    flex-direction: column;     
+    align-items: center;        
+    padding-bottom: 40px;
+}
+
+.logo {
+    font-size: 20px;   
+    font-weight: 600;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.nav-items {
+    display: flex;
+    gap: 32px;            
+    margin-left: 16px;
+}
+
+.nav-item {
+    font-size: 16px;  
+    font-weight: 500;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-decoration: none; 
+    color: #000;    
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;             
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;     
+}
+
+
+/* --- Category Card --- */
+.category-card {
+    background-color: #F9FAFB; 
+    border-radius: 24px;    
+    aspect-ratio: 1/1;      
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center; 
+    padding: 20px;
+}
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 16px;
+    object-fit: contain;    /* Keep icon aspect ratio */
+}
+
+.category-name {
+    text-align: center;    /* Center text */
+    font-size: 16px;   /* Subtitle size */
+    font-weight: 600;
+}
+
+
+/* --- Recipe Card --- */
+.recipe-card {
+    background-color: #F9FAFB; /* Light gray surface */
+    border-radius: 24px;    /* Rounded corners */
+    width: 100%;           /* Take full width of container */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    position: relative;     /* For absolute positioning of favorite button */
+}
+
+.recipe-image {
+    width: 100%;           /* Take full width */
+    height: 200px;          /* Fixed height */
+    object-fit: cover;      /* Crop image to fit */
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+.recipe-info {
+    padding: 20px;
+}
+
+.recipe-title {
+    font-size: 18px;   /* h3 size */
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.recipe-details {
+    display: flex;
+    gap: 20px;             /* Spacing between details */
+}
+
+.recipe-time, .recipe-category {
+    font-size: 14px;   /* Smaller body text size */
+    color: #78716C;    /* Gray text */
+}
+
+.favorite-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;    /* Make it a circle */
+    display: flex;
+    justify-content: center; /* Center icon horizontally */
+    align-items: center;     /* Center icon vertically */
+    cursor: pointer;     /* Show pointer cursor */
+}
+
+.favorite-icon {
+    width: 16px;
+    height: 16px;
+    fill: black;         /* Default icon color */
+}
+.favorite-icon.favorited {
+    fill: red;           /* Color when favorited */
+}
+
+
+/* --- Promo Card --- */
+.promo-card {
+    background-color: #F9FAFB; /* Light gray surface */
+    border-radius: 24px;    /* Rounded corners */
+    width: 100%;           /* Take full width */
+    display: flex;
+    padding: 20px;
+    height: auto;          /* Let height adjust to content */
+}
+
+.promo-content {
+    width: 80%;          
+}
+
+.promo-title {
+    font-size: 20px;  
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.promo-subtitle {
+    font-size: 12px;   
+}
+
+
+/* --- Category Section --- */
+.category-section {
+    margin-bottom: 64px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;        
+    margin-bottom: 32px;
+}
+
+.view-all-categories {
+    font-size: 12px; 
+    color: #00BCD4;    
+    cursor: pointer;     
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;             
+}
+
+
+/* --- Recipe Section --- */
+.recipe-section {
+    padding: 20px;
+}
+
+.section-title-recipes {
+    text-align: center;    
+    margin-bottom: 20px;
+}
+
+.section-subtitle-recipes {
+    text-align: center;
+    color: #78716C;    
+    padding: 16px 32px;
+}
+
+.recipes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 32px;             /* Spacing between grid items */
+    margin-top: 40px;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid lightgray; 
+}
+
+
+
+/* Mobile Styles (screen width less than or equal to 600px) */
+@media (max-width: 600px) {
+    .header {
+        display: none; 
+    }
+    .header-mobile {
+        display: flex; 
+    }
+    .nav-items {
+        display: none; 
+    }
+    .header-mobile .social-icons {
+        margin-top: 16px;
+        justify-content: center; 
+        width: 100%;
+    }
+    .header-mobile .social-icons .social-icon {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+/* Larger Screens Styles (screen width greater than 600px) */
+@media (min-width: 601px) {
+    .header {
+        display: flex; 
+    }
+    .header-mobile {
+        display: none; 
+    }
+}

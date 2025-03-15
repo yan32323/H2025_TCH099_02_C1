@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+ body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F9F9F9; /* var(--background-color) replaced with #F9F9F9 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.conteneur {
+    background-color: #FFFFFF; /* var(--card-background) replaced with #FFFFFF */
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    margin: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.content-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    text-align: left; /* Ajout de text-align: left; ici */
+}
+
+.boite-de-texte {
+    position: relative;
+    padding: 60px 40px;
+    width: 100%;
+    /* text-align: center; Supprimez ou commentez text-align: center; ici */
+}
+
+.membre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+    margin-bottom: 20px; /* Ajout de margin-bottom pour plus d'espace */
+    font-size: 14px;
+}
+
+.text-membre{
+    color: #777777; /* var(--text-color-light) replaced with #777777 */
+}
+
+.lien-membre{
+    color: #38686a; /* var(--primary-color) replaced with #38686a */
+    margin-left: 8px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.lien-membre:hover {
+    text-decoration: underline;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333333; /* var(--text-color-dark) replaced with #333333 */
+    margin-bottom: 20px; /* Ajout de margin-bottom pour plus d'espace */
+}
+.input-label {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+    color: #333333;
+    margin-top: 20px;
+    margin-bottom: 15px; /* Augmentation de margin-bottom pour plus d'espace */
+    text-align: left;
+}
+
+.input-box {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    transition: border-color 0.2s ease;
+    margin-top:10px;
+    margin-bottom: 10px; /* Ajout de margin-bottom pour plus d'espace entre les boîtes */
+}
+
+.input-box:focus-within {
+    border-color: #38686a; /* var(--primary-color) replaced with #38686a */
+}
+
+.input-field {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    line-height: 24px;
+    color: #333333; /* var(--text-color-dark) replaced with #333333 */
+    padding: 18px 20px;
+    width: 100%;
+    background-color: transparent;
+}
+
+button {
+    padding: 0.75em;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1em;
+    color: white;
+    box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button.login {
+    background-color: #38686a;
+    margin-top: 20px; /* Ajout de margin-top pour plus d'espace */
+    margin-right: 10px; /* Ajout de margin-right pour séparer les boutons */
+}
+
+button.login:hover {
+    background-color: #0056b3;
+}
+
+button.reset {
+    background-color:#38686a;
+}
+
+button.reset:hover {
+    background-color: #cc0000;
+}
+
+button.back {
+    background-color: #38686a;
+}
+
+button.back:hover {
+    background-color: #cc0000;
+}
+
+
+button.back:hover {
+    background-color: #cc0000;
+}
+
+button.inscrire {
+    background-color: #38686a;
+}
+
+button.inscrire:hover {
+    background-color: #218838;
+}
+
+button.ajouter {
+    background-color: #28a745;
+}
+
+button.ajouter:hover {
+    background-color: #218838;
+}
+
+button.logout {
+    background-color: #ff4d4d;
+}
+
+button.logout:hover {
+    background-color: #cc0000;
+}
+button.ajouter {
+    background-color: #28a745;
+}
+
+button.ajouter:hover {
+    background-color: #218838;
+}
+
+button.logout {
+    background-color: #ff4d4d;
+}
+
+button.logout:hover {
+    background-color: #cc0000;
+}
+
+.erreur {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.success {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#mainContent {
+    color: white;
+    text-align: center;
+}
+
+.message-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 2em;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 200px;
+}
+
+.message {
+    background-color: #2a2a2a;
+    padding: 1em;
+    border-radius: 10px;
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.message:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: #555;
+}
+
+.message strong {
+    color: #ddd;
+    font-size: 1em;
+
+}
+
+#ajouter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#messageInput{
+    padding: 1em;
+    align-items: center;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    border-radius: 30px;
+    background-color: #1e1e1e;
+    color : white;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#button-forum{
+    padding: 40px;
+    gap: 40px;
+}
+/*voir comment enlever ca*/
+@media (max-width: 768px) {
+    .conteneur {
+        margin: 10px;
+        border-radius: 16px;
+    }
+
+    .boite-de-texte{
+        padding: 40px 30px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .membre, .input-label, .input-field, .register-button {
+        font-size: 15px;
+    }
+
+    .register-button {
+        padding: 12px 25px;
+    }
+}
