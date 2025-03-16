@@ -31,21 +31,7 @@ PLANIGO offre une solution complète pour gérer vos repas de la semaine.  Les u
 
 ## Structure du Projet
 ```
-├── README.md 
-├── database/ <-- Schéma de la base de données (SQL)
-│ └── planigo.sql
-├── api/ <-- Code API partagé 
-├── web/ <-- Code de l'application web
-│ ├── index.php 
-│ ├── js/ <-- Code JavaScript
-│ │ └── scripts.js 
-│ └── css/ <-- Styles CSS
-│ └── style.css   
-└── mobile/ <-- Code de l'application mobile
-├── AndroidManifest.xml
-├── java/ <-- Code Java
-│ └── ... 
-└── res/ <-- Ressources
+TODO :>
 ```
 ## Installation
 
