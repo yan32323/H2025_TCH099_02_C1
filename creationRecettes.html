@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planigo - Recipes</title>
+    <link rel="stylesheet" href="assets/styles/stylesRecettes.css" />
+    <script src="assets/js/creationRecettes.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header Section -->
+      <header class="header">
+        <h2 class="logo">Planigo</h2>
+        <nav class="nav-items">
+          <a href="#" class="nav-item">Mes recettes</a>
+          <a href="#" class="nav-item">Explorer</a>
+          <a href="#" class="nav-item">Plannification</a>
+          <a href="#" class="nav-item">Stock</a>
+          <a href="index.html" class="nav-item" id="logoutButton"
+            >Deconnexion</a
+          >
+        </nav>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook" target="_blank"
+            ><img
+              src="https://placehold.co/24x24/000000/000000"
+              alt="Facebook"
+              class="social-icon"
+          /></a>
+          <a href="#" aria-label="Twitter" target="_blank"
+            ><img
+              src="https://placehold.co/24x24/000000/000000"
+              alt="Twitter"
+              class="social-icon"
+          /></a>
+          <a href="#" aria-label="Instagram" target="_blank"
+            ><img
+              src="https://placehold.co/24x24/000000/000000"
+              alt="Instagram"
+              class="social-icon"
+          /></a>
+        </div>
+      </header>
+
+      <!-- Mobile Header Section -->
+      <header class="header-mobile">
+        <h2 class="logo">Planigo</h2>
+        <div class="menu-icon">
+          <!-- Placeholder for menu icon -->
+          <img
+            src="https://placehold.co/24x24/000000/000000"
+            alt="Menu"
+            class="menu-icon"
+          />
+        </div>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook" target="_blank"
+            ><img
+              src="https://placehold.co/24x24/000000/000000"
+              alt="Facebook"
+              class="social-icon"
+          /></a>
+          <a href="#" aria-label="Twitter" target="_blank"
+            ><img
+              src="https://placehold.co/24x24/000000/000000"
+              alt="Twitter"
+              class="social-icon"
+          /></a>
+          <a href="#" aria-label="Instagram" target="_blank"
+            ><img
+              src="https://placehold.co/24x24/000000/000000"
+              alt="Instagram"
+              class="social-icon"
+          /></a>
+        </div>
+      </header>
+      <main id="contenu-principal">
+        <form id="form-recette">
+          <textarea
+            id="titre-recette"
+            placeholder="Titre de la recette ici..."
+            required
+          ></textarea>
+          <textarea
+            id="description-recette"
+            placeholder="Description de la recette ici..."
+            required
+          ></textarea>
+          <div>
+            <p>Temps que prends la recette environ : </p>
+            <input id="estimation-temps"class="slider" type="range" min="1" max="181" value="30" >
+                <p id="temps-estime">30 minutes</p>
+          </div>
+          <button
+            id="btn-suppression-recette"
+            type="submit"
+            class="send-button"
+          >
+            Supprimer la recette
+          </button>
+          <div id="zone-images">
+            <div id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+            <input
+              type="file"
+              class="image-recette"
+              id="prochaine-image"
+              name="image"
+              
+              accept="image/png, image/jpeg, image/jpg"
+              multiple="multiple"
+            /></div>
+            
+        </div>
+          <label for="message">Veuillez creer votre recette</label>
+          <button
+            id="btn-creation-recette-image"
+            type="submit"
+            class="send-button"
+          >
+            Ajouter une image
+          </button>
+          <div id="zone-ingredients"></div>
+          <textarea
+            id="prochain-ingredient"
+            name="message"
+            placeholder="Choisissez le prochain ingredient ici..."
+            required
+          ></textarea>
+          <button
+            id="btn-creation-recette-ingredient"
+            type="submit"
+            class="send-button"
+          >
+            Ajouter l'ingredient
+          </button>
+          <div id="zone-etape"></div>
+          <textarea
+            id="prochaine-etape"
+            name="message"
+            placeholder="Écrivez la prochaine etape ici..."
+            required
+          ></textarea>
+          <button
+            id="btn-creation-recette-etape"
+            type="submit"
+            class="send-button"
+          >
+            Ajouter l'etape
+          </button>
+
+          <fieldset>
+            <legend>Veuillez selectionner la difficulte de la recette :</legend>
+            <div>
+              <input
+                type="radio"
+                id="facile"
+                name="difficulte"
+                value="1"
+                required
+              />
+              <label for="facile">Facile !</label>
+
+              <input
+                type="radio"
+                id="moyen"
+                name="difficulte"
+                value="2"
+                required
+              />
+              <label for="moyen">Moyen</label>
+
+              <input
+                type="radio"
+                id="difficile"
+                name="difficulte"
+                value="3"
+                required
+              />
+              <label for="difficile">difficile !!</label>
+            </div>
+          </fieldset>
+
+          <button id="btn-envoi-recette" type="submit" class="send-button">
+            J'ai termine !!!
+          </button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
