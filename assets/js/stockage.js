@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     const BTN_EDIT = document.getElementById('edit');
     const BTN_ADD = document.getElementById('add');
+    
 
     BTN_RECUPERER_PRODUIT.addEventListener('click', function (event) {
         event.preventDefault(); 
@@ -27,7 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.statut === 'success') {
-                    alert("Réusssit à l'optention du contenu du stock");
+
+                    genereItemsStockage(data.stock_ingredient);
+                   
+                    
                 } else {
                     alert ("Échec de l'optention du contenu du stock");
                 }
@@ -130,4 +134,66 @@ document.addEventListener('DOMContentLoaded', function () {
         sessionStorage.setItem("action", "add");
         window.location.href = 'popup-produit.html';
     });
+
+    /**
+     * Remplie le conteneur de produits avec les produits données en paramètre en HTML
+     * @param {liste objet d'un produit} listeItemsStockage 
+     */
+    function genereItemsStockage(listeItemsStockage){
+console.log(listeItemsStockage);
+console.log(listeItemsStockage.length);
+console.log(Object.keys(listeItemsStockage[0]).length);
+        const CONTENEUR_PRODUITS = document.getElementById('contenant_produit');
+
+        //Créer les éléments HTML du conteneur de produits
+        for(let nuObjet = 0; nuObjet < listeItemsStockage.length; nuObjet++){
+
+            const OBJET_PRODUIT = document.createElement("div");//"<div class='object_produit'></div>";
+            OBJET_PRODUIT.className = "object_produit";
+
+            //Créer les éléments HTML des items de chaque objet de la liste (ingredient, quantite et unite)
+            for(let nuItems = 0; nuItems < Object.keys(listeItemsStockage[0]).length; nuItems++){
+
+                const ITEM = document.createElement("div");
+                ITEM.className = "item_produit";
+
+                const TEXT = document.createElement("p");
+                TEXT.className = "text_produit";
+
+                //AJOUTER LE POINT NOIR ICI
+                //ITEM.append(pointnoir);
+
+                //Sélectionner le texte bon texte de l'objet à afficher
+                switch(nuItems){
+                    case 0:
+                        TEXT.textContent = listeItemsStockage[nuObjet].nom;
+                        break;
+                    case 1:
+                        TEXT.textContent = listeItemsStockage[nuObjet].quantite_disponible;
+                        break;
+                    case 2:
+                        TEXT.textContent = listeItemsStockage[nuObjet].unite_de_mesure;
+                        break;
+                }
+
+                ITEM.append(TEXT);
+                OBJET_PRODUIT.append(ITEM);
+            }
+
+            //Ajouter les 2 boutons d'action (modifier et supprimer)
+            const BTN_MODIFIER = document.createElement("button");
+            BTN_MODIFIER.className = "btn_modifier";
+            BTN_MODIFIER.textContent = "Edit"; //MODIFIER POUR UN OBJET BOOTSTRAP
+
+            const BTN_SUPPRIMER = document.createElement("button");
+            BTN_SUPPRIMER.className = "btn_supprimer";
+            BTN_SUPPRIMER.textContent = "Delete"; //MODIFIER POUR UN OBJET BOOTSTRAP
+
+            OBJET_PRODUIT.append(BTN_MODIFIER);
+            OBJET_PRODUIT.append(BTN_SUPPRIMER);
+
+            CONTENEUR_PRODUITS.appendChild(OBJET_PRODUIT);
+        }
+    }
+
 });
