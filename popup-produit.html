@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>popup-produit</title>
+    <script src="assets/js/popup-produit.js" defer></script>
+</head>
+<body>
+
+    <h1>Ajouter un produit</h1>
+    <div id="comptenant-erreur">
+        <p id="message-erreur"></p>
+    </div>
+    <form id="form-produit">
+        <input type="search" id="ingredient" placeholder="Nom de l'ingrédient" required>
+        <input type="number" id="quantite" placeholder="Quantité" required>
+        <input id="unite" name="mesure" value="Entrez l'ingredient pour avoir l'unité de mesure" required readonly></input>
+
+        <button id="btn-soumettre" type="submit">Sauvegarder</button>
+        <button id="btn-annuler">Annuler</button>
+    </form>
+    
+</body>
+</html>
