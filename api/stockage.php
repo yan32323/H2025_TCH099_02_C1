@@ -153,12 +153,12 @@ $router->delete('/stockage.php/supprimer-produit/', function() {
 
         $identifiant = trim($data['identifiant']);
         $motDePasse = trim($data['motDePasse']);
-        $idProduit = trim($data['idProduit']);
+        $ingredient = trim($data['ingredient']);
 
-        //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
+        //Si le client exite dans la base de donnée, on détruit la colonne correspondant à l'ingrédient donné
         if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
-            $requete = $pdo->prepare("DELETE FROM stock_ingredients WHERE produit_id = :produit_id AND nom_utilisateur = :nom_utilisateur");
-            $requete->execute([':produit_id' => $idProduit, ':nom_utilisateur' => $identifiant]);
+            $requete = $pdo->prepare("DELETE s FROM stock_ingredients AS s JOIN produits AS p ON s.produit_id = p.id WHERE p.nom = :nom AND s.nom_utilisateur = :nom_utilisateur");
+            $requete->execute([':nom' => $ingredient, ':nom_utilisateur' => $identifiant]);
             echo json_encode(['statut' => 'success']);
             exit();
 
