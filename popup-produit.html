@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,12 @@
     <div id="comptenant-erreur">
         <p id="message-erreur"></p>
     </div>
-    <form id="form-produit">
-        <input type="search" id="ingredient" placeholder="Nom de l'ingrédient" required>
-        <input type="number" id="quantite" placeholder="Quantité" required>
-        <input id="unite" name="mesure" value="Entrez l'ingredient pour avoir l'unité de mesure" required readonly></input>
+    <form id="form-produit" autocomplete="off">
+        <input type="text" id="ingredient" placeholder="Nom de l'ingrédient" list="liste-ingredient-concordant" autocomplete="off" required> 
+        <datalist id="liste-ingredient-concordant"></datalist>
+        
+        <input type="number" id="quantite" placeholder="Quantité" step="0.01" min="0.100" max="300.00" value="" required>
+        <input id="unite" name="mesure" value="Selon l'ingrédient" readonly></input>
 
         <button id="btn-soumettre" type="submit">Sauvegarder</button>
         <button id="btn-annuler">Annuler</button>
