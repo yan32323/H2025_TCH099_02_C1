@@ -78,13 +78,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        //Permettre l'incrémentation ou le copier coller
+        //+++Permettre l'incrémentation ou le copier coller
         if(event.data.length > 1 && (event.data.indexOf('.') != -1 || event.data.indexOf(',') != -1)){
             T_QUANTITE.value = event.data;
         }
 
         //Permettre de débuter avec 0 . ,
-        if(T_QUANTITE.value.length == 0 && (event.data == '0') || (event.data == '.') || (event.data == ',')){
+        if(T_QUANTITE.value.length == 0 && ((event.data == '0') || (event.data == '.') || (event.data == ','))){
             T_QUANTITE.value = '0.01';
         }
 
@@ -92,16 +92,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if(VALEUR_PERMIT.indexOf(event.data) == -1 && !(event.data.indexOf('.') != -1 || event.data.indexOf(',') != -1)){
             event.preventDefault();
         }
+    });
+    
 
+    T_QUANTITE.addEventListener('input', function () {
+        
         //Empécher de rentrer plus de 2 valeur après la virgule
         let positionVirgule = T_QUANTITE.value.indexOf('.');
         if(positionVirgule != -1 && T_QUANTITE.value.length > (positionVirgule + 2)){
-            event.preventDefault();
-        }
-
-        //Empécher de débuter avec une variable problématique (virgule, un point ou un 0)
-        if ((event.data === '.' || event.data === ',' || event.data === '0') && T_QUANTITE.value.length === 0) {
-            event.preventDefault();
+            T_QUANTITE.value = T_QUANTITE.value.slice(0, positionVirgule + 3);
         }
     });
 
@@ -147,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
             MSG_ERREUR.textContent = "";
 
         }else{
-            MSG_ERREUR.textContent = "Attention! L'ingredient donné est invalide. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur'";
+            MSG_ERREUR.textContent = "Attention! L'ingrédient donné est invalide. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur";
         } 
     });
 
@@ -182,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                         //Si l'ajout est un succès, on revient aux stockages, sinon on affiche le message d'erreur
                         if(data2.statut === 'success'){
+                            sessionStorage.setItem('message_affichage', `L'ingrédient ${ingredient} a été ajouté avec succès`);
                             revenirPageAcceuil();
                         }else if(data2.statut === 'error'){
                             MSG_ERREUR.textContent = data2.message;
@@ -229,6 +229,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     
                     if(data.statut === 'success'){
+                        sessionStorage.setItem('message_affichage', `L'ingrédient ${ingredient} a été modifié avec succès`);
                         revenirPageAcceuil();
                     }
                 }).catch(error => {

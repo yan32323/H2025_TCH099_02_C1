@@ -3,8 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
 
     const MSG_ERREUR = document.getElementById('message-erreur');
+    const MSG_SUCCES = document.getElementById('message-succes');
     const BTN_ADD = document.getElementById('add');
+    const LIENS_SORTANT = document.querySelectorAll("a");
     
+
+    // Si l'usager n'est pas loguer, on le redirige vers la page de connextion
+    if (!IDENTIFIANT || !MOT_DE_PASSE) {
+        window.location.href = 'index.html';
+    }
+
+    //Afficher le message de base si présent
+    if(sessionStorage.getItem('message_affichage')){
+        MSG_SUCCES.textContent = sessionStorage.getItem('message_affichage');
+        sessionStorage.removeItem("message_affichage");
+    }
 
     initialiserContenantProduit();
 
@@ -40,11 +53,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     genereItemsStockage(data.stock_ingredient);
                    
                 } else {
-                    alert ("Échec de l'optention du contenu du stock");
+                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
                 }
-            })
-            .catch(error => {
-                console.error('Erreur d\'inscription:', error);
+            }).catch(error => {
+                if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
+                    // Si c'est une erreur attendu (rédiger par nous même dans l'API)
+                    MSG_ERREUR.textContent = error["message"];
+                } else {
+                    // Si l'erreur n'est pas formatée comme prévu (autre source)
+                    console.error("Erreur inattendue :", error);
+                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                }
             });
     }
 
@@ -156,13 +175,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.statut === 'success') {
                     //Si le retrai est un succès, on retire l'objet au visuel
                     OBJET_PARENT.remove();
-                    MSG_ERREUR.textContent = "Réusssit à supprimer le produit au stock";
+                    MSG_SUCCES.textContent = "L'item a été supprimé avec succès.";
                 } else {
-                    MSG_ERREUR.textContent = "Échec à supprimer le produit au stock";
+                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
                 }
-            })
-            .catch(error => {
-                MSG_ERREUR.textContent = 'Erreur d\'inscription:';
+            }).catch(error => {
+                if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
+                    // Si c'est une erreur attendu (rédiger par nous même dans l'API)
+                    MSG_ERREUR.textContent = error["message"];
+                } else {
+                    // Si l'erreur n'est pas formatée comme prévu (autre source)
+                    console.error("Erreur inattendue :", error);
+                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                }
             });
     }
 
