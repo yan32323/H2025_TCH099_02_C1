@@ -28,7 +28,7 @@ $router->post('/stockage.php/recuperer-produit/', function() {
         //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
         if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
 
-            $requete = $pdo->prepare("SELECT nom, unite_de_mesure, quantite_disponible FROM stock_ingredients s LEFT JOIN produits p ON s.produit_id = p.id WHERE nom_utilisateur = :identifiant");
+            $requete = $pdo->prepare("SELECT nom, unite_de_mesure, quantite_disponible FROM stock_ingredients s LEFT JOIN ingredients i ON s.ingredient_id = i.id WHERE nom_utilisateur = :identifiant");
             $requete->execute([':identifiant' => $identifiant]);
             $stock_ingredient = $requete->fetchAll(PDO::FETCH_ASSOC);
 
@@ -56,7 +56,7 @@ $router->get('/stockage.php/recuperer-ingredient/', function() {
     header('Content-Type: application/json');
 
     try {
-        $requete = $pdo->prepare("SELECT id, nom, unite_de_mesure FROM produits");
+        $requete = $pdo->prepare("SELECT id, nom, unite_de_mesure FROM ingredients");
         $requete->execute();
         $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
         
@@ -85,7 +85,7 @@ $router->get('/stockage.php/recuperer-id-produit/{nom}', function($nomProduit) {
     header('Content-Type: application/json');
 
     try {
-        $requete = $pdo->prepare("SELECT id, unite_de_mesure FROM produits WHERE nom = :nom");
+        $requete = $pdo->prepare("SELECT id, unite_de_mesure FROM ingredients WHERE nom = :nom");
         $requete->execute([':nom' => $nomProduit]);
         $resultat = $requete->fetch(PDO::FETCH_ASSOC);
         
@@ -126,7 +126,7 @@ $router->post('/stockage.php/ajouter-produit/', function() {
         if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
 
             //Vérifier si le produit est déjà présent dans le stock_ingredients
-            $requete = $pdo->prepare('SELECT * FROM stock_ingredients WHERE nom_utilisateur = :identifiant AND produit_id = :idProduit');
+            $requete = $pdo->prepare('SELECT * FROM stock_ingredients WHERE nom_utilisateur = :identifiant AND ingredient_id = :idProduit');
             $requete->execute([':identifiant' => $identifiant, ':idProduit' => $idProduit]);
             $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
@@ -173,7 +173,7 @@ $router->delete('/stockage.php/supprimer-produit/', function() {
 
         //Si le client exite dans la base de donnée, on détruit la colonne correspondant à l'ingrédient donné
         if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
-            $requete = $pdo->prepare("DELETE s FROM stock_ingredients AS s JOIN produits AS p ON s.produit_id = p.id WHERE p.nom = :nom AND s.nom_utilisateur = :nom_utilisateur");
+            $requete = $pdo->prepare("DELETE s FROM stock_ingredients AS s JOIN ingredients AS i ON s.ingredient_id = i.id WHERE i.nom = :nom AND s.nom_utilisateur = :nom_utilisateur");
             $requete->execute([':nom' => $ingredient, ':nom_utilisateur' => $identifiant]);
             echo json_encode(['statut' => 'success']);
             exit();
@@ -210,7 +210,7 @@ $router->put('/stockage.php/update-produit/', function() {
 
         //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
         if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
-            $requete = $pdo->prepare("UPDATE stock_ingredients AS s JOIN produits AS p ON s.produit_id = p.id SET s.quantite_disponible = :quantite WHERE p.nom = :nom AND s.nom_utilisateur = :nom_utilisateur");
+            $requete = $pdo->prepare("UPDATE stock_ingredients AS s JOIN ingredients AS i ON s.ingredient_id = i.id SET s.quantite_disponible = :quantite WHERE i.nom = :nom AND s.nom_utilisateur = :nom_utilisateur");
             $requete->execute([':quantite' => $quantite, ':nom' => $nomProduit, ':nom_utilisateur' => $identifiant]);
             echo json_encode(['statut' => 'success']);
             exit();

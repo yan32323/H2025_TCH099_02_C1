@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const inscriptionErrorDiv = document.getElementById('inscriptionError');
     const inscriptionSuccessDiv = document.getElementById('inscriptionSuccess');
     const passwordInput = document.getElementById('motDePasse');
+    const passwordConfirmInput = document.getElementById('motDePasseConfirmation');
     const passwordValidationErrorDiv = document.getElementById('passwordValidationError');
 
     inscriptionForm.addEventListener('submit', function (event) {
@@ -29,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (!/[0-9]/.test(motDePasse)) {
             passwordErrors.push("Le mot de passe doit contenir au moins un chiffre.");
+        }
+
+        if (motDePasse !== passwordConfirmInput.value) {
+            passwordErrors.push("Les mots de passe ne correspondent pas.");
         }
 
         if (passwordErrors.length > 0) {
