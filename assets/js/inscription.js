@@ -41,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = {identifiant: identifiant, motDePasse: motDePasse};
 
         // Make API request to /api/inscription.php (or /api/users - POST)
-        fetch('http://localhost/labo-tch099/api/inscription.php/inscrire/', { // Adjust API endpoint if needed
+        
+        fetch('./api/inscription.php/inscrire/', { // Adjust API endpoint if needed
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

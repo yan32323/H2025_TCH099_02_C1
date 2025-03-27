@@ -4,44 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planigo - Recipes</title>
-    <link rel="stylesheet" href="assets/styles/stylesRecettes.css" />
+    <link rel="stylesheet" href="assets/styles/styles-creation-recettes.css" />
     <script src="assets/js/creationRecettes.js"></script>
   </head>
   <body>
     <div class="container">
       <!-- Header Section -->
-      <header class="header">
-        <h2 class="logo">Planigo</h2>
-        <nav class="nav-items">
-          <a href="#" class="nav-item">Mes recettes</a>
-          <a href="#" class="nav-item">Explorer</a>
-          <a href="#" class="nav-item">Plannification</a>
-          <a href="#" class="nav-item">Stock</a>
-          <a href="index.html" class="nav-item" id="logoutButton"
-            >Deconnexion</a
-          >
-        </nav>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook" target="_blank"
-            ><img
-              src="https://placehold.co/24x24/000000/000000"
-              alt="Facebook"
-              class="social-icon"
-          /></a>
-          <a href="#" aria-label="Twitter" target="_blank"
-            ><img
-              src="https://placehold.co/24x24/000000/000000"
-              alt="Twitter"
-              class="social-icon"
-          /></a>
-          <a href="#" aria-label="Instagram" target="_blank"
-            ><img
-              src="https://placehold.co/24x24/000000/000000"
-              alt="Instagram"
-              class="social-icon"
-          /></a>
+      <header>
+        <div class="hautdepage">
+    
+          <div class="logo">
+            <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+          </div>
+          <div class="nav-wrapper">
+            <nav>
+              <ul>
+                <li><a href="#">Mes recettes</a></li>
+                <li><a href="#">Plannificateur</a></li>
+                <li><a href="#">Liste d'épicerie</a></li>
+                <li><a href="#">Stock</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="logout-link">
+            <a href="index.html" class="nav-item" id="logoutButton"
+            >Se déconnecter</a>
+          </div>
         </div>
       </header>
+
+
+
+
+
+
 
       <!-- Mobile Header Section -->
       <header class="header-mobile">
@@ -75,32 +71,52 @@
           /></a>
         </div>
       </header>
+
+
+
+      <div class="content-container">    
       <main id="contenu-principal">
-        <form id="form-recette">
+
+        <button class = "delete-recipe-button"
+        id="btn-suppression-recette"
+        type="submit"
+        class="send-button"
+      >
+        SUPPRIMER LA RECETTE
+      </button>
+      <div class = "titre">
+        <h1>Création d'une recette</h1>
+        <h2>Détails sur la recette :</h2>
+          </div>
+
+
+        <form class= "recipe-form" id="form-recette">
+          <div class="form-columns"> 
+            <div class="left-column">
+              <div class="form-group">
+                <label for="recipe-title">Titre de la recette <span class="required">*</span></label>   
           <textarea
             id="titre-recette"
             placeholder="Titre de la recette ici..."
             required
           ></textarea>
+          </div>
+
+          <div class="form-group">
+          <label for="recipe-description">Description de la recette <span class="required">*</span></label>
+          
           <textarea
             id="description-recette"
             placeholder="Description de la recette ici..."
             required
           ></textarea>
-          <div>
-            <p>Temps que prends la recette environ : </p>
-            <input id="estimation-temps"class="slider" type="range" min="1" max="181" value="30" >
-                <p id="temps-estime">30 minutes</p>
-          </div>
-          <button
-            id="btn-suppression-recette"
-            type="submit"
-            class="send-button"
-          >
-            Supprimer la recette
-          </button>
-          <div id="zone-images">
-            <div id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+        </div>
+        </div>
+
+        <div class="right-column">
+          <div id="zone-images" class="form-group file-upload-group">
+            <label for="recipe-photos">Glissez-déposez vos photos ici ou cliquez pour chercher <span class="required">*</span></label>
+            <div class= "file-upload-box" id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
             <input
               type="file"
               class="image-recette"
@@ -109,10 +125,60 @@
               
               accept="image/png, image/jpeg, image/jpg"
               multiple="multiple"
-            /></div>
+            />
+          </div>
+          </div>
+
+          </div>
+          
+          </div>
+
+          <div class="detail">
+            <div class="form-group time-group">
+            <p>Temps que prends la recette environ : </p>
+            <div class=" time-slider-container">
+            <input id="estimation-temps"class="slider" type="range" min="1" max="181" value="30" >
+                <p id="temps-estime">30 minutes</p>
+            </div>
+            </div>
+
+            <div class="form-group difficulty-group">
+                <fieldset>
+                  <legend>Veuillez selectionner la difficulte de la recette :</legend>
+                  <div class = "difficulty-options">
+                    <input
+                      type="radio"
+                      id="facile"
+                      name="difficulte"
+                      value="1"
+                      required
+                    />
+                    <label for="facile">Facile !</label>
+      
+                    <input
+                      type="radio"
+                      id="moyen"
+                      name="difficulte"
+                      value="2"
+                      required
+                    />
+                    <label for="moyen">Moyen</label>
+      
+                    <input
+                      type="radio"
+                      id="difficile"
+                      name="difficulte"
+                      value="3"
+                      required
+                    />
+                    <label for="difficile">difficile !!</label>
+                  </div>
+                </fieldset>
+          </div>
+          </div>
             
-        </div>
-          <label for="message">Veuillez creer votre recette</label>
+        
+          <!--<label for="message">Veuillez creer votre recette</label>-->
           <button
             id="btn-creation-recette-image"
             type="submit"
@@ -120,71 +186,74 @@
           >
             Ajouter une image
           </button>
+          <div class="ingredients-section">
+          <h2>INGRÉDIENTS</h2>
+          <div class="ingredient-item">
+          
+          <div class="ingredient-input">
           <div id="zone-ingredients"></div>
+
           <textarea
             id="prochain-ingredient"
             name="message"
             placeholder="Choisissez le prochain ingredient ici..."
             required
           ></textarea>
+        </div>
+      </div>
           <button
             id="btn-creation-recette-ingredient"
             type="submit"
-            class="send-button"
+            class="send-button add-ingredient-button"
           >
             Ajouter l'ingredient
           </button>
+        
+        </div>
+          <div class="instructions-section">
           <div id="zone-etape"></div>
+          
+
+          <h2>INSTRUCTIONS</h2>
+          <div class="instruction-item">
+          <div class="instruction-input">
           <textarea
             id="prochaine-etape"
             name="message"
             placeholder="Écrivez la prochaine etape ici..."
             required
           ></textarea>
+          </div>
+
+
+          </div>
           <button
             id="btn-creation-recette-etape"
             type="submit"
-            class="send-button"
+            class="send-button add-instruction-button"
           >
             Ajouter l'etape
           </button>
+          </div>
 
-          <fieldset>
-            <legend>Veuillez selectionner la difficulte de la recette :</legend>
-            <div>
-              <input
-                type="radio"
-                id="facile"
-                name="difficulte"
-                value="1"
-                required
-              />
-              <label for="facile">Facile !</label>
 
-              <input
-                type="radio"
-                id="moyen"
-                name="difficulte"
-                value="2"
-                required
-              />
-              <label for="moyen">Moyen</label>
 
-              <input
-                type="radio"
-                id="difficile"
-                name="difficulte"
-                value="3"
-                required
-              />
-              <label for="difficile">difficile !!</label>
-            </div>
-          </fieldset>
 
-          <button id="btn-envoi-recette" type="submit" class="send-button">
+
+
+
+
+
+
+
+
+          <div class="form-group save-button-group">
+          <button id="btn-envoi-recette" type="submit" class="send-button save-recipe-button">
             J'ai termine !!!
           </button>
+          </div>
         </form>
+
       </main>
     </div>
   </body>

@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="assets/js/stockage.js" defer></script>
+    <link rel="stylesheet" href="assets/styles/styles-popup.css">
 </head>
 <body>
+    <h1> Modifier mon stock</h1>
 
+    <p class="subtitle">Suivez facilement les ingrédients dont vous disposez à la maison !</p>
+    <p class="description">Ajoutez de nouveaux ingrédients à votre stock ou mettez à jour les quantités existantes.</p>
+    <div class = "stock-container">
     <div id="contenant-succes">
         <p id="message-succes"></p>
     </div>
@@ -16,12 +21,15 @@
         <p id="message-erreur"></p>
     </div>
     
-    <button id="add">add</button>
+    
 
     <div id="contenant_produit">
         <!-- Ici il y a des div appertenant à la classe 'objet_produit'-->
          <!-- Dans le div, il y a les 3 div appartenant à la classe items_produit (pour ingredients, quantite et unite) et 2 div (l'un pour edit et l'autre pour supprimer)-->
           <!-- Dans chaqu'un de ces div, il y a un élément boodstrap (le point noir) et un p qui correspont à la description de l'item-->
     </div>
+    
+</div>
+<button class= "save-button" id="add">Ajouter</button>
 </body>
 </html>

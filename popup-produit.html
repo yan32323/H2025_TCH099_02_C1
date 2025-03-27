@@ -5,23 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>popup-produit</title>
     <script src="assets/js/popup-produit.js" defer></script>
+    <link rel="stylesheet" href="assets/styles/styles-popup.css">
 </head>
 <body>
+    <div class="center-container"> 
+        <h1>Modifier la quantité du produit</h1>
+        <p class="subtitle">Ajoutez de nouveaux ingrédients à votre stock.</p>
+        <section class="stock-container">
+        <h2>Ingrédients :</h2>
+        <div class="ingredient-list">
 
-    <h1>Ajouter un produit</h1>
-    <div id="comptenant-erreur">
-        <p id="message-erreur"></p>
-    </div>
-    <form id="form-produit" autocomplete="off">
-        <input type="text" id="ingredient" placeholder="Nom de l'ingrédient" list="liste-ingredient-concordant" autocomplete="off" required> 
-        <datalist id="liste-ingredient-concordant"></datalist>
-        
-        <input type="number" id="quantite" placeholder="Quantité" step="0.01" min="0.100" max="300.00" value="" required>
-        <input id="unite" name="mesure" value="Selon l'ingrédient" readonly></input>
+        <div id="comptenant-erreur">
+            <p id="message-erreur"></p>
+        </div>
+        <div class="ingredient-row new">
+        <form id="form-produit" autocomplete="off">
+            <input type="text" id="ingredient" placeholder="Nom de l'ingrédient" list="liste-ingredient-concordant" autocomplete="off" required>
+            <datalist id="liste-ingredient-concordant"></datalist>
 
-        <button id="btn-soumettre" type="submit">Sauvegarder</button>
-        <button id="btn-annuler">Annuler</button>
-    </form>
-    
+            <input type="number" id="quantite" placeholder="Quantité" step="0.01" min="0.100" max="300.00" value="2.00" required>
+            <input id="unite" name="mesure" value="kg" readonly></input>
+        </div>
+            <div class="buttons-container">
+                <button class= "save-button" id="btn-soumettre" type="submit">Sauvegarder</button>
+                <button class= "save-button" id="btn-annuler">Annuler</button>
+            </div>
+        </form>
+        </div>
+        </div>
+        </section>
+    </div> 
 </body>
 </html>
