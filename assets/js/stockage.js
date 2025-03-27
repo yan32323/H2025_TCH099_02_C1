@@ -116,11 +116,11 @@ document.addEventListener('DOMContentLoaded', function () {
             //Créer les 2 boutons d'action (modifier et supprimer)
             const BTN_MODIFIER = document.createElement("button");
             BTN_MODIFIER.className = "btn_modifier";
-            BTN_MODIFIER.textContent = "Edit"; //MODIFIER POUR UN OBJET BOOTSTRAP
+            BTN_MODIFIER.textContent = "⚙️"; //MODIFIER POUR UN OBJET BOOTSTRAP
 
             const BTN_SUPPRIMER = document.createElement("button");
             BTN_SUPPRIMER.className = "btn_supprimer";
-            BTN_SUPPRIMER.textContent = "Delete"; //MODIFIER POUR UN OBJET BOOTSTRAP
+            BTN_SUPPRIMER.textContent = "✖"; //MODIFIER POUR UN OBJET BOOTSTRAP
 
             //Ajouter les compoants à leurs parents
             DIV_BOUTTON.append(BTN_MODIFIER);

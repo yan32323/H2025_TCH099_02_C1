@@ -107,71 +107,86 @@ CREATE TABLE Likes_Commentaires (
         REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
-INSERT INTO Clients (nom_utilisateur, mot_de_passe) VALUES
-('alice', 'motdepasse123'),
-('bob', 'securepass'),
-('charlie', '12345678');
+INSERT INTO Clients (nom_utilisateur, mot_de_passe)
+VALUES
+    ('john_doe', 'password123'),
+    ('jane_doe', 'securepassword'),
+    ('alice_smith', 'alicepassword');
+
+INSERT INTO Recettes (nom, description, temps_de_cuisson, image, createur_nom_utilisateur)
+VALUES
+    ('Salade César', 'Une salade avec du poulet, de la laitue et de la sauce César', 15, NULL, 'john_doe'),
+    ('Spaghetti Bolognese', 'Des pâtes avec une sauce bolognaise savoureuse', 30, NULL, 'jane_doe'),
+    ('Soupe à l\'oignon', 'Une soupe chaude avec des oignons caramélisés', 45, NULL, 'alice_smith');
+
+INSERT INTO Ingredients (unite_de_mesure, nom)
+VALUES
+    ('g', 'Poulet'),
+    ('g', 'Pâtes'),
+    ('ml', 'Sauce tomate'),
+    ('g', 'Fromage râpé'),
+    ('unite', 'Oignons'),
+    ('g', 'Pain');
+
+INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite, unite_de_mesure)
+VALUES
+    (1, 1, 200, 'g'),
+    (1, 2, 100, 'g'),
+    (1, 3, 50, 'ml'),
+    (2, 2, 150, 'g'),
+    (2, 3, 200, 'ml'),
+    (3, 5, 100, 'g');
+
+INSERT INTO Plan_de_repas (date, nom_utilisateur)
+VALUES
+    ('2025-03-26', 'john_doe'),
+    ('2025-03-27', 'jane_doe'),
+    ('2025-03-28', 'alice_smith');
+
+INSERT INTO Repas_Planifies (plan_id, recette_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 3);
+
+INSERT INTO Liste_de_courses (plan_id, ingredient_id, quantite, achete)
+VALUES
+    (1, 1, 200, 0),
+    (1, 2, 100, 0),
+    (2, 2, 150, 0),
+    (2, 3, 200, 0),
+    (3, 5, 100, 0);
 
 
-INSERT INTO Ingredients (nom) VALUES
-('Pâtes'),
-('Crème fraîche'),
-('Œufs'),
-('Laitue'),
-('Poulet'),
-('Champignons');
+INSERT INTO Promotions (nom_enseigne, url_promotion)
+VALUES
+    ('Métro', 'https://www.metro.ca/circulaire'),
+    ('Maxi', 'https://www.maxi.ca/fr/print-flyer');
 
 
-INSERT INTO Recettes (nom, description, temps_de_cuisson, image_url, createur_nom_utilisateur) VALUES
-('Pâtes Carbonara', 'Délicieuses pâtes à la carbonara', 20, 'images/carbonara.jpg', 'alice'),
-('Salade César', 'Salade fraîche avec sauce césar maison', 15, 'images/cesar.jpg', 'bob'),
-('Omelette aux champignons', 'Omelette moelleuse avec champignons', 10, 'images/omelette.jpg', 'charlie');
-
-INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite, unite_de_mesure) VALUES
-(1, 1, 200, 'g'),  
-(1, 2, 100, 'ml'), 
-(1, 3, 2, 'pièce'), 
-(2, 4, 100, 'g'), 
-(2, 5, 150, 'g'), 
-(3, 3, 3, 'pièce'), 
-(3, 6, 50, 'g'); 
+INSERT INTO Stock_Ingredients (nom_utilisateur, ingredient_id, quantite_disponible)
+VALUES
+    ('john_doe', 1, 500),
+    ('jane_doe', 2, 1000),
+    ('alice_smith', 5, 300);
 
 
-INSERT INTO Plan_de_repas (date, nom_utilisateur) VALUES
-('2025-03-25', 'alice'),
-('2025-03-26', 'bob');
+INSERT INTO Recettes_Sauvegardees (nom_utilisateur, recette_id)
+VALUES
+    ('john_doe', 1),
+    ('jane_doe', 2),
+    ('alice_smith', 3);
 
 
-INSERT INTO Repas_Planifies (plan_id, recette_id, type_repas) VALUES
-(1, 1, 'dîner'),    
-(1, 2, 'déjeuner'), 
-(2, 3, 'petit-déjeuner'); 
+INSERT INTO Commentaires (recette_id, nom_utilisateur, texte, date_commentaire)
+VALUES
+    (1, 'john_doe', 'Excellente recette!', '2025-03-25 10:00:00'),
+    (2, 'jane_doe', 'Vraiment savoureux, à refaire.', '2025-03-25 10:30:00'),
+    (3, 'alice_smith', 'Très réconfortant en hiver.', '2025-03-25 11:00:00');
 
 
-INSERT INTO Liste_de_courses (plan_id, ingredient_id, quantite, achete) VALUES
-(1, 1, 200, 0), 
-(1, 2, 100, 0), 
-(2, 6, 50, 1);
-
-INSERT INTO Promotions (nom_enseigne, url_promotion) VALUES
-('Supermarché A', 'https://promo.supermarcheA.com'),
-('Epicerie B', 'https://promo.epicerieB.com');
-
-
-INSERT INTO Stock_Ingredients (nom_utilisateur, ingredient_id, quantite_disponible) VALUES
-('alice', 3, 10),  
-('bob', 5, 200);  
-
-INSERT INTO Recettes_Sauvegardees (nom_utilisateur, recette_id) VALUES
-('alice', 2),
-('charlie', 1);
-
-INSERT INTO Commentaires (recette_id, nom_utilisateur, texte) VALUES
-(1, 'bob', 'Recette super facile et délicieuse !'),
-(2, 'alice', 'J’ai ajouté du parmesan, c’était encore meilleur.');
-
-
-INSERT INTO Likes_Commentaires (commentaire_id, nom_utilisateur) VALUES
-(1, 'alice'), 
-(2, 'charlie'); 
-
+INSERT INTO Likes_Commentaires (commentaire_id, nom_utilisateur)
+VALUES
+    (1, 'jane_doe'),
+    (2, 'alice_smith'),
+    (3, 'john_doe');
