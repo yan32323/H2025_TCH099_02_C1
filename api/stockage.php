@@ -83,6 +83,9 @@ $router->get('/stockage.php/recuperer-id-produit/{nom}', function($nomProduit) {
     
     require_once '../includes/conection.php';
     header('Content-Type: application/json');
+    // Décoder les espaces encodés en URL
+    $nomProduit = urldecode($nomProduit);
+    $nomProduit = htmlspecialchars($nomProduit);
 
     try {
         $requete = $pdo->prepare("SELECT id, unite_de_mesure FROM ingredients WHERE nom = :nom");
@@ -95,7 +98,7 @@ $router->get('/stockage.php/recuperer-id-produit/{nom}', function($nomProduit) {
             exit();
 
         }else{
-            echo json_encode(['statut' => 'error', 'message' => 'L\'ingredient est introuvable. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur']);
+            echo json_encode(['statut' => 'error', 'message' => 'L\'ingredient est introuvable. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur' . $nomProduit]);
             exit();
         }
     } catch (PDOException $e) {

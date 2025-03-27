@@ -31,8 +31,16 @@ document.addEventListener('DOMContentLoaded', function () {
         H1_TITRE.textContent = 'Modifier la quantité du produit';
         T_INGREDIENT.value = ingredient;
         T_INGREDIENT.setAttribute('readonly', true);
-        T_QUANTITE.value = quantite;
         T_UNITE.value = unite;
+
+        //modifier la graduation de la quantité selon l'unité de mesure
+        nouvelleUniteDeMesure(unite);
+        if(unite == 'unite'){
+            T_QUANTITE.value = Number.parseInt(quantite);
+        }else{
+            T_QUANTITE.value = quantite;
+
+        }
 
     }else {
         if(ACTION === 'add'){
@@ -71,8 +79,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         //cas ou on veut juste des valeur entier
-        if(T_UNITE.value == unite){
-            if(VALEUR_PERMIT.indexOf(event.data) == -1 && !(event.data.indexOf('.') != -1 || event.data.indexOf(',') != -1)){
+        if(T_UNITE.value == "unite"){
+            if(VALEUR_PERMIT.indexOf(event.data) == -1){
                 event.preventDefault();
             }
             return;
@@ -229,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     
                     if(data.statut === 'success'){
-                        sessionStorage.setItem('message_affichage', `L'ingrédient ${ingredient} a été modifié avec succès`);
+                        sessionStorage.setItem('message_affichage', `L'ingrédient ${encodeURIComponent(ingredient)} a été modifié avec succès`);
                         revenirPageAcceuil();
                     }
                 }).catch(error => {
