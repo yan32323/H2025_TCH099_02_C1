@@ -90,6 +90,12 @@ body {
     margin-bottom: 25px; 
 }
 
+.groupe_ingredient{
+    display: flex;
+    flex-direction: column; 
+    gap: 20px; 
+    margin-bottom: 25px; 
+}
 
   h1 {
       color: #004B46;

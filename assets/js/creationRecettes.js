@@ -154,12 +154,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         for (let i = 0; i < tableauIngredients.length; i++) {
           let divIngredient = document.createElement("div");
+          divIngredient.classList.add("groupe_ingredient");
           divIngredient.innerHTML =
-            "<p id='ing" +
+            "<p class='nom_ingredient' id='ig" +
             i +
             "'>" +
             tableauIngredients[i] +
-            "</p><button id='supr-ing" +
+            "</p><button class='btn_ingredient' id='supr-ing" +
             i +
             "'>X</button>";
           zoneIngredient.appendChild(divIngredient);
