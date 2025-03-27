@@ -109,6 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 OBJET_PRODUIT.append(ITEM);
             }
 
+            //créer le div des bouttons
+            const DIV_BOUTTON = document.createElement("div");
+            DIV_BOUTTON.className = "div_btn_item";
+
             //Créer les 2 boutons d'action (modifier et supprimer)
             const BTN_MODIFIER = document.createElement("button");
             BTN_MODIFIER.className = "btn_modifier";
@@ -119,8 +123,9 @@ document.addEventListener('DOMContentLoaded', function () {
             BTN_SUPPRIMER.textContent = "Delete"; //MODIFIER POUR UN OBJET BOOTSTRAP
 
             //Ajouter les compoants à leurs parents
-            OBJET_PRODUIT.append(BTN_MODIFIER);
-            OBJET_PRODUIT.append(BTN_SUPPRIMER);
+            DIV_BOUTTON.append(BTN_MODIFIER);
+            DIV_BOUTTON.append(BTN_SUPPRIMER);
+            OBJET_PRODUIT.append(DIV_BOUTTON);
             CONTENEUR_PRODUITS.appendChild(OBJET_PRODUIT);
 
             //Setter les actions sur les boutons
