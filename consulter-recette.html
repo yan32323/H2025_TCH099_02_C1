@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulter Recette - Planigo </title>
+    <link rel="stylesheet" href="assets/styles/stylePopup.css">
+    <link rel="stylesheet" href="assets/styles/components.css">
+</head>
+<body>
+    <div class="recipe-popup-screen">
+        <header>
+            <div class="hautdepage">
+        
+              <div class="logo">
+                <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+              </div>
+              <div class="nav-wrapper">
+                <nav>
+                  <ul>
+                    <li><a href="#">Mes recettes</a></li>
+                    <li><a href="#">Plannificateur</a></li>
+                    <li><a href="#">Liste d'épicerie</a></li>
+                    <li><a href="#">Stock</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="logout-link">
+                <a href="index.html" class="nav-item" id="logoutButton"
+                >Se déconnecter</a>
+              </div>
+            </div>
+          </header>
+
+        
+
+        <section class="recipe-title-section">
+            <h1 class="recipe-title">Nom de la recette</h1>
+        </section>
+
+        <section class="recipe-metadata">
+            <div class="author-info">
+                <div class="author-profile-image placeholder-square small-square"></div>
+                <div class="author-details">
+                    <p class="author-name">John Doe</p>
+                    <p class="author-date">15 March 2022</p>
+                </div>
+            </div>
+
+            <div class="prep-time">
+                <div class="vertical-divider"></div>
+                <div class="time-details">
+                    <p class="time-label">TEMPS DE PRÉPARATION</p>
+                    <p class="time-value">15 Minutes</p>
+                </div>
+            </div>
+
+            <div class="cook-time-category">
+                <div class="vertical-divider"></div>
+                <div class="time-details">
+                    <p class="time-label">TEMPS DE CUISSON</p>
+                    <p class="time-value">15 Minutes</p>
+                </div>
+                <p class="recipe-category">Poulet</p>
+            </div>
+
+            <div class="recipe-actions">
+                <p class="save-recipe">sauvegarder</p>
+                <div class="edit-recipe">
+                    <div class="edit-icon placeholder-square large-square"></div>
+                    <p class="edit-text">MODIFIER</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="recipe-image-comments">
+            <div class="recipe-main-image placeholder-square recipe-image-square"></div>
+            <div class="comments-section">
+                <h3 class="comments-title">Commentaires</h3>
+                <div class="comment-item-wrapper">
+                    <div class="comment-item highlighted-comment">
+                        <div class="comment-content">
+                            <div class="comment-profile-image placeholder-square small-square"></div>
+                            <div class="comment-text-area">
+                                <p class="comment-name">John Smith</p>
+                                <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in rep</p>
+                                <div class="comment-actions">
+                                    <div class="action-icon placeholder-square tiny-square"></div>
+                                    <div class="action-icon placeholder-square tiny-square"></div>
+                                    <div class="action-icon placeholder-square tiny-square"></div>
+                                    <button class="comment-button">Comment</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-item-wrapper">
+                    <div class="comment-item">
+                        <div class="comment-content">
+                            <div class="comment-profile-image placeholder-square small-square"></div>
+                            <div class="comment-text-area">
+                                <p class="comment-name">Jane Doe</p>
+                                <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+                                <div class="comment-timestamp">
+                                    <div class="comment-reactions">
+                                        <div class="reaction-box placeholder-square tiny-square reaction-icon"></div>
+                                        <div class="reaction-box placeholder-square tiny-square reaction-icon"></div>
+                                    </div>
+                                    <p class="timestamp">il y a 5 minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="load-more-button">Charger plus</button>
+            </div>
+        </section>
+
+        <section class="recipe-description-section">
+            <p class="recipe-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+
+        <section class="ingredients-section">
+            <h3 class="section-title ingredients-title">Ingrédients</h3>
+            <h4 class="ingredients-subtitle">Pour le plat principal</h4>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+
+            <h4 class="ingredients-subtitle">For the sauce</h4>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+            <div class="ingredient-item-wrapper checkbox-list">
+                <label class="checkbox-ingredient">
+                    <input type="checkbox">
+                    <span>Lorem ipsum dolor sit amet</span>
+                </label>
+                <hr class="ingredient-divider">
+            </div>
+        </section>
+
+        <section class="directions-section">
+            <h3 class="section-title directions-title">Directions</h3>
+            <div class="direction-step-wrapper">
+                <div class="direction-step">
+                    <div class="step-number" data-number="1"></div>
+                    <h4 class="step-title">Lorem ipsum dolor sit amet</h4>
+                    <p class="step-description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                    <div class="step-image placeholder-square direction-image-square"></div>
+                </div>
+            </div>
+             <div class="direction-step-wrapper">
+                <div class="direction-step">
+                    <div class="step-number" data-number="2"></div>
+                    <h4 class="step-title">Lorem ipsum dolor sit amet</h4>
+                    <p class="step-description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                    <div class="step-image placeholder-square direction-image-square"></div>
+                </div>
+            </div>
+             <div class="direction-step-wrapper">
+                <div class="direction-step">
+                    <div class="step-number" data-number="3"></div>
+                    <h4 class="step-title">Lorem ipsum dolor sit amet</h4>
+                    <p class="step-description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                    <div class="step-image placeholder-square direction-image-square"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <section class="footer-content">
+                <p class="footer-logo">Planigo</p>
+                <div class="footer-main-content">
+                    <p class="footer-description">Lorem ipsum dolor sit amet, consectetuipisicing elit,</p>
+                    <nav class="footer-nav">
+                        <ul class="footer-links">
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">À propos de nous</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <hr class="footer-divider">
+            </section>
+        </footer>
+    </div>
+</body>
+</html>

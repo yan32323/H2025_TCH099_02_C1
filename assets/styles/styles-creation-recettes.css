@@ -150,9 +150,9 @@ body {
       color: #ef4444; 
   }
 
-  .recipe-form input[type="text"],
-  .recipe-form textarea {
+  .recipe-form input[type="text"] {
       width: 100%;
+      height: 100%;
       padding: 12px 15px; 
       border: 1px solid #d1d5db; 
       border-radius: 8px; 
@@ -160,20 +160,35 @@ body {
       box-sizing: border-box;
       color: #4a5568; 
       background-color: #f9fafb; 
+      resize: none;
   }
 
-  .recipe-form input[type="text"]:focus,
-  .recipe-form textarea:focus {
+  .recipe-form input[type="text"]:focus {
       outline: none;
       border-color: #9ca3af; 
       box-shadow: 0 0 0 2px rgba(164, 170, 179, 0.2); 
+      resize: none;
   }
 
-
-  .recipe-form textarea {
-      height: 120px; 
-      resize: vertical;
+  .recipe-form textarea{
+    width: 100%;
+    height: 10em;
+    padding: 12px 15px; 
+    border: 1px solid #d1d5db; 
+    border-radius: 8px; 
+    font-size: 1.1em;
+    box-sizing: border-box;
+    color: #4a5568; 
+    background-color: #f9fafb; 
+    resize: none;
   }
+ 
+  .recipe-form textarea:focus {
+    outline: none;
+    border-color: #9ca3af; 
+    box-shadow: 0 0 0 2px rgba(164, 170, 179, 0.2); 
+    resize: none;
+}
   .detail {
     display: flex;
     justify-content: space-between;
@@ -184,7 +199,6 @@ body {
 .time-group, .difficulty-group {
     flex: 1; 
 }
-
  
   .form-columns {
       display: flex;
