@@ -98,7 +98,7 @@ $router->get('/stockage.php/recuperer-id-produit/{nom}', function($nomProduit) {
             exit();
 
         }else{
-            echo json_encode(['statut' => 'error', 'message' => 'L\'ingredient est introuvable. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur' . $nomProduit]);
+            echo json_encode(['statut' => 'error', 'message' => 'L\'ingredient' . $nomProduit . ' est introuvable. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur']);
             exit();
         }
     } catch (PDOException $e) {

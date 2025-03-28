@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('lancer-popup', function () {
 
     const IDENTIFIANT = sessionStorage.getItem('identifiant');
     const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
@@ -8,9 +8,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const T_INGREDIENT = document.getElementById('ingredient');
     const T_QUANTITE = document.getElementById('quantite');
     const T_UNITE = document.getElementById('unite');
-    const B_SOUMETTRE = document.getElementById('form-produit');
+    const B_SOUMETTRE = document.getElementById('btn-soumettre');
     const B_ANNULER = document.getElementById('btn-annuler');
-    const MSG_ERREUR = document.getElementById('message-erreur');
+    const MSG_ERREUR = document.getElementById('message-erreur2');
 
     let listeIngredient = [];
 
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }else{
             //erreur on redirige vers la page de navigation
-            window.location.href = 'forum.html';
+            window.location.href = 'accueil-recette.html';
         }
     }
 
@@ -159,8 +159,14 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    B_SOUMETTRE.addEventListener('submit', async function () {
+    B_SOUMETTRE.addEventListener('click', async function () {
         event.preventDefault();
+
+        //Vérifier si le formulaire est valide
+        if(document.getElementsByTagName('form')[0].checkValidity() === false){
+            MSG_ERREUR.textContent = "Veuillez remplir tous les champs obligatoires";
+            return;
+        }
         
         //Récupéré les données du formulaire
         let ingredient = T_INGREDIENT.value;
@@ -237,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     
                     if(data.statut === 'success'){
-                        sessionStorage.setItem('message_affichage', `L'ingrédient ${encodeURIComponent(ingredient)} a été modifié avec succès`);
+                        sessionStorage.setItem('message_affichage', `L'ingrédient ${ingredient} a été modifié avec succès`);
                         revenirPageAcceuil();
                     }
                 }).catch(error => {

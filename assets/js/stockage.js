@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const IDENTIFIANT = sessionStorage.getItem('identifiant');
     const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
 
-    const MSG_ERREUR = document.getElementById('message-erreur');
+    const MSG_ERREUR = document.getElementById('message-erreur1');
     const MSG_SUCCES = document.getElementById('message-succes');
     const BTN_ADD = document.getElementById('add');
-    const LIENS_SORTANT = document.querySelectorAll("a");
+    const LOGOUT_BUTTON = document.getElementById("logoutButton");
     
 
     // Si l'usager n'est pas loguer, on le redirige vers la page de connextion
@@ -23,7 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     BTN_ADD.addEventListener('click', function () {
         sessionStorage.setItem("action", "add");
-        window.location.href = 'popup-produit.html';
+        const LANCER_POPUP = new Event('lancer-popup');
+        document.dispatchEvent(LANCER_POPUP);
+    });
+
+    LOGOUT_BUTTON.addEventListener('click', function () {
+        sessionStorage.removeItem('identifiant'); // Clear identifiant from sessionStorage
+        sessionStorage.removeItem('motDePasse'); // Clear motDePasse from sessionStorage
+        window.location.href = 'accueil-recette.html'; // Redirect to login page
     });
 
 
@@ -116,6 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
             //Créer les 2 boutons d'action (modifier et supprimer)
             const BTN_MODIFIER = document.createElement("button");
             BTN_MODIFIER.className = "btn_modifier";
+            BTN_MODIFIER.setAttribute("data-bs-toggle", "modal");
+            BTN_MODIFIER.setAttribute("data-bs-target", "#exampleModal"); 
             BTN_MODIFIER.textContent = "⚙️"; //MODIFIER POUR UN OBJET BOOTSTRAP
 
             const BTN_SUPPRIMER = document.createElement("button");
@@ -150,7 +159,9 @@ document.addEventListener('DOMContentLoaded', function () {
         let dataJSON = {ingredient: INGREDIENT, quantite: QUANTITE, unite: UNITE};
         sessionStorage.setItem("produit", JSON.stringify(dataJSON));
         sessionStorage.setItem("action", "edit");
-        window.location.href = 'popup-produit.html';
+        
+        const LANCER_POPUP = new Event('lancer-popup');
+        document.dispatchEvent(LANCER_POPUP);
         
     }
 
