@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f8f8f8;
+    text-align: center; 
+}
+
+.center-container {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    flex-direction: column; 
+}
+
+
+
+
+.subtitle {
+    align-self: center;
+    font-weight: bold;
+    color: #2d7b5f;
+}
+
+h1 {
+     align-self: center;
+    color: #004d40;
+}
+
+.stock-container {
+    background: #d1e7e0;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto; 
+}
+
+.ingredient-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ingredient-row input, .ingredient-row select {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn_supprimer {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 30px;
+    width: auto;
+}
+
+.btn_modifier {
+    background: none;
+    border: none;
+    align-self: right;
+    cursor: pointer;
+    font-size: 30px;
+    width: auto;
+}
+
+.save-button {
+    background: #004d40;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+.object_produit{
+    display: grid;
+    grid-template-columns: 3fr 3fr 5fr 1fr 1fr;
+    align-content:space-around;
+    gap: 20px;
+}
+
+.text_produit{
+    background-color: #f0f0f0;
+    padding: 1em;
+    border-radius: 10px;
+    text-align: left;
+    align-self:center;
+   
+  
+}

@@ -22,6 +22,15 @@
             <div class="success" id="inscriptionSuccess"></div>
 
     <form id="inscriptionForm">
+        <label class= "input-label" for="prenom">Prénom:</label>
+        <div class = "input-box">
+        <input class = "input-field" type="text" id="prenom" name="prenom" placeholder="Entrez votre prénom" required>
+        </div>
+
+        <label class= "input-label" for="nom">Nom:</label>
+        <div class = "input-box">
+        <input class = "input-field" type="text" id="nom" name="nom" placeholder="Entrez votre nom" required>
+        </div>
         <label class= "input-label" for="identifiant">Identifiant:</label>
         <div class = "input-box">
         <input class = "input-field" type="text" id="identifiant" name="identifiant" placeholder="Entrez un identifiant" required>
@@ -34,7 +43,7 @@
         </div>
 
         <div class="input-box confirm-password-box">
-            <input type="password" class="input-field" placeholder="Validez votre mot de passe...">
+            <input type="password" class="input-field" id="motDePasseConfirmation"  placeholder="Validez votre mot de passe..." required>
         </div>
         
         <div class="erreur" id="passwordValidationError"></div> <button type="submit" class="inscrire">S'inscrire</button>

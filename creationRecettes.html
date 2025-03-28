@@ -4,42 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planigo - Recipes</title>
-    <link rel="stylesheet" href="assets/styles/stylesRecettes.css" />
+    <link rel="stylesheet" href="assets/styles/styles-creation-recettes.css" />
     <script src="assets/js/creationRecettes.js"></script>
     </head>
   <body>
     <div class="container">
-      <!-- Header Section -->
-      <header class="header">
-        <h2 class="logo">Planigo</h2>
-        <nav class="nav-items">
-          <a href="#" class="nav-item">Mes recettes</a>
-          <a href="#" class="nav-item">Explorer</a>
-          <a href="#" class="nav-item">Plannification</a>
-          <a href="#" class="nav-item">Stock</a>
-          <a href="index.html" class="nav-item" id="logoutButton"
-            >Deconnexion</a
-          >
-        </nav>
-        <div class="social-icons">
-          <a href="#" aria-label="Facebook" target="_blank"
-            ><img
-              src="https://placehold.co/24x24/000000/000000"
-              alt="Facebook"
-              class="social-icon"
-          /></a>
-          <a href="#" aria-label="Twitter" target="_blank"
-            ><img
-              src="https://placehold.co/24x24/000000/000000"
-              alt="Twitter"
-              class="social-icon"
-          /></a>
-          <a href="#" aria-label="Instagram" target="_blank"
-            ><img
-              src="https://placehold.co/24x24/000000/000000"
-              alt="Instagram"
-              class="social-icon"
-          /></a>
+      <header>
+        <div class="hautdepage">
+    
+          <div class="logo">
+            <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+          </div>
+          <div class="nav-wrapper">
+            <nav>
+              <ul>
+                <li><a href="#">Mes recettes</a></li>
+                <li><a href="#">Plannificateur</a></li>
+                <li><a href="#">Liste d'épicerie</a></li>
+                <li><a href="#">Stock</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="logout-link">
+            <a href="index.html" class="nav-item" id="logoutButton"
+            >Se déconnecter</a>
+          </div>
         </div>
       </header>
 
@@ -75,13 +64,40 @@
           /></a>
         </div>
       </header>
+
+
+
+      <div class="content-container">    
       <main id="contenu-principal">
-        <form id="form-recette">
-          <textarea
+
+        <button class = "delete-recipe-button"
+        id="btn-suppression-recette"
+        type="submit"
+        class="send-button"
+      >
+        SUPPRIMER LA RECETTE
+      </button>
+      <div class = "titre">
+        <h1>Création d'une recette</h1>
+        <h2>Détails sur la recette :</h2>
+          </div>
+
+
+        <form class= "recipe-form" id="form-recette">
+          <div class="form-columns"> 
+            <div class="left-column">
+              <div class="form-group">
+                <label for="titre-recette">Titre de la recette <span class="required">*</span></label>   
+          <input
+            type="text"
             id="titre-recette"
-            placeholder="Titre de la recette ici..."
             required
-          ></textarea>
+          ></input>
+          </div>
+
+          <div class="form-group">
+          <label for="description-recette">Description de la recette <span class="required">*</span></label>
+          
           <textarea
             id="description-recette"
             placeholder="Description de la recette ici..."
@@ -187,7 +203,9 @@
           <button id="btn-envoi-recette" type="submit" class="send-button">
             J'ai termine !!!
           </button>
+          </div>
         </form>
+
       </main>
     </div>
   </body>

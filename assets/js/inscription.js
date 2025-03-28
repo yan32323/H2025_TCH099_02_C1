@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const inscriptionErrorDiv = document.getElementById('inscriptionError');
     const inscriptionSuccessDiv = document.getElementById('inscriptionSuccess');
     const passwordInput = document.getElementById('motDePasse');
+    const passwordConfirmInput = document.getElementById('motDePasseConfirmation');
     const passwordValidationErrorDiv = document.getElementById('passwordValidationError');
 
     inscriptionForm.addEventListener('submit', function (event) {
@@ -31,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
             passwordErrors.push("Le mot de passe doit contenir au moins un chiffre.");
         }
 
+        if (motDePasse !== passwordConfirmInput.value) {
+            passwordErrors.push("Les mots de passe ne correspondent pas.");
+        }
+
         if (passwordErrors.length > 0) {
             passwordValidationErrorDiv.textContent = passwordErrors.join(" "); // Display all errors
             return; // Stop further processing
@@ -41,7 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = {identifiant: identifiant, motDePasse: motDePasse};
 
         // Make API request to /api/inscription.php (or /api/users - POST)
-        fetch('http://localhost/labo-tch099/api/inscription.php/inscrire/', { // Adjust API endpoint if needed
+        
+        fetch('./api/inscription.php/inscrire/', { // Adjust API endpoint if needed
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

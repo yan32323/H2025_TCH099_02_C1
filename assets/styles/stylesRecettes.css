@@ -6,6 +6,72 @@ body {
     background-color: #fff; 
     color: #000;      
 }
+header {
+    background-color: #fff;
+    padding: 15px 0; 
+    border-bottom: 1px solid #eee;
+  }
+
+  .hautdepage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px; 
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: auto;
+    width: auto;
+    max-height: 35px; 
+    display: block;
+  }
+
+  .nav-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  nav li {
+    margin-left: 30px; 
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #4b5563; 
+    font-size: 15px; 
+    font-family: Arial, sans-serif;
+  }
+
+  nav a:hover {
+    color: #2d3748; 
+  }
+
+  .logout-link a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+  }
+
+  .logout-link a:hover {
+    color: #2d3748;
+  }
 
 .container {
     padding-left: 20px;   
@@ -59,21 +125,19 @@ h3 {
 }
 
 
-/* --- Colors --- */
-/* Primary Colors */
-.primary { color: #00BCD4; }         /* Primary color */
-.primary-light { color: #62EFFF; }   /* Lighter shade of primary */
-.primary-dark { color: #008BA3; }    /* Darker shade of primary */
 
-/* Background & Surface Colors */
-.bg-white { background-color: #fff; }    /* White background */
-.bg-light-gray { background-color: #F9FAFB; } /* Light gray surface */
+.primary { color: #00BCD4; }         
+.primary-light { color: #62EFFF; }   
+.primary-dark { color: #008BA3; }    
 
-/* Text Colors */
-.text-dark { color: #000; }       /* Dark text */
-.text-gray { color: #78716C; }    /* Gray secondary text */
 
-/* Icon Background Colors - Category specific */
+.bg-white { background-color: #fff; }    
+.bg-light-gray { background-color: #F9FAFB; } 
+
+.text-dark { color: #000; }       
+.text-gray { color: #78716C; }    
+
+
 .bg-breakfast-icon { background-color: #EEEEEE; }
 .bg-vegan-icon { background-color: #90EE90; }
 .bg-meat-icon { background-color: #FF6B6B; }
@@ -81,7 +145,7 @@ h3 {
 .bg-lunch-icon { background-color: #FFA07A; }
 .bg-snack-icon { background-color: #8B4513; }
 
-/* Food item background colors */
+
 .bg-burger { background-color: #FF6B6B; }
 .bg-salmon { background-color: #FA8072; }
 .bg-pancake { background-color: #DEB887; }
@@ -91,14 +155,14 @@ h3 {
 .bg-pasta { background-color: #FFE4B5; }
 
 
-/* --- Shapes --- */
+
 .rounded-small { border-radius: 4px; }
 .rounded-medium { border-radius: 16px; }
 .rounded-large { border-radius: 24px; }
 .rounded-circle { border-radius: 50%; }
 
 
-/* --- Header Styles --- */
+
 .header {
     display: flex;
     justify-content: space-between; 
@@ -152,7 +216,6 @@ h3 {
 }
 
 
-/* --- Category Card --- */
 .category-card {
     background-color: #F9FAFB; 
     border-radius: 24px;    
@@ -168,30 +231,30 @@ h3 {
     width: 60px;
     height: 60px;
     margin-bottom: 16px;
-    object-fit: contain;    /* Keep icon aspect ratio */
+    object-fit: contain;    
 }
 
 .category-name {
-    text-align: center;    /* Center text */
-    font-size: 16px;   /* Subtitle size */
+    text-align: center;    
+    font-size: 16px;   
     font-weight: 600;
 }
 
 
-/* --- Recipe Card --- */
+
 .recipe-card {
-    background-color: #F9FAFB; /* Light gray surface */
-    border-radius: 24px;    /* Rounded corners */
-    width: 100%;           /* Take full width of container */
+    background-color: #F9FAFB; 
+    border-radius: 24px;    
+    width: 100%;           
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    position: relative;     /* For absolute positioning of favorite button */
+    flex-direction: column; 
+    position: relative;     
 }
 
 .recipe-image {
-    width: 100%;           /* Take full width */
-    height: 200px;          /* Fixed height */
-    object-fit: cover;      /* Crop image to fit */
+    width: 100%;           
+    height: 200px;          
+    object-fit: cover;     
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
 }
@@ -201,19 +264,19 @@ h3 {
 }
 
 .recipe-title {
-    font-size: 18px;   /* h3 size */
+    font-size: 18px;  
     font-weight: 600;
     margin-bottom: 10px;
 }
 
 .recipe-details {
     display: flex;
-    gap: 20px;             /* Spacing between details */
+    gap: 20px;             
 }
 
 .recipe-time, .recipe-category {
-    font-size: 14px;   /* Smaller body text size */
-    color: #78716C;    /* Gray text */
+    font-size: 14px;   
+    color: #78716C;    
 }
 
 .favorite-button {
@@ -223,31 +286,31 @@ h3 {
     width: 30px;
     height: 30px;
     background-color: white;
-    border-radius: 50%;    /* Make it a circle */
+    border-radius: 50%;    
     display: flex;
-    justify-content: center; /* Center icon horizontally */
-    align-items: center;     /* Center icon vertically */
-    cursor: pointer;     /* Show pointer cursor */
+    justify-content: center; 
+    align-items: center;     
+    cursor: pointer;     
 }
 
 .favorite-icon {
     width: 16px;
     height: 16px;
-    fill: black;         /* Default icon color */
+    fill: black;         
 }
 .favorite-icon.favorited {
-    fill: red;           /* Color when favorited */
+    fill: red;           
 }
 
 
-/* --- Promo Card --- */
+
 .promo-card {
-    background-color: #F9FAFB; /* Light gray surface */
-    border-radius: 24px;    /* Rounded corners */
-    width: 100%;           /* Take full width */
+    background-color: #F9FAFB; 
+    border-radius: 24px;    
+    width: 100%;           
     display: flex;
     padding: 20px;
-    height: auto;          /* Let height adjust to content */
+    height: auto;          
 }
 
 .promo-content {
@@ -265,7 +328,7 @@ h3 {
 }
 
 
-/* --- Category Section --- */
+
 .category-section {
     margin-bottom: 64px;
 }
@@ -290,7 +353,7 @@ h3 {
 }
 
 
-/* --- Recipe Section --- */
+
 .recipe-section {
     padding: 20px;
 }
@@ -308,8 +371,8 @@ h3 {
 
 .recipes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-    gap: 32px;             /* Spacing between grid items */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 32px;             
     margin-top: 40px;
 }
 
