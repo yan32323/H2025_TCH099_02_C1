@@ -18,7 +18,6 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px; 
-    background:red;
   }
 
   .logo {
@@ -164,8 +163,6 @@ h1 {
     font-size: 20px;
     cursor: pointer;
 }
-
-
 
 .object_produit{
     display: grid;
