@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./assets/js/creationPlan.js"></script>
+</head>
+<body>
+    <main id="contenu-principal">
+        <form id="form-plan">
+          <textarea
+            id="titre-plan"
+            placeholder="Titre du plan ici..."
+            required
+          ></textarea>
+          <textarea
+            id="description-plan"
+            placeholder="Description du plan ici..."
+            required
+          ></textarea>
+          <button
+            id="btn-suppression-plan"
+            type="submit"
+            class="send-button"
+          >
+            Supprimer le plan
+          </button>
+          <div id="zone-images"></div>
+          <div id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+            <input
+              type="file"
+              class="image-recette"
+              id="prochaine-image"
+              name="image"
+              
+              accept="image/png, image/jpeg, image/jpg"
+              multiple="multiple"
+            />
+            <button
+            id="btn-creation-recette-image"
+            type="button"
+            class="send-button"
+          >
+            Ajouter une image
+          </button>
+        </div>
+        </div>
+          <label for="message">Veuillez creer votre plan</label>
+          <div id="zone-recettes-lundi" style=" border: 1px solid black; padding: 10px;">
+            <h4>Lundi</h4>
+            <div id="affichage-recettes-lundi"></div>
+            <input id="prochaine-recette-lundi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-lundi"/>
+            <datalist id="liste-recette-lundi">
+            </datalist>
+          <button
+            id="btn-creation-plan-recette-lundi"
+            type="submit"
+            class="send-button"
+          >
+            Ajouter la recette
+          </button>
+          </div>
+
+        </div>
+
+        <div id="zone-recettes-mardi" style=" border: 1px solid black; padding: 10px;">
+          <h4>Mardi</h4>
+          <div id="affichage-recettes-mardi"></div>
+          <input id="prochaine-recette-mardi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mardi"/>
+          <datalist id="liste-recette-mardi">
+          </datalist>
+        <button
+          id="btn-creation-plan-recette-mardi"
+          type="submit"
+          class="send-button"
+        >
+          Ajouter la recette
+        </button>
+        </div>
+
+        <div id="zone-recettes-mercredi" style=" border: 1px solid black; padding: 10px;">
+          <h4>Mercredi</h4>
+          <div id="affichage-recettes-mercredi"></div>
+          <input id="prochaine-recette-mercredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mercredi"/>
+          <datalist id="liste-recette-mercredi">
+          </datalist>
+        <button
+          id="btn-creation-plan-recette-mercredi"
+          type="submit"
+          class="send-button"
+        >
+          Ajouter la recette
+        </button>
+        </div>
+
+        <div id="zone-recettes-jeudi" style=" border: 1px solid black; padding: 10px;">
+          <h4>Jeudi</h4>
+          <div id="affichage-recettes-jeudi"></div>
+          <input id="prochaine-recette-jeudi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-jeudi"/>
+          <datalist id="liste-recette-jeudi">
+          </datalist>
+        <button
+          id="btn-creation-plan-recette-jeudi"
+          type="submit"
+          class="send-button"
+        >
+          Ajouter la recette
+        </button>
+        </div>
+
+        <div id="zone-recettes-vendredi" style=" border: 1px solid black; padding: 10px;">
+          <h4>Vendredi</h4>
+          <div id="affichage-recettes-vendredi"></div>
+          <input id="prochaine-recette-vendredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-vendredi"/>
+          <datalist id="liste-recette-vendredi">
+          </datalist>
+        <button
+          id="btn-creation-plan-recette-vendredi"
+          type="submit"
+          class="send-button"
+        >
+          Ajouter la recette
+        </button>
+        </div>
+
+        <div id="zone-recettes-samedi" style=" border: 1px solid black; padding: 10px;">
+          <h4>Samedi</h4>
+          <div id="affichage-recettes-samedi"></div>
+          <input id="prochaine-recette-samedi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-samedi"/>
+          <datalist id="liste-recette-samedi">
+          </datalist>
+        <button
+          id="btn-creation-plan-recette-samedi"
+          type="submit"
+          class="send-button"
+        >
+          Ajouter la recette
+        </button>
+        </div>
+
+        <div id="zone-recettes-dimanche" style=" border: 1px solid black; padding: 10px;">
+          <h4>Dimanche</h4>
+          <div id="affichage-recettes-dimanche"></div>
+          <input id="prochaine-recette-dimanche" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-dimanche"/>
+          <datalist id="liste-recette-dimanche">
+          </datalist>
+        <button
+          id="btn-creation-plan-recette-dimanche"
+          type="submit"
+          class="send-button"
+        >
+          Ajouter la recette
+        </button>
+        </div>
+
+          <button id="btn-envoi-plan" type="submit" class="send-button">
+            J'ai termine !!!
+          </button>
+          <button id="test-hover1" type="submit" class="send-button">
+            Test Hover1
+          </button>
+          <button id="test-hover2" type="submit" class="send-button">
+            Test Hover2
+          </button>
+          <button id="test-hover3" type="submit" class="send-button">
+            Test Hover3
+          </button>
+          <button id="test-hover4" type="submit" class="send-button">
+            Test Hover4
+          </button>
+          <button id="test-hover0" type="submit" class="send-button">
+            Test Hover0
+          </button>
+        </form>
+      </main>
+</body>
+</html>

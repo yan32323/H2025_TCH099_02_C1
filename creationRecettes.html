@@ -6,7 +6,7 @@
     <title>Planigo - Recipes</title>
     <link rel="stylesheet" href="assets/styles/stylesRecettes.css" />
     <script src="assets/js/creationRecettes.js"></script>
-  </head>
+    </head>
   <body>
     <div class="container">
       <!-- Header Section -->
@@ -88,6 +88,11 @@
             required
           ></textarea>
           <div>
+            <p>Nombre de portions que produit la recette : </p>
+            <input id="estimation-portions"class="slider" type="range" min="1" max="17" value="2" >
+                <p id="portions-estime">2 portions</p>
+          </div>
+          <div>
             <p>Temps que prends la recette environ : </p>
             <input id="estimation-temps"class="slider" type="range" min="1" max="181" value="30" >
                 <p id="temps-estime">30 minutes</p>
@@ -99,8 +104,8 @@
           >
             Supprimer la recette
           </button>
-          <div id="zone-images">
-            <div id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+          <div id="zone-images"></div>
+          <div id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
             <input
               type="file"
               class="image-recette"
@@ -109,24 +114,22 @@
               
               accept="image/png, image/jpeg, image/jpg"
               multiple="multiple"
-            /></div>
-            
-        </div>
-          <label for="message">Veuillez creer votre recette</label>
-          <button
+            />
+            <button
             id="btn-creation-recette-image"
-            type="submit"
+            type="button"
             class="send-button"
           >
             Ajouter une image
           </button>
+        </div>
+          <label for="message">Veuillez creer votre recette</label>
           <div id="zone-ingredients"></div>
-          <textarea
-            id="prochain-ingredient"
-            name="message"
-            placeholder="Choisissez le prochain ingredient ici..."
-            required
-          ></textarea>
+
+
+          <input id="prochain-ingredient-s" type="text" placeholder="Prochain ingredient : " class="selecteur1" list="liste-ingredients"/>
+<datalist id="liste-ingredients">
+</datalist>
           <button
             id="btn-creation-recette-ingredient"
             type="submit"
