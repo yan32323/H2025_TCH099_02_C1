@@ -26,6 +26,8 @@ $router->post('/inscription.php/inscrire/', function() {
 
         $identifiant = trim($client_data['identifiant']);
         $motDePasse = trim($client_data['motDePasse']);
+        $nom = trim($client_data['nom']);
+        $prenom = trim($client_data['prenom']);
 
         $erreurs = [];
 
@@ -36,7 +38,7 @@ $router->post('/inscription.php/inscrire/', function() {
         $stmt->execute(['identifiant' => $identifiant]);
         $count = $stmt->fetchColumn();
         if ($count > 0) {
-            $erreurs[] = "Cet identifiant est déjà utilisé.";
+            $erreurs[] = "Cet identifiant est déjà utilisé.\n";
         }
 
         // Password Validation (same rules as client-side and gestion_inscription.php)
@@ -61,14 +63,16 @@ $router->post('/inscription.php/inscrire/', function() {
             $motDePasseHash = password_hash($motDePasse, PASSWORD_DEFAULT);
 
             // Insert User into Database
-            $stmt = $pdo->prepare("INSERT INTO clients (nom_utilisateur, mot_de_passe) VALUES (:identifiant , :motDePasse)");
-            $stmt->execute([':identifiant' => $identifiant, ':motDePasse' => $motDePasseHash]);
+            $stmt = $pdo->prepare("INSERT INTO clients (nom_utilisateur, mot_de_passe, nom, prenom) VALUES (:identifiant , :motDePasse, :nom, :prenom)");
+            $stmt->execute([':identifiant' => $identifiant, ':motDePasse' => $motDePasseHash, ':nom' => $nom, ':prenom' => $prenom]);
 
             echo json_encode(['statut' => 'success']); // Registration successful
         }
 
     } catch (PDOException $e) {
-        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion : ' . $e->getMessage()]);
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
     }
 });
 

@@ -1,6 +1,8 @@
 ﻿CREATE TABLE Clients (
     nom_utilisateur VARCHAR(255) NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
     PRIMARY KEY (nom_utilisateur)
 );
 
@@ -95,7 +97,7 @@ CREATE TABLE Commentaires (
         REFERENCES Recettes(id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_commentaire_utilisateur FOREIGN KEY (nom_utilisateur) 
         REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
 CREATE TABLE Likes_Commentaires (
     commentaire_id INT NOT NULL,
@@ -105,13 +107,13 @@ CREATE TABLE Likes_Commentaires (
         REFERENCES Commentaires(id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_like_utilisateur FOREIGN KEY (nom_utilisateur) 
         REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
-)
+);
 
-INSERT INTO Clients (nom_utilisateur, mot_de_passe)
+INSERT INTO Clients (nom_utilisateur, mot_de_passe, prenom, nom)
 VALUES
-    ('john_doe', 'password123'),
-    ('jane_doe', 'securepassword'),
-    ('alice_smith', 'alicepassword');
+    ('john_doe', 'password123', 'John', 'Doe'),
+    ('jane_doe', 'mypassword', 'Jane', 'Doe'),
+    ('alice_smith', 'alicepassword', 'Alice', 'Smith');
 
 INSERT INTO Recettes (nom, description, temps_de_cuisson, image, createur_nom_utilisateur)
 VALUES

@@ -21,7 +21,7 @@ $router->post('/login.php/login/', function() {
         $identifiant = trim($client_data['identifiant']);
         $motDePasse = trim($client_data['motDePasse']);
 
-        $stmt = $pdo->prepare("SELECT nom_utilisateur, mot_de_passe FROM clients WHERE nom_utilisateur = :identifiant");
+        $stmt = $pdo->prepare("SELECT nom_utilisateur, mot_de_passe, nom, prenom FROM clients WHERE nom_utilisateur = :identifiant");
         $stmt->execute([':identifiant' => $identifiant]);
         $user = $stmt->fetch();
 
@@ -29,23 +29,18 @@ $router->post('/login.php/login/', function() {
 
             if (password_verify($motDePasse, $user['mot_de_passe'])) {
                 // For this lab, we're just returning success. In a real API, you might return a token.
-                echo json_encode(['statut' => 'success']);
-                exit();
-
-            } else {
-
-                echo json_encode(['statut' => 'error', 'message' => 'Identifiant ou mot de passe incorrect.']);
+                echo json_encode(['statut' => 'success', 'nom' => $user['nom'], 'prenom' => $user['prenom']]);
                 exit();
             }
-
-        } else {
-
-            echo json_encode(['statut' => 'error', 'message' => 'Identifiant ou mot de passe incorrect. 2']);
-            exit();
         }
 
+        echo json_encode(['statut' => 'error', 'message' => 'Identifiant ou mot de passe incorrect.']);
+        exit();
+
     } catch (PDOException $e) {
-        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion : ' . $e->getMessage()]);
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
     }
 });
 

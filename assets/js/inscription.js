@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const identifiant = document.getElementById('identifiant').value;
         const motDePasse = passwordInput.value;
+        const nom = document.getElementById('nom').value;
+        const prenom = document.getElementById('prenom').value;
 
         // Clear previous error/success messages
         inscriptionErrorDiv.textContent = '';
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // Prepare data for API request
-        const formData = {identifiant: identifiant, motDePasse: motDePasse};
+        const formData = {identifiant: identifiant, motDePasse: motDePasse, nom: nom, prenom: prenom};
 
         // Make API request to /api/inscription.php (or /api/users - POST)
         
