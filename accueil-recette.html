@@ -1,0 +1,440 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lobster&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="assets/styles/style_accueil.css" />
+
+<div class="app-container">
+    <header>
+        <div class="hautdepage">
+    
+          <div class="logo">
+            <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+          </div>
+          <div class="nav-wrapper">
+            <nav>
+              <ul>
+                <li><a href="#">Mes recettes</a></li>
+                <li><a href="#">Plannificateur</a></li>
+                <li><a href="#">Liste d'épicerie</a></li>
+                <li><a href="stockage.html">Stock</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="logout-link">
+            <a href="index.html" class="nav-item" id="logoutButton"
+            >Se déconnecter</a>
+          </div>
+        </div>
+      </header>
+
+  <section class="search-section">
+    <div class="search-container">
+      <button class="filter-btn">Aucun</button>
+      <div class="search-input-wrapper">
+        <input
+          type="text"
+          placeholder="Trouver une recette"
+          class="search-input"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-section">
+    <h2 class="section-title">Categories</h2>
+    <div class="category-grid">
+      <article class="category-item">
+        <img
+          src="assets/image/dejeuner.png"
+          alt="Déjeuner"
+          class="category-image"
+        />
+        <h3 class="category-name">Déjeuner</h3>
+      </article>
+      <article class="category-item">
+        <img
+          src="assets/image/plat_principal.png"
+          alt="Plat Principal"
+          class="category-image"
+        />
+        <h3 class="category-name">Plat Principal</h3>
+      </article>
+      <article class="category-item">
+        <img
+          src="assets/image/plat_accompagnement.png"
+          alt="Accompagnement"
+          class="category-image"
+        />
+        <h3 class="category-name">Accompagnement</h3>
+      </article>
+      <article class="category-item">
+        <img
+          src="assets/image/dessert.png"
+          alt="Dessert"
+          class="category-image"
+        />
+        <h3 class="category-name">Dessert</h3>
+      </article>
+      <article class="category-item">
+        <img
+          src="assets/image/lunch.png"
+          alt="Lunch"
+          class="category-image"
+        />
+        <h3 class="category-name">Lunch</h3>
+      </article>
+      <article class="category-item">
+        <img
+          src="assets/image/collation.png"
+          alt="Collation"
+          class="category-image"
+        />
+        <h3 class="category-name">Collation</h3>
+      </article>
+    </div>
+  </section>
+
+  <section class="recipes-section">
+    <h2 class="section-title accent">Recettes simples et savoureuses</h2>
+    <div class="recipe-grid">
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/E8E8E8/E8E8E8"
+            alt="Burger"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Burger</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Snack</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/FAE3D9/FAE3D9"
+            alt="Saumon"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Saumon</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Fish</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/F5DEB3/F5DEB3"
+            alt="Crêpe"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Crepe</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Breakfast</span>
+          </div>
+        </div>
+      </article>
+
+      
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/90EE90/90EE90"
+            alt="Salade"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Salade</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Healthy</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/DEB887/DEB887"
+            alt="Boulettes de viande"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Boulettes de viande</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Meat</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/FFE4E1/FFE4E1"
+            alt="Pate"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Pate</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Noodles</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/F4A460/F4A460"
+            alt="Crêpes Suzette"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Crepes Suzette</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Sweet</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/FAFAD2/FAFAD2"
+            alt="Riz"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Riz</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Snack</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/F08080/F08080"
+            alt="Tacos"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Tacos</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Oriental</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="featured-section">
+    <h2 class="section-title accent">
+      Essayez cette délicieuse planification de repas
+    </h2>
+    <div class="featured-grid">
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/98FB98/98FB98"
+            alt="Salade de fruits tropicaux mélangés"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">
+            Salade de fruits tropicaux mélangés avec des superaliments
+          </h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Santé</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/8B4513/8B4513"
+            alt="Cheeseburger au boeuf Wagyu"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">
+            Cheeseburger au boeuf Wagyu, gras et juteux
+          </h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Occidental</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/90EE90/90EE90"
+            alt="Riz frit japonais"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Riz frit japonais sain aux asperges</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Santé</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/CD853F/CD853F"
+            alt="Tacos végétariens"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">
+            Tacos végétariens au chou-fleur et aux noix
+          </h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Oriental</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/DEB887/DEB887"
+            alt="Salade de poulet"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">
+            Salade de poulet arc-en-ciel avec vinaigrette aux amandes
+          </h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Santé</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/F4A460/F4A460"
+            alt="Sandwichs épicés"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">Sandwichs épicés au barbecue avec frites</h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Collation</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/98FB98/98FB98"
+            alt="Wraps de laitue"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">
+            Wraps de laitue végétariens Fraîcheur - Épicés !
+          </h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Plat de mer</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="recipe-card">
+        <div class="recipe-image-container">
+          <img
+            src="https://placehold.co/400x300/F0E68C/F0E68C"
+            alt="Soupe de ramen"
+            class="recipe-image"
+          />
+          <button class="favorite-btn" aria-label="Add to favorites"></button>
+        </div>
+        <div class="recipe-content">
+          <h3 class="recipe-title">
+            Soupe de ramen au poulet et aux champignons
+          </h3>
+          <div class="recipe-meta">
+            <span>30 Minutes</span>
+            <span>Japonais</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="main-footer">
+    <div class="footer-branding">
+      <h2 class="logo">Planigo</h2>
+      <p class="footer-tagline">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link">À propos de nous</a>
+      <a href="#" class="footer-link">FAQ</a>
+      <a href="#" class="footer-link">Page de soutien</a>
+    </nav>
+  </footer>
+</div>

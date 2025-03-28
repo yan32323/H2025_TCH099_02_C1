@@ -9,6 +9,7 @@
   </head>
   <body>
     <div class="container">
+      <!-- Header Section -->
       <header>
         <div class="hautdepage">
     
@@ -18,10 +19,10 @@
           <div class="nav-wrapper">
             <nav>
               <ul>
-                <li><a href="#">Mes recettes</a></li>
+                <li><a href="accueil-recette.html">Mes recettes</a></li>
                 <li><a href="#">Plannificateur</a></li>
                 <li><a href="#">Liste d'épicerie</a></li>
-                <li><a href="#">Stock</a></li>
+                <li><a href="stockage.html">Stock</a></li>
               </ul>
             </nav>
           </div>
@@ -31,6 +32,12 @@
           </div>
         </div>
       </header>
+
+
+
+
+
+
 
       <!-- Mobile Header Section -->
       <header class="header-mobile">
@@ -88,160 +95,144 @@
             <div class="left-column">
               <div class="form-group">
                 <label for="titre-recette">Titre de la recette <span class="required">*</span></label>   
-          <input
-            type="text"
-            id="titre-recette"
-            required
-          ></input>
-          </div>
+                <input
+                  type="text"
+                  id="titre-recette"
+                  required
+                />
+              </div>
 
-          <div class="form-group">
-          <label for="description-recette">Description de la recette <span class="required">*</span></label>
-          
-          <textarea
-            id="description-recette"
-            placeholder="Description de la recette ici..."
-            required
-          ></textarea>
-        </div>
-        </div>
-        <div class="right-column">
-          <div id="zone-images" class="form-group file-upload-group">
-            <label for="recipe-photos">Glissez-déposez vos photos ici ou cliquez pour chercher <span class="required">*</span></label>
-            <div class= "file-upload-box" id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
-            <input
-              type="file"
-              class="image-recette"
-              id="prochaine-image"
-              name="image"
-              
-              accept="image/png, image/jpeg, image/jpg"
-              multiple="multiple"
-            />
-          </div>
-          </div>
-          </div> 
+              <div class="form-group">
+                <label for="description-recette">Description de la recette <span class="required">*</span></label>
+                <textarea
+                  id="description-recette"
+                  placeholder="Description de la recette ici..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="right-column">
+              <div id="zone-images" class="form-group file-upload-group">
+                <label for="prochaine-image">Glissez-déposez vos photos ici ou cliquez pour chercher <span class="required">*</span></label>
+                <div class= "file-upload-box" id="nouvelles-images-recette">
+                  <p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+                  <input
+                    type="file"
+                    class="image-recette"
+                    id="prochaine-image"
+                    name="image"
+                    accept="image/png, image/jpeg, image/jpg"
+                    multiple="multiple"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="detail">
             <div class="form-group time-group">
-            <p>Temps que prends la recette environ : </p>
-            <div class=" time-slider-container">
-            <input id="estimation-temps"class="slider" type="range" min="1" max="181" value="30" >
-                <p id="temps-estime">30 minutes</p>
+              <p>Temps que prends la recette environ : </p>
+              <div class="time-slider-container">
+                <input id="estimation-temps" class="slider" type="range" min="1" max="181" value="30" >
+                <span id="temps-estime">30 minutes</span>
+              </div>
             </div>
+
+            <div class="form-group time-group">
+              <p>Nombre de portions que produit la recette : </p>
+              <div class="time-slider-container">
+                <input id="estimation-portions" class="slider" type="range" min="1" max="17" value="2" >
+                <span id="portions-estime">2 portions</span>
+              </div>
             </div>
 
             <div class="form-group difficulty-group">
-                <fieldset>
-                  <legend>Veuillez selectionner la difficulte de la recette :</legend>
-                  <div class = "difficulty-options">
-                    <input
-                      type="radio"
-                      id="facile"
-                      name="difficulte"
-                      value="1"
-                      required
-                    />
-                    <label for="facile">Facile !</label>
-      
-                    <input
-                      type="radio"
-                      id="moyen"
-                      name="difficulte"
-                      value="2"
-                      required
-                    />
-                    <label for="moyen">Moyen</label>
-      
-                    <input
-                      type="radio"
-                      id="difficile"
-                      name="difficulte"
-                      value="3"
-                      required
-                    />
-                    <label for="difficile">difficile !!</label>
-                  </div>
-                </fieldset>
-          </div>
+              <fieldset>
+                <legend>Veuillez selectionner la difficulte de la recette :</legend>
+                <div class="difficulty-options">
+                  <input
+                    type="radio"
+                    id="facile"
+                    name="difficulte"
+                    value="1"
+                    required
+                  />
+                  <label for="facile">Facile !</label>
+    
+                  <input
+                    type="radio"
+                    id="moyen"
+                    name="difficulte"
+                    value="2"
+                    required
+                  />
+                  <label for="moyen">Moyen</label>
+    
+                  <input
+                    type="radio"
+                    id="difficile"
+                    name="difficulte"
+                    value="3"
+                    required
+                  />
+                  <label for="difficile">Difficile !!</label>
+                </div>
+              </fieldset>
+            </div>
           </div>
             
-        
-          <!--<label for="message">Veuillez creer votre recette</label>-->
-          <button
-            id="btn-creation-recette-image"
-            type="submit"
-            class="send-button"
-          >
-            Ajouter une image
-          </button>
           <div class="ingredients-section">
-          <h2>INGRÉDIENTS</h2>
-          <div class="ingredient-item">
-          
-          <div class="ingredient-input">
-          <div id="zone-ingredients"></div>
-
-          <input
-            type="text"
-            id="prochain-ingredient"
-            placeholder="Écrivez le prochain ingrédient ici..."
-            name="message"
-            required
-          ></input>
-        </div>
-      </div>
-          <button
-            id="btn-creation-recette-ingredient"
-            type="submit"
-            class="send-button add-ingredient-button"
-          >
-            Ajouter l'ingredient
-          </button>
+            <h2>INGRÉDIENTS</h2>
+            <div class="ingredient-item">
+              <div class="ingredient-input">
+                <div id="zone-ingredients"></div>
+                <input 
+                  id="prochain-ingredient-s" 
+                  type="text" 
+                  placeholder="Prochain ingredient : " 
+                  class="selecteur1" 
+                  list="liste-ingredients"
+                />
+                <datalist id="liste-ingredients">
+                </datalist>
+              </div>
+            </div>
+            <button
+              id="btn-creation-recette-ingredient"
+              type="button"
+              class="send-button add-ingredient-button"
+            >
+              Ajouter l'ingredient
+            </button>
+          </div>
         
-        </div>
           <div class="instructions-section">
-          <div id="zone-etape"></div>
-          
-
-          <h2>INSTRUCTIONS</h2>
-          <div class="instruction-item">
-          <div class="instruction-input">
-          <textarea
-            id="prochaine-etape"
-            name="message"
-            placeholder="Écrivez la prochaine etape ici..."
-            required
-          ></textarea>
+            <h2>INSTRUCTIONS</h2>
+            <div class="instruction-item">
+              <div class="instruction-input">
+                <div id="zone-etape"></div>
+                <textarea
+                  id="prochaine-etape"
+                  name="message"
+                  placeholder="Écrivez la prochaine etape ici..."
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <button
+              id="btn-creation-recette-etape"
+              type="button"
+              class="send-button add-instruction-button"
+            >
+              Ajouter l'etape
+            </button>
           </div>
-
-
-          </div>
-          <button
-            id="btn-creation-recette-etape"
-            type="submit"
-            class="send-button add-instruction-button"
-          >
-            Ajouter l'etape
-          </button>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
 
           <div class="form-group save-button-group">
-          <button id="btn-envoi-recette" type="submit" class="send-button save-recipe-button">
-            J'ai termine !!!
-          </button>
+            <button id="btn-envoi-recette" type="submit" class="send-button save-recipe-button">
+              J'ai termine !!!
+            </button>
           </div>
         </form>
 

@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     setTimeout(() => {
                         sessionStorage.setItem("identifiant", identifiant);
                         sessionStorage.setItem("motDePasse", motDePasse);
-                        window.location.href = 'forum.html';
+                        window.location.href = 'accueil-recette.html';
                     }, 1000); // 1 second delay
                 } else {
                     loginErrorDiv.textContent = data.message || 'Identifiant ou mot de passe incorrect.';

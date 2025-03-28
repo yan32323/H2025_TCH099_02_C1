@@ -5,15 +5,78 @@ body {
     text-align: center; 
 }
 
-.center-container {
+header {
+    background-color: #fff;
+    padding: 15px 0; 
+    border-bottom: 1px solid #eee;
+  }
+
+  .hautdepage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px; 
+    background:red;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: auto;
+    width: auto;
+    max-height: 35px; 
+    display: block;
+  }
+
+  .nav-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  nav li {
+    margin-left: 30px; 
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #4b5563; 
+    font-size: 15px; 
+    font-family: Arial, sans-serif;
+  }
+  .center-container {
     display: flex;
     justify-content: center; 
     align-items: flex-start; 
     flex-direction: column; 
 }
+  nav a:hover {
+    color: #2d3748; 
+  }
 
+  .logout-link a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+  }
 
-
+  .logout-link a:hover {
+    color: #2d3748;
+  }
 
 .subtitle {
     align-self: center;
