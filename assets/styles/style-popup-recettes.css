@@ -1,0 +1,239 @@
+/* General Styles and Variables (similar to MaterialTheme) */
+body {
+    font-family: sans-serif; /* You can choose a more specific font */
+    color: #000000; /* Color.Black */
+    background-color: #f0f0f0; /* Just a light background for body to see popup */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+
+/* Surface style (PopupDeRecette Container) */
+.popup-recette {
+    background-color: #ffffff; /* Color.White */
+    width: 100%;
+    max-width: 1060px; /* max width for larger screens */
+    margin-top: 96px; /* default top padding for compact */
+    margin-bottom: 96px; /* default bottom padding for compact */
+    padding-left: 20px; /* default horizontal padding for compact */
+    padding-right: 20px; /* default horizontal padding for compact */
+    border: 6px solid #1B5B4E; /* Border color similar to Color(0xFF1B5B4E) */
+    border-radius: 50px; /* RoundedCornerShape(16.dp) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column; 
+    gap: 40px; 
+    padding-top: 32px; 
+    padding-bottom: 32px;
+}
+
+/* Left Column Styles */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alignment.CenterHorizontally */
+    width: 100%; /* fillMaxWidth for compact */
+}
+
+.recipe-image {
+    width: 100%; /* fillMaxWidth */
+    aspect-ratio: 1.41; /* aspectRatio(1.41f) */
+    object-fit: contain; /* ContentScale.Fit */
+}
+
+.recipe-description {
+    padding-top: 32px; /* padding(top = 32.dp) */
+    line-height: 28px; /* lineHeight = 28.sp */
+    text-align: center; /* TextAlign.Center */
+    font-size: 16px; /* Approximate bodyLarge size, adjust as needed */
+}
+
+/* Right Column Styles */
+.right-column {
+    width: 100%; /* fillMaxWidth for compact */
+}
+
+.info-value{
+    text-align: center;
+}
+.ingredients-box {
+    background-color: rgba(29, 116, 113, 0.3); /* Color(0x4D1D7471) - 30% opacity of #1D7471 */
+    border-radius: 20px; /* RoundedCornerShape(8.dp) */
+    padding: 28px 64px; /* padding(horizontal = 64.dp, vertical = 28.dp) */
+    padding-bottom: 24px; /* padding(bottom = 240.dp) */
+    display: flex;
+    flex-direction: column;
+    align-items:center /* Alignment.Start */
+}
+
+.ingredients-title {
+    text-align: center; /* align(Alignment.CenterHorizontally) */
+    font-size: 2.6em; /* fontSize = 30.sp */
+    font-weight: bold; /* FontWeight.Bold */
+    color: #1B5B4E; /* Color(0xFF1B5B4E) */
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Recipe Info Section Styles */
+.recipe-info-section {
+    padding-top: 28px; /* Default topPadding, will be overridden */
+}
+
+.info-title {
+    font-size: 1.1em; /* Approximate labelSmall size */
+    color: #1B5B4E;
+    letter-spacing: 0.1px; /* letterSpacing = 0.1.sp */
+    font-weight: medium; /* FontWeight.Medium */
+    margin-bottom: 0;
+}
+
+.info-value {
+    
+    letter-spacing: -0.05px; /* letterSpacing = (-0.05).sp */
+    color: #1B5B4E;
+    font-size: 1.1em; /* Approximate bodyMedium size */
+    margin-top: 0;
+}
+
+/* Responsive Layout using Media Queries (similar to isCompactWidth) */
+@media (min-width: 768px) { /* For screenWidthDp >= 768 (ExpandedLayout) */
+    .popup-recette {
+        padding-left: 64px; /* expanded horizontal padding */
+        padding-right: 64px; /* expanded horizontal padding */
+        margin-top: 320px; /* expanded top padding */
+        margin-bottom: 160px; /* expanded bottom padding */
+    }
+
+    .popup-content {
+        flex-direction: row; /* ExpandedLayout - Row */
+        gap: 20px; /* horizontalArrangement = Arrangement.spacedBy(20.dp) */
+    }
+
+    .left-column, .right-column {
+        width: 100%; /* weight(1f) - equal width columns */
+    }
+
+    .recipe-image {
+        aspect-ratio: 1.41; /* Keep aspect ratio for expanded view */
+    }
+}
+
+/* Specific top paddings for RecipeInfoSection - Overriding default */
+.recipe-info-section:nth-child(2) { padding-top: 28px; } /* NOMBRE DE PORTIONS */
+.recipe-info-section:nth-child(3) { padding-top: 32px; } /* TEMPS DE PRÉPARATION */
+.recipe-info-section:nth-child(4) { padding-top: 32px; } /* NOMBRE D'INGREDIENTS */
+.recipe-info-section:nth-child(5) { padding-top: 32px; } /* NOMBRE D'ETAPES */
+.recipe-info-section:nth-child(6) { padding-top: 32px; } /* EVALUATION */
+
+
+/* General Styles */
+body {
+    font-family: sans-serif; /* Or your preferred font */
+    margin: 0;
+    padding: 20px; /* Some padding around the body for better viewing */
+    background-color: #f0f0f0; /* Light grey background for example */
+}
+
+.time-input-container {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    margin: auto; /* Center the container */
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 24px;
+    overflow: hidden; /* To ensure rounded corners work for inner elements */
+}
+
+.title-row {
+    display: flex;
+    align-items: baseline; /* Align text and star on the baseline */
+}
+
+.title-text {
+    font-size: 18px;
+    font-weight: 600; /* SemiBold */
+    color: #1E293B;
+    z-index: 10; /* Mimic zIndex from Compose */
+    margin: 0; /* Reset default margin */
+}
+
+.required-star {
+    font-size: 18px;
+    font-weight: 600; /* SemiBold */
+    color: #14817A;
+    padding-left: 4px;
+    margin: 0; /* Reset default margin */
+}
+
+.options-box {
+    width: 100%;
+    padding-top: 8px;
+    background-color: white;
+    border-radius: 24px;
+    border: 1.15px solid #CBD5E1;
+    height: 58px;
+    display: flex; /* For layout control, though not strictly needed for this box itself */
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    width: 100%;
+    height: 100%;
+}
+
+.difficulty-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 102px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.checkbox-container {
+    width: 23px;
+    height: 23px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center the image vertically and horizontally */
+}
+
+.checkbox-border {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 1.15px solid #CBD5E1;
+    background-color: white;
+}
+
+.difficulty-option.selected .checkbox-container {
+    background-color: white; /* Ensure background is white if needed */
+}
+
+.check-icon {
+    width: 23px;
+    height: 23px;
+    border-radius: 8px;
+    object-fit: contain; /* Mimic ContentScale.Fit */
+}
+
+.option-text {
+    font-size: 18px;
+    font-weight: 600; /* SemiBold */
+    color: #1E293B;
+    text-align: center;
+    margin-left: 12px;
+    flex-grow: 1; /* Mimic weight(1f) */
+}

@@ -233,7 +233,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             i +
             "'>" +
             tableauIngredients[i] +
-            "</p><button class='btn_ingredient' id='supr-ing" +
+            "</p><button class='btn_ingredient remove-item-button' id='supr-ing" +
             i +
             "'>X</button>";
           zoneIngredient.appendChild(divIngredient);
@@ -246,13 +246,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         for (let i = 0; i < tableauEtapes.length; i++) {
           let divEtape = document.createElement("div");
-          divIngredient.classList.add("groupe_ingredient");
+          divIngredient.classList.add("ingredient-item");
           divEtape.innerHTML =
             "<p class= 'nom_ingredient' id='etape" +
             i +
             "'>" +
             tableauEtapes[i] +
-            "</p><button class= 'btn_ingredient' id='supr-etape" +
+            "</p><button class= 'btn_ingredient remove-item-button' id='supr-etape" +
             i +
             "'>X</button>";
           zoneEtape.appendChild(divEtape);
@@ -401,9 +401,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         i +
         "'>" +
         tableauIngredients[i].nom +
-        "</p><textarea class = 'zone_ingredient' id='mesure"+i
-        +"'placeholder='val'required></textarea><p class='mesure_ingredient'>"
-        +tableauIngredients[i].mesure+"</p><button class='btn_ingredient' id='supr-ing" +
+        "</p><input class = 'zone_ingredient' id='mesure"+i
+        +"'placeholder='Entrez une valeur'required></input><p class='mesure_ingredient'>"
+        +tableauIngredients[i].mesure+"</p><button class='btn_ingredient remove-item-button' id='supr-ing" +
         i +"'>X</button>";
       zoneIngredient.appendChild(divIngredient);
       let buttonIng = document.getElementById("supr-ing" + i);

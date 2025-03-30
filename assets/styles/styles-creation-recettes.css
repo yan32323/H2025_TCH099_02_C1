@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background-color: #fff; 
+    background-color: #f8f8f8;
   }
 
   header {
@@ -77,9 +77,13 @@ body {
   .content-container {
       max-width: 950px; 
       margin: 30px auto; 
+      margin-top:0px;
+      margin-bottom:0px;
       padding: 30px;    
-      border-radius: 10px; 
-      background-color: transparent; 
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      background-color: white; 
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
 
@@ -89,12 +93,6 @@ body {
     align-items: flex-start; 
     margin-bottom: 25px; 
 }
-
-
-
-
-
-
 
 
 
@@ -109,6 +107,7 @@ body {
       width: 100%;      
   }
 
+
   h2 {
     color: #008080;
     text-align: center;
@@ -118,6 +117,16 @@ body {
     font-weight: bold;
     font-size:48px;
     letter-spacing: -0.3px; 
+}
+
+h4{
+  color: #004B46;
+  text-align: left;
+  font-size: 1.5em; 
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: -0.3px; 
 }
   .delete-recipe-button {
     display:flex;
@@ -203,9 +212,7 @@ body {
     gap: 20px; 
 }
 
-.time-group, .difficulty-group {
-    flex: 1; 
-}
+
  
   .form-columns {
       display: flex;
@@ -222,14 +229,7 @@ body {
   }
 
   
-  .form-group.time-difficulty-group {
-      display: flex;         
-      justify-content: space-between; 
-      
-      align-items: flex-start; 
-      gap: 30px;            
-      margin-top: 20px;     
-  }
+ 
   
     .form-group.time-group {
       margin-bottom: 20px; 
@@ -241,13 +241,7 @@ body {
     align-items: center;        
     padding-bottom: 40px;
 }
-  .form-group.time-difficulty-group .time-group {
-      flex: 1;              
-  }
-
-  .form-group.time-difficulty-group .difficulty-group {
-      flex: 1;              
-  }
+  
 
 
   
@@ -365,57 +359,7 @@ body {
       box-shadow: 0 0 0 2px rgba(0, 128, 128, 0.3); 
   }
 
-  .groupe_ingredient {
-    display: grid;
-    grid-template-columns: 3fr 2fr 1fr 1fr;
-    gap: 10px; /* Ajoute de l'espace entre les colonnes */
-    align-items: center; /* Centre verticalement les éléments */
-    border-radius: 10px;
-}
-
-.nom_ingredient, 
-.mesure_ingredient, 
-.prix_ingredient {
-    border-radius: 8px;
-    padding: 10px;
-    background: white;
-    font-size: 16px;
-    outline: none;
-    text-align: center; /* Centrer le texte */
-    height: 40px; /* Hauteur uniforme */
-}
-
-.mesure_ingredient {
-    cursor: pointer;
-}
-
-.btn_ingredient {
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius:5px;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    height: 65px;
-    transition: 0.3s ease-in-out;
-}
-
-.btn_ingredient:hover {
-    background-color: rgb(85, 7, 7);
-    color: white;
-}
-
-.zone_ingredient {
-  border-radius: 8px !important;
-  padding: 10px !important;
-  background: white !important;
-  font-size: 16px !important;
-  outline: none !important;
-  text-align: center !important; 
-  height: 65px !important; /* Hauteur uniforme */
-  margin: 16px 0 !important; /* Ajoute de l'espace entre les lignes */
-}
+ 
 
   .ingredients-section,
   .instructions-section {
@@ -423,6 +367,7 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 25px;
+    /* border: 2px solid #008080; */
   }
 
   .ingredients-section h2,
@@ -453,28 +398,8 @@ body {
     padding: 10px;
     border: 1px solid #e0f7fa; 
     border-radius: 5px;
-    background-color: white;
     font-size: 1em;
     box-sizing: border-box;
-  }
-
-  .remove-item-button {
-    background: none;
-    border: none;
-    color: #e53e3e; 
-    font-size: 1.2em;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25px;
-    height: 25px;
-  }
-
-  .remove-item-button:hover {
-    background-color: #f8bbd0; 
   }
 
 
@@ -491,8 +416,20 @@ body {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
+  .add-recipe-button{
+    background-color: #008080; 
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
   .add-ingredient-button:hover,
-  .add-instruction-button:hover {
+  .add-instruction-button:hover, .add-recipe-button:hover {
     background-color: #006666; 
   }
 
@@ -538,9 +475,137 @@ body {
     }
 }
 
+.groupe_ingredient {
+  display: grid;
+  grid-template-columns: 1fr 1fr 8fr 1fr;
+  align-content:space-around;
+  gap: 20px;
+  height: 3em;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #d1d5db; 
+  border-radius: 8px;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  color: #4a5568;
+  background-color: #f9fafb; 
+  align-content: center;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.ingredients-section .selecteur1{
+  background-color: #f9fafb ; 
+}
+.groupe_ingredient p .nom_ingredient {
+  /* flex: 8; Encore plus de place pour le nom */
+  text-align: center;
+}
+
+
+
+.groupe_ingredient input.zone_ingredient {
+  /* flex: 1; Réduction maximale du champ input */
+  background: none;
+  border: none;
+  text-align: right;
+  
+}
+
+.groupe_ingredient input.zone_ingredient::placeholder {
+  font-family: Arial, sans-serif;
+  font-size: 1.1em;
+}
+
+.groupe_ingredient p .mesure_ingredient {
+  /* flex: 2; */
+  text-align: center;
+}
+
+.groupe_ingredient input .zone_ingredient:focus {
+  outline: none;
+  border-color: #999;
+  box-shadow: none;
+}
+
+.remove-item-button {
+  background: none;
+  border: none;
+  color: #e53e3e;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex: 0.5; /* Encore moins de place pour le bouton */
+  padding: 2px;
+}
+
+.remove-item-button:hover {
+  background-color: #f8bbd0;
+}
 
 @media (min-width: 601px) {
     .header-mobile {
         display: none; 
     }
+}
+.difficulty-group fieldset {
+  border: 1px solid #cbd5e0; /* Light border for the fieldset */
+  padding: 10px; /* Add padding around the radio button options */
+  background-color: #f5faff; /* A light background color for the container */
+  border-radius: 10px; /* Give rounded corners to the container */
+  display: flex; /* Ensure fieldset behaves correctly with gap */
+  justify-content: space-around; /* Distribute space evenly between options */
+}
+
+.difficulty-group .difficulty-options {
+  display: flex; /* Arrange radio buttons and labels in a row */
+  gap: 20px; /* Increased gap value to create more space between options */
+  align-items: center; /* Vertically align radio buttons and labels */
+  width: 100%; /* Ensure options are spaced across the full width */
+  justify-content: space-between; /* Distribute space between items */
+  padding: 0 20px; /* Add some padding on the left and right */
+}
+
+.difficulty-group .difficulty-options label {
+  display: flex; /* Use flexbox to align items inside label */
+  align-items: center; /* Vertically align within the label */
+  font-weight: bold; /* Make the labels bold */
+  color: #2d3748; /* Darker color for labels */
+  cursor: pointer; /* Make labels clickable */
+  margin-bottom: 0;
+  text-align: center; /* Center the text within its space */
+  
+}
+
+.difficulty-group .difficulty-options input[type="radio"] {
+  appearance: none; /* Remove default radio button styling */
+  -webkit-appearance: none; /* For Safari */
+  -moz-appearance: none; /* For Firefox */
+  width: 20px; /* Set the width of the custom radio button */
+  height: 20px; /* Set the height of the custom radio button */
+  border: 2px solid #94a3b8; /* Border for the radio button */
+  border-radius: 50%; /* Make it a circle */
+  margin-right: 0px; /* Spacing between radio button and label text */
+  cursor: pointer;
+  position: relative; /* For positioning the "checked" indicator */
+}
+
+.difficulty-group .difficulty-options input[type="radio"]:checked::before {
+  content: ''; /* Create a pseudo-element to act as the "check" */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the "check" inside the radio button */
+  width: 12px; /* Size of the inner "check" circle */
+  height: 12px;
+  border-radius: 50%; /* Make the "check" a circle */
+  display: block; /* Make the "check" visible */
+}
+
+/* Optional: Hover effect for labels */
+.difficulty-options label:hover input[type="radio"] {
+  border-color: #64748b; /* Slightly darker border on hover */
 }

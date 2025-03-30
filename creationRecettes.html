@@ -33,12 +33,6 @@
         </div>
       </header>
 
-
-
-
-
-
-
       <!-- Mobile Header Section -->
       <header class="header-mobile">
         <h2 class="logo">Planigo</h2>
@@ -148,8 +142,8 @@
             </div>
 
             <div class="form-group difficulty-group">
-              <fieldset>
-                <legend>Veuillez selectionner la difficulte de la recette :</legend>
+              <label for="difficulte">Veuillez selectionner la difficulte de la recette : <span class="required">*</span></label>
+              <fieldset id="difficulte" class="difficulty-fieldset">
                 <div class="difficulty-options">
                   <input
                     type="radio"
@@ -158,7 +152,7 @@
                     value="1"
                     required
                   />
-                  <label for="facile">Facile !</label>
+                  <label for="facile">Facile</label>
     
                   <input
                     type="radio"
@@ -176,7 +170,7 @@
                     value="3"
                     required
                   />
-                  <label for="difficile">Difficile !!</label>
+                  <label for="difficile">Difficile</label>
                 </div>
               </fieldset>
             </div>
@@ -188,6 +182,7 @@
               <div class="ingredient-input">
                 <div id="zone-ingredients"></div>
                 <input 
+                
                   id="prochain-ingredient-s" 
                   type="text" 
                   placeholder="Prochain ingredient : " 

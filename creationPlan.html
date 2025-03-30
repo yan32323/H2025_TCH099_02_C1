@@ -5,29 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./assets/js/creationPlan.js"></script>
+    <link rel="stylesheet" href="assets/styles/styles-creation-recettes.css" />
 </head>
 <body>
-    <main id="contenu-principal">
-        <form id="form-plan">
-          <textarea
-            id="titre-plan"
-            placeholder="Titre du plan ici..."
-            required
-          ></textarea>
-          <textarea
-            id="description-plan"
-            placeholder="Description du plan ici..."
-            required
-          ></textarea>
+  <header>
+    <div class="hautdepage">
+
+      <div class="logo">
+        <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+      </div>
+      <div class="nav-wrapper">
+        <nav>
+          <ul>
+            <li><a href="accueil-recette.html">Mes recettes</a></li>
+            <li><a href="#">Plannificateur</a></li>
+            <li><a href="#">Liste d'épicerie</a></li>
+            <li><a href="stockage.html">Stock</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="logout-link">
+        <a href="index.html" class="nav-item" id="logoutButton"
+        >Se déconnecter</a>
+      </div>
+    </div>
+  </header>
+    <main class = "content-container" id="contenu-principal">
+        <form class = "recipe-form" id="form-plan">
+          
           <button
             id="btn-suppression-plan"
             type="submit"
-            class="send-button"
+            class="send-button delete-recipe-button"
           >
             Supprimer le plan
           </button>
-          <div id="zone-images"></div>
-          <div id="nouvelles-images-recette"><p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+          <div class = titre>
+            <h1>Creation d'un plan</h1>
+            <h2>Details sur le plan hebdomadaire:</h2>
+          </div>
+
+          <div class="form-columns"> 
+            <div class="left-column">
+              <div class="form-group">
+                <label for="titre-recette">Titre du plan : <span class="required">*</span></label> 
+          <input
+            type="text"
+            id="titre-plan"
+            required
+          ></input>
+        </div>
+        <div class="form-group">
+          <label for="description-recette">Description du plan <span class="required">*</span></label>
+          <textarea
+            id="description-plan"
+            required
+          ></textarea>
+        </div>
+        </div>
+
+        <div class="right-column ">
+          <div id="zone-images" class = "form-group file-upload-group">
+            <label for="prochaine-image">Photo du plan : <span class="required">*</span></label>
+          <div class = "file-upload-box" id="nouvelles-images-recette" >
+            <p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
             <input
               type="file"
               class="image-recette"
@@ -44,119 +85,155 @@
           >
             Ajouter une image
           </button>
+          </div>
+          </div>
         </div>
         </div>
-          <label for="message">Veuillez creer votre plan</label>
-          <div id="zone-recettes-lundi" style=" border: 1px solid black; padding: 10px;">
+
+
+         <label class= "titre-plan" for="message"><h2>Veuillez creer votre plan</h2></label>
+         <div class="plan-container">
+          <div class= "ingredients-section" id="zone-recettes-lundi">
             <h4>Lundi</h4>
             <div id="affichage-recettes-lundi"></div>
+            <div class="ingredient-item">
+              <div class="ingredient-input">
+            
             <input id="prochaine-recette-lundi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-lundi"/>
             <datalist id="liste-recette-lundi">
             </datalist>
+            </div>
+            </div>
           <button
             id="btn-creation-plan-recette-lundi"
             type="submit"
-            class="send-button"
+            class="send-button add-recipe-button"
           >
             Ajouter la recette
           </button>
           </div>
 
-        </div>
+        
 
-        <div id="zone-recettes-mardi" style=" border: 1px solid black; padding: 10px;">
+        <div class= "ingredients-section" id="zone-recettes-mardi">
           <h4>Mardi</h4>
           <div id="affichage-recettes-mardi"></div>
+          <div class="ingredient-item">
+            <div class="ingredient-input">
           <input id="prochaine-recette-mardi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mardi"/>
           <datalist id="liste-recette-mardi">
           </datalist>
+        </div>
+      </div>
         <button
           id="btn-creation-plan-recette-mardi"
           type="submit"
-          class="send-button"
+          class="send-button add-recipe-button"
         >
           Ajouter la recette
         </button>
         </div>
 
-        <div id="zone-recettes-mercredi" style=" border: 1px solid black; padding: 10px;">
+        <div class= "ingredients-section" id="zone-recettes-mercredi">
           <h4>Mercredi</h4>
           <div id="affichage-recettes-mercredi"></div>
+          <div class="ingredient-item">
+            <div class="ingredient-input">
           <input id="prochaine-recette-mercredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mercredi"/>
           <datalist id="liste-recette-mercredi">
           </datalist>
+        </div>
+      </div>
         <button
           id="btn-creation-plan-recette-mercredi"
           type="submit"
-          class="send-button"
+          class="send-button add-recipe-button"
         >
           Ajouter la recette
         </button>
         </div>
 
-        <div id="zone-recettes-jeudi" style=" border: 1px solid black; padding: 10px;">
+        <div class= "ingredients-section" id="zone-recettes-jeudi">
           <h4>Jeudi</h4>
           <div id="affichage-recettes-jeudi"></div>
+          <div class="ingredient-item">
+            <div class="ingredient-input">
           <input id="prochaine-recette-jeudi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-jeudi"/>
           <datalist id="liste-recette-jeudi">
           </datalist>
+        </div>
+      </div>
         <button
           id="btn-creation-plan-recette-jeudi"
           type="submit"
-          class="send-button"
+          class="send-button add-recipe-button"
         >
           Ajouter la recette
         </button>
         </div>
 
-        <div id="zone-recettes-vendredi" style=" border: 1px solid black; padding: 10px;">
+        <div class= "ingredients-section" id="zone-recettes-vendredi">
           <h4>Vendredi</h4>
           <div id="affichage-recettes-vendredi"></div>
+          <div class="ingredient-item">
+            <div class="ingredient-input">
           <input id="prochaine-recette-vendredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-vendredi"/>
           <datalist id="liste-recette-vendredi">
           </datalist>
+        </div>
+      </div>
         <button
           id="btn-creation-plan-recette-vendredi"
           type="submit"
-          class="send-button"
+          class="send-button add-recipe-button"
         >
           Ajouter la recette
         </button>
         </div>
 
-        <div id="zone-recettes-samedi" style=" border: 1px solid black; padding: 10px;">
+        <div class= "ingredients-section" id="zone-recettes-samedi">
           <h4>Samedi</h4>
           <div id="affichage-recettes-samedi"></div>
+          <div class="ingredient-item">
+            <div class="ingredient-input">
           <input id="prochaine-recette-samedi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-samedi"/>
           <datalist id="liste-recette-samedi">
           </datalist>
+        </div>
+      </div>
         <button
           id="btn-creation-plan-recette-samedi"
           type="submit"
-          class="send-button"
+          class="send-button add-recipe-button"
         >
           Ajouter la recette
         </button>
         </div>
 
-        <div id="zone-recettes-dimanche" style=" border: 1px solid black; padding: 10px;">
+        <div class= "ingredients-section" id="zone-recettes-dimanche">
           <h4>Dimanche</h4>
           <div id="affichage-recettes-dimanche"></div>
+          <div class="ingredient-item">
+            <div class="ingredient-input">
           <input id="prochaine-recette-dimanche" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-dimanche"/>
           <datalist id="liste-recette-dimanche">
           </datalist>
+        </div>
+      </div>
         <button
           id="btn-creation-plan-recette-dimanche"
           type="submit"
-          class="send-button"
+          class="send-button add-recipe-button"
         >
           Ajouter la recette
         </button>
         </div>
-
-          <button id="btn-envoi-plan" type="submit" class="send-button">
+      </div>
+      <div class=" form-group save-button-group">
+          <button id="btn-envoi-plan" type="submit" class="send-button save-recipe-button">
             J'ai termine !!!
           </button>
+          </div>
           <button id="test-hover1" type="submit" class="send-button">
             Test Hover1
           </button>
