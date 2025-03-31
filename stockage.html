@@ -35,6 +35,7 @@
       </div>
     </div>
   </header>
+  <div class="content-container">
   <h1> Modifier mon stock</h1>
 
   <p class="subtitle">Suivez facilement les ingrédients dont vous disposez à la maison !</p>
@@ -62,15 +63,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
           <div class="center-container"> 
             <h1>Modifier la quantité du produit</h1>
             <p class="subtitle">Ajoutez de nouveaux ingrédients à votre stock.</p>
-            <section class="stock-container">
+            <section class="stock-modifier">
             <h2>Ingrédients :</h2>
             <div class="ingredient-list">
     
@@ -78,12 +78,12 @@
                 <p id="message-erreur2"></p>
             </div>
             <div class="ingredient-row new">
-            <form id="form-produit" autocomplete="off">
-                <input type="text" id="ingredient" placeholder="Nom de l'ingrédient" list="liste-ingredient-concordant" autocomplete="off" required>
+            <form class= "contenant-stock"id="form-produit" autocomplete="off">
+                <input class="stock_produit" type="text" id="ingredient" placeholder="Nom de l'ingrédient" list="liste-ingredient-concordant" autocomplete="off" required>
                 <datalist id="liste-ingredient-concordant"></datalist>
     
-                <input type="number" id="quantite" placeholder="Quantité" step="0.01" min="0.100" max="300.00" value="" required>
-                <input id="unite" name="mesure" value="Selon l'ingrédient" readonly></input>
+                <input class="stock_produit" type="number" id="quantite" placeholder="Quantité" step="0.01" min="0.100" max="300.00" value="" required>
+                <input class= "stock_produit" id="unite" name="mesure" value="Selon l'ingrédient" readonly></input>
             
                 <div class="buttons-container">
                     <!--<button class= "save-button" type="submit">Sauvegarder</button>
@@ -102,5 +102,6 @@
       </div>
     </div>
   </div>
+</div>
 </body>
 </html>

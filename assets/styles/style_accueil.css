@@ -69,7 +69,9 @@ header {
     max-width: 100%;
     margin: 0 auto;
     background-color: #fff;
+    padding: 30px;
   }
+  
   
   .main-header {
     display: flex;

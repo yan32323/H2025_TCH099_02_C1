@@ -125,11 +125,25 @@ document.addEventListener('DOMContentLoaded', function () {
             BTN_MODIFIER.className = "btn_modifier";
             BTN_MODIFIER.setAttribute("data-bs-toggle", "modal");
             BTN_MODIFIER.setAttribute("data-bs-target", "#exampleModal"); 
-            BTN_MODIFIER.textContent = "⚙️"; //MODIFIER POUR UN OBJET BOOTSTRAP
+            
+            //Ajouter l'image au bouton de modifier
+            const IMG_MODIFIER = document.createElement("img");
+            IMG_MODIFIER.src = "assets/image/pencil.png";  
+            IMG_MODIFIER.alt = "Modifier";
+            IMG_MODIFIER.style.width = "20px";  
+            IMG_MODIFIER.style.height = "20px";
+            BTN_MODIFIER.appendChild(IMG_MODIFIER);
 
+      
+            //Ajouter l'image au bouton de supprimer
             const BTN_SUPPRIMER = document.createElement("button");
             BTN_SUPPRIMER.className = "btn_supprimer";
-            BTN_SUPPRIMER.textContent = "✖"; //MODIFIER POUR UN OBJET BOOTSTRAP
+            const IMG_SUPPRIMER = document.createElement("img");
+            IMG_SUPPRIMER.src = "assets/image/trash.png";  
+            IMG_SUPPRIMER.alt = "Supprimer";
+            IMG_SUPPRIMER.style.width = "20px";  
+            IMG_SUPPRIMER.style.height = "20px";
+            BTN_SUPPRIMER.appendChild(IMG_SUPPRIMER);
 
             //Ajouter les compoants à leurs parents
             DIV_BOUTTON.append(BTN_MODIFIER);

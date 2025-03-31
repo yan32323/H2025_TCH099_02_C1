@@ -87,12 +87,12 @@ header {
 }
 .recipe-popup-screen {
     width: 100%;
-    max-width: 1200px; /* Adjust as needed */
+    max-width: 1200px; 
     padding-bottom: 96px;
 }
 
 .vertical-divider {
-    border-left: 1px solid #000; /* Black vertical divider */
+    border-left: 1px solid #000; 
     height: 24px;
     margin: 0 6px;
 }
@@ -101,21 +101,20 @@ header {
     font-size: 36px;
     font-weight: bold;
     letter-spacing: -0.5px;
-    margin-bottom: 48px; /* Space after section titles */
+    margin-bottom: 48px; 
 }
 
-/* Header Styles (unchanged) */
 .header {
     padding: 0 20px;
     display: flex;
-    flex-direction: column; /* Stack logo and nav, then image */
+    flex-direction: column; 
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px; /* Space before header image */
+    margin-bottom: 40px; 
 }
 
 .logo {
@@ -126,7 +125,7 @@ header {
 .header-nav {
     display: flex;
     align-items: center;
-    gap: 40px; /* Spacing between main and secondary navs */
+    gap: 40px; 
 }
 
 .nav-links-main, .nav-links-secondary {
@@ -134,7 +133,7 @@ header {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 20px; /* Spacing between nav links within each group */
+    gap: 20px; 
 }
 
 .nav-links-main li a, .nav-links-secondary li a {
@@ -144,13 +143,11 @@ header {
     font-weight: medium;
 }
 
-/* --- Styles for Header Image Placeholder Square --- */
 .header-image {
-    /* width and height are set by placeholder-square class */
-    object-fit: fill; /* Fill width, may distort height if aspect ratio is different */
+    
+    object-fit: fill; 
 }
 
-/* Recipe Title Section (unchanged) */
 .recipe-title-section {
     padding: 0 16px;
     margin-top: 64px;
@@ -159,7 +156,7 @@ header {
 
 .recipe-title {
     font-size: 4em;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600; 
     letter-spacing: -0.5px;
     margin: 0;
 }
@@ -170,7 +167,6 @@ h3{
 h4{
     color: #14817A
 }
-/* Recipe Metadata Section (unchanged) */
 .recipe-metadata {
     display: flex;
     justify-content: space-between;
@@ -184,11 +180,10 @@ h4{
     gap: 20px;
 }
 
-/* --- Styles for Author Profile Placeholder Square --- */
+
 .author-profile-image {
-    /* width and height are set by placeholder-square and small-square classes */
-    border-radius: 50%; /* Circle shape */
-    object-fit: cover; /* Crop image to fit circle */
+    border-radius: 50%; 
+    object-fit: cover; 
 }
 
 .author-name {
@@ -207,11 +202,11 @@ h4{
 .prep-time, .cook-time-category {
     display: flex;
     align-items: center;
-    gap: 6px; /* Spacing for prep time */
+    gap: 6px; 
 }
 
 .cook-time-category {
-    gap: 40px; /* Larger gap for cook time and category */
+    gap: 40px; 
 }
 
 .time-label {
@@ -236,7 +231,7 @@ h4{
 
 .recipe-actions {
     display: flex;
-    align-items: flex-end; /* Align save text and edit icon bottom */
+    align-items: flex-end; 
     gap: 32px;
 }
 
@@ -244,7 +239,7 @@ h4{
     font-size: 12px;
     font-weight: medium;
     letter-spacing: 0.5px;
-    margin-bottom: 8px; /* Align with "MODIFIER" text */
+    margin-bottom: 8px;
 }
 
 .edit-recipe {
@@ -253,50 +248,47 @@ h4{
     align-items: center;
 }
 
-/* --- Styles for Edit Icon Placeholder Square --- */
-.edit-icon {
-    /* width and height are set by placeholder-square and large-square classes */
-}
+
 
 .edit-text {
     font-size: 12px;
     font-weight: medium;
     letter-spacing: 0.5px;
     margin-top: 16px;
-    text-align: center; /* Center text below icon */
+    text-align: center; 
 }
 
-/* Recipe Image and Comments Section (unchanged) */
+
 .recipe-image-comments {
     display: flex;
     padding: 0 20px;
     gap: 20px;
 }
 
-/* --- Styles for Recipe Main Image Placeholder Square --- */
+
 .recipe-main-image {
-    flex: 0.62; /* 62% width */
-    aspect-ratio: 1.4; /* Adjust aspect ratio as needed */
-    object-fit: cover; /* Crop image to fill area */
+    flex: 0.62; 
+    aspect-ratio: 1.4; 
+    object-fit: cover;
 }
 
 .comments-section {
-    flex: 0.38; /* 38% width */
+    flex: 0.38; 
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Simple shadow */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
     padding: 32px;
 }
 
 .comments-title {
     font-size: 30px;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600; 
     margin-top: 0;
     margin-bottom: 20px;
 }
 
 .comment-item-wrapper {
-    margin-bottom: 40px; /* Space between comment items */
+    margin-bottom: 40px; 
 }
 
 .load-more-button {
@@ -304,14 +296,14 @@ h4{
     background-color: #f5f5f5;
     color: #000;
     font-size: 14px;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600; 
     border: none;
     border-radius: 6px;
     padding: 10px;
     cursor: pointer;
 }
 
-/* Recipe Description Section (unchanged) */
+
 .recipe-description-section {
     padding: 48px 16px;
 }
@@ -322,29 +314,26 @@ h4{
     margin: 0;
 }
 
-/* Ingredients Section (modified for checkbox list and strike-through) */
 .ingredients-section {
     padding: 0 16px;
 }
 
-
-
 .ingredients-subtitle {
     font-size: 24px;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600; 
     letter-spacing: -0.5px;
     margin-bottom: 44px;
     margin-top: 0;
 }
 
 .ingredient-item-wrapper {
-    margin-bottom: 44px; /* Space between ingredient groups/items */
+    margin-bottom: 44px; 
 }
 
 .ingredient-item {
     font-size: 16px;
-    padding-left: 80px; /* Indent ingredient text */
-    position: relative; /* For crossed-out line absolute positioning */
+    padding-left: 80px; 
+    position: relative; 
     padding-top: 16px;
     padding-bottom: 16px;
 }
@@ -354,97 +343,93 @@ h4{
 }
 
 .ingredient-divider {
-    border-top: 1px solid #ddd; /* Light gray divider */
+    border-top: 1px solid #ddd; 
     margin: 0;
 }
 
-/* --- Checkbox List Styles (unchanged) --- */
+
 .checkbox-list {
-    padding-left: 80px; /* Indent checkbox list to align with previous ingredient item */
+    padding-left: 80px; 
 }
 
 .checkbox-ingredient {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Vertically align checkbox and text */
+    display: flex; 
+    align-items: center; 
     padding-top: 16px;
     padding-bottom: 16px;
 }
 
 .checkbox-ingredient input[type="checkbox"] {
-    margin-right: 10px; /* Space between checkbox and text */
-    width: 18px; /* Adjust checkbox size if needed */
+    margin-right: 10px;
+    width: 18px; 
     height: 18px;
-    cursor: pointer; /* Indicate interactivity */
+    cursor: pointer; 
 }
 
 .checkbox-ingredient span {
-    font-size: 16px; /* Match ingredient text size */
-    transition: text-decoration 0.2s; /* Smooth transition for strike-through */
+    font-size: 16px; 
+    transition: text-decoration 0.2s; 
 }
 
-/* --- Strike-through effect when checkbox is checked (ADDED) --- */
 .checkbox-ingredient input[type="checkbox"]:checked + span {
     text-decoration: line-through;
-    color: #777; /* Optional: make text grayed out when struck through */
+    color: #777; 
 }
 
-
-/* Directions Section (unchanged) */
 .directions-section {
     padding: 16px;
 }
 
 .directions-title {
-    margin-bottom: 48px; /* Space after directions title */
+    margin-bottom: 48px; 
 }
 
 .direction-step-wrapper {
-    margin-bottom: 16px; /* Space between direction steps */
-    margin-top: 16px; /* Space above first step */
+    margin-bottom: 16px; 
+    margin-top: 16px;
 }
 
 .direction-step {
-    margin-bottom: 16px; /* Space within direction step */
+    margin-bottom: 16px; 
 }
 
 .step-number {
     width: 37px;
     height: 25px;
     border: 2px solid #e4e4e4;
-    border-radius: 50%; /* Circle shape */
-    display: inline-flex; /* To center number inside */
+    border-radius: 50%; 
+    display: inline-flex; 
     justify-content: center;
     align-items: center;
     margin-right: 28px;
-    font-size: 12px; /* Adjust number size as needed */
-    color: transparent; /* Hide the number visually */
-    position: relative; /* To create pseudo-element for number */
+    font-size: 12px; 
+    color: transparent; 
+    position: relative; 
 }
 
 .step-number::before {
-    content: attr(data-number); /* Use data-number attribute for content */
-    color: #000; /* Number color */
+    content: attr(data-number); 
+    color: #000; 
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: inherit; /* Inherit font size from .step-number */
+    font-size: inherit; 
 }
 
-/* Apply data-number to each .step-number element in JS or directly in HTML */
 .direction-step .step-number {
-    display: inline-block; /* Ensure inline-block for proper layout */
-    vertical-align: top; /* Align step number at the top */
+    display: inline-block; 
+    vertical-align: top; 
 }
 
 
 .step-title {
     font-size: 24px;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600; 
     margin-top: 0;
     margin-bottom: 32px;
-    display: inline-block; /* To be on the same line as step number */
-    vertical-align: top; /* Align with step number */
+    display: inline-block; 
+    vertical-align: top; 
 }
 
 .step-description {
@@ -454,19 +439,17 @@ h4{
     margin-bottom: 32px;
 }
 
-/* --- Styles for Direction Image Placeholder Square --- */
 .step-image {
-    /* width and height are set by placeholder-square and direction-image-square classes */
-    object-fit: fill; /* Fill width, may distort height if aspect ratio is different */
+   
+    object-fit: fill; 
 }
 
-/* Footer Styles (unchanged) */
 .footer {
     padding: 40px 16px;
 }
 
 .footer-content {
-    padding: 0 80px; /* Indentation from Compose code */
+    padding: 0 80px; 
 }
 
 .footer-logo {
@@ -496,7 +479,7 @@ h4{
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 40px; /* Spacing between footer links */
+    gap: 40px; 
 }
 
 .footer-links li a {
@@ -507,13 +490,13 @@ h4{
 }
 
 .footer-divider {
-    border-top: 1px solid #ddd; /* Light gray divider */
+    border-top: 1px solid #ddd; 
     margin-top: 48px;
 }
 
-/* --- Placeholder Square Styles (unchanged) --- */
+
 .placeholder-square {
-    background-color: #ddd; /* Light gray placeholder color */
+    background-color: #ddd; 
 }
 
 .header-image.placeholder-square {
@@ -524,7 +507,7 @@ h4{
 .author-profile-image.placeholder-square.small-square {
     width: 58px;
     height: 58px;
-    border-radius: 50%; /* Keep circle shape */
+    border-radius: 50%;
 }
 
 .edit-icon.placeholder-square.large-square {
@@ -533,8 +516,7 @@ h4{
 }
 
 .recipe-main-image.placeholder-square.recipe-image-square {
-    /* width and aspect-ratio already set in .recipe-main-image */
-    height: auto; /* adjust height based on aspect ratio */
+    height: auto; 
 }
 
 .comment-profile-image.placeholder-square.small-square {
@@ -549,7 +531,7 @@ h4{
     height: 20px;
 }
 .reaction-box.placeholder-square.tiny-square.reaction-icon {
-    border-radius: 4px; /* Match reaction box border radius */
+    border-radius: 4px; 
 }
 
 .step-image.placeholder-square.direction-image-square {
