@@ -44,14 +44,26 @@ $router->post('/CreationRecettes.php/recettes/creer/', function () {
 
                 echo json_encode($resultat);
             }else{
-                // on cree une nouvelle recette
-                $requete = $pdo->prepare("INSERT INTO Recettes (titre, description, ingredients, etapes, image, createur_nom_utilisateur, difficulte) VALUES (:titre, :description, :ingredients, :etapes, :image, :username, :difficulte)");
-
-                $requete->execute(['titre' => $infos["titre"], 'description' => $infos["description"], 'ingredients' => $infos["ingredients"], 'etapes' => $infos["etapes"], 'image' => $infos["image"], 'username' => $infos["username"], 'difficulte' => $infos["difficulte"]]);
-
-                $resultat = $requete->fetchAll();
-
-                echo json_encode($resultat);
+                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES["image"])) {
+                    $imageData = file_get_contents($_FILES["image"]["tmp_name"]);
+                
+                    $requete = $pdo->prepare("INSERT INTO Recettes (titre, description, ingredients, etapes, image, createur_nom_utilisateur, difficulte) 
+                                              VALUES (:titre, :description, :ingredients, :etapes, :image, :username, :difficulte)");
+                
+                    $requete->bindParam(':titre', $_POST["titre"]);
+                    $requete->bindParam(':description', $_POST["description"]);
+                    $requete->bindParam(':ingredients', $_POST["ingredients"]);
+                    $requete->bindParam(':etapes', $_POST["etapes"]);
+                    $requete->bindParam(':image', $imageData, PDO::PARAM_LOB);
+                    $requete->bindParam(':username', $_POST["username"]);
+                    $requete->bindParam(':difficulte', $_POST["difficulte"]);
+                
+                    $success = $requete->execute();
+                
+                    echo json_encode(["success" => $success, "message" => $success ? "Recette ajoutée" : "Erreur lors de l'insertion"]);
+                } else {
+                    echo json_encode(["success" => false, "message" => "Aucune image envoyée"]);
+                }
             }
         } catch (PDOException $e) {
 
