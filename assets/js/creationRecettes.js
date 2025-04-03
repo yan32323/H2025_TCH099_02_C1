@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         username: sessionStorage.getItem("username"),
       });
 
-      let paquet = new formData();
+      let paquet = new FormData();
       for (let i = 0; i < tableauImages.length; i++) {
 
         paquet.append("image" + i, tableauImages[i].src);
