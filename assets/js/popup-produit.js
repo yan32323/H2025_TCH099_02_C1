@@ -4,7 +4,7 @@ document.addEventListener('lancer-popup', function () {
     const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
     const ACTION = sessionStorage.getItem('action');
 
-    const H1_TITRE = document.getElementsByTagName('h1')[0];
+    const H1_TITRE = document.getElementsByTagName('h1')[1];
     const T_INGREDIENT = document.getElementById('ingredient');
     const T_QUANTITE = document.getElementById('quantite');
     const T_UNITE = document.getElementById('unite');
@@ -44,6 +44,13 @@ document.addEventListener('lancer-popup', function () {
 
     }else {
         if(ACTION === 'add'){
+
+            //Configurer la configuration initial du formulaire
+            H1_TITRE.textContent = 'Ajouter un produit';
+            T_INGREDIENT.value = "";
+            T_INGREDIENT.removeAttribute('readonly');
+            T_UNITE.value = "Selon l'ingredient";
+            T_QUANTITE.value = "";
 
             //Récupéré les ingrédients dans la base de données et remplir la liste local
             fetch('./api/stockage.php/recuperer-ingredient/')

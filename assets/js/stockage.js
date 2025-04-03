@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const MSG_SUCCES = document.getElementById('message-succes');
     const BTN_ADD = document.getElementById('add');
     const LOGOUT_BUTTON = document.getElementById("logoutButton");
+    const DIV_PAGE_POPUP = document.getElementById("exampleModal");
     
 
     // Si l'usager n'est pas loguer, on le redirige vers la page de connextion
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
         MSG_SUCCES.textContent = sessionStorage.getItem('message_affichage');
         sessionStorage.removeItem("message_affichage");
     }
+    //libéré les données inutiles du session storage
+    sessionStorage.removeItem('action');
+    sessionStorage.removeItem('produit');
 
     initialiserContenantProduit();
 
@@ -27,10 +31,17 @@ document.addEventListener('DOMContentLoaded', function () {
         document.dispatchEvent(LANCER_POPUP);
     });
 
+    //Déconnexxion de l'utilisateur
     LOGOUT_BUTTON.addEventListener('click', function () {
-        sessionStorage.removeItem('identifiant'); // Clear identifiant from sessionStorage
-        sessionStorage.removeItem('motDePasse'); // Clear motDePasse from sessionStorage
-        window.location.href = 'accueil-recette.html'; // Redirect to login page
+        sessionStorage.removeItem('identifiant');
+        sessionStorage.removeItem('motDePasse');
+        window.location.href = 'accueil-recette.html'; 
+    });
+
+    //Sortie du popup produit, on retire les données de session storage inutile
+    DIV_PAGE_POPUP.addEventListener("hidden.bs.modal", function () {
+        sessionStorage.removeItem('action');
+        sessionStorage.removeItem('produit');
     });
 
 
