@@ -11,7 +11,11 @@ CREATE TABLE Recettes (
     nom VARCHAR(255) NOT NULL,
     description TEXT NOT NULL,
     temps_de_cuisson INT NOT NULL,
-    image MEDIUMBLOB,
+    image0 MEDIUMBLOB,
+    image1 MEDIUMBLOB,
+    image2 MEDIUMBLOB,
+    image3 MEDIUMBLOB,
+    image4 MEDIUMBLOB,
     createur_nom_utilisateur VARCHAR(255) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (createur_nom_utilisateur) REFERENCES Clients (nom_utilisateur)
