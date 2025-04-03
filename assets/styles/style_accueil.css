@@ -160,20 +160,25 @@ header {
   
   .category-item {
     text-align: center;
+    /* background: linear-gradient(to bottom, #78918f, #dbdbda); */
+    background-color: #d8e8e0;
+    border-radius: 60px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    color: #14817a
   }
   
+
   .category-image {
-    width: 100%;
+    width: 50%;
     max-width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    height: 50%;
     object-fit: cover;
   }
   
-  .category-name {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: normal;
+   h3 .category-name {
+    font-size: 10px;
+    font-weight: 500;
   }
   
   .recipes-section,
@@ -300,4 +305,6 @@ header {
       text-align: center;
     }
   }
+
+  
   
