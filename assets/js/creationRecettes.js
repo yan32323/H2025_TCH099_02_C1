@@ -151,15 +151,16 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     let zoneProchaineEtape = document.getElementById("prochaine-etape");
     let texteProchaineEtape = zoneProchaineEtape.value.trim();
+    zoneProchaineEtape.classList.add("zone-instruction");
     zoneProchaineEtape.value = "";
 
     // seulement mettre a jour si du texte a ete recu
-
     if (texteProchaineEtape) {
       tableauEtapes.push(texteProchaineEtape);
       updateEtape();
     }
   });
+
 
   envoyerRecette.addEventListener("click", sendRecette);
   /**
@@ -421,12 +422,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     for (let i = 0; i < tableauEtapes.length; i++) {
       let divEtape = document.createElement("div");
+      divEtape.classList.add("groupe_instructions");
       divEtape.innerHTML =
-        "<p id='ing" +
+        "<p class= 'zone-instruction' id='ing" +
         i +
         "'>" +
         tableauEtapes[i] +
-        "</p><button id='supr-etape" +
+        "</p><button class='btn_ingredient remove-item-button' id='supr-etape" +
         i +
         "'>X</button>";
       zoneEtape.appendChild(divEtape);

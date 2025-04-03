@@ -208,6 +208,7 @@
               <div class="instruction-input">
                 <div id="zone-etape"></div>
                 <textarea
+                  class="zone-instruction"
                   id="prochaine-etape"
                   name="message"
                   placeholder="Écrivez la prochaine etape ici..."
@@ -219,6 +220,7 @@
               id="btn-creation-recette-etape"
               type="button"
               class="send-button add-instruction-button"
+            
             >
               Ajouter l'etape
             </button>
@@ -226,7 +228,7 @@
 
           <div class="form-group save-button-group">
             <button id="btn-envoi-recette" type="submit" class="send-button save-recipe-button">
-              J'ai termine !!!
+              J'ai termine
             </button>
           </div>
         </form>
@@ -234,4 +236,20 @@
       </main>
     </div>
   </body>
+
+  //COULEUR DU SLIDER
+  <script>
+    document.querySelectorAll("input[type='range']").forEach(slider => {
+        slider.addEventListener("input", function () {
+            let min = this.min;
+            let max = this.max;
+            let val = this.value;
+            let percent = ((val - min) / (max - min)) * 100;
+
+            this.style.background = `linear-gradient(to right, #008080 ${percent}%, #ccc ${percent}%)`;
+        });
+
+        slider.dispatchEvent(new Event("input"));
+    });
+</script>
 </html>

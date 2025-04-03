@@ -241,57 +241,26 @@ h4{
     align-items: center;        
     padding-bottom: 40px;
 }
-  
 
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  background: #ccc;
+  border-radius: 5px;
+  outline: none;
+}
 
-  
-  .time-slider-container {
-      display: flex;
-      flex-direction: row; 
-      align-items: center; 
-  }
-
-  .time-slider-container input[type="range"] {
-      flex-grow: 1;
-      margin-right: 15px; 
-      margin-bottom: 0px; 
-      height: 6px; 
-      -webkit-appearance: none;
-      appearance: none;
-      background: #e5e7eb; 
-      border-radius: 5px;
-  }
-
-  .time-slider-container input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 14px; 
-      height: 14px; 
-      background-color: #008080; 
-      cursor: pointer;
-      border-radius: 50%;
-      border: none;
-  }
-
-  .time-slider-container input[type="range"]::-moz-range-thumb {
-      width: 14px; 
-      height: 14px; 
-      background-color: #008080;
-      cursor: pointer;
-      border-radius: 50%;
-      border: none;
-  }
-
-
-  .time-slider-container span {
-      font-size: 1.1em;
-      color: #52525b; 
-      font-weight: 500;
-      text-align: left; 
-      display: inline-block; 
-      width: auto;
-  }
-
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #004B46;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid white;
+  position: relative;
+}
   
   .file-upload-group .file-upload-box {
       border: 2px dashed #cbd5e0; 
@@ -538,7 +507,6 @@ h4{
   display: flex;
   align-items: center;
   justify-content: center;
-  /* flex: 0.5; /* Encore moins de place pour le bouton */
   padding: 2px;
 }
 
@@ -552,60 +520,80 @@ h4{
     }
 }
 .difficulty-group fieldset {
-  border: 1px solid #cbd5e0; /* Light border for the fieldset */
-  padding: 10px; /* Add padding around the radio button options */
-  background-color: #f5faff; /* A light background color for the container */
-  border-radius: 10px; /* Give rounded corners to the container */
-  display: flex; /* Ensure fieldset behaves correctly with gap */
-  justify-content: space-around; /* Distribute space evenly between options */
+  border: 1px solid #cbd5e0; 
+  padding: 10px; 
+  background-color: #f5faff; 
+  border-radius: 10px; 
+  display: flex; 
+  justify-content: space-around; 
 }
 
 .difficulty-group .difficulty-options {
-  display: flex; /* Arrange radio buttons and labels in a row */
-  gap: 20px; /* Increased gap value to create more space between options */
-  align-items: center; /* Vertically align radio buttons and labels */
-  width: 100%; /* Ensure options are spaced across the full width */
-  justify-content: space-between; /* Distribute space between items */
-  padding: 0 20px; /* Add some padding on the left and right */
+  display: flex; 
+  gap: 20px; 
+  align-items: center; 
+  width: 100%; 
+  justify-content: space-between; 
+  padding: 0 20px; 
 }
 
 .difficulty-group .difficulty-options label {
-  display: flex; /* Use flexbox to align items inside label */
-  align-items: center; /* Vertically align within the label */
-  font-weight: bold; /* Make the labels bold */
-  color: #2d3748; /* Darker color for labels */
-  cursor: pointer; /* Make labels clickable */
+  display: flex; 
+  align-items: center; 
+  font-weight: bold; 
+  color: #2d3748; 
+  cursor: pointer; 
   margin-bottom: 0;
-  text-align: center; /* Center the text within its space */
+  text-align: center; 
   
 }
 
 .difficulty-group .difficulty-options input[type="radio"] {
-  appearance: none; /* Remove default radio button styling */
-  -webkit-appearance: none; /* For Safari */
-  -moz-appearance: none; /* For Firefox */
-  width: 20px; /* Set the width of the custom radio button */
-  height: 20px; /* Set the height of the custom radio button */
-  border: 2px solid #94a3b8; /* Border for the radio button */
-  border-radius: 50%; /* Make it a circle */
-  margin-right: 0px; /* Spacing between radio button and label text */
+  appearance: none; 
+  -webkit-appearance: none;
+  -moz-appearance: none; 
+  width: 20px; 
+  height: 20px;
+  border: 2px solid #94a3b8; 
+  border-radius: 50%; 
+  margin-right: 0px; 
   cursor: pointer;
-  position: relative; /* For positioning the "checked" indicator */
+  position: relative; 
 }
 
 .difficulty-group .difficulty-options input[type="radio"]:checked::before {
-  content: ''; /* Create a pseudo-element to act as the "check" */
+  content: ''; 
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* Center the "check" inside the radio button */
-  width: 12px; /* Size of the inner "check" circle */
+  transform: translate(-50%, -50%); 
+  width: 12px; 
   height: 12px;
-  border-radius: 50%; /* Make the "check" a circle */
-  display: block; /* Make the "check" visible */
+  border-radius: 50%; 
+  display: block; 
 }
 
 /* Optional: Hover effect for labels */
 .difficulty-options label:hover input[type="radio"] {
-  border-color: #64748b; /* Slightly darker border on hover */
+  border-color: #64748b; 
 }
+
+.groupe_instructions{
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  align-content:space-around;
+  gap: 20px;
+  height: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #d1d5db; 
+  border-radius: 8px;
+  font-size: 1.1em;
+  box-sizing: border-box;
+  color: #4a5568;
+  background-color: #f9fafb; 
+  align-content: center;
+  gap: 8px;
+  font-family: Arial, sans-serif;
+}
+
