@@ -329,6 +329,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       alert("Veuillez entrer au moins un ingredient pour votre recette.");
       return;
     }
+
+    
+
     try {
       let difficulte;
       if (diffiulte3.checked) {
@@ -342,6 +345,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (editRecette) {
         envoiID = recetteLocale;
       }
+      sessionStorage.setItem("username", "aaaa");
       objRecetteJSON = JSON.stringify({
         edit: editRecette,
         id: envoiID,
@@ -355,38 +359,49 @@ document.addEventListener("DOMContentLoaded", async function () {
         difficulte: difficulte,
         username: sessionStorage.getItem("username"),
       });
-
+/*
       let paquet = new FormData();
       for (let i = 0; i < tableauImages.length; i++) {
 
         paquet.append("image" + i, tableauImages[i].src);
 
-      }
+      }*/
 
-      paquet.append("json", objRecetteJSON);  
+
+      //paquet.append("json", objRecetteJSON);  
+
 
       let response = await fetch(
-        "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer/",
+        "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: paquet
+          body: objRecetteJSON
         }
       );
-
       let reponse = await response.json();
-      if (reponse.status == "ok") {
+
+      /*let text = await response.text();
+      console.log(text);*/
+
+      if (reponse.success === true) {
         alert("Recette sauvegardee avec succès.");
         back();
       } else {
+        alert("ici");
+        console.log(reponse);
         erreurEnvoi();
       }
     } catch (error) {
+      alert("là");
+      console.log(error);
       erreurEnvoi();
     }
+
   }
+    
   /**
    *  recharge la liste d'ingredients
    */
