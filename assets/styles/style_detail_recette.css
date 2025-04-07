@@ -1,0 +1,260 @@
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f8f8f8;
+  }
+  
+  header {
+    background-color: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .hautdepage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: auto;
+    width: auto;
+    max-height: 35px;
+    display: block;
+  }
+  
+  .nav-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  nav li {
+    margin-left: 30px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+  }
+  
+  nav a:hover {
+    color: #2d3748;
+  }
+  
+  .logout-link a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .logout-link a:hover {
+    color: #2d3748;
+  }
+
+.content-container {
+    max-width: 90em; 
+    margin: 0 auto; 
+    padding-left: 1em; 
+    padding-right: 1em;
+}
+
+.app-header {
+    padding: 1.5em 0; 
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90em;
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.app-header .logo {
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.header-nav {
+    display: flex;
+    gap: 2.5em;
+    margin-left: 2.5em;
+}
+
+.header-nav a, .app-header .logout {
+    text-decoration: none;
+    color: #000000;
+    font-size: 1em;
+    font-weight: medium;
+}
+
+.main-content {
+    padding-top: 2.25em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content .main-image {
+    width: 100%;
+    max-width: 90em;
+    display: block;
+    margin-top: 2.5em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.recipe-list-section {
+    padding: 0; 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 90em;
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.recipe-list-section .section-title {
+    font-size: 5em;
+    font-weight: 600;
+    color: #064E3B;
+    
+    
+}
+
+.recipe-list-section .section-description {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 2.75em;
+    padding: 0 2.5em; 
+    color:#115E59
+}
+
+.recipe-list-section .section-image {
+    width: 100%;
+    display: block;
+    margin-bottom: 2.75em;
+}
+
+.recipe-list-section .list-details-title {
+    font-size: 2.5em;
+    font-weight: 600;
+    color:#064E3B;
+    text-align: left;
+    width: 100%;
+    
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.25em 1.5em; 
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+.recipe-card {
+    background-color: rgba(17, 94, 89, 0.3);
+    border-radius: 1.875em;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-card .card-image {
+    width: 100%;
+    aspect-ratio: 1.45;
+    border-radius: 1.5em;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 1em;
+}
+
+.recipe-card .card-title {
+    font-size: 1.125em;
+    font-weight: 600;
+    color: #000000;
+    line-height: 1.5em;
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+.recipe-card .card-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.recipe-card .card-info span {
+    font-size: 0.875em;
+    font-weight: medium;
+    color: #000000;
+}
+
+.app-footer {
+    padding: 1.5em 0; 
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90em;
+    margin: 0 auto;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.app-footer .logo {
+    font-size: 1.5em;
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+.app-footer .tagline, .footer-nav a {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 0;
+    text-decoration: none;
+    color: #000000;
+    font-weight: medium;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 2.5em;
+}
+
+
+.app-footer .footer-bottom-image {
+    width: 100%;
+    display: block;
+    max-width: 90em;
+    margin-left: auto;
+    margin-right: auto;
+}

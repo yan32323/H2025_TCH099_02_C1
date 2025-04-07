@@ -1,0 +1,130 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #f8f8f8;
+}
+
+header {
+    background-color: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.hautdepage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: auto;
+    width: auto;
+    max-height: 35px;
+    display: block;
+}
+
+.nav-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    margin-left: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+nav a:hover {
+    color: #2d3748;
+}
+
+.logout-link a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+.logout-link a:hover {
+    color: #2d3748;
+}
+
+h1 {
+    text-align: center;
+    color: #004B46;
+    margin-top: 40px;
+    font-size: 3.5em;
+}
+
+h2 {
+    text-align: left;
+    color: #008080;
+    margin-top: 20px;
+    font-size: 2em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+h3{
+    text-align: center;
+    color: #6c8e8e;
+    margin-top: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.category-list {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 30px;
+}
+
+.category-item {
+    background-color: #ffffff;
+    height: 10em;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    font-size: 1.2em;
+    color: #008080;
+    font-weight: strong;
+}
+
+ .content-container {
+      max-width: 950px; 
+      margin: 30px auto; 
+      margin-top:0px;
+      margin-bottom:0px;
+      padding: 30px;    
+      border-bottom-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      background-color: white; 
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }

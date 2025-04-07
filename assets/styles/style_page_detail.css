@@ -1,0 +1,283 @@
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f8f8f8;
+}
+
+header {
+  background-color: #fff;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.hautdepage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: auto;
+  width: auto;
+  max-height: 35px;
+  display: block;
+}
+
+.nav-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  margin-left: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+
+nav a:hover {
+  color: #2d3748;
+}
+
+.logout-link a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 15px;
+  font-family: Arial, sans-serif;
+}
+
+.logout-link a:hover {
+  color: #2d3748;
+}
+
+.headline-large {
+    font-size: 60px;
+    font-weight: 600; 
+    letter-spacing: -0.5px;
+}
+
+.headline-medium {
+    font-size: 48px;
+    font-weight: 600; 
+    letter-spacing: -0.5px;
+}
+
+.title-large {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0px;
+}
+
+.title-medium {
+    font-size: 20px;
+    font-weight: 800; 
+    letter-spacing: 0px;
+}
+
+.body-large {
+    font-size: 16px;
+    font-weight: 500; 
+    letter-spacing: 0px;
+}
+
+.body-medium {
+    font-size: 14px;
+    font-weight: 500; 
+    letter-spacing: 0px;
+}
+
+
+
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+}
+
+.recipe-image {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+    object-fit: cover; 
+    border-radius: 12px;
+}
+
+.recipe-title {
+    color:  #064E3B;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.recipe-duration, .recipe-category {
+    margin-top: 4px;
+    text-align: center;
+}
+
+.week-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:  rgba(17, 94, 89, 0.3);
+    border-radius: 24px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px; 
+}
+
+.week-header {
+    border-radius: 24px;
+    padding: 1px 20px;
+    color:#064E3B
+}
+
+.week-title {
+    color:#064E3B;
+    text-align: center;
+    font-size: 30px;
+}
+
+.week-recipes {
+    display: flex;
+    gap: 20px; 
+}
+
+.recipe-card-container {
+    flex: 1; 
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0; 
+    width: 100%; 
+}
+
+.header-logo {
+    color: #000000;
+    margin: 0 40px 0 0; 
+}
+
+.header-nav {
+    display: flex;
+    gap: 40px; 
+    flex-grow: 1; 
+    justify-content: flex-start; 
+}
+
+.nav-link, .header-logout {
+    color: #000000;
+    text-decoration: none; 
+    cursor: pointer; 
+}
+
+.header-logout {
+    margin-left: 40px; 
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    padding: 20px 0; 
+    width: 100%; 
+}
+
+.footer-company-info {
+    margin-bottom: 10px; 
+}
+
+.footer-logo {
+    color:  #000000;
+}
+
+.footer-tagline {
+    color: #000000;
+    margin-top: 10px;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 40px; 
+    width: 100%; 
+    justify-content: flex-start; 
+}
+
+.nav-link {
+    color: var(--black);
+    text-decoration: none; 
+    cursor: pointer; 
+}
+
+
+.planner-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding: 0 20px; 
+    font-family: sans-serif; 
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    max-width: 1200px; 
+}
+
+.screen-title {
+    color:  #064E3B;
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom:10px;
+}
+
+.screen-description {
+    color:  #064E3B;
+    margin-top: 28px;
+    margin-bottom: 4px;
+    text-align: center;
+    max-width: 800px; 
+}
+
+.plan-details {
+    color:  #115E59;
+    margin-bottom: 56px;
+    text-align: center;
+}
+
+.load-more-button {
+    background-color:  rgba(17, 94, 89, 0.6);
+    color:  #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px; 
+    margin: 40px 0;
+    cursor: pointer;
+}
+
