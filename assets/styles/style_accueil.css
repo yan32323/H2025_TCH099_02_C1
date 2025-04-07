@@ -305,6 +305,17 @@ header {
       text-align: center;
     }
   }
+  .content-container {
+    max-width: 100em; 
+    margin: 30px auto; 
+    margin-top:0px;
+    margin-bottom:0px;
+    padding: 30px;    
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: white; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
   
   
