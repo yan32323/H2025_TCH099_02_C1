@@ -37,15 +37,33 @@
     
             <div class="category-list">
             <h2>Végétarien</h2>
-            <div class="category-item"></div>
+            <div class="category-item">
+              <img src="assets/image/vegetarien.jpg" alt="Ma semaine gourmande">
+            </div>
             <h2>Repas rapides</h2>
-            <div class="category-item"></div>
+            <div class="category-item">
+              <img src="assets/image/repas-rapide.jpg" alt="Ma semaine gourmande">
+            </div>
             <h2>Soupes et salades</h2>
-            <div class="category-item"></div>
+            <div class="category-item">
+              <img src="assets/image/soupe-salade.jpg" alt="Ma semaine gourmande">
+            </div>
             <h2>Saveurs du monde</h2>
-            <div class="category-item"></div>
+            <div class="category-item">
+              <img src="assets/image/saveur.png" alt="Ma semaine gourmande">
+            </div>
         </div>
     </div>
 
 </body>
+<script>
+  const categoryItems = document.querySelectorAll('.category-item');
+
+  categoryItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      window.location.href = "page_detail_liste.html";
+    });
+  });
+</script>
+
 </html>

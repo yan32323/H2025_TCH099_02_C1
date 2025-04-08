@@ -35,17 +35,38 @@
 
 
     
-            <div class="category-list">
-            <h2>Ma semaine gourmande</h2>
-            <div class="category-item"></div>
-            <h2>Defis Sante</h2>
-            <div class="category-item"></div>
-            <h2>Session intense d'universite</h2>
-            <div class="category-item"></div>
-            <h2>Saveurs de printemps</h2>
-            <div class="category-item"></div>
+      <div class="category-list">
+        <h2>Ma semaine gourmande</h2>
+        <div class="category-item">
+          <img src="assets/image/semaine-gourmande.jpg" alt="Ma semaine gourmande">
         </div>
+      
+        <h2>Défis Santé</h2>
+        <div class="category-item">
+          <img src="assets/image/healthy-food.jpg" alt="Défis Santé">
+        </div>
+      
+        <h2>Session intense d'université</h2>
+        <div class="category-item">
+          <img src="assets/image/universite.jpg" alt="Session intense d'université">
+        </div>
+      
+        <h2>Saveurs de printemps</h2>
+        <div class="category-item">
+          <img src="assets/image/printemps.jpg" alt="Saveurs de printemps">
+        </div>
+      </div>
+      
     </div>
 
 </body>
+<script>
+  const categoryItems = document.querySelectorAll('.category-item');
+
+  categoryItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      window.location.href = "page_detail_plan.html";
+    });
+  });
+</script>
 </html>

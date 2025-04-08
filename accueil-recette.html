@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="assets/styles/style_accueil.css" />
   <script src="assets/js/forum.js" defer></script>
 </head>
-<body class="content-container">
+<body class="">
 
   
     <header>
@@ -23,8 +23,8 @@
           <div class="nav-wrapper">
             <nav>
               <ul>
-                <li><a href="#">Mes recettes</a></li>
-                <li><a href="#">Plannificateur</a></li>
+                <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
+                <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
                 <li><a href="#">Liste d'épicerie</a></li>
                 <li><a href="stockage.html">Stock</a></li>
               </ul>
@@ -36,7 +36,7 @@
           </div>
         </div>
       </header>
-<div class="app-container">
+<div class="content-container">
   <section class="search-section">
     <div class="search-container">
       <button class="filter-btn">Aucun</button>
@@ -107,7 +107,7 @@
   <section class="recipes-section">
     <h2 class="section-title accent">Recettes simples et savoureuses</h2>
     <div class="recipe-grid">
-      <article class="recipe-card">
+      <article class="recipe-card" id="burger">
         <div class="recipe-image-container">
           <img
             src="assets/image/burger.png"
@@ -413,4 +413,26 @@
 
   
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.recipe-card');
+
+    cards.forEach(card => {
+      // Clique sur une carte = redirection
+      card.addEventListener('click', () => {
+        window.location.href = 'consulter-recette.html';
+      });
+
+      // Empêche le clic sur le bouton favoris de déclencher la redirection
+      const favBtn = card.querySelector('.favorite-btn');
+      if (favBtn) {
+        favBtn.addEventListener('click', (e) => {
+          e.stopPropagation(); 
+        });
+      }
+    });
+  });
+</script>
+
+
 </html>

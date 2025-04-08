@@ -170,11 +170,13 @@ header {
   
 
   .category-image {
-    width: 50%;
-    max-width: 100px;
-    height: 50%;
-    object-fit: cover;
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
   }
+  
   
    h3 .category-name {
     font-size: 10px;
