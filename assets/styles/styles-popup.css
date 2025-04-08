@@ -3,7 +3,7 @@ body {
     width: 100%;
     margin: 0;
     font-family: sans-serif;
-    background-color: #f0f0f0; /* Just a light background for body to see popup */
+    background-color: #f0f0f0; 
     text-align: center; 
     
 }
@@ -244,6 +244,55 @@ h1 {
     margin-bottom:10px;
 }
 
+.footer {
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  padding: 20px 0;
+  font-family: Arial, sans-serif;
+}
 
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-container img{
+  display: flex;
+  align-items: center;
+  max-width: 100px;
+  height: auto;
+}
+
+.footer-slogan {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: 5px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-right a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.footer-right a:hover {
+  color: #2d3748;
+}
 
 

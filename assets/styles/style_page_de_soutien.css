@@ -1,0 +1,180 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #fff;
+    color: #333;
+}
+
+header {
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hautdepage {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-wrapper nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-wrapper nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.logout-link a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.content-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.content-container h1 {
+    font-size: 32px;
+    color: #00796b;
+    margin-bottom: 40px;
+}
+
+.contact-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.section {
+    background-color: #e5f4f0;
+    padding: 20px;
+    border-radius: 15px;
+    width: 250px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section img.profile-pic {
+    width: 30px;
+    margin-bottom: 10px;
+}
+
+.section h3 {
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.section p {
+    font-size: 14px;
+    color: #333;
+}
+
+form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.information h4 {
+    margin: 0 0 5px;
+    font-weight: 500;
+}
+
+.information input,
+.information textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #f2f9f8;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #00796b;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content;
+    align-self: center;
+}
+
+.footer {
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-container img{
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .footer-slogan {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-right a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  
+  .footer-right a:hover {
+    color: #2d3748;
+  }

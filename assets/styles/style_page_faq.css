@@ -2,10 +2,16 @@ body {
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f7f7fc;
     color: #333;
-    background-color: #f9f9f9;
-    line-height: 1.6;
 }
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    
+}
+
 header {
     background-color: #fff;
     padding: 15px 0; 
@@ -72,125 +78,145 @@ header {
   .logout-link a:hover {
     color: #2d3748;
   }
-a {
-    text-decoration: none;
-    color: inherit;
-}
 
-hr {
-    border: 0;
-    height: 1px;
-    background-color: #e0e0e0;
-}
-
-.header {
-    padding: 20px 0;
-    background-color: #fff;
-}
-
-.header-container {
+  .hautdepage {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
-}
+    padding: 0 30px; 
+  }
 
-.logo-shape {
-    width: 100px;
-    height: 30px;
-    background-color: #ddd;
-}
+  .logo {
+    display: flex;
+    align-items: center;
+  }
 
-.header-nav .header-menu {
+  .logo img {
+    height: auto;
+    width: auto;
+    max-height: 35px; 
+    display: block;
+  }
+
+  .nav-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 25px;
-}
-
-.header-nav .header-menu li a {
-    font-weight: 500;
-    color: #555;
-}
-
-.header-divider {
-    margin-top: 20px;
-}
-
-.main-content {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.team-section {
-    text-align: center;
-}
-
-.team-title {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: #14817A;
-    text-align: center; 
-}
-
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 30px;
-    justify-items: center;
-}
-
-.team-member {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    text-align: center;
+  }
 
+  nav li {
+    margin-left: 30px; 
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #4b5563; 
+    font-size: 15px; 
+    font-family: Arial, sans-serif;
+  }
+
+  nav a:hover {
+    color: #2d3748; 
+  }
+
+  .logout-link a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+  }
+
+  .logout-link a:hover {
+    color: #2d3748;
+  }
+
+main {
+    padding: 30px;
+    padding-bottom: 0px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    
 }
 
-.member-image-shape {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background-color: #ccc;
+main h1 {
+    color: #008080;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #e0e0e0;
     margin-bottom: 15px;
 }
 
-.member-name {
-    font-size: 1.3em;
-    margin-bottom: 5px;
-    height:50px;
-    color: #333;
+.faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
-.member-role {
-    color: #14817A;
-    margin-bottom: 10px;
-}
-
-.social-icons {
+.faq-question {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    cursor: pointer;
 }
 
-.social-icon-shape {
+.faq-question h2 {
+    font-size: 1em;
+    margin: 0;
+    font-weight: bold; 
+}
+
+
+.faq-toggle {
     width: 20px;
     height: 20px;
-    background-color: #bbb;
-    border-radius: 4px;
+    border: none;
+    background: none;
+    font-size: 1.5em;
+    color: #777;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    outline: none;
 }
 
-.member-description {
-    font-size: 0.9em;
-    color: #666;
+
+.faq-answer {
+    padding: 0 0 15px 0;
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
 }
+
+
+.faq-item.active .faq-answer {
+    max-height: 500px; 
+    padding: 15px 0 15px 0;
+}
+
+.faq-item.active .faq-toggle::before {
+    content: '✕'; 
+}
+
+.faq-toggle::before {
+    content: '+'; 
+}
+
 
 .footer {
     background-color: white;

@@ -336,7 +336,6 @@ input[type="range"]::-webkit-slider-thumb {
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 25px;
-    /* border: 2px solid #008080; */
   }
 
   .ingredients-section h2,
@@ -467,14 +466,12 @@ input[type="range"]::-webkit-slider-thumb {
   background-color: #f9fafb ; 
 }
 .groupe_ingredient p .nom_ingredient {
-  /* flex: 8; Encore plus de place pour le nom */
   text-align: center;
 }
 
 
 
 .groupe_ingredient input.zone_ingredient {
-  /* flex: 1; Réduction maximale du champ input */
   background: none;
   border: none;
   text-align: right;
@@ -573,7 +570,6 @@ input[type="range"]::-webkit-slider-thumb {
   display: block; 
 }
 
-/* Optional: Hover effect for labels */
 .difficulty-options label:hover input[type="radio"] {
   border-color: #64748b; 
 }
@@ -597,3 +593,53 @@ input[type="range"]::-webkit-slider-thumb {
   font-family: Arial, sans-serif;
 }
 
+.footer {
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  padding: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-container img{
+  display: flex;
+  align-items: center;
+  max-width: 100px;
+  height: auto;
+}
+
+.footer-slogan {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+  margin-top: 5px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-right a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.footer-right a:hover {
+  color: #2d3748;
+}

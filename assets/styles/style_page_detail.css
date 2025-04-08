@@ -200,32 +200,55 @@ nav a:hover {
 }
 
 .footer {
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-left {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
-    padding: 20px 0; 
-    width: 100%; 
-}
-
-.footer-company-info {
-    margin-bottom: 10px; 
-}
-
-.footer-logo {
-    color:  #000000;
-}
-
-.footer-tagline {
-    color: #000000;
-    margin-top: 10px;
-}
-
-.footer-nav {
+  }
+  
+  .footer-container img{
     display: flex;
-    gap: 40px; 
-    width: 100%; 
-    justify-content: flex-start; 
-}
+    align-items: center;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .footer-slogan {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-right a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  
+  .footer-right a:hover {
+    color: #2d3748;
+  }
 
 .nav-link {
     color: var(--black);

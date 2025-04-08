@@ -216,45 +216,53 @@ body {
     color: #000000;
 }
 
-.app-footer {
-    padding: 1.5em 0; 
-}
-
-.footer-content {
+.footer {
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 90em;
-    margin: 0 auto;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-.app-footer .logo {
-    font-size: 1.5em;
-    margin: 0;
-    margin-bottom: 0.5em;
-}
-
-.app-footer .tagline, .footer-nav a {
-    font-size: 1em;
-    line-height: 1.5em;
-    margin: 0;
-    text-decoration: none;
-    color: #000000;
-    font-weight: medium;
-}
-
-.footer-nav {
+    flex-wrap: wrap;
+  }
+  
+  .footer-left {
     display: flex;
-    gap: 2.5em;
-}
-
-
-.app-footer .footer-bottom-image {
-    width: 100%;
-    display: block;
-    max-width: 90em;
-    margin-left: auto;
-    margin-right: auto;
-}
+    flex-direction: column;
+  }
+  
+  .footer-container img{
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .footer-slogan {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-right a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  
+  .footer-right a:hover {
+    color: #2d3748;
+  }

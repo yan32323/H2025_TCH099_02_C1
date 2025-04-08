@@ -7,28 +7,28 @@
     <link rel="stylesheet" href="assets/styles/style_affichage.css">
 </head>
 <body>
-    <header>
-        <div class="hautdepage">
-    
-          <div class="logo">
-            <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
-          </div>
-          <div class="nav-wrapper">
-            <nav>
-              <ul>
-                <li><a href="accueil-recette.html">Mes recettes</a></li>
-                <li><a href="#">Plannificateur</a></li>
-                <li><a href="#">Liste d'épicerie</a></li>
-                <li><a href="stockage.html">Stock</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="logout-link">
-            <a href="index.html" class="nav-item" id="logoutButton"
-            >Se déconnecter</a>
-          </div>
-        </div>
-      </header>
+  <header>
+    <div class="hautdepage">
+
+      <div class="logo">
+        <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+      </div>
+      <div class="nav-wrapper">
+        <nav>
+          <ul>
+            <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
+            <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
+            <li><a href="#">Liste d'épicerie</a></li>
+            <li><a href="stockage.html">Stock</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="logout-link">
+        <a href="index.html" class="nav-item" id="logoutButton"
+        >Se déconnecter</a>
+      </div>
+    </div>
+  </header>
       <div class="content-container">  
       <h1>Liste de plan hebdomadaire</h1>
       <h3>Organisez vos repas de la semaine comme vous organisez votre musique ! Une Liste de Plan Hebdomadaire vous permet de créer et de sauvegarder des menus complets, prêts à être utilisés. Planifiez à l'avance, gagnez du temps et profitez de repas équilibrés sans stress.</h3>
@@ -58,7 +58,19 @@
       </div>
       
     </div>
-
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
+          <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
+        </div>
+        <div class="footer-right">
+          <a href="a-propos.html">À propos de nous</a>
+          <a href="page_faq.html">FAQ</a>
+          <a href="page_de_soutien.html">Page de soutien</a>
+        </div>
+      </div>
+    </footer>
 </body>
 <script>
   const categoryItems = document.querySelectorAll('.category-item');

@@ -7,7 +7,7 @@
     font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F9F9F9; /* var(--background-color) replaced with #F9F9F9 */
+    background-color: #F9F9F9; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .conteneur {
-    background-color: #FFFFFF; /* var(--card-background) replaced with #FFFFFF */
+    background-color: #FFFFFF; 
     border-radius: 24px;
     overflow: hidden;
     display: flex;
@@ -33,14 +33,13 @@
     flex-direction: column;
     width: 100%;
     align-items: stretch;
-    text-align: left; /* Ajout de text-align: left; ici */
+    text-align: left; 
 }
 
 .boite-de-texte {
     position: relative;
     padding: 60px 40px;
     width: 100%;
-    /* text-align: center; Supprimez ou commentez text-align: center; ici */
 }
 
 .membre{
@@ -48,16 +47,16 @@
     justify-content: center;
     align-items: center;
     margin-top: 12px;
-    margin-bottom: 20px; /* Ajout de margin-bottom pour plus d'espace */
+    margin-bottom: 20px; 
     font-size: 14px;
 }
 
 .text-membre{
-    color: #777777; /* var(--text-color-light) replaced with #777777 */
+    color: #777777; 
 }
 
 .lien-membre{
-    color: #38686a; /* var(--primary-color) replaced with #38686a */
+    color: #38686a; 
     margin-left: 8px;
     text-decoration: none;
     font-weight: 500;
@@ -70,8 +69,8 @@
 .title {
     font-size: 32px;
     font-weight: 600;
-    color: #333333; /* var(--text-color-dark) replaced with #333333 */
-    margin-bottom: 20px; /* Ajout de margin-bottom pour plus d'espace */
+    color: #333333; 
+    margin-bottom: 20px;
 }
 .input-label {
     font-size: 14px;
@@ -79,7 +78,7 @@
     letter-spacing: 0.4px;
     color: #333333;
     margin-top: 20px;
-    margin-bottom: 15px; /* Augmentation de margin-bottom pour plus d'espace */
+    margin-bottom: 15px; 
     text-align: left;
 }
 
@@ -89,11 +88,11 @@
     border-radius: 12px;
     transition: border-color 0.2s ease;
     margin-top:10px;
-    margin-bottom: 10px; /* Ajout de margin-bottom pour plus d'espace entre les boîtes */
+    margin-bottom: 10px; 
 }
 
 .input-box:focus-within {
-    border-color: #38686a; /* var(--primary-color) replaced with #38686a */
+    border-color: #38686a; 
 }
 
 .input-field {
@@ -102,7 +101,7 @@
     font-size: 16px;
     letter-spacing: 0.1px;
     line-height: 24px;
-    color: #333333; /* var(--text-color-dark) replaced with #333333 */
+    color: #333333; 
     padding: 18px 20px;
     width: 100%;
     background-color: transparent;
@@ -124,8 +123,8 @@ button {
 
 button.login {
     background-color: #38686a;
-    margin-top: 20px; /* Ajout de margin-top pour plus d'espace */
-    margin-right: 10px; /* Ajout de margin-right pour séparer les boutons */
+    margin-top: 20px; 
+    margin-right: 10px; 
 }
 
 button.login:hover {

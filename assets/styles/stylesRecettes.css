@@ -1,4 +1,4 @@
-/* Basic Reset and Body Styles */
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -81,8 +81,7 @@ header {
     margin-right: auto;
 }
 
-/* --- Typography --- */
-/* Headings */
+
 h1 {
     font-size: 24px;   
     font-weight: 600; 
@@ -393,7 +392,7 @@ h3 {
 
 
 
-/* Mobile Styles (screen width less than or equal to 600px) */
+
 @media (max-width: 600px) {
     .header {
         display: none; 
@@ -415,7 +414,7 @@ h3 {
     }
 }
 
-/* Larger Screens Styles (screen width greater than 600px) */
+
 @media (min-width: 601px) {
     .header {
         display: flex; 
@@ -424,3 +423,54 @@ h3 {
         display: none; 
     }
 }
+
+.footer {
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-container img{
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .footer-slogan {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-right a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  
+  .footer-right a:hover {
+    color: #2d3748;
+  }

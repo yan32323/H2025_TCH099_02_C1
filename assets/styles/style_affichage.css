@@ -119,7 +119,7 @@ h3{
 .category-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ensures the image fills the box properly */
+    object-fit: cover; 
     display: block;
 }
 
@@ -135,3 +135,55 @@ h3{
       background-color: white; 
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
+
+  .footer {
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .footer-container img{
+    display: flex;
+    align-items: center;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  .footer-slogan {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .footer-right a {
+    text-decoration: none;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  
+  .footer-right a:hover {
+    color: #2d3748;
+  }
+  
