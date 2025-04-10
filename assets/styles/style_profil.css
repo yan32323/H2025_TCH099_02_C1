@@ -85,23 +85,27 @@ body {
     flex-direction: column;
     align-items: left;
     text-align: center;
-    padding: 30px 0;
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);   
+    border-radius: 20px;
 }
 
-.profile-avatar {
-    
-    
+.avatar-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-   
+    margin-bottom: 20px;
 }
 
 .profile-title {
     color: #004B46;
-    font-size: 2em; 
-    text-align: left;
-    margin-bottom: 10px;
+      font-size: 4em; 
+      margin: 10px 0 0 0; 
+      font-weight: bold;
+      letter-spacing: -0.5px; 
+      text-align: center; 
+      width: 100%;  
 }
 
 .profile-name {
@@ -136,7 +140,8 @@ body {
     font-size: 0.8em;
 }
 
-.modify-profile-btn {
+.profile-header .modify-profile-btn {
+    height: 40px;
     background-color: #008080; 
     color: white;
     border: none;
@@ -145,6 +150,8 @@ body {
     cursor: pointer;
     font-weight: bold;
     width: 200px; 
+  
+    
 }
 
 .modify-profile-btn:hover {
@@ -375,3 +382,26 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.profile-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+   
+   
+}
+
+.profile-header .profile-right{
+display:flex;
+ justify-self: flex-end;
+}
+
+.profile-header .profile-header-left{
+    display: flex;
+    align-items: left;
+    justify-content: left ;
+    flex-direction: column ;
+    text-align: left;
+
+}
