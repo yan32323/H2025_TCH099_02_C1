@@ -2,9 +2,10 @@
 
 * {
     box-sizing: border-box;
+    font-family: varela round, sans-serif;
 }
  body {
-    font-family: 'Inter', sans-serif;
+    font-family: varela round, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #F9F9F9; 
@@ -66,9 +67,10 @@
     text-decoration: underline;
 }
 
-.title {
+h1.title {
     font-size: 32px;
     font-weight: 600;
+    font-family: 'Varela round', sans-serif;
     color: #333333; 
     margin-bottom: 20px;
 }
@@ -254,7 +256,6 @@ button.logout:hover {
     padding: 1em;
     align-items: center;
     border: 1px solid #ccc;
-    font-family: Arial, sans-serif;
     border-radius: 30px;
     background-color: #1e1e1e;
     color : white;
@@ -267,6 +268,10 @@ button.logout:hover {
     padding: 40px;
     gap: 40px;
 }
+
+/*.title{
+    font-family: Varela round, sans-serif;
+}*/
 /*voir comment enlever ca*/
 @media (max-width: 768px) {
     .conteneur {
@@ -278,9 +283,10 @@ button.logout:hover {
         padding: 40px 30px;
     }
 
-    .title {
+    /*.title {
         font-size: 28px;
-    }
+        font-family: Varela round, sans-serif;
+    }*/
 
     .membre, .input-label, .input-field, .register-button {
         font-size: 15px;
