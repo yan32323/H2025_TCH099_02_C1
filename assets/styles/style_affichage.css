@@ -187,3 +187,23 @@ h3{
     color: #2d3748;
   }
   
+ .content-container .load-more-button {
+    background-color:  rgba(17, 94, 89, 0.6);
+    color:  #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px; 
+    margin: 40px 0;
+    cursor: pointer;
+    display:flex;
+    
+    justify-self: center;
+    align-self: center;
+    
+}
+
+.content-container .title-medium {
+    font-size: 20px;
+    font-weight: 800; 
+    letter-spacing: 0px;
+}

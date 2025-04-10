@@ -53,7 +53,7 @@
               <img src="assets/image/saveur.png" alt="Ma semaine gourmande">
             </div>
         </div>
-        
+        <button class="load-more-button title-medium">Créer une recette</button>
     </div>
     <footer class="footer">
       <div class="footer-container">
@@ -77,6 +77,10 @@
       window.location.href = "page_detail_liste.html";
     });
   });
+
+  document.querySelector(".load-more-button").addEventListener("click", function () {
+      window.location.href = "creationRecettes.html"; 
+    });
 </script>
 
 </html>
