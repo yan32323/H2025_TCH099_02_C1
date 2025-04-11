@@ -30,10 +30,18 @@ CREATE TABLE Recettes_Ingredients (
     quantite DECIMAL(10,2) NOT NULL,
     unite_de_mesure VARCHAR(255),
     PRIMARY KEY (recette_id, ingredient_id),
-    FOREIGN KEY (recette_id) REFERENCES Recettes (id),
+    FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id)
 );
 
+CREATE TABLE Recettes_Etapes (
+    id INT NOT NULL AUTO_INCREMENT,
+    recette_id INT NOT NULL,
+    numero_etape INT NOT NULL,
+    texte TEXT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (recette_id) REFERENCES Recettes(id) ON DELETE CASCADE
+);
 
 CREATE TABLE Plan_de_repas (
     id INT NOT NULL AUTO_INCREMENT,
@@ -109,6 +117,8 @@ CREATE TABLE Likes_Commentaires (
         REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+-- Insertion des données dans les tables
+
 INSERT INTO Clients (nom_utilisateur, mot_de_passe, prenom, nom)
 VALUES
     ('john_doe', 'password123', 'John', 'Doe'),
@@ -130,6 +140,7 @@ VALUES
     ('unite', 'Oignons'),
     ('g', 'Pain');
 
+-- Insertion des ingrédients dans les recettes
 INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite, unite_de_mesure)
 VALUES
     (1, 1, 200, 'g'),
@@ -159,12 +170,10 @@ VALUES
     (2, 3, 200, 0),
     (3, 5, 100, 0);
 
-
 INSERT INTO Promotions (nom_enseigne, url_promotion)
 VALUES
     ('Métro', 'https://www.metro.ca/circulaire'),
     ('Maxi', 'https://www.maxi.ca/fr/print-flyer');
-
 
 INSERT INTO Stock_Ingredients (nom_utilisateur, ingredient_id, quantite_disponible)
 VALUES
@@ -172,13 +181,11 @@ VALUES
     ('jane_doe', 2, 1000),
     ('alice_smith', 5, 300);
 
-
 INSERT INTO Recettes_Sauvegardees (nom_utilisateur, recette_id)
 VALUES
     ('john_doe', 1),
     ('jane_doe', 2),
     ('alice_smith', 3);
-
 
 INSERT INTO Commentaires (recette_id, nom_utilisateur, texte, date_commentaire)
 VALUES
@@ -186,9 +193,28 @@ VALUES
     (2, 'jane_doe', 'Vraiment savoureux, à refaire.', '2025-03-25 10:30:00'),
     (3, 'alice_smith', 'Très réconfortant en hiver.', '2025-03-25 11:00:00');
 
-
 INSERT INTO Likes_Commentaires (commentaire_id, nom_utilisateur)
 VALUES
     (1, 'jane_doe'),
     (2, 'alice_smith'),
     (3, 'john_doe');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte) VALUES
+(1, 1, 'Laver la laitue et la couper grossièrement.'),
+(1, 2, 'Faire griller les morceaux de poulet jusqu’à ce qu’ils soient dorés.'),
+(1, 3, 'Préparer la sauce César.'),
+(1, 4, 'Assembler la salade avec le poulet, la laitue, la sauce et du fromage râpé.');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte) VALUES
+(2, 1, 'Faire revenir l’oignon haché dans une poêle.'),
+(2, 2, 'Ajouter la viande hachée et faire cuire jusqu’à ce qu’elle soit bien dorée.'),
+(2, 3, 'Verser la sauce tomate et laisser mijoter pendant 20 minutes.'),
+(2, 4, 'Cuire les pâtes selon les instructions.'),
+(2, 5, 'Mélanger les pâtes avec la sauce et servir chaud.');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte) VALUES
+(3, 1, 'Éplucher et couper les oignons en fines lamelles.'),
+(3, 2, 'Faire caraméliser les oignons dans une casserole avec un peu d’huile.'),
+(3, 3, 'Ajouter de l’eau ou du bouillon et laisser mijoter 30 minutes.'),
+(3, 4, 'Faire griller des tranches de pain avec du fromage râpé.'),
+(3, 5, 'Servir la soupe chaude avec les tranches de pain gratiné.');
