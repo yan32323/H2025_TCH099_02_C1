@@ -1,159 +1,144 @@
 document.addEventListener("DOMContentLoaded", async function () {
   let effacerRecette = document.getElementById("btn-suppression-recette");
-  let prochaineImage = document.getElementById("prochaine-image");
-  let ajouterIngredient = document.getElementById(
-    "btn-creation-recette-ingredient"
-  );
+  let imageRecette = document.getElementById("prochaine-image");
+  let ajouterIngredient = document.getElementById("btn-creation-recette-ingredient");
   let ajouterIngredientListe = document.getElementById("liste-ingredients");
   let ajouterEtape = document.getElementById("btn-creation-recette-etape");
   let envoyerRecette = document.getElementById("btn-envoi-recette");
 
-  // sliders de temps et de portions
   let sliderTemps = document.getElementById("estimation-temps");
   let texteTemps = document.getElementById("temps-estime");
   let sliderPortions = document.getElementById("estimation-portions");
   let textePortions = document.getElementById("portions-estime");
 
-  // boutons radio des difficultes
   let diffiulte1 = document.getElementById("facile");
   let diffiulte2 = document.getElementById("moyen");
   let diffiulte3 = document.getElementById("difficile");
 
-  // differentes zones de texte
   let zoneIngredient = document.getElementById("zone-ingredients");
   let zoneImages = document.getElementById("zone-images");
-
   let zoneEtape = document.getElementById("zone-etape");
   let texteTitre = document.getElementById("titre-recette");
   let texteDescription = document.getElementById("description-recette");
 
-  // variables de la recette
   let objRecetteJSON = null;
   let editRecette = false;
   let objRecette = null;
   let recetteLocale;
   let titre = "";
-  let tableauImages = [];
+  let imageUnique = null;
   let tableauIngredients = [];
   let objListeTousIngredients = [];
   let tableauEtapes = [];
   let description = "";
 
-
-  /**
-   *  Efface la recette et retourne a la page precedente
-   */
   effacerRecette.addEventListener("click", async function () {
     event.preventDefault();
 
     if (confirm("Etes-vous sûr de vouloir supprimer cette recette?")) {
-      // si c'est une nouvelle recette, pas d'appel a faire a la base de donnees
-      if (!editRecette) {
-        alert("Recette supprimee.");
-        back();
-      } else {
-        //tentative de suppression de la recette cote serveur
-        try {
-          let response = await fetch(
-            "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/supprimer/" +
-              recetteLocale,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ id: recetteLocale }),
-            }
-          );
+      try {
+        if (!editRecette) {
+          alert("Recette supprimee.");
+          back();
+        } else {
+          let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/supprimer/" + recetteLocale, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: recetteLocale })
+          });
 
           let reponse = await response.json();
 
-          // supression reussie cote serveur
-          if (reponse.status == "ok") {
+          if (reponse.status === "ok") {
             alert("Recette supprimee.");
             back();
           } else {
             erreurSuppression();
           }
-        } catch (error) {
-          erreurSuppression();
         }
+      } catch (error) {
+        erreurSuppression();
       }
     }
   });
 
-  /**
-   *  controle sur mesure du slider de temps
-   */
   sliderTemps.oninput = function () {
-    if (this.value < 2) {
-      texteTemps.textContent = this.value + " minute";
-    } else if (this.value > 180) {
-      texteTemps.textContent = "180 minutes et +";
-    } else {
-      texteTemps.textContent = this.value + " minutes";
-    }
+    texteTemps.textContent = this.value < 2 ? this.value + " minute" :
+                             this.value > 180 ? "180 minutes et +" :
+                             this.value + " minutes";
   };
 
-  /**
-   * controle sur mesure du slider de portions
-   */
   sliderPortions.oninput = function () {
-    if (sliderPortions.value < 2) {
-      textePortions.textContent = sliderPortions.value + " portion";
-    } else if (sliderPortions.value > 16) {
-      textePortions.textContent = "16 portions et +";
-    } else {
-      textePortions.textContent = sliderPortions.value + " portions";
-    }
+    textePortions.textContent = this.value < 2 ? this.value + " portion" :
+                                this.value > 16 ? "16 portions et +" :
+                                this.value + " portions";
   };
 
-  /**
-   * Ajoute un ingredient a la recette
-   */
   ajouterIngredient.addEventListener("click", function () {
     event.preventDefault();
-
-    let zoneProchainIngredient = document.getElementById(
-      "prochain-ingredient-s"
-    );
-    let textProchainIngredient = zoneProchainIngredient.value.trim();
+    const zoneProchainIngredient = document.getElementById("prochain-ingredient-s");
+    const nomIngredient = zoneProchainIngredient.value.trim();
     zoneProchainIngredient.value = "";
-
-    // seulement mettre a jour si du texte a ete recu et est valide
-    if (textProchainIngredient) {
-      let indexDansListe = -1;
-      let estNouveau = true;
-      for (let i = 0; i < tableauIngredients.length; i++) {
-        if (tableauIngredients[i].nom==textProchainIngredient){
-          estNouveau=false;
-        }
-      }
-      if (estNouveau){
-      for (let i = 1; i < objListeTousIngredients.length; i++) {
-        if (objListeTousIngredients[i].nom == textProchainIngredient) {
-          indexDansListe = i;
-        }
-      }
+  
+    if (!nomIngredient) return;
+  
+    // Cherche l'objet ingredient dans la liste complète
+    const ingredientTrouve = objListeTousIngredients.find(ing => ing.nom === nomIngredient);
+  
+    if (!ingredientTrouve) {
+      alert("Ingrédient non trouvé dans la liste !");
+      return;
     }
-      if (indexDansListe != -1) {
-        tableauIngredients.push(objListeTousIngredients[indexDansListe]);
-        updateIngredient();
-      }
+  
+    // Vérifie s'il est déjà dans la liste
+    const dejaAjoute = tableauIngredients.some(ing => ing.nom === nomIngredient);
+    if (dejaAjoute) return;
+  
+    // Ajoute à la liste
+    tableauIngredients.push({
+      id: ingredientTrouve.id,
+      nom: ingredientTrouve.nom,
+      unite_de_mesure: ingredientTrouve.unite_de_mesure // <-- on récupère l’unité
+    });
+  
+    updateIngredient();
+  });
+  
+  document.getElementById('btn-creation-recette-ingredient').addEventListener('click', function() {
+    // Récupérer l'ingrédient sélectionné
+    const ingredient = document.getElementById('prochain-ingredient-s').value;
+    
+    // Vérifier si l'ingrédient n'est pas vide
+    if (ingredient) {
+      // Créer un div pour l'ingrédient
+      const ingredientDiv = document.createElement('div');
+      ingredientDiv.classList.add('ingredient');
+  
+      // Ajouter l'ingrédient dans le div
+      const ingredientText = document.createElement('span');
+      ingredientText.textContent = ingredient;
+      ingredientDiv.appendChild(ingredientText);
+  
+      // Créer un input pour la quantité
+      const quantityInput = document.createElement('input');
+      quantityInput.type = 'number';
+      quantityInput.placeholder = 'Quantité';
+      ingredientDiv.appendChild(quantityInput);
+  
+      // Ajouter l'élément à la zone des ingrédients
+      document.getElementById('zone-ingredients').appendChild(ingredientDiv);
+  
+      // Réinitialiser le champ d'entrée
+      document.getElementById('prochain-ingredient-s').value = '';
     }
   });
+  
 
-  /**
-   * Ajoute une etape a la recette
-   */
   ajouterEtape.addEventListener("click", function () {
     event.preventDefault();
-
     let zoneProchaineEtape = document.getElementById("prochaine-etape");
     let texteProchaineEtape = zoneProchaineEtape.value.trim();
     zoneProchaineEtape.value = "";
-
-    // seulement mettre a jour si du texte a ete recu
 
     if (texteProchaineEtape) {
       tableauEtapes.push(texteProchaineEtape);
@@ -162,112 +147,62 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   envoyerRecette.addEventListener("click", sendRecette);
-  /**
-   * recuperation de la recette dans la base de donnee via son id
-   * @param {String} recette l'id de la recette a recuperer
-   */
+
   async function fetchRecette(recette) {
     try {
-      let response = await fetch(
-        "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/" +
-          recette
-      );
-      if (!response(error)){
-
-        for(let i = 1; i <= 5; i++){
-          let prochImage = response("image"+i);
-          if (prochImage!=null){
-            tableauImages.push(prochImage);
-          }
-         }
-
-        objRecette = await response(json).json();
+      let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/" + recette);
+      let objRecette = await response.json();
 
       if (!objRecette.error) {
-        // recuperation des variables
         titre = objRecette.titre;
-        tableauImages = objRecette.images;
+        imageUnique = objRecette.image;
         tableauIngredients = objRecette.ingredients;
         tableauEtapes = objRecette.etapes;
-        let difficulte = objRecette.difficulte;
         description = objRecette.description;
         sliderTemps.value = objRecette.temps;
         sliderPortions.value = objRecette.portion;
+        sliderTemps.oninput();
+        sliderPortions.oninput();
 
-        // application des variables a la page
-        if (sliderTemps.value < 2) {
-          texteTemps.textContent = sliderTemps.value + " minute";
-        } else if (sliderTemps.value > 180) {
-          texteTemps.textContent = "180 minutes et +";
-        } else {
-          texteTemps.textContent = sliderTemps.value + " minutes";
-        }
+        if (objRecette.difficulte === 3) diffiulte3.checked = true;
+        else if (objRecette.difficulte === 2) diffiulte2.checked = true;
+        else diffiulte1.checked = true;
 
-        if (sliderPortions.value < 2) {
-          textePortions.textContent = sliderPortions.value + " portion";
-        } else if (sliderPortions.value > 16) {
-          textePortions.textContent = "16 portions et +";
-        } else {
-          textePortions.textContent = sliderPortions.value + " portions";
-        }
-
-        if (difficulte == 3) {
-          diffiulte3.checked = true;
-        } else if (difficulte == 2) {
-          diffiulte2.checked = true;
-        } else {
-          diffiulte1.checked = true;
-        }
-
-        for (let i = 0; i < tableauImages.length; i++) {
+        if (imageUnique) {
           let divImage = document.createElement("div");
-          divImage.innerHTML = "<img src='" + tableauImages[i].src + "'>";
+          divImage.innerHTML = "<img src='" + imageUnique + "'>";
           zoneImages.appendChild(divImage);
         }
 
-        for (let i = 0; i < tableauIngredients.length; i++) {
+        tableauIngredients.forEach((ingredient, i) => {
           let divIngredient = document.createElement("div");
           divIngredient.classList.add("groupe_ingredient");
-          divIngredient.innerHTML =
-            "<p class='nom_ingredient' id='ing" +
-            i +
-            "'>" +
-            tableauIngredients[i] +
-            "</p><button class='btn_ingredient remove-item-button' id='supr-ing" +
-            i +
-            "'>X</button>";
+          divIngredient.innerHTML = `
+            <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
+            <input class='zone_ingredient' id='mesure${i}' placeholder='Entrez une valeur' required></input>
+            <p class='mesure_ingredient'>${ingredient.unite_de_mesure}</p>
+            <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>X</button>`;
           zoneIngredient.appendChild(divIngredient);
-          let buttonIng = document.getElementById("supr-ing" + i);
-          buttonIng.addEventListener("click", function () {
+
+          document.getElementById(`supr-ing${i}`).addEventListener("click", function () {
             tableauIngredients = remove(tableauIngredients, i);
             updateIngredient();
           });
-        }
+        });
 
-        for (let i = 0; i < tableauEtapes.length; i++) {
+        tableauEtapes.forEach((etape, i) => {
           let divEtape = document.createElement("div");
-          divIngredient.classList.add("ingredient-item");
-          divEtape.innerHTML =
-            "<p class= 'nom_ingredient' id='etape" +
-            i +
-            "'>" +
-            tableauEtapes[i] +
-            "</p><button class= 'btn_ingredient remove-item-button' id='supr-etape" +
-            i +
-            "'>X</button>";
+          divEtape.innerHTML = `<p id='etape${i}'>${etape}</p><button id='supr-etape${i}'>X</button>`;
           zoneEtape.appendChild(divEtape);
-          let buttonEtape = document.getElementById("supr-etape" + i);
-          buttonEtape.addEventListener("click", function () {
+
+          document.getElementById(`supr-etape${i}`).addEventListener("click", function () {
             tableauEtapes = remove(tableauEtapes, i);
             updateEtape();
           });
-        }
+        });
       } else {
         erreurFetchRecette();
       }
-    } else {
-      erreurFetchRecette();
-    }
     } catch (error) {
       erreurFetchRecette();
     }
@@ -275,77 +210,88 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   async function fetchIngredients() {
     try {
-      //let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/ingredients/");
+      
+      let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/ingredients");
 
-      //let resultat = await response.json();
-      let resultat = [
-        { error: false },
-        { id: 1, nom: "poire", mesure : "qte"},
-        { id: 2, nom: "pomme", mesure : "g" },
-      ];
-
-      if (resultat[0].error) {
-        erreurFetchIngredients();
+      
+      
+      if (!response.ok) {
+        throw new Error('Erreur lors de la récupération des ingrédients');
+      }
+  
+      
+      let resultat = await response.json();
+  
+      
+      if (resultat.error) {
+        erreurFetchIngredients();  
       } else {
-        for (let i = 1; i < resultat.length; i++) {
+        let ajouterIngredientListe = document.getElementById('liste-ingredients');
+        
+        ajouterIngredientListe.innerHTML = '';
+        
+        resultat.forEach(ingredient => {
           let divIngredient = document.createElement("option");
-          divIngredient.innerHTML = resultat[i].nom;
-          divIngredient.id = resultat[i].id;
+          divIngredient.innerHTML = ingredient.nom;
+          divIngredient.id = ingredient.id;
           ajouterIngredientListe.appendChild(divIngredient);
-        }
+        });
+  
         ajouterIngredientListe.selectedIndex = -1;
-        objListeTousIngredients = resultat;
+        objListeTousIngredients = resultat; 
       }
     } catch (error) {
-      alert(error);
+      console.error(error);
+      alert('Une erreur s\'est produite lors du chargement des ingrédients.');
       erreurFetchIngredients();
     }
   }
-  // Fonction pour envoyer la recette au serveur
+  
+
   async function sendRecette(event) {
     event.preventDefault();
     titre = texteTitre.value.trim();
     description = texteDescription.value.trim();
 
-    if (!titre) {
-      alert("Veuillez entrer un titre pour votre recette.");
-      return;
-    }
-
-    if (!diffiulte1.checked && !diffiulte2.checked && !diffiulte3.checked) {
-      alert("Veuillez entrer une difficulte pour votre recette.");
-      return;
-    }
-
-    if (!description) {
-      alert("Veuillez entrer une description pour votre recette.");
-      return;
-    }
-    if (tableauEtapes.length == 0) {
-      alert("Veuillez entrer au moins une etape pour votre recette.");
-      return;
-    }
-    if (tableauIngredients.length == 0) {
-      alert("Veuillez entrer au moins un ingredient pour votre recette.");
-      return;
-    }
-
-    
+    if (!titre) 
+      return alert("Veuillez entrer un titre pour votre recette.");
+    if (!diffiulte1.checked && !diffiulte2.checked && !diffiulte3.checked)
+      return alert("Veuillez entrer une difficulte pour votre recette.");
+    if (!description) 
+      return alert("Veuillez entrer une description pour votre recette.");
+    if (tableauEtapes.length === 0) 
+      return alert("Veuillez entrer au moins une etape pour votre recette.");
+    if (tableauIngredients.length === 0)
+       return alert("Veuillez entrer au moins un ingredient pour votre recette.");
 
     try {
-      let difficulte;
-      if (diffiulte3.checked) {
-        difficulte = 3;
-      } else if (diffiulte2.checked) {
-        difficulte = 2;
-      } else {
-        difficulte = 1;
+      let difficulte = diffiulte3.checked ? 3 : diffiulte2.checked ? 2 : 1;
+      let envoiID = editRecette ? recetteLocale : null;
+
+      let imageUnique = imageRecette.files[0];
+      let imageBase64 = null;
+
+      if (imageUnique) {
+        imageBase64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(imageUnique);
+        });
       }
-      let envoiID = null;
-      if (editRecette) {
-        envoiID = recetteLocale;
-      }
-      sessionStorage.setItem("username", "aaaa");
+
+      tableauIngredients = tableauIngredients.map((ingredient, i) => {
+        const quantiteInput = document.getElementById(`quantite${i}`);
+        const uniteInput = document.getElementById(`unite_de_mesure${i}`);
+      
+        return {
+          ...ingredient,
+          quantite: parseFloat(quantiteInput.value),
+          unite_de_mesure: uniteInput.value.trim(),
+        };
+      });
+      
+
       objRecetteJSON = JSON.stringify({
         edit: editRecette,
         id: envoiID,
@@ -353,214 +299,97 @@ document.addEventListener("DOMContentLoaded", async function () {
         description: description,
         temps: sliderTemps.value,
         portion: sliderPortions.value,
-        images: tableauImages,
+        image: imageBase64,
         ingredients: tableauIngredients,
         etapes: tableauEtapes,
         difficulte: difficulte,
-        username: sessionStorage.getItem("username"),
+        ////////////////////////////////////////////////////////////////////////////
+        username: sessionStorage.getItem("username"),///////////////////////////////Fonctionne lorsque l'on est connecté
+        ////////////////////////////////////////////////////////////////////////////
       });
-/*
-      let paquet = new FormData();
-      for (let i = 0; i < tableauImages.length; i++) {
+      
+      let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: objRecetteJSON,
+      });
 
-        paquet.append("image" + i, tableauImages[i].src);
+      //let reponse = await response.json();
+      let text = await response.text();
+      console.log(text);
 
-      }*/
-
-
-      //paquet.append("json", objRecetteJSON);  
-
-
-      let response = await fetch(
-        "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: objRecetteJSON
-        }
-      );
-      let reponse = await response.json();
-
-      /*let text = await response.text();
-      console.log(text);*/
-
-      if (reponse.success === true) {
-        alert("Recette sauvegardee avec succès.");
+      if (reponse.success) {
+        alert("Recette sauvegardée avec succès.");
         back();
       } else {
-        alert("ici");
-        console.log(reponse);
         erreurEnvoi();
       }
     } catch (error) {
-      alert("là");
       console.log(error);
       erreurEnvoi();
     }
-
   }
-    
-  /**
-   *  recharge la liste d'ingredients
-   */
+
   function updateIngredient() {
     zoneIngredient.innerHTML = "";
-
-    for (let i = 0; i < tableauIngredients.length; i++) {
+    tableauIngredients.forEach((ingredient, i) => {
       let divIngredient = document.createElement("div");
       divIngredient.classList.add("groupe_ingredient");
-      divIngredient.innerHTML =
-        "<p class= 'nom_ingredient' id='ing" +
-        i +
-        "'>" +
-        tableauIngredients[i].nom +
-        "</p><input class = 'zone_ingredient' id='mesure"+i
-        +"'placeholder='Entrez une valeur'required></input><p class='mesure_ingredient'>"
-        +tableauIngredients[i].mesure+"</p><button class='btn_ingredient remove-item-button' id='supr-ing" +
-        i +"'>X</button>";
+  
+      divIngredient.innerHTML = `
+        <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
+        <input class='zone_ingredient' id='quantite${i}' placeholder='Quantité' required>
+        <input class='unite_ingredient' id='unite_de_mesure${i}' placeholder='Unité' value='${ingredient.unite_de_mesure}' required>
+        <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>X</button>
+      `;
+  
       zoneIngredient.appendChild(divIngredient);
-      let buttonIng = document.getElementById("supr-ing" + i);
-      buttonIng.addEventListener("click", function () {
+  
+      document.getElementById(`supr-ing${i}`).addEventListener("click", function () {
         tableauIngredients = remove(tableauIngredients, i);
         updateIngredient();
       });
-    }
+    });
   }
-  /**
-   *  recharge la liste d'etapes
-   */
+  
   function updateEtape() {
     zoneEtape.innerHTML = "";
-
-    for (let i = 0; i < tableauEtapes.length; i++) {
+    tableauEtapes.forEach((etape, i) => {
       let divEtape = document.createElement("div");
-      divEtape.innerHTML =
-        "<p id='ing" +
-        i +
-        "'>" +
-        tableauEtapes[i] +
-        "</p><button id='supr-etape" +
-        i +
-        "'>X</button>";
+      divEtape.innerHTML = `<p id='etape${i}'>${etape}</p><button id='supr-etape${i}'>X</button>`;
       zoneEtape.appendChild(divEtape);
-      let buttonEtape = document.getElementById("supr-etape" + i);
-      buttonEtape.addEventListener("click", function () {
+
+      document.getElementById(`supr-etape${i}`).addEventListener("click", function () {
         tableauEtapes = remove(tableauEtapes, i);
         updateEtape();
       });
-    }
+    });
   }
-  /**
-   *  Traitement en cas d'erreur lors de la recuperation de la recette depuis le serveur
-   */
+
+  function remove(tableau, index) {
+    return tableau.filter((_, i) => i !== index);
+  }
+
   function erreurFetchRecette() {
-    let zonePrincipale = document.getElementById("contenu-principal");
-    zonePrincipale.innerHTML =
-      "<p class='erreur-fatale'> Erreur lors de la recuperation de la recette, veuillez essayer de recharger la page. </p>";
+    alert("Erreur lors de la récupération de la recette.");
   }
-  /**
-   *  Traitement en cas d'erreur lors de la recuperation des ingredients depuis le serveur
-   */
+
   function erreurFetchIngredients() {
-    let zonePrincipale = document.getElementById("contenu-principal");
-    zonePrincipale.innerHTML =
-      "<p class='erreur-fatale'> Erreur lors de la recuperation des ingredients, veuillez essayer de recharger la page. </p>";
+    alert("Erreur lors de la récupération des ingrédients.");
   }
+
   function erreurEnvoi() {
-    alert(
-      "Erreur lors de l'envoi de la recette, veuillez reessayer plus tard."
-    );
+    alert("Erreur lors de l'envoi de la recette.");
   }
+
   function erreurSuppression() {
-    alert(
-      "Erreur lors de la suppression de la recette, veuillez reessayer plus tard."
-    );
-  }
-  function remove(tableau, i) {
-    if (i > -1&&i<tableau.length) {
-      tableau.splice(i, 1);
-    }
-    return tableau;
-  }
-/**
- * accepte les images et les ajoute a la liste d'images
- */
-  prochaineImage.addEventListener("change", function(){
-    let images = prochaineImage.files;
-
-    for (let i = 0; i < images.length; i++) {
-      tableauImages.push(images[i]);
-    }
-    updateImages();
-  });
-
-  /**
-   * accepte les images glissees et les ajoute a la liste d'images
-   */
-  zoneImages.addEventListener("drop", function(event){
-    event.preventDefault();
-    let images = event.dataTransfer.files;
-    for (let i =0; i < images.length; i++){
-      if (file[0].type.match("image")){
-        let newImage = true;
-       for (let i =0; i < tableauImages.length; i++){
-        if (tableauImages[i].name == images[i].name){
-          newImage = false;
-          break;
-        }
-        if (newImage){
-          tableauImages.push(images[i]);
-        }
-      }
-    }
-  }
-updateImages();
-  });
-/**
- * affiche les images de la liste dans la zone d'images
- */
-  function updateImages(){
-    zoneImages.innerHTML = "";
-    for (let i = 0; i < tableauImages.length; i++){
-      let image = tableauImages[i];
-      let imageElement = document.createElement("img");
-      let suppr = document.createElement("button");
-      suppr.textContent = "Supprimer"; 
-      suppr.width = 20;
-      suppr.height = 20;
-      suppr.style.backgroundColor = "red";
-      suppr.addEventListener("click", function(){
-        tableauImages.splice(i, 1);
-        updateImages();
-      });
-      imageElement.src = URL.createObjectURL(image);
-      imageElement.alt = image.name;
-      imageElement.width=200;
-      imageElement.height = 200;
-      imageElement.classList.add("image-recette");
-      zoneImages.prepend(suppr);
-      zoneImages.prepend(imageElement);
-    }
+    alert("Erreur lors de la suppression de la recette.");
   }
 
-  if (
-    localStorage.getItem("connecte") == null ||
-    localStorage.getItem("connecte") == false
-  ) {
-    if (!localStorage.getItem("recette") == null) {
-      //recuperation de la recette
-      recetteLocale = localStorage.getItem("recette");
-      editRecette = true;
-      fetchRecette(recetteLocale);
-    } else {
-      recetteLocale = null;
-    }
-
-    fetchIngredients();
-  } else {
-    //utilisateur non connecte
-    location.replace("index.html");
+  function back() {
+    window.history.back();
   }
+
+  // Initialisation
+  await fetchIngredients();
 });
