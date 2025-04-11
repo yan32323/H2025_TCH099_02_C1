@@ -316,9 +316,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         body: objRecetteJSON,
       });
 
-      //let reponse = await response.json();
-      let text = await response.text();
-      console.log(text);
+      let reponse = await response.json();
 
       if (reponse.success) {
         alert("Recette sauvegardée avec succès.");
