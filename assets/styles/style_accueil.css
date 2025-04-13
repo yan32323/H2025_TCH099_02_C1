@@ -1,3 +1,10 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap');
+
+body {
+  font-family: 'Varela Round', sans-serif;
+}
+
 header {
     background-color: #fff;
     padding: 15px 0; 
@@ -47,7 +54,7 @@ header {
     text-decoration: none;
     color: #4b5563; 
     font-size: 15px; 
-    font-family: Arial, sans-serif;
+    
   }
 
   nav a:hover {
@@ -58,14 +65,14 @@ header {
     text-decoration: none;
     color: #4b5563;
     font-size: 15px;
-    font-family: Arial, sans-serif;
+   
   }
 
   .logout-link a:hover {
     color: #2d3748;
   }
 .app-container {
-    font-family: "Inter", sans-serif;
+    
     max-width: 100%;
     margin: 0 auto;
     background-color: #fff;
@@ -82,7 +89,7 @@ header {
   }
   
   .logo {
-    font-family: "Lobster", cursive;
+   
     font-size: 24px;
     color: #000;
     margin: 0;
@@ -163,7 +170,7 @@ header {
     background-color: #d8e8e0;
     border-radius: 60px;
     padding: 10px;
-    font-family: Arial, sans-serif;
+    
     color: #14817a
   }
   
@@ -180,6 +187,7 @@ header {
    h3 .category-name {
     font-size: 10px;
     font-weight: 500;
+   
   }
   
   .recipes-section,
@@ -243,7 +251,7 @@ header {
     background-color: white;
     border-top: 1px solid #e0e0e0;
     padding: 20px 0;
-    font-family: Arial, sans-serif;
+    
   }
   
   .footer-container {

@@ -11,9 +11,8 @@
     
     <header>
         <div class="hautdepage">
-    
           <div class="logo">
-            <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+            <a href="accueil-recette.html"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
           </div>
           <div class="nav-wrapper">
             <nav>
@@ -22,6 +21,7 @@
                 <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
                 <li><a href="#">Liste d'épicerie</a></li>
                 <li><a href="stockage.html">Stock</a></li>
+                <li><a href="page_profil.html">Profil</a></li>
               </ul>
             </nav>
           </div>
@@ -133,9 +133,9 @@
               </div>
           </section>
 
-            <button class="load-more-button title-medium">Charger plus</button>
+            <button class="load-more-button title-medium">Crée un plan</button>
         </main>
-
+    </div>
         <footer class="footer">
             <div class="footer-container">
               <div class="footer-left">
@@ -149,7 +149,13 @@
               </div>
             </div>
           </footer>
-    </div>
+   
 
 </body>
+
+<script>
+     document.querySelector(".load-more-button").addEventListener("click", function () {
+      window.location.href = "creationPlan.html"; 
+    });
+</script>
 </html>

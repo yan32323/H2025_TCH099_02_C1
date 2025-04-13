@@ -4,38 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lobster&display=swap"
-  rel="stylesheet"
-/>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles/style_accueil.css" />
   <script src="assets/js/forum.js" defer></script>
 </head>
 <body class="">
 
   
-    <header>
-        <div class="hautdepage">
-    
-          <div class="logo">
-            <a href="/"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
-          </div>
-          <div class="nav-wrapper">
-            <nav>
-              <ul>
-                <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
-                <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
-                <li><a href="#">Liste d'épicerie</a></li>
-                <li><a href="stockage.html">Stock</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="logout-link">
-            <a href="index.html" class="nav-item" id="logoutButton"
-            >Se déconnecter</a>
-          </div>
-        </div>
-      </header>
+  <header>
+    <div class="hautdepage">
+      <div class="logo">
+        <a href="accueil-recette.html"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
+      </div>
+      <div class="nav-wrapper">
+        <nav>
+          <ul>
+            <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
+            <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
+            <li><a href="#">Liste d'épicerie</a></li>
+            <li><a href="stockage.html">Stock</a></li>
+            <li><a href="page_profil.html">Profil</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="logout-link">
+        <a href="index.html" class="nav-item" id="logoutButton"
+        >Se déconnecter</a>
+      </div>
+    </div>
+  </header>
 <div class="content-container">
   <section class="search-section">
     <div class="search-container">
@@ -434,6 +431,11 @@
       }
     });
   });
+
+    document.querySelector(".filter-btn").addEventListener("click", function () {
+      window.location.href = "resultat_recherche.html"; 
+    });
+  
 </script>
 
 
