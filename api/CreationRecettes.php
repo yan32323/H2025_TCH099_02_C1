@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Inclure le routeur
 require_once 'Router.php';
@@ -18,8 +19,7 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
     // Vérifier que toutes les données nécessaires sont présentes
     if (
         isset($infos["edit"]) && isset($infos["titre"]) && isset($infos["description"]) &&
-        isset($infos["ingredients"]) && isset($infos["etapes"]) && 
-        isset($infos["username"]) && isset($infos["difficulte"])
+        isset($infos["ingredients"]) && isset($infos["etapes"]) && isset($infos["difficulte"])
     ) {
         
         if (empty($infos["image"])) {
@@ -80,7 +80,7 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
                     'description' => $infos["description"],
                     'temps_de_cuisson' => $infos["temps"],
                     'image' => base64_decode($infos["image"]),
-                    'username' => $infos["username"]
+                    'username' => $_SESSION['user_id']
                 ]);
 
                 // Récupérer l'ID de la nouvelle recette insérée
