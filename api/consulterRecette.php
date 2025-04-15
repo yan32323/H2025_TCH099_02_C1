@@ -1,4 +1,5 @@
 <?php
+session_start();
 header("Content-Type: application/json");
 require_once '../includes/conection.php';
 
@@ -57,14 +58,24 @@ foreach ($etapesBrutes as $etape) {
 $recette["image"] = $recette["image"] ? base64_encode($recette["image"]) : null;
 
 // Récupérer les commentaires
-$sqlCommentaires = "SELECT c.texte, c.date_commentaire, cl.nom, cl.prenom 
+$sqlCommentaires = "SELECT c.id, c.texte, c.date_commentaire, cl.nom, cl.prenom, c.nb_likes, c.nom_utilisateur
                     FROM Commentaires c
                     JOIN Clients cl ON c.nom_utilisateur = cl.nom_utilisateur
                     WHERE c.recette_id = ? 
-                    ORDER BY c.date_commentaire DESC";
+                    ORDER BY c.nb_likes DESC";
 $stmtCommentaires = $pdo->prepare($sqlCommentaires);
 $stmtCommentaires->execute([$id]);
 $commentaires = $stmtCommentaires->fetchAll(PDO::FETCH_ASSOC);
+foreach ($commentaires as &$commentaire) {
+    $commentaire['a_deja_like'] = false;
+    if ($_SESSION['user_id']) {
+        // Vérifie si l'utilisateur a déjà liké
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM Likes_Commentaires WHERE nom_utilisateur = ? AND commentaire_id = ?");
+        $stmt->execute([$_SESSION['user_id'], $commentaire['id']]);
+        $commentaire['a_deja_like'] = $stmt->fetchColumn() > 0;
+    }
+}
+
 
 // Ajouter les commentaires à la réponse JSON
 $recette["commentaires"] = $commentaires;
@@ -86,6 +97,8 @@ echo json_encode([
         "date_creation" => $recette["date_creation"] ?? "Date inconnue", // Si tu ajoutes cette colonne plus tard
         "ingredients" => $ingredients,
         "etapes" => $etapes,
-        "commentaires" => $recette["commentaires"]
-    ]
+        "commentaires" => $recette["commentaires"],
+        "user_connecte" => $_SESSION['user_id'] ?? null
+    ],
+    "user_id" => $_SESSION['user_id'] ?? null
 ]);

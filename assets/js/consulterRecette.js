@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                afficherRecette(data.recette);
+                const userId = data.user_id;
+                afficherRecette(data.recette, userId);
             } else {
                 alert("Erreur : " + data.message);
             }
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 
-function afficherRecette(recette) {
+function afficherRecette(recette, userId) {
     // Affichage des détails de la recette
     document.querySelector(".recipe-title").textContent = recette.nom;
     document.querySelector(".author-name").textContent =
@@ -92,30 +93,81 @@ function afficherRecette(recette) {
     commentsSection.innerHTML =
         '<h3 class="section-title comments-title">Commentaires</h3>';
 
-    if (
-        Array.isArray(recette.commentaires) &&
-        recette.commentaires.length > 0
-    ) {
-        recette.commentaires.forEach((commentaire) => {
-            const commentWrapper = document.createElement("div");
-            commentWrapper.classList.add("comment-item");
+    if (Array.isArray(recette.commentaires) && recette.commentaires.length > 0) {
+        const sessionUserId = recette.utilisateur_connecte;
 
-            commentWrapper.innerHTML = `
-                <div class="comment-author">${commentaire.nom} ${
-                commentaire.prenom
-            }</div>
-                <div class="comment-text">${commentaire.texte}</div>
-                <div class="comment-date">${new Date(
-                    commentaire.date_commentaire
-                ).toLocaleString()}</div>
-            `;
+recette.commentaires.forEach((commentaire) => {
+    const commentWrapper = document.createElement("div");
+    commentWrapper.classList.add("comment-item", "commentaire");
+    commentWrapper.setAttribute("data-id-commentaire", commentaire.id);
 
-            commentsSection.appendChild(commentWrapper);
+    // Si c’est l’auteur, afficher "Vous" à la place du nom
+    const isAuthor = sessionUserId && commentaire.id_utilisateur == sessionUserId;
+
+    let commentHtml = `
+        <div class="comment-author">${isAuthor ? "Vous" : commentaire.nom + " " + commentaire.prenom}</div>
+        <div class="comment-text">${commentaire.texte}</div>
+        <div class="comment-date">${new Date(commentaire.date_commentaire).toLocaleString()}</div>`;
+
+    // Ajouter le bouton j'aime si ce n'est pas l'auteur
+    const hasLiked = commentaire.a_deja_like;
+    const shouldDisable = isAuthor || hasLiked;
+
+    commentHtml += `
+        <button class="like-button" ${shouldDisable ? "disabled" : ""} style="${shouldDisable ? "opacity: 0.5; cursor: not-allowed;" : ""}">
+            ❤️ J'aime (<span class="like-count">${commentaire.nb_likes || 0}</span>)
+        </button>`;
+
+    commentWrapper.innerHTML = commentHtml;
+
+    const likeButton = commentWrapper.querySelector(".like-button");
+
+    if (!shouldDisable) {
+        likeButton.addEventListener("click", async () => {
+            const idCommentaire = commentaire.id;
+
+            try {
+                const response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/likeCommentaire.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: `id_commentaire=${idCommentaire}`,
+                });
+
+                const text = await response.text();
+                let data;
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    alert("Erreur : réponse invalide du serveur.");
+                    return;
+                }
+
+                if (data.success) {
+                    const countSpan = likeButton.querySelector(".like-count");
+                    countSpan.textContent = parseInt(countSpan.textContent) + 1;
+                    likeButton.disabled = true;
+                    likeButton.style.opacity = "0.5";
+                    likeButton.style.cursor = "not-allowed";
+                } else {
+                    alert(data.message);
+                }
+            } catch (error) {
+                console.error("Erreur lors du like :", error);
+                alert("Erreur lors de l'envoi du like.");
+            }
         });
-    } else {
-        commentsSection.innerHTML +=
-            "<p>Aucun commentaire pour cette recette.</p>";
     }
+
+    commentsSection.appendChild(commentWrapper);
+});
+
+        
+    } else {
+    commentsSection.innerHTML += "<p>Aucun commentaire pour cette recette.</p>";
+    }
+
 
     // Ajouter un formulaire de commentaire
     const commentFormWrapper = document.createElement("div");
@@ -145,26 +197,29 @@ function afficherRecette(recette) {
     const submitCommentButton = document.querySelector("#submit-comment");
     submitCommentButton.addEventListener("click", async () => {
         const commentText = document.querySelector("#comment-text").value;
-    
+
         if (commentText.trim()) {
             const data = {
-                recette_id: recette.id, // ou recetteId si tu préfères
-                commentaire: commentText
+                recette_id: recette.id,
+                commentaire: commentText,
             };
-    
+
             try {
-                const response = await fetch('http://localhost/planigo/H2025_TCH099_02_C1/api/ajouterCommentaire.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-    
-                // Pour affichage brut de la réponse du serveur (debug)
+                const response = await fetch(
+                    "http://localhost/planigo/H2025_TCH099_02_C1/api/ajouterCommentaire.php",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    }
+                );
+
+                // Pour debug
                 let text = await response.text();
                 console.log("Réponse brute du serveur :", text);
-    
+
                 // Re-tenter d'interpréter comme JSON
                 let result;
                 try {
@@ -173,7 +228,7 @@ function afficherRecette(recette) {
                     alert("Réponse du serveur invalide.");
                     return;
                 }
-    
+
                 if (result.success) {
                     const newComment = document.createElement("div");
                     newComment.classList.add("comment-item");
@@ -182,10 +237,14 @@ function afficherRecette(recette) {
                         <div class="comment-text">${commentText}</div>
                         <div class="comment-date">${new Date().toLocaleString()}</div>
                     `;
-                    commentsSection.insertBefore(newComment, commentFormWrapper);
-    
+                    commentsSection.insertBefore(
+                        newComment,
+                        commentFormWrapper
+                    );
+
                     document.querySelector("#comment-text").value = "";
-                    document.querySelector(".comment-form").style.display = "none";
+                    document.querySelector(".comment-form").style.display =
+                        "none";
                     addCommentButton.style.display = "block";
                 } else {
                     alert("Erreur serveur : " + result.message);
@@ -196,5 +255,4 @@ function afficherRecette(recette) {
             }
         }
     });
-    
 }

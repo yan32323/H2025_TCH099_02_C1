@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Inclure le routeur
 require_once 'Router.php';

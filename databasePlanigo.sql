@@ -100,6 +100,7 @@ CREATE TABLE Commentaires (
     nom_utilisateur VARCHAR(255) NOT NULL,
     texte TEXT NOT NULL,
     date_commentaire DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    nb_likes INT DEFAULT 0 NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_commentaire_recette FOREIGN KEY (recette_id) 
         REFERENCES Recettes(id) ON DELETE CASCADE ON UPDATE CASCADE,
