@@ -92,7 +92,8 @@ echo json_encode([
         "image" => $recette["image"],
         "createur" => [
             "nom" => $recette["nom_client"],
-            "prenom" => $recette["prenom"]
+            "prenom" => $recette["prenom"],
+            "nom_utilisateur" => $recette["createur_nom_utilisateur"]
         ],
         "date_creation" => $recette["date_creation"] ?? "Date inconnue", // Si tu ajoutes cette colonne plus tard
         "ingredients" => $ingredients,

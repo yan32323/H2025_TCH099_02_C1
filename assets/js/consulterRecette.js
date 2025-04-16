@@ -28,8 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function afficherRecette(recette, userId) {
     // Affichage des détails de la recette
     document.querySelector(".recipe-title").textContent = recette.nom;
-    document.querySelector(".author-name").textContent =
-        recette.createur.nom + " " + recette.createur.prenom;
+    const authorNameElement = document.querySelector(".author-name");
+    authorNameElement.textContent = recette.createur.prenom + " " + recette.createur.nom;
+
+    authorNameElement.addEventListener("click", () => {
+            window.location.href = `page_profil.html?user=${recette.createur.nom_utilisateur}`; // Redirection vers la page du profil
+        });
     document.querySelector(".author-date").textContent = recette.date_creation;
     document.querySelector(".time-value").textContent =
         recette.temps_preparation + " minutes";
@@ -105,7 +109,7 @@ recette.commentaires.forEach((commentaire) => {
     const isAuthor = sessionUserId && commentaire.id_utilisateur == sessionUserId;
 
     let commentHtml = `
-        <div class="comment-author">${isAuthor ? "Vous" : commentaire.nom + " " + commentaire.prenom}</div>
+        <div class="comment-author">${isAuthor ? "Vous" : commentaire.prenom + " " + commentaire.nom}</div>
         <div class="comment-text">${commentaire.texte}</div>
         <div class="comment-date">${new Date(commentaire.date_commentaire).toLocaleString()}</div>`;
 

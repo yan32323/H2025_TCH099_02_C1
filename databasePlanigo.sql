@@ -3,6 +3,7 @@
     mot_de_passe VARCHAR(255) NOT NULL,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
     PRIMARY KEY (nom_utilisateur)
 );
 
@@ -116,6 +117,15 @@ CREATE TABLE Likes_Commentaires (
         REFERENCES Commentaires(id) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT fk_like_utilisateur FOREIGN KEY (nom_utilisateur) 
         REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Recettes_Notes (
+    recette_id INT NOT NULL,
+    nom_utilisateur VARCHAR(256),
+    note INT NOT NULL,
+    PRIMARY KEY (nom_utilisateur, recette_id),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (recette_id) REFERENCES Recettes (id)
 );
 
 -- Insertion des données dans les tables
