@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // Inclure le routeur
 require_once 'Router.php';
@@ -28,7 +29,7 @@ $router->post('/login.php/login/', function() {
         if ($user) {
 
             if (password_verify($motDePasse, $user['mot_de_passe'])) {
-                // For this lab, we're just returning success. In a real API, you might return a token.
+                $_SESSION['user_id'] = $user['nom_utilisateur'];
                 echo json_encode(['statut' => 'success', 'nom' => $user['nom'], 'prenom' => $user['prenom']]);
                 exit();
             }

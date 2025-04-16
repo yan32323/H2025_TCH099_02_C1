@@ -304,10 +304,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         image: imageBase64,
         ingredients: tableauIngredients,
         etapes: tableauEtapes,
-        difficulte: difficulte,
-        ////////////////////////////////////////////////////////////////////////////
-        username: sessionStorage.getItem("username"),///////////////////////////////Fonctionne lorsque l'on est connecté
-        ////////////////////////////////////////////////////////////////////////////
+        difficulte: difficulte
       });
       
       let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer", {
