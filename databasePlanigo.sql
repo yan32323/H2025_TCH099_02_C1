@@ -3,7 +3,7 @@ CREATE TABLE Clients (
     mot_de_passe VARCHAR(255) NOT NULL,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
-    description VARCAHR(255)
+    description VARCHAR(255)
 );
 
 CREATE TABLE Recettes (
