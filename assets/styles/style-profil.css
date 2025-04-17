@@ -401,3 +401,20 @@ body {
     margin: 0 1rem 0.5rem;
     color: #6b7280;
   }
+
+  .no-recipes-message {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gris-texte);
+    background-color: var(--fond-bloc);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: left;
+    box-shadow: 0 4px 10px var(--ombre);
+    margin-top: 2rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .no-recipes-message:hover {
+    background-color: var(--fond-carte);
+  }
