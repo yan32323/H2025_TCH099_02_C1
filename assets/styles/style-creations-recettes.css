@@ -565,3 +565,11 @@ input[type="file"]:hover {
   background-color: #f0fdfa;
   transform: scale(1.01);
 }
+.aperçu-image img {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
