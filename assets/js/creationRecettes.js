@@ -31,6 +31,23 @@ document.addEventListener("DOMContentLoaded", async function () {
   let objListeTousIngredients = [];
   let tableauEtapes = [];
   let description = "";
+  
+  imageRecette.addEventListener("change", function () {
+    const aperçu = document.getElementById("aperçu-image");
+    aperçu.innerHTML = ""; // Efface l'ancienne image, s'il y en a une
+  
+    const fichier = this.files[0];
+    if (!fichier) return;
+  
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const image = document.createElement("img");
+      image.src = e.target.result;
+      aperçu.appendChild(image);
+    };
+    reader.readAsDataURL(fichier);
+  });
+  
 
   effacerRecette.addEventListener("click", async function () {
     event.preventDefault();
