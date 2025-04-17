@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
+
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Saira', 'Inter', sans-serif;
+  }
+  
+  main {
+    flex: 1;
+  }
+  
+  .fond {
+    background-color: #f9fafb;
+  }
+  
+  .texte-couleur {
+    color: #1f2937;
+    font-family: 'Saira', 'Inter', sans-serif;
+  }
+  
+  .barre-haut {
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #14817A;
+  }
+  
+  .liens-nav {
+    display: none;
+    
+  }
+  
+  @media (min-width: 768px) {
+    .liens-nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0 auto;
+    }
+  
+    .liens-nav a {
+      color: #14817A;
+      transition: color 0.2s;
+    }
+  
+    .liens-nav a:hover {
+      color: #10b981;
+    }
+  }
+  
+  .lien-deconnexion {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #14817A;
+    transition: color 0.2s;
+  }
+  
+  .lien-deconnexion:hover {
+    color: #dc2626;
+  }
+  
+  @media (max-width: 767px) {
+    .lien-deconnexion {
+      display: none;
+    }
+  }
+  
+  .conteneur {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2.5rem 1rem;
+  }
+  
+  .titre-section {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #14817A;
+  }
+  
+  .pied {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    padding: 2.5rem 0;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 4rem;
+  }
+  
+  .pied p {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .liens-pied {
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .image-categorie {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+  }
+  
+  .image-categorie:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  .btn-creer {
+    background-color: #14817A;
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-creer:hover {
+    background-color: #0f5f5a;
+  }
