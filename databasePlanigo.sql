@@ -134,6 +134,14 @@ CREATE TABLE Recettes_Notes (
     FOREIGN KEY (recette_id) REFERENCES Recettes (id)
 );
 
+CREATE TABLE Utilisateurs_suivi (
+    nom_utilisateur VARCHAR(255) NOT NULL,
+    user_suivi_id VARCHAR(255),
+    PRIMARY KEY (nom_utilisateur),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (user_suivi_id) REFERENCES Clients (nom_utilisateur)
+);
+
 -- Insertion des données dans les tables
 
 INSERT INTO Clients (nom_utilisateur, mot_de_passe, prenom, nom, description)

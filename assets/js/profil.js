@@ -44,9 +44,28 @@ function afficheProfil(profilData) {
         
         // Gestion de l'action "Suivre"
         suivreBtn.addEventListener("click", () => {
-            // Logique pour suivre l'utilisateur (ajout à une liste de suivi)
-            alert(`Vous avez suivi ${profil.prenom} ${profil.nom}`);
+            fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/suivreUser.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include", // Important pour envoyer les cookies de session PHP
+                body: JSON.stringify({ suivi_id: profil.nom_utilisateur })
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.message) {
+                    alert(result.message); // Optionnel : notif de succès
+                    suivreBtn.disabled = true;
+                    suivreBtn.textContent = "Suivi";
+                }
+            })
+            .catch(error => {
+                console.error("Erreur lors du suivi :", error);
+                alert("Impossible de suivre cet utilisateur.");
+            });
         });
+        
     } else {
         modifierBtn.style.display = "inline-block"; // Afficher si c'est le profil de l'utilisateur connecté
     }
