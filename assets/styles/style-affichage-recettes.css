@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
+
+:root {
+    --couleur-principale: #5e3023;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Saira', 'Inter', sans-serif;
+    background-color: #eddcd2;
+    color: #1f2937;
+  }
+  
+  .barre-haut {
+    padding: 1rem;
+    background-color: #e8d1c5;
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--couleur-principale);
+  }
+  
+  .liens-nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 auto;
+  }
+  
+  h3{
+    color: #5e3023
+  }
+  .liens-nav a {
+    color: var(--couleur-principale);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .liens-nav a:hover {
+    color: #10b981;
+  }
+  
+  .lien-deconnexion {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #5e3023;
+    text-decoration: none;
+  }
+  
+  .lien-deconnexion:hover {
+    color: #dc2626;
+  }
+  
+  .conteneur {
+    width: 80rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  .titre-section {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #5e3023;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  sous-titre{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #554541;
+    margin-bottom: 2rem;
+   
+   
+  }
+  
+  .grille-recettes {
+    display: grid;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 640px) {
+    .grille-recettes {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .grille-recettes {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .carte {
+    background: #f0efeb;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+   
+  }
+  
+  .carte:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+    background: #d0ada7;
+    
+  }
+  
+  .image-carte {
+    width: 100%;
+    height: 12em;
+    object-fit: cover;
+   
+  }
+  
+  .contenu-carte {
+    padding: 0rem 1rem;
+  }
+  
+  .info-carte {
+    margin-top: 0.5rem;
+  }
+
+  .contenu-carte h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .contenu-carte p {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .pied {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    padding: 2.5rem 0;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 4rem;
+  }
+  
+  .pied p {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .liens-pied {
+    margin-top: 0.75rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .liens-pied a {
+    color: #6b7280;
+    text-decoration: none;
+  }
+  
+  .liens-pied a:hover {
+    color: #374151;
+  }
+/* Bouton like */
+.btn-like {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .coeur-svg {
+    width: 24px;
+    height: 24px;
+    fill: #d1d5db; /* gris clair */
+    transition: fill 0.3s ease;
+  }
+  
+  .btn-like:hover .coeur-svg,
+  .btn-like.liked .coeur-svg {
+    fill: #e11d48; /* rose/rouge */
+  }
+  
+  
+
+  
+  
+  

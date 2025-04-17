@@ -1,0 +1,233 @@
+/* ====== Import des polices ====== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
+
+/* ====== Thème principal ====== */
+:root {
+  --teal: #14817A;
+  --vert: #004B46;
+  --accent: #10B981;
+  --gris-clair: #F8FAFC;
+  --gris-texte: #4B5563;
+  --fond-carte: #FFFFFF;
+  --fond-bloc: #E6F4F1;
+  --ombre: rgba(0, 0, 0, 0.05);
+}
+
+/* ====== Global ====== */
+body {
+  margin: 0;
+  font-family: 'Saira', 'Inter', sans-serif;
+  background-color: var(--gris-clair);
+  color: var(--gris-texte);
+  animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ====== Header ====== */
+.barre-haut {
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 10px var(--ombre);
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 1px;
+}
+
+.liens-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.liens-nav a {
+  color: var(--teal);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.liens-nav a:hover {
+  color: var(--accent);
+}
+
+.lien-deconnexion {
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lien-deconnexion:hover {
+  color: #dc2626;
+}
+
+/* ====== Titres ====== */
+.titre-principal {
+  font-size: 2.75rem;
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--vert);
+}
+
+.titre-section {
+  font-size: 1.5rem;
+  margin: 2rem;
+  color: var(--teal);
+  text-align: center;
+}
+
+.description {
+  text-align: center;
+  max-width: 60ch;
+  margin: 1rem auto 3rem;
+  color: var(--gris-texte);
+}
+
+/* ====== Grille de semaines ====== */
+.grille-semaines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 0 2rem;
+}
+
+.ligne-semaines {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100em;
+}
+
+.bloc-semaine {
+    background-color: transparent;
+
+    backdrop-filter: blur(4px);     
+    border-radius: 1rem;
+    padding: 2rem;
+    min-width: 300px;
+    flex: 1;
+    
+  }
+  
+.bloc-semaine:hover {
+    transform: scale(1.015);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    background:#e3e9e8;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  }
+.etiquette-semaine {
+  background-color: var(--teal);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  font-weight: 600;
+  width: fit-content;
+  margin: 0 auto 1.5rem;
+}
+
+.cartes {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+/* ====== Carte recette ====== */
+.carte {
+  background-color: var(--fond-carte);
+  border-radius: 1.25rem;
+  padding: 0;
+  width: 260px;
+  box-shadow: 0 6px 20px var(--ombre);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.carte:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+cursor: pointer;
+}
+
+.carte img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 1.25rem;
+  border-top-right-radius: 1.25rem;
+}
+
+.carte h3 {
+  font-size: 1.1rem;
+  margin: 0.75rem 1rem 0.25rem;
+  color: var(--vert);
+}
+
+.carte p {
+  font-size: 0.9rem;
+  margin: 0 1rem 0.5rem;
+  color: #6b7280;
+}
+
+/* ====== Bouton Charger ====== */
+.btn-charger {
+  background: linear-gradient(to right, var(--teal), var(--accent));
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--ombre);
+  margin: 3rem auto;
+  display: block;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s;
+}
+
+.btn-charger:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, var(--accent), var(--teal));
+}
+
+/* ====== Pied de page ====== */
+.pied {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.95rem;
+  color: #6b7280;
+  background-color: white;
+  margin-top: 3rem;
+}
+
+.liens-pied {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.liens-pied a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+}
