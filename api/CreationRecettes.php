@@ -309,6 +309,81 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
     }
 });
 
+
+//Route pour récupérer une recette spécifique avec toutes c'est informations (détail recette + liste des ingrédients + liste des étapes + liste de restricctions)
+$router->post('/CreationRecettes.php/recuperer-recette-complete/', function () {
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+
+        // extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+        $idRecette = trim($data['idRecette']);
+
+        //Si le client exite dans la base de donnée, on récupère les recettes dans la base de données selon les filtres données
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+
+            // Récupérer la recette
+            $requete = $pdo->prepare("SELECT * FROM Recettes WHERE id=:id");
+            $requete->execute(['id' => $idRecette]);
+            $resultat = $requete->fetch();
+
+
+            if ($resultat) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($resultat['image'])) {
+                    $resultat['image'] = base64_encode($resultat['image']);
+                }
+
+            } else {
+                echo json_encode(["statut" => "error", "message" => "Recette non trouvée"]);
+                exit();
+            }
+
+            //Récupérer les ingrédients de la recette
+            $requeteIngredient = $pdo->prepare("SELECT i.nom, r_i.quantite, r_i.unite_de_mesure FROM Recettes_Ingredients AS r_i INNER JOIN Ingredients AS i ON r_i.ingredient_id = i.id WHERE r_i.recette_id = :idRecette");
+            $requeteIngredient->execute(['idRecette' => $idRecette]);
+            $ingredients = $requeteIngredient->fetchAll(PDO::FETCH_ASSOC);
+
+            //Récupérer les étapes de la recette (uniquement le texte)
+            $requeteEtape = $pdo->prepare("SELECT texte FROM Recettes_Etapes WHERE recette_id = :idRecette ORDER BY numero_etape ASC");
+            $requeteEtape->execute(['idRecette' => $idRecette]);
+            $etapes = $requeteEtape->fetchAll(PDO::FETCH_COLUMN, 0);
+
+            //Récupérer les restrictions de la recette (uniquement le nom)
+            $requeteRestriction = $pdo->prepare("SELECT r.nom FROM Restrictions AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.restriction_id WHERE r_r.recette_id = :idRecette");
+            $requeteRestriction->execute(['idRecette' => $idRecette]);
+            $restrictions = $requeteRestriction->fetchAll(PDO::FETCH_COLUMN, 0);
+
+            //Renvoyer la recette complète
+            $resultat['ingredients'] = $ingredients;
+            $resultat['etapes'] = $etapes;
+            $resultat['restrictions'] = $restrictions;
+            echo json_encode(["statut" => "success", "recetteComplete" => $resultat]);
+            exit();
+
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
+
+        
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+});
+
+
+
 function validateUserCredentials($identifiant, $motDePasse, $pdo) {
 
     $requete = $pdo->prepare("SELECT mot_de_passe FROM clients WHERE nom_utilisateur = :identifiant");
