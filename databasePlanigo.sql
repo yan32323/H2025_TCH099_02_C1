@@ -105,7 +105,7 @@ CREATE TABLE Recettes_Sauvegardees (
 );
 
 CREATE TABLE Commentaires (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     recette_id INT NOT NULL,
     nom_utilisateur VARCHAR(255) NOT NULL,
     texte TEXT NOT NULL,
@@ -135,9 +135,9 @@ CREATE TABLE Recettes_Notes (
 );
 
 CREATE TABLE Utilisateurs_suivi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     nom_utilisateur VARCHAR(255) NOT NULL,
     user_suivi_id VARCHAR(255),
-    PRIMARY KEY (nom_utilisateur),
     FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
     FOREIGN KEY (user_suivi_id) REFERENCES Clients (nom_utilisateur)
 );

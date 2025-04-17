@@ -1,17 +1,16 @@
 <?php
 require_once '../includes/conection.php';
-session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['success' => false, 'message' => 'Utilisateur non connecté']);
-    exit;
-}
+// Lire les données JSON
+$donneesJSON = json_decode(file_get_contents("php://input"), true);
 
-$idUtilisateur = $_SESSION['user_id'];
-$recette_id = $_POST['recette_id'] ?? null;
-$note = $_POST['note'] ?? null;
+// Récupération des données
+$idUtilisateur = $donneesJSON['nom_utilisateur'] ?? null;
+$recette_id = $donneesJSON['recette_id'] ?? null;
+$note = $donneesJSON['note'] ?? null;
 
-if (!$recette_id || !$note) {
+// Vérification de la présence des données
+if (!$idUtilisateur || !$recette_id || !$note) {
     echo json_encode(['success' => false, 'message' => 'Données incomplètes']);
     exit;
 }

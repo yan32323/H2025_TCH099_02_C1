@@ -93,39 +93,48 @@ document.addEventListener("DOMContentLoaded", async function () {
         imageRecette.dispatchEvent(new Event("change"));
     });
 
-    effacerRecette.addEventListener("click", async function () {
-        event.preventDefault();
+    let identifiant = sessionStorage.getItem('identifiant');
 
-        if (confirm("Etes-vous sûr de vouloir supprimer cette recette?")) {
-            try {
-                if (!editRecette) {
+effacerRecette.addEventListener("click", async function () {
+    event.preventDefault();
+
+    if (confirm("Etes-vous sûr de vouloir supprimer cette recette?")) {
+        try {
+            if (!editRecette) {
+                alert("Recette supprimee.");
+                back();
+            } else {
+                let response = await fetch(
+                    "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/supprimer/" +
+                        recetteLocale,
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            id: recetteLocale,
+                            identifiant: identifiant
+                        }),
+                    }
+                );
+
+                let text = await response.text();
+                console.log("Réponse suppression brute:", text);
+
+                let reponse = JSON.parse(text);
+
+                if (reponse.status === "ok") {
                     alert("Recette supprimee.");
                     back();
                 } else {
-                    let response = await fetch(
-                        "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/supprimer/" +
-                            recetteLocale,
-                        {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ id: recetteLocale }),
-                        }
-                    );
-
-                    let reponse = await response.json();
-
-                    if (reponse.status === "ok") {
-                        alert("Recette supprimee.");
-                        back();
-                    } else {
-                        erreurSuppression();
-                    }
+                    erreurSuppression();
                 }
-            } catch (error) {
-                erreurSuppression();
             }
+        } catch (error) {
+            erreurSuppression();
         }
-    });
+    }
+});
+
 
     sliderTemps.oninput = function () {
         texteTemps.textContent =
@@ -175,7 +184,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauIngredients.push({
             id: ingredientTrouve.id,
             nom: ingredientTrouve.nom,
-            unite_de_mesure: ingredientTrouve.unite_de_mesure, // <-- on récupère l’unité
+            unite_de_mesure: ingredientTrouve.unite_de_mesure,
         });
 
         updateIngredient();
@@ -310,6 +319,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 );
             }
 
+
             let resultat = await response.json();
 
             if (resultat.error) {
@@ -339,94 +349,63 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    async function sendRecette(event) {
-        event.preventDefault();
-        titre = texteTitre.value.trim();
-        description = texteDescription.value.trim();
+    async function sendRecette() {
+        const identifiant = sessionStorage.getItem('identifiant');
 
-        if (!titre)
-            return alert("Veuillez entrer un titre pour votre recette.");
-        if (!diffiulte1.checked && !diffiulte2.checked && !diffiulte3.checked)
-            return alert("Veuillez entrer une difficulte pour votre recette.");
-        if (!description)
-            return alert("Veuillez entrer une description pour votre recette.");
-        if (tableauEtapes.length === 0)
-            return alert(
-                "Veuillez entrer au moins une etape pour votre recette."
-            );
-        if (tableauIngredients.length === 0)
-            return alert(
-                "Veuillez entrer au moins un ingredient pour votre recette."
+        tableauIngredients = tableauIngredients.map((ingredient, i) => {
+            const quantiteInput = document.getElementById(`quantite${i}`);
+            const uniteInput = document.getElementById(
+                `unite_de_mesure${i}`
             );
 
-        try {
-            let difficulte = diffiulte3.checked
-                ? 3
+            return {
+                ...ingredient,
+                quantite: parseFloat(quantiteInput.value),
+                unite_de_mesure: uniteInput.value.trim(),
+            };
+        });
+
+        const bodyData = {
+            edit: false,
+            titre: texteTitre.value.trim(),
+            description: texteDescription.value.trim(),
+            ingredients: tableauIngredients,
+            etapes: tableauEtapes,
+            temps: parseInt(sliderTemps.value),
+            portion: parseInt(sliderPortions.value),
+            difficulte: diffiulte1.checked
+                ? 1
                 : diffiulte2.checked
                 ? 2
-                : 1;
-            let envoiID = editRecette ? recetteLocale : null;
-
-            let imageUnique = imageRecette.files[0];
-            let imageBase64 = null;
-
-            if (imageUnique) {
-                imageBase64 = await new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(imageUnique);
-                });
-            }
-
-            tableauIngredients = tableauIngredients.map((ingredient, i) => {
-                const quantiteInput = document.getElementById(`quantite${i}`);
-                const uniteInput = document.getElementById(
-                    `unite_de_mesure${i}`
-                );
-
-                return {
-                    ...ingredient,
-                    quantite: parseFloat(quantiteInput.value),
-                    unite_de_mesure: uniteInput.value.trim(),
-                };
+                : 3,
+            identifiant: identifiant
+        };
+    
+        // Envoie du corps au serveur
+        try {
+            const response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(bodyData)
             });
+    
+            let text = await response.text();
+            console.log("Réponse suppression brute:", text);
 
-            objRecetteJSON = JSON.stringify({
-                edit: editRecette,
-                id: envoiID,
-                titre: titre,
-                description: description,
-                temps: sliderTemps.value,
-                portion: sliderPortions.value,
-                image: imageBase64,
-                ingredients: tableauIngredients,
-                etapes: tableauEtapes,
-                difficulte: difficulte,
-            });
-
-            let response = await fetch(
-                "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer",
-                {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: objRecetteJSON,
-                }
-            );
-
-            let reponse = await response.json();
-
-            if (reponse.success) {
-                alert("Recette sauvegardée avec succès.");
+            let result = JSON.parse(text);
+    
+            if (result.status === "ok") {
+                alert("Recette envoyée !");
                 back();
             } else {
-                erreurEnvoi();
+                alert("Erreur lors de l’envoi.");
             }
         } catch (error) {
-            console.log(error);
-            erreurEnvoi();
+            console.error("Erreur fetch :", error);
+            alert("Erreur réseau !");
         }
     }
+    
 
     function updateIngredient() {
         zoneIngredient.innerHTML = "";

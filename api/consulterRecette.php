@@ -1,15 +1,15 @@
 <?php
-session_start();
 header("Content-Type: application/json; charset=UTF-8");
 require_once '../includes/conection.php';
 
-// Vérifie si l'ID de la recette est passé
-if (!isset($_GET['id'])) {
-    echo json_encode(["success" => false, "message" => "ID de recette manquant"]);
+// Vérifie si les données nécessaires sont envoyées en POST
+if (!isset($_POST['id']) || !isset($_POST['nom_utilisateur'])) {
+    echo json_encode(["success" => false, "message" => "Paramètres requis manquants"]);
     exit;
 }
 
-$id = intval($_GET['id']);
+$id = intval($_POST['id']);
+$nom_utilisateur = $_POST['nom_utilisateur'];
 
 // Récupérer les infos de la recette
 $sql = "SELECT r.*, c.nom AS nom_client, c.prenom 
@@ -44,7 +44,6 @@ $stmtEtapes = $pdo->prepare($sqlEtapes);
 $stmtEtapes->execute([$id]);
 $etapesBrutes = $stmtEtapes->fetchAll(PDO::FETCH_ASSOC);
 
-
 // Reformater les étapes
 $etapes = [];
 foreach ($etapesBrutes as $etape) {
@@ -69,12 +68,9 @@ $stmtCommentaires->execute([$id]);
 $commentaires = $stmtCommentaires->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($commentaires as &$commentaire) {
-    $commentaire['a_deja_like'] = false;
-    if (isset($_SESSION['user_id'])) {
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM Likes_Commentaires WHERE nom_utilisateur = ? AND commentaire_id = ?");
-        $stmt->execute([$_SESSION['user_id'], $commentaire['id']]);
-        $commentaire['a_deja_like'] = $stmt->fetchColumn() > 0;
-    }
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM Likes_Commentaires WHERE nom_utilisateur = ? AND commentaire_id = ?");
+    $stmt->execute([$nom_utilisateur, $commentaire['id']]);
+    $commentaire['a_deja_like'] = $stmt->fetchColumn() > 0;
 }
 
 // Récupérer la moyenne des notes et le nombre de votes
@@ -84,10 +80,12 @@ $noteInfo = $stmtNote->fetch(PDO::FETCH_ASSOC);
 $moyenne = $noteInfo['moyenne_notes'] !== null ? $noteInfo['moyenne_notes'] : null;
 $nbVotes = $noteInfo['nb_votes'] ?? 0;
 
+// Vérifier si l'utilisateur a déjà voté
 $stmtDejaVote = $pdo->prepare("SELECT COUNT(*) FROM Recettes_Notes WHERE nom_utilisateur = ? AND recette_id = ?");
-$stmtDejaVote->execute([$_SESSION['user_id'], $id]);
+$stmtDejaVote->execute([$nom_utilisateur, $id]);
 $deja_vote = $stmtDejaVote->fetchColumn() > 0;
 
+// Réponse JSON
 echo json_encode([
     "success" => true,
     "recette" => [
@@ -109,8 +107,8 @@ echo json_encode([
         "commentaires" => $commentaires,
         "moyenne_note" => $moyenne,
         "nombre_votes" => $nbVotes,
-        "user_connecte" => $_SESSION['user_id'] ?? null,
+        "user_connecte" => $nom_utilisateur,
         "a_vote" => $deja_vote
     ],
-    "user_id" => $_SESSION['user_id'] ?? null
+    "user_id" => $nom_utilisateur
 ]);

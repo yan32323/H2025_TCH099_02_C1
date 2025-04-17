@@ -1,7 +1,4 @@
 <?php
-session_start();
-
-// Inclure le routeur
 require_once 'Router.php';
 
 // Instancier le routeur
@@ -10,12 +7,12 @@ $router = new Router();
 // Route pour l'inscription
 $router->post('/login.php/login/', function() {
 
-    require_once '../includes/conection.php'; // Adjust path if needed
+    require_once '../includes/conection.php'; // Ajuster le chemin si nécessaire
 
-    header('Content-Type: application/json'); // Set response header to JSON
+    header('Content-Type: application/json'); // Définir l'en-tête de réponse en JSON
 
     try {
-        //extraire les éléments de l'objet JSON
+        // Extraire les éléments de l'objet JSON
         $client_data_json = file_get_contents("php://input");
         $client_data = json_decode($client_data_json, true);
 
@@ -27,10 +24,14 @@ $router->post('/login.php/login/', function() {
         $user = $stmt->fetch();
 
         if ($user) {
-
             if (password_verify($motDePasse, $user['mot_de_passe'])) {
-                $_SESSION['user_id'] = $user['nom_utilisateur'];
-                echo json_encode(['statut' => 'success', 'nom' => $user['nom'], 'prenom' => $user['prenom']]);
+                // Si les identifiants sont corrects, répondre avec les informations de l'utilisateur
+                echo json_encode([
+                    'statut' => 'success',
+                    'user_id' => $user['nom_utilisateur'],  // Renvoie le user_id pour être stocké côté client
+                    'nom' => $user['nom'],
+                    'prenom' => $user['prenom']
+                ]);
                 exit();
             }
         }
