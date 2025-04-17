@@ -1,222 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulter Recette - Planigo </title>
-    <link rel="stylesheet" href="assets/styles/stylePopup.css">
-    <script src="assets/js/consulterRecette.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planigo - Détails de la recette</title>
+  <link rel="stylesheet" href="assets/styles/style-popup-recettes.css">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <script src="assets/js/consulterRecette.js"></script>
 </head>
-<body>
-    <div class="recipe-popup-screen">
-        <header>
-            <div class="hautdepage">
-              <div class="logo">
-                <a href="accueil-recette.html"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
-              </div>
-              <div class="nav-wrapper">
-                <nav>
-                  <ul>
-                    <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
-                    <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
-                    <li><a href="#">Liste d'épicerie</a></li>
-                    <li><a href="stockage.html">Stock</a></li>
-                    <li><a href="page_profil.html">Profil</a></li>
-                  </ul>
-                </nav>
-              </div>
-              <div class="logout-link">
-                <a href="index.html" class="nav-item" id="logoutButton"
-                >Se déconnecter</a>
-              </div>
-            </div>
-          </header>
+<body class="fond texte-couleur">
+  <header class="barre-haut">
+    <h1 class="logo">Planigo</h1>
+    <nav class="liens-nav">
+      <a href="liste-recette.html">Mes recettes</a>
+      <a href="liste-plan.html">Planificateur</a>
+      <a href="#">Liste d'épicerie</a>
+      <a href="#">Stock</a>
+      <a href="#">Profil</a>
+    </nav>
+    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+  </header>
 
-          <div class="recipe-popup-screen">
+  <main>
+    <h2 class="titre-recette" id="recipe-title">Spaghetti Bolognaise</h2>
+    <div class="details-recette">
+        <span><i class="far fa-clock"></i> <span id="time-value">15 min préparation</span></span>
+        <span><i class="fas fa-fire"></i> 20 min cuisson</span>
+        <span><i class="fas fa-user"></i> 4 portions</span>
+        <span><i class="fas fa-signal"></i> <span id="recipe-category">Facile</span></span>
+        <span><i class="fas fa-user-circle"></i> Par <strong id="author-name">Jean Dupont</strong></span>
+      </div>
 
-        <section class="recipe-title-section">
-            <h1 class="recipe-title">Nom de la recette</h1>
-        </section>
-
-        <section class="recipe-metadata">
-            <div class="author-info">
-                <div class="author-profile-image placeholder-square small-square"></div>
-                <div class="author-details">
-                    <p class="author-name">John Doe</p>
-                    <p class="author-date">15 March 2022</p>
-                </div>
-            </div>
-
-            <div class="prep-time">
-                <div class="vertical-divider"></div>
-                <div class="time-details">
-                    <p class="time-label">TEMPS DE PRÉPARATION</p>
-                    <p class="time-value">15 Minutes</p>
-                </div>
-            </div>
-
-            <div class="cook-time-category">
-                <div class="vertical-divider"></div>
-                <div class="time-details">
-                    <p class="time-label">TEMPS DE CUISSON</p>
-                    <p class="time-value">15 Minutes</p>
-                </div>
-                <p class="recipe-category">Poulet</p>
-            </div>
-
-            <div class="recipe-actions">
-                <p class="save-recipe">sauvegarder</p>
-                <div class="edit-recipe">
-                    <div class="edit-icon placeholder-square large-square"></div>
-                    <p class="edit-text">MODIFIER</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="recipe-image-comments">
-            <div class="recipe-main-image placeholder-square recipe-image-square"></div>
-            <div class="comments-section">
-                <h3 class="comments-title">Commentaires</h3>
-                <div class="comment-item-wrapper">
-                    <div class="comment-item highlighted-comment">
-                        <div class="comment-content">
-                            <div class="comment-profile-image placeholder-square small-square"></div>
-                            <div class="comment-text-area">
-                                <p class="comment-name">John Smith</p>
-                                <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in rep</p>
-                                <div class="comment-actions">
-                                    <div class="action-icon placeholder-square tiny-square"></div>
-                                    <div class="action-icon placeholder-square tiny-square"></div>
-                                    <div class="action-icon placeholder-square tiny-square"></div>
-                                    <button class="comment-button">Comment</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comment-item-wrapper">
-                    <div class="comment-item">
-                        <div class="comment-content">
-                            <div class="comment-profile-image placeholder-square small-square"></div>
-                            <div class="comment-text-area">
-                                <p class="comment-name">Jane Doe</p>
-                                <p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
-                                <div class="comment-timestamp">
-                                    <div class="comment-reactions">
-                                        <div class="reaction-box placeholder-square tiny-square reaction-icon"></div>
-                                        <div class="reaction-box placeholder-square tiny-square reaction-icon"></div>
-                                    </div>
-                                    <p class="timestamp">il y a 5 minutes</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="load-more-button">Charger plus</button>
-            </div>
-        </section>
-
-        <section class="recipe-description-section">
-            <p class="recipe-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </section>
-
-        <section class="ingredients-section">
-            <h3 class="section-title ingredients-title">Ingrédients</h3>
-            <h4 class="ingredients-subtitle">Pour le plat principal</h4>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-
-            <h4 class="ingredients-subtitle">For the sauce</h4>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-            <div class="ingredient-item-wrapper checkbox-list">
-                <label class="checkbox-ingredient">
-                    <input type="checkbox">
-                    <span>Lorem ipsum dolor sit amet</span>
-                </label>
-                <hr class="ingredient-divider">
-            </div>
-        </section>
-
-        <section class="directions-section">
-            <h3 class="section-title directions-title">Directions</h3>
-            <div class="direction-step-wrapper">
-                <div class="direction-step">
-                    <div class="step-number" data-number="1"></div>
-                    <h4 class="step-title">Lorem ipsum dolor sit amet</h4>
-                    <p class="step-description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <div class="step-image placeholder-square direction-image-square"></div>
-                </div>
-            </div>
-             <div class="direction-step-wrapper">
-                <div class="direction-step">
-                    <div class="step-number" data-number="2"></div>
-                    <h4 class="step-title">Lorem ipsum dolor sit amet</h4>
-                    <p class="step-description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <div class="step-image placeholder-square direction-image-square"></div>
-                </div>
-            </div>
-             <div class="direction-step-wrapper">
-                <div class="direction-step">
-                    <div class="step-number" data-number="3"></div>
-                    <h4 class="step-title">Lorem ipsum dolor sit amet</h4>
-                    <p class="step-description">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <div class="step-image placeholder-square direction-image-square"></div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <div class="footer-container">
-              <div class="footer-left">
-                <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
-                <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
-              </div>
-              <div class="footer-right">
-                <a href="a-propos.html">À propos de nous</a>
-                <a href="page_faq.html">FAQ</a>
-                <a href="page_de_soutien.html">Page de soutien</a>
-              </div>
-            </div>
-          </footer>
+    <div class="image-et-commentaires">
+      <div id="recipe-main-image">
+        <img src="assets/image/burger.png" alt="Spaghetti Bolognaise" class="image-recette" />
+      </div>
+      <div id="comments-section" class="commentaires">
+        <div class="commentaire">
+          <strong>Alice :</strong> Délicieux ! Ma famille a adoré. Merci pour la recette !
+        </div>
+        <div class="commentaire">
+          <strong>Thomas :</strong> J'ai ajouté un peu de parmesan, c'était encore meilleur !
+        </div>
+        <button class="btn-charger">Charger plus</button>
+      </div>                                                                
     </div>
+
+    <section class="section">
+      <h3>Ingrédients</h3>
+      <div id="ingredients-section">
+        <ul class="liste ingredients">
+          <li><label class="ingredient-item"><input type="checkbox" /><span>400g de spaghetti</span></label></li>
+          <li><label class="ingredient-item"><input type="checkbox" /><span>300g de viande hachée</span></label></li>
+          <li><label class="ingredient-item"><input type="checkbox" /><span>1 oignon</span></label></li>
+          <li><label class="ingredient-item"><input type="checkbox" /><span>2 gousses d’ail</span></label></li>
+          <li><label class="ingredient-item"><input type="checkbox" /><span>400ml de sauce tomate</span></label></li>
+          <li><label class="ingredient-item"><input type="checkbox" /><span>Huile d'olive, sel, poivre</span></label></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+        <h3>Instructions</h3>
+        <div id="directions-section">
+          <ol class="liste instructions">
+            <li>
+              Faire cuire les pâtes dans de l'eau bouillante salée.
+              <div class="step-image"></div>
+            </li>
+            <li>
+              Faire revenir l'oignon et l'ail dans l'huile.
+              <div class="step-image"></div>
+            </li>
+            <li>
+              Ajouter la viande, cuire jusqu'à coloration.
+              <div class="step-image"></div>
+            </li>
+            <li>
+              Verser la sauce tomate, laisser mijoter 15 minutes. Saler et poivrer.
+              <div class="step-image"></div>
+            </li>
+            <li>
+              Mélanger avec les pâtes et servir chaud.
+              <div class="step-image"></div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+    <section class="section">
+      <h3>Description</h3>
+      <p id="recipe-description">Une délicieuse recette classique de spaghetti à la sauce bolognaise maison.</p>
+    </section>
+
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="#" class="btn-retour">Retour aux recettes</a>
+    </div>
+  </main>
+
+  <footer class="pied">
+    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+    <div class="liens-pied">
+      <a href="#">A propos</a>
+      <a href="#">FAQ</a>
+      <a href="#">Page de soutien</a>
+    </div>
+  </footer>
 </body>
 </html>
