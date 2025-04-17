@@ -87,14 +87,15 @@ echo json_encode([
         "nom" => $recette["nom"],
         "description" => $recette["description"],
         "type" => null, // Champ "type" non présent dans la table actuelle
+        "difficulte" => $recette["difficulter"],
         "temps_preparation" => $recette["temps_de_cuisson"],
         "portions" => null, // Champ "portions" non présent dans la table actuelle
         "image" => $recette["image"],
         "createur" => [
             "nom" => $recette["nom_client"],
-            "prenom" => $recette["prenom"]
+            "prenom" => $recette["prenom"],
+            "nom_utilisateur" => $recette["createur_nom_utilisateur"]
         ],
-        "date_creation" => $recette["date_creation"] ?? "Date inconnue", // Si tu ajoutes cette colonne plus tard
         "ingredients" => $ingredients,
         "etapes" => $etapes,
         "commentaires" => $recette["commentaires"],

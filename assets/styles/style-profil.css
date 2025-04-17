@@ -1,0 +1,420 @@
+/* ====== Import des polices ====== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
+
+:root {
+  --teal: #14817A;
+  --vert: #004B46;
+  --accent: #10B981;
+  --gris-clair: #F8FAFC;
+  --gris-texte: #4B5563;
+  --fond-carte: #FFFFFF;
+  --fond-bloc: #E6F4F1;
+  --ombre: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Saira', 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f8f8f8;
+    color: #1f2937;
+  }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.barre-haut {
+  background-color: white;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 10px var(--ombre);
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.liens-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-weight: 500;
+}
+
+.liens-nav a,
+.logout-link a {
+  text-decoration: none;
+  color: var(--teal);
+  transition: color 0.2s;
+}
+
+.liens-nav a:hover,
+.logout-link a:hover {
+  color: var(--accent);
+}
+
+.profile-title {
+  font-size: 2.75rem;
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--vert);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin: 2rem 0;
+  color: var(--teal);
+  text-align: center;
+}
+
+.content-container {
+  width: 97rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 1rem;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.profile-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.avatar-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.profile-stats {
+  display: flex;
+  gap: 2rem;
+}
+
+.profile-stat .stat-number {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--teal);
+}
+
+.profile-stat .stat-label {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.modify-profile-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.modify-profile-btn:hover {
+  background-color: var(--vert);
+}
+
+.recipe-grid,
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.recipe-card,
+.recipe-card-small {
+  background-color: var(--fond-carte);
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px var(--ombre);
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.recipe-card:hover,
+.recipe-card-small:hover {
+  transform: translateY(-4px);
+}
+
+.recipe-card img,
+.recipe-card-small img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.recipe-content,
+.recipe-content-small {
+  padding: 1rem;
+  background-color: var(--fond-carte); /* ou #ffffff */
+}
+
+.recipe-title,
+.recipe-title-small {
+  font-weight: 600;
+  color: var(--vert);
+  font-size: 1.1rem;
+}
+
+.recipe-info,
+.recipe-info-small {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.footer {
+  background-color: white;
+  padding: 2rem;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.footer-logo {
+  max-width: 80px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-right {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.footer-right a {
+  color: var(--teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-right a:hover {
+  color: var(--accent);
+}
+
+body {
+    font-family: 'Saira', 'Inter', sans-serif;
+    margin: 0;
+    background-color: #f8f8f8;
+    color: #1f2937;
+  }
+  
+  .weekly-plan-section {
+    padding-top: 2rem;
+  }
+  
+  .days-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .ligne-jours {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .day-section {
+    flex: 1;
+    min-width: 300px;
+    background-color: #E6F4F1;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 0;
+  }
+  
+  .day-title {
+    font-size: 1.5rem;
+    color: #004B46;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .day-recipes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+  
+  .recipe-card-small {
+    background-color: white;
+    border-radius: 1rem;
+    width: 260px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+    flex: 0 0 auto;
+  }
+  
+  .recipe-card-small:hover {
+    transform: translateY(-5px);
+  }
+  
+  .recipe-card-small img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  
+  .recipe-content-small {
+    padding: 1rem;
+  }
+  
+  .recipe-title-small {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #14817A;
+  }
+  
+  .recipe-info-small {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: #4B5563;
+    font-size: 0.9rem;
+  }
+
+  .grille-semaines {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 0 2rem;
+  }
+  
+  .ligne-semaines {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100em;
+  }
+  
+  .bloc-semaine {
+      background-color: transparent;
+  
+      backdrop-filter: blur(4px);     
+      border-radius: 1rem;
+      padding: 2rem;
+      min-width: 300px;
+      flex: 1;
+      
+    }
+    
+  .bloc-semaine:hover {
+      transform: scale(1.015);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+      background:#e3e9e8;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+  .etiquette-semaine {
+    background-color: var(--teal);
+    color: white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    font-weight: 600;
+    width: fit-content;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .cartes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 1rem 0;
+  }
+  
+  /* ====== Carte recette ====== */
+  .carte {
+    background-color: var(--fond-carte);
+    border-radius: 1.25rem;
+    padding: 0;
+    width: 260px;
+    box-shadow: 0 6px 20px var(--ombre);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.3s;
+  }
+  
+  .carte:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+  cursor: pointer;
+  }
+  
+  .carte img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 1.25rem;
+    border-top-right-radius: 1.25rem;
+  }
+  
+
+  
+  
+  .carte h3 {
+    font-size: 1.1rem;
+    margin: 0.75rem 1rem 0.25rem;
+    color: var(--vert);
+  }
+  
+  .carte p {
+    font-size: 0.9rem;
+    margin: 0 1rem 0.5rem;
+    color: #6b7280;
+  }
+
+  .no-recipes-message {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gris-texte);
+    background-color: var(--fond-bloc);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: left;
+    box-shadow: 0 4px 10px var(--ombre);
+    margin-top: 2rem;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .no-recipes-message:hover {
+    background-color: var(--fond-carte);
+  }
