@@ -35,7 +35,9 @@ function afficheProfil(profilData) {
 
     // Bouton "Modifier le profil" : afficher ou masquer en fonction de l'utilisateur connecté
     const modifierBtn = document.getElementById("modifier-profil-btn");
+    const titre = document.getElementById("titre-profil");
     if (profil.nom_utilisateur !== idConnecte) {
+        titre.textContent = "Profil de " + profil.nom_utilisateur; // Titre du profil
         modifierBtn.style.display = "none"; // Masquer si ce n'est pas l'utilisateur connecté
         const suivreBtn = document.getElementById("suivre-profil-btn");
         suivreBtn.style.display = "inline-block"; // Afficher le bouton "Suivre"

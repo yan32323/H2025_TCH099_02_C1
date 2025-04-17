@@ -355,3 +355,62 @@ main {
   font-size: 1rem;
   color: #666;
 }
+.etoiles-grisees i {
+  color: #ccc !important;
+}
+
+.btn-ajouter-note {
+  background-color: #f39c12;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
+}
+
+.btn-ajouter-note:hover {
+  background-color: #e67e22;
+}
+
+.popup-note-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-note {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  width: 300px;
+}
+
+#etoiles-selection .star {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+#etoiles-selection .star.active {
+  color: gold;
+}
+
+.popup-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+

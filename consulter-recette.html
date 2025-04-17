@@ -32,7 +32,11 @@
         <i class="far fa-star"></i>
       </span>
       <span id="nb-votes">(0)</span>
+      <div style="margin-top: 0.5rem; text-align: center;">
+        <button id="ajouter-note-btn" class="btn-ajouter-note">Ajouter une note</button>
+      </div>
     </div>
+    
     
     <div class="details-recette">
         <span><i class="far fa-clock"></i> <span id="time-value">15 min préparation</span></span>
@@ -117,5 +121,23 @@
       <a href="#">Page de soutien</a>
     </div>
   </footer>
+  <div id="popup-note" class="popup-note-overlay" style="display:none;">
+    <div class="popup-note">
+      <h3>Attribuez une note à cette recette</h3>
+      <div id="etoiles-selection">
+        <i class="fas fa-star star" data-value="1"></i>
+        <i class="fas fa-star star" data-value="2"></i>
+        <i class="fas fa-star star" data-value="3"></i>
+        <i class="fas fa-star star" data-value="4"></i>
+        <i class="fas fa-star star" data-value="5"></i>
+      </div>
+      <div class="popup-buttons">
+        <button id="valider-note-btn" class="btn-ajouter-note">Valider</button>
+        <button id="annuler-note-btn" class="btn-retour">Annuler</button>
+      </div>
+    </div>
+  </div>
+  
 </body>
+
 </html>

@@ -78,12 +78,15 @@ foreach ($commentaires as &$commentaire) {
 }
 
 // Récupérer la moyenne des notes et le nombre de votes
-$query = "SELECT AVG(note) AS moyenne_notes, COUNT(*) AS nb_votes FROM Recettes_Notes WHERE recette_id = :recette_id";
-$stmtNote = $pdo->prepare($query);
+$stmtNote = $pdo->prepare("SELECT ROUND(AVG(note), 1) AS moyenne_notes, COUNT(*) AS nb_votes FROM Recettes_Notes WHERE recette_id = :recette_id");
 $stmtNote->execute(['recette_id' => $id]);
 $noteInfo = $stmtNote->fetch(PDO::FETCH_ASSOC);
-$moyenne = $noteInfo['moyenne_notes'] ? round($noteInfo['moyenne_notes'], 1) : null;
-$nbVotes = $noteInfo['nb_votes'];
+$moyenne = $noteInfo['moyenne_notes'] !== null ? $noteInfo['moyenne_notes'] : null;
+$nbVotes = $noteInfo['nb_votes'] ?? 0;
+
+$stmtDejaVote = $pdo->prepare("SELECT COUNT(*) FROM Recettes_Notes WHERE nom_utilisateur = ? AND recette_id = ?");
+$stmtDejaVote->execute([$_SESSION['user_id'], $id]);
+$deja_vote = $stmtDejaVote->fetchColumn() > 0;
 
 echo json_encode([
     "success" => true,
@@ -106,7 +109,8 @@ echo json_encode([
         "commentaires" => $commentaires,
         "moyenne_note" => $moyenne,
         "nombre_votes" => $nbVotes,
-        "user_connecte" => $_SESSION['user_id'] ?? null
+        "user_connecte" => $_SESSION['user_id'] ?? null,
+        "a_vote" => $deja_vote
     ],
     "user_id" => $_SESSION['user_id'] ?? null
 ]);

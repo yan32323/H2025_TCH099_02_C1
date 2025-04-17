@@ -33,11 +33,19 @@ function afficherNoteMoyenne(noteSur5, nbVotes) {
 
     etoilesContainer.innerHTML = "";
 
+    // Si aucun vote, ajoute une classe pour griser les étoiles
+    if (nbVotes === 0) {
+        etoilesContainer.classList.add("etoiles-grisees");
+    } else {
+        etoilesContainer.classList.remove("etoiles-grisees");
+    }
+
     for (let i = 1; i <= 5; i++) {
         if (noteSur5 >= i) {
             etoilesContainer.innerHTML += '<i class="fas fa-star"></i>';
         } else if (noteSur5 >= i - 0.5) {
-            etoilesContainer.innerHTML += '<i class="fas fa-star-half-alt"></i>';
+            etoilesContainer.innerHTML +=
+                '<i class="fas fa-star-half-alt"></i>';
         } else {
             etoilesContainer.innerHTML += '<i class="far fa-star"></i>';
         }
@@ -49,9 +57,11 @@ function afficherNoteMoyenne(noteSur5, nbVotes) {
 function afficherRecette(recette, userId) {
     // Affichage des détails
     document.getElementById("recipe-title").textContent = recette.nom;
-    
-    afficherNoteMoyenne(recette.moyenne_note, recette.nombre_votes);
 
+    afficherNoteMoyenne(recette.moyenne_note, recette.nombre_votes);
+    if (recette.a_vote) {
+        document.getElementById("ajouter-note-btn").style.display = "none";
+    }
     const authorNameElement = document.getElementById("author-name");
     authorNameElement.textContent =
         recette.createur.prenom + " " + recette.createur.nom;
@@ -313,6 +323,85 @@ function afficherRecette(recette, userId) {
                     console.error("Erreur réseau :", error);
                     alert("Erreur lors de l'envoi du commentaire.");
                 }
+            }
+        });
+    let noteChoisie = 0;
+
+    document
+        .getElementById("ajouter-note-btn")
+        .addEventListener("click", () => {
+            document.getElementById("popup-note").style.display = "flex";
+        });
+
+    // Gestion clic sur étoiles
+    document.querySelectorAll("#etoiles-selection .star").forEach((star) => {
+        star.addEventListener("click", () => {
+            noteChoisie = parseInt(star.dataset.value);
+
+            document
+                .querySelectorAll("#etoiles-selection .star")
+                .forEach((s) => {
+                    s.classList.toggle(
+                        "active",
+                        parseInt(s.dataset.value) <= noteChoisie
+                    );
+                });
+        });
+    });
+
+    document
+        .getElementById("annuler-note-btn")
+        .addEventListener("click", () => {
+            document.getElementById("popup-note").style.display = "none";
+        });
+
+    document
+        .getElementById("valider-note-btn")
+        .addEventListener("click", async () => {
+            if (noteChoisie < 1 || noteChoisie > 5) {
+                alert("Veuillez sélectionner une note entre 1 et 5.");
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    "http://localhost/planigo/H2025_TCH099_02_C1/api/ajouterNote.php",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        body: `recette_id=${recette.id}&note=${noteChoisie}`,
+                    }
+                );
+
+                const text = await response.text();
+                let data;
+
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    alert("Réponse invalide du serveur.");
+                    return;
+                }
+
+                if (data.success) {
+                    alert("Merci pour votre note !");
+                    document.getElementById("ajouter-note-btn").style.display =
+                        "none";
+                    document.getElementById("popup-note").style.display =
+                        "none";
+
+                    afficherNoteMoyenne(
+                        data.nouvelle_moyenne,
+                        data.nouveau_nombre_votes
+                    );
+                } else {
+                    alert("Erreur : " + data.message);
+                }
+            } catch (error) {
+                console.error("Erreur réseau :", error);
+                alert("Impossible d'envoyer la note.");
             }
         });
 }
