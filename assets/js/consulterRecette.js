@@ -1,3 +1,4 @@
+//TODO : CLEAN_UP CODE
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const recetteId = urlParams.get("id");
@@ -45,45 +46,49 @@ function afficherRecette(recette, userId) {
         imageEl.style.backgroundPosition = "center";
     }
 
-    // Ingrédients
-    const ingredientsSection = document.getElementById("ingredients-section");
-    ingredientsSection.innerHTML = '<h3 class="section-title ingredients-title">Ingrédients</h3>';
-    recette.ingredients.forEach((ingredient) => {
-        const item = document.createElement("div");
-        item.classList.add("ingredient-item-wrapper", "checkbox-list");
 
-        item.innerHTML = `
-            <label class="checkbox-ingredient">
-                <input type="checkbox">
-                <span>${ingredient.nom} - ${ingredient.quantite} ${ingredient.unite}</span>
-            </label>
-            <hr class="ingredient-divider">
-        `;
 
-        ingredientsSection.appendChild(item);
-    });
+// Section des Ingrédients
+const ingredientsSection = document.getElementById("ingredients-section");
+ingredientsSection.innerHTML = '<h3 class="section-title ingredients-title"></h3>';
+
+recette.ingredients.forEach((ingredient) => {
+    const item = document.createElement("div");
+    item.classList.add("ingredient-item-wrapper", "checkbox-list");
+
+    item.innerHTML = `
+        <label class="ingredient-item">
+            <input type="checkbox" class="ingredient-checkbox">
+            <span>${ingredient.nom} - ${ingredient.quantite} ${ingredient.unite}</span>
+        </label>
+    `;
+
+    ingredientsSection.appendChild(item);
+});
+
+
 
     // Étapes
-    const stepsSection = document.getElementById("directions-section");
-    stepsSection.innerHTML = '<h3 class="section-title directions-title">Étapes</h3>';
-    recette.etapes.forEach((etape, index) => {
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("direction-step-wrapper");
+const stepsSection = document.getElementById("directions-section");
+stepsSection.innerHTML = ''; // Nettoyer les anciennes étapes (HTML statique)
 
-        wrapper.innerHTML = `
-            <div class="direction-step">
-                <div class="step-number" data-number="${index + 1}">${index + 1}</div>
-                <h4 class="step-title">${etape.titre}</h4>
-                <p class="step-description">${etape.description}</p>
-                ${
-                    etape.image
-                        ? `<div class="step-image direction-image-square" style="background-image: url('data:image/jpeg;base64,${etape.image}'); background-size: cover; background-position: center;"></div>`
-                        : ""
-                }
-            </div>
-        `;
-        stepsSection.appendChild(wrapper);
-    });
+const ol = document.createElement("ol");
+ol.classList.add("liste", "instructions");
+
+recette.etapes.forEach((etape, index) => {
+    const li = document.createElement("li");
+
+    const titre = "";
+    const description = etape.description || "";
+
+    li.innerHTML = `${titre}${description}`;
+
+    ol.appendChild(li);
+});
+
+stepsSection.appendChild(ol);
+
+
 
     // Commentaires
     const commentsSection = document.getElementById("comments-section");
