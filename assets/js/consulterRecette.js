@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                console.log("Données de la recette :", data);
                 const userId = data.user_id;
                 afficherRecette(data.recette, userId);
             } else {
@@ -42,13 +41,11 @@ function afficherRecette(recette, userId) {
         recette.temps_preparation + " minutes";
     document.getElementById("recipe-description").textContent =
         recette.description;
-    document.getElementById("recipe-category").textContent = recette.type;
+    document.getElementById("recipe-category").textContent = recette.difficulte;
 
     if (recette.image) {
-        const imageEl = document.getElementById("recipe-main-image");
-        imageEl.style.backgroundImage = `url('data:image/jpeg;base64,${recette.image}')`;
-        imageEl.style.backgroundSize = "cover";
-        imageEl.style.backgroundPosition = "center";
+        const imageEl = document.querySelector("#recipe-main-image img");
+        imageEl.src = `data:image/jpeg;base64,${recette.image}`;
     }
 
     // Section des Ingrédients

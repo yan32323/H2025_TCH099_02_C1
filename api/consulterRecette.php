@@ -87,6 +87,7 @@ echo json_encode([
         "nom" => $recette["nom"],
         "description" => $recette["description"],
         "type" => null, // Champ "type" non présent dans la table actuelle
+        "difficulte" => $recette["difficulter"],
         "temps_preparation" => $recette["temps_de_cuisson"],
         "portions" => null, // Champ "portions" non présent dans la table actuelle
         "image" => $recette["image"],
