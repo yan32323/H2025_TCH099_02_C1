@@ -27,9 +27,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 
+function afficherNoteMoyenne(noteSur5, nbVotes) {
+    const etoilesContainer = document.getElementById("etoiles-container");
+    const nbVotesElement = document.getElementById("nb-votes");
+
+    etoilesContainer.innerHTML = "";
+
+    for (let i = 1; i <= 5; i++) {
+        if (noteSur5 >= i) {
+            etoilesContainer.innerHTML += '<i class="fas fa-star"></i>';
+        } else if (noteSur5 >= i - 0.5) {
+            etoilesContainer.innerHTML += '<i class="fas fa-star-half-alt"></i>';
+        } else {
+            etoilesContainer.innerHTML += '<i class="far fa-star"></i>';
+        }
+    }
+
+    nbVotesElement.textContent = `(${nbVotes})`;
+}
+
 function afficherRecette(recette, userId) {
     // Affichage des détails
     document.getElementById("recipe-title").textContent = recette.nom;
+    
+    afficherNoteMoyenne(recette.moyenne_note, recette.nombre_votes);
 
     const authorNameElement = document.getElementById("author-name");
     authorNameElement.textContent =

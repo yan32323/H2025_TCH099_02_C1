@@ -328,3 +328,30 @@ main {
   margin-top: 0.5rem;
 }
 
+.note-moyenne {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 1.4rem;
+  color: #f5c518;
+}
+
+.etoiles {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.2rem 1rem;
+  border-radius: 50px;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.etoiles i {
+  font-size: 1.5rem;
+}
+
+#nb-votes {
+  font-size: 1rem;
+  color: #666;
+}

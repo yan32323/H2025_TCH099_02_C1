@@ -1,8 +1,9 @@
 <?php
 session_start();
-header("Content-Type: application/json");
+header("Content-Type: application/json; charset=UTF-8");
 require_once '../includes/conection.php';
 
+// Vérifie si l'ID de la recette est passé
 if (!isset($_GET['id'])) {
     echo json_encode(["success" => false, "message" => "ID de recette manquant"]);
     exit;
@@ -66,19 +67,23 @@ $sqlCommentaires = "SELECT c.id, c.texte, c.date_commentaire, cl.nom, cl.prenom,
 $stmtCommentaires = $pdo->prepare($sqlCommentaires);
 $stmtCommentaires->execute([$id]);
 $commentaires = $stmtCommentaires->fetchAll(PDO::FETCH_ASSOC);
+
 foreach ($commentaires as &$commentaire) {
     $commentaire['a_deja_like'] = false;
-    if ($_SESSION['user_id']) {
-        // Vérifie si l'utilisateur a déjà liké
+    if (isset($_SESSION['user_id'])) {
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM Likes_Commentaires WHERE nom_utilisateur = ? AND commentaire_id = ?");
         $stmt->execute([$_SESSION['user_id'], $commentaire['id']]);
         $commentaire['a_deja_like'] = $stmt->fetchColumn() > 0;
     }
 }
 
-
-// Ajouter les commentaires à la réponse JSON
-$recette["commentaires"] = $commentaires;
+// Récupérer la moyenne des notes et le nombre de votes
+$query = "SELECT AVG(note) AS moyenne_notes, COUNT(*) AS nb_votes FROM Recettes_Notes WHERE recette_id = :recette_id";
+$stmtNote = $pdo->prepare($query);
+$stmtNote->execute(['recette_id' => $id]);
+$noteInfo = $stmtNote->fetch(PDO::FETCH_ASSOC);
+$moyenne = $noteInfo['moyenne_notes'] ? round($noteInfo['moyenne_notes'], 1) : null;
+$nbVotes = $noteInfo['nb_votes'];
 
 echo json_encode([
     "success" => true,
@@ -98,7 +103,9 @@ echo json_encode([
         ],
         "ingredients" => $ingredients,
         "etapes" => $etapes,
-        "commentaires" => $recette["commentaires"],
+        "commentaires" => $commentaires,
+        "moyenne_note" => $moyenne,
+        "nombre_votes" => $nbVotes,
         "user_connecte" => $_SESSION['user_id'] ?? null
     ],
     "user_id" => $_SESSION['user_id'] ?? null
