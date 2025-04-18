@@ -1,442 +1,267 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles/style_accueil.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planigo - Accueil</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styleS/style-accueil.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   <script src="assets/js/forum.js" defer></script>
 </head>
-<body class="">
+<body class="fond texte-couleur">
 
-  
-  <header>
-    <div class="hautdepage">
-      <div class="logo">
-        <a href="accueil-recette.html"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
-      </div>
-      <div class="nav-wrapper">
-        <nav>
-          <ul>
-            <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
-            <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
-            <li><a href="#">Liste d'épicerie</a></li>
-            <li><a href="stockage.html">Stock</a></li>
-            <li><a href="page_profil.html">Profil</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="logout-link">
-        <a href="index.html" class="nav-item" id="logoutButton"
-        >Se déconnecter</a>
-      </div>
-    </div>
+  <header class="barre-haut">
+    <h1 class="logo">Planigo</h1>
+    <nav class="liens-nav">
+      <a href="recettes.html">Mes recettes</a>
+      <a href="plan.html">Planificateur</a>
+      <a href="#">Liste d'épicerie</a>
+      <a href="stockage.html">Stock</a>
+      <a href="page-profil.html">Profil</a>
+    </nav>
+    <a href="#" class="lien-deconnexion">Se déconnecter</a>
   </header>
-<div class="content-container">
-  <section class="search-section">
-    <div class="search-container">
-      <button class="filter-btn">Aucun</button>
-      <div class="search-input-wrapper">
-        <input
-          type="text"
-          placeholder="Trouver une recette"
-          class="search-input"
-        />
+  <main class="conteneur">
+    <div class="zone-recherche conteneur">
+      <div class="champ-recherche">
+        <input type="text" placeholder="Trouver une recette" class="input-recherche" />
+        <i class="fas fa-search icone-recherche"></i>
       </div>
-    </div>
-  </section>
-
-  <section class="categories-section">
-    <h2 class="section-title">Categories</h2>
-    <div class="category-grid">
-      <article class="category-item">
-        <img
-          src="assets/image/dejeuner.png"
-          alt="Déjeuner"
-          class="category-image"
-        />
-        <h3 class="category-name">Déjeuner</h3>
-      </article>
-      <article class="category-item">
-        <img
-          src="assets/image/plat_principal.png"
-          alt="Plat Principal"
-          class="category-image"
-        />
-        <h3 class="category-name">Plat Principal</h3>
-      </article>
-      <article class="category-item">
-        <img
-          src="assets/image/plat_accompagnement.png"
-          alt="Accompagnement"
-          class="category-image"
-        />
-        <h3 class="category-name">Accompagnement</h3>
-      </article>
-      <article class="category-item">
-        <img
-          src="assets/image/dessert.png"
-          alt="Dessert"
-          class="category-image"
-        />
-        <h3 class="category-name">Dessert</h3>
-      </article>
-      <article class="category-item">
-        <img
-          src="assets/image/lunch.png"
-          alt="Lunch"
-          class="category-image"
-        />
-        <h3 class="category-name">Lunch</h3>
-      </article>
-      <article class="category-item">
-        <img
-          src="assets/image/collation.png"
-          alt="Collation"
-          class="category-image"
-        />
-        <h3 class="category-name">Collation</h3>
-      </article>
-    </div>
-  </section>
-
-  <section class="recipes-section">
-    <h2 class="section-title accent">Recettes simples et savoureuses</h2>
-    <div class="recipe-grid">
-      <article class="recipe-card" id="burger">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Burger"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Burger</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Snack</span>
+    </div>  
+    
+    <div id="carouselCategoriesBootstrap" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🥪</div>
+              <div class="texte-categorie">Voir tout</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🥩</div>
+              <div class="texte-categorie">Déjeuner</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍙</div>
+              <div class="texte-categorie">Dîner</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍰</div>
+              <div class="texte-categorie">Souper</div>
+            </div>
           </div>
         </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Saumon"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Saumon</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Fish</span>
+        
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🥬</div>
+              <div class="texte-categorie">Collation</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍷</div>
+              <div class="texte-categorie">Apéritif</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍴</div>
+              <div class="texte-categorie">Entrée</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍽️</div>
+              <div class="texte-categorie">Plat principal</div>
+            </div>
           </div>
         </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Crêpe"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Crepe</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Breakfast</span>
+        
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🍰</div>
+              <div class="texte-categorie">Dessert</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">📖</div>
+              <div class="texte-categorie">Mes recettes</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">❤️</div>
+              <div class="texte-categorie">Favoris</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🌿</div>
+              <div class="texte-categorie">Végétarien</div>
+            </div>
           </div>
         </div>
-      </article>
-
+        
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🌱</div>
+              <div class="texte-categorie">Végan</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🌾</div>
+              <div class="texte-categorie">Sans gluten</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🥛</div>
+              <div class="texte-categorie">Sans lactose</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🐟</div>
+              <div class="texte-categorie">Pescatarien</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
       
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Salade"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Salade</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Healthy</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Boulettes de viande"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Boulettes de viande</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Meat</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Pate"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Pate</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Noodles</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Crêpes Suzette"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Crepes Suzette</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Sweet</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Riz"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Riz</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Snack</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Tacos"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Tacos</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Oriental</span>
-          </div>
-        </div>
-      </article>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
     </div>
-  </section>
+    
+    
+    
+    
+    
 
-  <section class="featured-section">
-    <h2 class="section-title accent">
-      Essayez cette délicieuse planification de repas
-    </h2>
-    <div class="featured-grid">
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Salade de fruits tropicaux mélangés"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">
-            Salade de fruits tropicaux mélangés avec des superaliments
-          </h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Santé</span>
+    <h2 class="titre-section">Recettes simples et savoureuses</h2>
+    <div class="grille-recettes">
+        <div class="carte">
+            <button class="coeur"><i class="fas fa-heart"></i></button>
+            <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+            <div class="contenu-carte">
+              <h3>Burger</h3>
+              <p class="info-carte">🍽 Snack · 10 min</p>
+            </div>
           </div>
-        </div>
-      </article>
 
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Cheeseburger au boeuf Wagyu"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
         </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">
-            Cheeseburger au boeuf Wagyu, gras et juteux
-          </h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Occidental</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Riz frit japonais"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Riz frit japonais sain aux asperges</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Santé</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Tacos végétariens"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">
-            Tacos végétariens au chou-fleur et aux noix
-          </h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Oriental</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Salade de poulet"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">
-            Salade de poulet arc-en-ciel avec vinaigrette aux amandes
-          </h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Santé</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="recipe-card">
-        <div class="recipe-image-container">
-          <img
-            src="assets/image/burger.png"
-            alt="Sandwichs épicés"
-            class="recipe-image"
-          />
-          <button class="favorite-btn" aria-label="Add to favorites"></button>
-        </div>
-        <div class="recipe-content">
-          <h3 class="recipe-title">Sandwichs épicés au barbecue avec frites</h3>
-          <div class="recipe-meta">
-            <span>30 Minutes</span>
-            <span>Collation</span>
-          </div>
-        </div>
-      </article>
-     
-
+      </div>
       
-    </div>
-  </section>
 
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-left">
-        <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
-        <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
       </div>
-      <div class="footer-right">
-        <a href="a-propos.html">À propos de nous</a>
-        <a href="page_faq.html">FAQ</a>
-        <a href="page_de_soutien.html">Page de soutien</a>
+      
+
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
       </div>
+
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="coeur"><i class="fas fa-heart"></i></button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger</h3>
+          <p class="info-carte">🍽 Snack · 10 min</p>
+        </div>
+      </div>
+      <!-- Répéter d'autres cartes ici -->
+    </div>
+
+    
+  </main>
+
+  <footer class="pied">
+    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+    <div class="liens-pied">
+      <a href="#">À propos</a>
+      <a href="#">FAQ</a>
+      <a href="#">Page de soutien</a>
     </div>
   </footer>
-</div>
 
+  <script>
+  // Remplacer votre fonction slideCarousel par ceci
+document.addEventListener('DOMContentLoaded', () => {
+  // Initialisation du carrousel Bootstrap
+  const carousel = new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap'), {
+    interval: 5000, // temps entre les slides en ms
+    wrap: true
+  });
   
-</body>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.recipe-card');
-
-    cards.forEach(card => {
-     
-      card.addEventListener('click', () => {
-        window.location.href = 'consulter-recette.html';
-      });
-
-      
-      const favBtn = card.querySelector('.favorite-btn');
-      if (favBtn) {
-        favBtn.addEventListener('click', (e) => {
-          e.stopPropagation(); 
-        });
-      }
+  // Pour les cartes de recettes
+  const cards = document.querySelectorAll('.carte');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      window.location.href = 'consulter-recette.html'; 
     });
   });
-
-    document.querySelector(".filter-btn").addEventListener("click", function () {
-      window.location.href = "resultat_recherche.html"; 
-    });
   
-</script>
+  // Pour les boutons coeur
+  document.querySelectorAll('.coeur').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Empêche la propagation au parent (carte)
+      btn.classList.toggle('aime');
+    });
+  });
+});
 
+  </script>
 
+</body>
 </html>
