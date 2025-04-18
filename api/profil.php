@@ -9,7 +9,7 @@ $userConnecte = $data['nom_utilisateur'] ?? null;
 
 // Récupérer les infos du client
 $stmtClient = $pdo->prepare("SELECT nom_utilisateur, nom, prenom, COALESCE(description, 'Aucune Description') AS description FROM Clients WHERE nom_utilisateur = ?");
-$stmtClient->execute([$userConnecte]);
+$stmtClient->execute([$userId]);
 $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
 
 if (!$client) {
@@ -19,7 +19,7 @@ if (!$client) {
 
 // Récupérer les recettes créées par ce client
 $stmtRecettes = $pdo->prepare("SELECT id, nom, description, image FROM Recettes WHERE createur_nom_utilisateur = ?");
-$stmtRecettes->execute([$userConnecte]);
+$stmtRecettes->execute([$userId]);
 $recettes = $stmtRecettes->fetchAll(PDO::FETCH_ASSOC);
 
 // Vérifier et convertir l'image en base64 si elle existe
