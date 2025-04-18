@@ -258,7 +258,7 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
                             $requete->execute([':identifiant' => $identifiant]);
                             break;
                         default:
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r WHERE r.restriction = :restriction");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.recette_id INNER JOIN Restrictions AS res ON r_r.restriction_id = res.id WHERE res.nom = :restriction");
                             $requete->execute([':restriction' => $filtreRestriction]);
                             break;
                     }
@@ -277,7 +277,7 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
                             $requete->execute([':identifiant' => $identifiant, ':typeChoisi' => $filtreType]);
                             break;
                         default:
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r WHERE r.restriction = :restriction AND r.type = :typeChoisi");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.recette_id INNER JOIN Restrictions AS res ON r_r.restriction_id = res.id WHERE res.nom = :restriction AND r.type = :typeChoisi");
                             $requete->execute([':restriction' => $filtreRestriction, ':typeChoisi' => $filtreType]);
                             break;
                     }
