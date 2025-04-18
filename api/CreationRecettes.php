@@ -1,12 +1,11 @@
 <?php
 require_once 'Router.php'; 
 // Inclure la connexion à la base de données
-require_once '../includes/conection.php';  // Assurez-vous que vous avez la connexion PDO ici
 
 $router = new Router();
 
 // Route pour récupérer les ingrédients (GET)
-$router->get('/CreationRecettes.php/ingredients', function () use ($pdo) {
+$router->get('/CreationRecettes.php/ingredients', function (){
     try {
         // Récupérer les ingrédients depuis la base de données
         $stmt = $pdo->query("SELECT * FROM ingredients");
@@ -23,7 +22,7 @@ $router->get('/CreationRecettes.php/ingredients', function () use ($pdo) {
 });
 
 // Route pour créer ou modifier une recette (POST)
-$router->post('/CreationRecettes.php/recettes/creer', function () use ($pdo) {
+$router->post('/CreationRecettes.php/recettes/creer', function (){
     header('Content-Type: application/json');
 
     $packet = file_get_contents("php://input");
@@ -286,6 +285,12 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
 
             //On récupère les résultats de la requête et on les encode en JSON
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultat as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
             echo json_encode(['statut' => 'success', 'listeRecette' => $resultat]);
             exit();
 

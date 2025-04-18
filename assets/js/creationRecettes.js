@@ -105,7 +105,7 @@ effacerRecette.addEventListener("click", async function () {
                 back();
             } else {
                 let response = await fetch(
-                    "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/supprimer/" +
+                    "./api/CreationRecettes.php/recettes/supprimer/" +
                         recetteLocale,
                     {
                         method: "POST",
@@ -243,7 +243,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchRecette(recette) {
         try {
             let response = await fetch(
-                "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/" +
+                "./api/CreationRecettes.php/recettes/" +
                     recette
             );
             let objRecette = await response.json();
@@ -310,7 +310,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchIngredients() {
         try {
             let response = await fetch(
-                "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/ingredients"
+                "./api/CreationRecettes.php/ingredients"
             );
 
             if (!response.ok) {
@@ -383,7 +383,7 @@ effacerRecette.addEventListener("click", async function () {
     
         // Envoie du corps au serveur
         try {
-            const response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationRecettes.php/recettes/creer", {
+            const response = await fetch("./api/CreationRecettes.php/recettes/creer", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(bodyData)

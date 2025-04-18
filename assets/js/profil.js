@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     fetch(
-        `http://localhost/planigo/H2025_TCH099_02_C1/api/profil.php?user=${userId}`
+        `./api/profil.php?user=${userId}`
     )
         .then((response) => response.text())
         .then((text) => {
@@ -50,7 +50,7 @@ function afficheProfil(profilData) {
 
         // Vérifie le statut de suivi au chargement de la page
         fetch(
-            `http://localhost/planigo/H2025_TCH099_02_C1/api/suivreUser.php?suivi_id=${profil.nom_utilisateur}&nom_utilisateur=${idConnecte}`
+            `./api/suivreUser.php?suivi_id=${profil.nom_utilisateur}&nom_utilisateur=${idConnecte}`
         )
             .then((res) => res.json())
             .then((data) => {
@@ -66,7 +66,7 @@ function afficheProfil(profilData) {
         // Lorsqu’on clique pour suivre
         suivreBtn.addEventListener("click", () => {
             fetch(
-                "http://localhost/planigo/H2025_TCH099_02_C1/api/suivreUser.php",
+                "./api/suivreUser.php",
                 {
                     method: "POST",
                     headers: {

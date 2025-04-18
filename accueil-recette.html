@@ -22,7 +22,7 @@
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
-    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+    <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
   <main class="conteneur">
     <div class="zone-recherche conteneur">
@@ -174,7 +174,8 @@
     
 
     <h2 class="titre-section">Recettes simples et savoureuses</h2>
-    <div class="grille-recettes">
+    <div id="message-erreur"></div>
+    <div class="grille-recettes" id="contenant-recettes">
         <div class="carte">
             <button class="coeur"><i class="fas fa-heart"></i></button>
             <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
@@ -182,7 +183,7 @@
               <h3>Burger</h3>
               <p class="info-carte">🍽 Snack · 10 min</p>
             </div>
-          </div>
+        </div>
 
       <div class="carte">
         <button class="coeur"><i class="fas fa-heart"></i></button>
@@ -272,38 +273,7 @@
     </div>
   </footer>
 
-  <script>
-  // Remplacer votre fonction slideCarousel par ceci
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialisation du carrousel Bootstrap
-  const carousel = new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap'), {
-    interval: 5000, // temps entre les slides en ms
-    wrap: true
-  });
   
-  // Pour les cartes de recettes
-  const cards = document.querySelectorAll('.carte');
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      window.location.href = 'consulter-recette.html'; 
-    });
-  });
-  
-  // Pour les boutons coeur
-  document.querySelectorAll('.coeur').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Empêche la propagation au parent (carte)
-      btn.classList.toggle('aime');
-    });
-  });
-});
-new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap2'), {
-    interval: 5000,
-    wrap: true
-  });
-
-
-  </script>
 
 </body>
 </html>
