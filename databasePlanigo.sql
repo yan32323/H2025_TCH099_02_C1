@@ -1,4 +1,4 @@
-CREATE TABLE Clients (
+﻿CREATE TABLE Clients (
     nom_utilisateur VARCHAR(255) NOT NULL PRIMARY KEY,
     mot_de_passe VARCHAR(255) NOT NULL,
     nom VARCHAR(255) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Recettes (
 
 CREATE TABLE Ingredients (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    unite_de_mesure VARCHAR(255) NOT NULL, 
+    unite_de_mesure VARCHAR(255) NOT NULL,
     nom VARCHAR(255) NOT NULL
 );
 
@@ -47,7 +47,6 @@ CREATE TABLE Recettes_Ingredients (
     FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id)
 );
 
-
 CREATE TABLE Recettes_Etapes (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     recette_id INT NOT NULL,
@@ -67,8 +66,8 @@ CREATE TABLE Repas_Planifies (
     plan_id INT NOT NULL,
     recette_id INT NOT NULL,
     PRIMARY KEY (plan_id, recette_id),
-    FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,  
-    FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE  
+    FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,
+    FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Liste_de_courses (
@@ -77,8 +76,8 @@ CREATE TABLE Liste_de_courses (
     ingredient_id INT NOT NULL,
     quantite DECIMAL(10,2) NOT NULL,
     achete TINYINT(1) NOT NULL,
-    FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,   
-    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id) ON DELETE CASCADE   
+    FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Promotions (
@@ -105,15 +104,15 @@ CREATE TABLE Recettes_Sauvegardees (
 );
 
 CREATE TABLE Commentaires (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     recette_id INT NOT NULL,
     nom_utilisateur VARCHAR(255) NOT NULL,
     texte TEXT NOT NULL,
     date_commentaire DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     nb_likes INT DEFAULT 0 NOT NULL,
-    CONSTRAINT fk_commentaire_recette FOREIGN KEY (recette_id) 
+    CONSTRAINT fk_commentaire_recette FOREIGN KEY (recette_id)
         REFERENCES Recettes(id) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT fk_commentaire_utilisateur FOREIGN KEY (nom_utilisateur) 
+    CONSTRAINT fk_commentaire_utilisateur FOREIGN KEY (nom_utilisateur)
         REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -121,8 +120,25 @@ CREATE TABLE Likes_Commentaires (
     commentaire_id INT NOT NULL,
     nom_utilisateur VARCHAR(255) NOT NULL,
     PRIMARY KEY (commentaire_id, nom_utilisateur),
-    FOREIGN KEY (commentaire_id) REFERENCES Commentaires(id) ON DELETE CASCADE ON UPDATE CASCADE,  
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE  
+    FOREIGN KEY (commentaire_id) REFERENCES Commentaires(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Recettes_Notes (
+    nom_utilisateur VARCHAR(255) NOT NULL,
+    recette_id INT NOT NULL,
+    note INT DEFAULT 5 NOT NULL,
+    PRIMARY KEY (nom_utilisateur, recette_id),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (recette_id) REFERENCES Recettes (id)
+);
+
+CREATE TABLE Utilisateurs_suivi (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom_utilisateur VARCHAR(255) NOT NULL,
+    user_suivi_id VARCHAR(255),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (user_suivi_id) REFERENCES Clients (nom_utilisateur)
 );
 
 -- Insertion des données dans les tables
@@ -141,37 +157,37 @@ VALUES
 
 INSERT INTO Ingredients (unite_de_mesure, nom)
 VALUES
-    ('g', 'Poulet'), 
-    ('g', 'Laitue Romaine'), 
-    ('ml', 'Sauce César'), 
-    ('g', 'Fromage Parmesan'), 
+    ('g', 'Poulet'),
+    ('g', 'Laitue Romaine'),
+    ('ml', 'Sauce César'),
+    ('g', 'Fromage Parmesan'),
     ('g', 'Croutons'),
-    ('g', 'Pâtes'), 
-    ('ml', 'Sauce tomate'), 
-    ('g', 'Viande hachée'), 
-    ('g', 'Oignon'), 
-    ('g', 'Ail'), 
-    ('g', 'Pain'), 
-    ('g', 'Beurre'), 
-    ('g', 'Fromage Gruyère'), 
+    ('g', 'Pâtes'),
+    ('ml', 'Sauce tomate'),
+    ('g', 'Viande hachée'),
+    ('g', 'Oignon'),
+    ('g', 'Ail'),
+    ('g', 'Pain'),
+    ('g', 'Beurre'),
+    ('g', 'Fromage Gruyère'),
     ('ml', 'Bouillon de boeuf');
 
 INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite)
 VALUES
-    (1, 1, 200), 
-    (1, 2, 150), 
-    (1, 3, 100), 
-    (1, 4, 50), 
-    (1, 5, 75), 
-    (2, 6, 250), 
-    (2, 7, 300), 
-    (2, 8, 400), 
-    (2, 9, 150), 
-    (2, 10, 25), 
-    (3, 9, 500), 
-    (3, 11, 200), 
-    (3, 12, 50), 
-    (3, 13, 100), 
+    (1, 1, 200),
+    (1, 2, 150),
+    (1, 3, 100),
+    (1, 4, 50),
+    (1, 5, 75),
+    (2, 6, 250),
+    (2, 7, 300),
+    (2, 8, 400),
+    (2, 9, 150),
+    (2, 10, 25),
+    (3, 9, 500),
+    (3, 11, 200),
+    (3, 12, 50),
+    (3, 13, 100),
     (3, 14, 750);
 
 INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte)
@@ -253,7 +269,7 @@ VALUES
     (3, 'john_doe');
 
 INSERT INTO Restrictions (nom)
-VALUES 
+VALUES
     ('Aucune'),
     ('Végétarien'),
     ('Végan'),

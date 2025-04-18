@@ -10,13 +10,13 @@
 <body class="fond texte-couleur">
 
   <header class="barre-haut">
-    <div class="logo">Planigo</div>
+    <h1 class="logo">Planigo</h1>
     <nav class="liens-nav">
-      <a href="#">Mes recettes</a>
-      <a href="#">Planificateur</a>
+      <a href="recettes.html">Mes recettes</a>
+      <a href="plan.html">Planificateur</a>
       <a href="#">Liste d'épicerie</a>
-      <a href="#">Stock</a>
-      <a href="#">Profil</a>
+      <a href="stockage.html">Stock</a>
+      <a href="page-profil.html">Profil</a>
     </nav>
     <a href="#" class="lien-deconnexion">Se déconnecter</a>
   </header>
@@ -99,7 +99,7 @@
       </div>
     </div>
 
-    <button class="btn-charger">Charger plus</button>
+    <button class="btn-charger">Creer un plan</button>
   </main>
 
   <footer class="pied">
@@ -111,4 +111,9 @@
     </div>
   </footer>
 </body>
+<script>
+    document.querySelector(".btn-charger").addEventListener("click", function () {
+      window.location.href = "creationPlan.html";
+    });
+</script>
 </html>

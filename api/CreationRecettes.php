@@ -1,65 +1,62 @@
 <?php
-session_start();
+require_once 'Router.php'; 
+// Inclure la connexion à la base de données
+require_once '../includes/conection.php';  // Assurez-vous que vous avez la connexion PDO ici
 
-// Inclure le routeur
-require_once 'Router.php';
-
-// Instancier le routeur
 $router = new Router();
 
-// Route pour la création ou modification de recettes
-$router->post('/CreationRecettes.php/recettes/creer', function () {
+// Route pour récupérer les ingrédients (GET)
+$router->get('/CreationRecettes.php/ingredients', function () use ($pdo) {
+    try {
+        // Récupérer les ingrédients depuis la base de données
+        $stmt = $pdo->query("SELECT * FROM ingredients");
+        $ingredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Retourner les ingrédients en format JSON
+        header('Content-Type: application/json');
+        echo json_encode($ingredients);
+    } catch (PDOException $e) {
+        // Si une erreur se produit, renvoyer une erreur JSON
+        header('Content-Type: application/json');
+        echo json_encode(["error" => "Erreur lors de la récupération des ingrédients", "details" => $e->getMessage()]);
+    }
+});
+
+// Route pour créer ou modifier une recette (POST)
+$router->post('/CreationRecettes.php/recettes/creer', function () use ($pdo) {
     header('Content-Type: application/json');
-    
+
     $packet = file_get_contents("php://input");
     $infos = json_decode($packet, true);
 
-    $config = require '../includes/config.php';
-
-    // Vérifier que toutes les données nécessaires sont présentes
+    // Vérifier la présence des données nécessaires
     if (
         isset($infos["edit"]) && isset($infos["titre"]) && isset($infos["description"]) &&
-        isset($infos["ingredients"]) && isset($infos["etapes"]) && isset($infos["difficulte"])
+        isset($infos["ingredients"]) && isset($infos["etapes"]) &&
+        isset($infos["identifiant"]) && isset($infos["difficulte"])
     ) {
         
+        // Traitement de l'image
         if (empty($infos["image"])) {
-            
             $defaultImagePath = '../assets/image/recetteDefaut.png';
             $imageFinale = base64_encode(file_get_contents($defaultImagePath));
         } else {
             $image = $infos["image"];
-
-            // Supprimer le préfixe s'il est présent
             if (strpos($image, 'base64,') !== false) {
                 $image = explode('base64,', $image)[1];
             }
-
-            // Vérification de la validité de l'image
             if (base64_decode($image, true) === false) {
-                // Si l'image est invalide, utiliser l'image par défaut
                 $defaultImagePath = '../assets/image/recetteDefaut.png';
                 $imageFinale = base64_encode(file_get_contents($defaultImagePath));
             } else {
                 $imageFinale = $image;
             }
         }
-
+        
         $infos["image"] = $imageFinale;
 
-
         try {
-            // Connexion à la base de données
-            $pdo = new PDO(
-                "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8",
-                $config['username'],
-                $config['password'],
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                ]
-            );
-
-            // Si on modifie une recette existante
+            // Si vous modifiez une recette
             if ($infos["edit"] === "true") {
                 $requete = $pdo->prepare("UPDATE Recettes SET titre=:titre, description=:description, ingredients=:ingredients, image=:image, difficulte=:difficulte WHERE id=:id");
                 $requete->execute([
@@ -72,7 +69,7 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
                 ]);
                 echo json_encode(["success" => true, "message" => "Recette modifiée"]);
             } else {
-                // Si on ajoute une nouvelle recette
+                // Si vous ajoutez une nouvelle recette
                 $requete = $pdo->prepare("INSERT INTO Recettes (nom, description, image, createur_nom_utilisateur, temps_de_cuisson) 
                                           VALUES (:nom, :description, :image, :username, :temps_de_cuisson)");
                 $requete->execute([
@@ -80,16 +77,14 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
                     'description' => $infos["description"],
                     'temps_de_cuisson' => $infos["temps"],
                     'image' => base64_decode($infos["image"]),
-                    'username' => $_SESSION['user_id']
+                    'username' => $infos['identifiant']
                 ]);
-
-                // Récupérer l'ID de la nouvelle recette insérée
+                // Récupérer l'ID de la recette ajoutée
                 $recette_id = $pdo->lastInsertId();
 
                 // Insérer les ingrédients dans la table Recettes_Ingredients
                 if (!empty($infos["ingredients"])) {
                     $stmtIngredient = $pdo->prepare("INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite, unite_de_mesure) VALUES (?, ?, ?, ?)");
-
                     foreach ($infos["ingredients"] as $ingredient) {
                         $stmtIngredient->execute([
                             $recette_id,
@@ -99,7 +94,6 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
                         ]);
                     }
                 }
-
 
                 // Insérer les étapes dans la table Recettes_Etapes
                 if (!empty($infos["etapes"])) {

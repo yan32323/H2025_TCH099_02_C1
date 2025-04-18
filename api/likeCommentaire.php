@@ -1,11 +1,12 @@
 <?php
-session_start();
 require_once '../includes/conection.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Récupérer les données envoyées dans la requête POST
     $id_commentaire = $_POST["id_commentaire"] ?? null;
-    $nom_utilisateur = $_SESSION['user_id'] ?? null;
+    $nom_utilisateur = $_POST["user_id"] ?? null;  // Récupérer user_id depuis la requête POST
 
+    // Vérifier que les paramètres nécessaires sont présents
     if (!$id_commentaire || !$nom_utilisateur) {
         echo json_encode(["success" => false, "message" => "Paramètres manquants."]);
         exit;
@@ -37,4 +38,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo json_encode(["success" => false, "message" => "Requête invalide."]);
 }
 ?>
-
