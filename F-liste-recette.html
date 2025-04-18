@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planigo - Mes Recettes</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles/style-liste.css" />
+</head>
+<body class="fond texte-couleur">
+
+  <header class="barre-haut">
+    <h1 class="logo">Planigo</h1>
+    <nav class="liens-nav">
+      <a href="recettes.html">Mes recettes</a>
+      <a href="plan.html">Planificateur</a>
+      <a href="#">Liste d'épicerie</a>
+      <a href="stockage.html">Stock</a>
+      <a href="page-profil.html">Profil</a>
+    </nav>
+    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+  </header>
+
+  <main class="conteneur text-center">
+    <h2 class="titre-section">Liste de recettes</h2>
+    <p class="mb-12 max-w-3xl mx-auto text-gray-600">
+      Une Liste de Recettes, c’est votre playlist culinaire personnelle. Rassemblez vos plats préférés, organisez-les par thème ou par occasion, et retrouvez-les facilement quand vous avez besoin d’inspiration. Votre prochain repas est à portée de clic !
+    </p>
+
+    <section class="mb-12">
+      <h3 class="titre-section text-left">Végétarien</h3>
+      <img src="assets/image/semaine-gourmande.jpg" alt="Végétarien" class="image-categorie" />
+    </section>
+
+    <section class="mb-12">
+      <h3 class="titre-section text-left">Repas rapides</h3>
+      <img src="assets/image/semaine-gourmande.jpg" alt="Repas rapides" class="image-categorie" />
+    </section>
+
+    <section class="mb-12">
+      <h3 class="titre-section text-left">Soupes et salades</h3>
+      <img src="assets/image/semaine-gourmande.jpg" alt="Soupes et salades" class="image-categorie" />
+    </section>
+
+    <section class="mb-12">
+      <h3 class="titre-section text-left">Saveurs du monde</h3>
+      <img src="assets/image/semaine-gourmande.jpg" alt="Saveurs du monde" class="image-categorie" />
+    </section>
+
+    <button class="btn-creer">Créer une recette</button>
+  </main>
+
+  <footer class="pied">
+    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+    <div class="liens-pied">
+      <a href="#">À propos</a>
+      <a href="#">FAQ</a>
+      <a href="#">Page de soutien</a>
+    </div>
+  </footer>
+
+</body>
+<script>
+  const sections = document.querySelectorAll('.mb-12');
+  const liens = [
+    'affichage-recette-liste.html', // Lien pour Végétarien
+    'affichage-recette-liste.html', // Lien pour Repas rapides
+    'affichage-recette-liste.html', // Lien pour Soupes et salades
+    'affichage-recette-liste.html'  // Lien pour Saveurs du monde
+  ];
+
+  sections.forEach((section, index) => {
+    section.style.cursor = 'pointer';
+    section.addEventListener('click', () => {
+      window.location.href = liens[index];
+    });
+  });
+
+  const boutonCreer = document.querySelector('.btn-creer');
+  boutonCreer.addEventListener('click', () => {
+    window.location.href = 'creation-recette.html';
+  });
+</script>
+
+</html>

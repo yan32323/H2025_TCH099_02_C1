@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/styleS/style-modifier-profil.css" />
+</head>
+<body>
+  <header class="barre-haut">
+    <h1 class="logo">Planigo</h1>
+    <nav class="liens-nav">
+      <a href="recettes.html">Mes recettes</a>
+      <a href="plan.html">Planificateur</a>
+      <a href="#">Liste d'épicerie</a>
+      <a href="stockage.html">Stock</a>
+      <a href="page-profil.html">Profil</a>
+    </nav>
+    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+  </header>
+
+  <main class="content-container">
+    <h1>Paramètres</h1>
+
+    <div class="section1">
+      <h4>Votre Profil</h4>
+      <p>Veuillez mettre à jour les paramètres de votre profil ici</p>
+    </div>
+
+    <div class="section">
+      <h4>Nom d'utilisateur</h4>
+      <input type="text" placeholder="Nom" />
+    </div>
+    <div class="section">
+      <h4>Numéro de téléphone</h4>
+      <input type="text" placeholder="Numéro de téléphone" />
+    </div>
+    <div class="section">
+      <h4>Photo de profil</h4>
+      <div class="profile-pic-container">
+        <img src="assets/image/blank-pfp.png" alt="Photo de profil" class="profile-pic" />
+        <div class="button-actions">
+          <button class="upload-btn">Modifier</button>
+          <button class="delete-btn">Supprimer</button>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h4>Biographie</h4>
+      <textarea placeholder="Écrivez votre biographie ici"></textarea>
+    </div>
+    <div class="section">
+      <h4>Changer le mot de passe</h4>
+      <p>Veuillez entrer votre mot de passe actuel</p>
+      <input type="password" placeholder="Mot de passe actuel" />
+      <p>Veuillez entrer votre nouveau mot de passe</p>
+      <input type="password" placeholder="Nouveau mot de passe" />
+      <p>Veuillez confirmer votre nouveau mot de passe</p>
+      <input type="password" placeholder="Confirmer le mot de passe" />
+    </div>
+
+
+    <div class="section1">
+      <div class="button-group">
+        <button class="delete-account-btn">Annuler</button>
+        <button class="save-btn">Enregistrer les modifications</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
+        <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
+      </div>
+      <div class="footer-right">
+        <a href="a-propos.html">À propos de nous</a>
+        <a href="page_faq.html">FAQ</a>
+        <a href="page_de_soutien.html">Page de soutien</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

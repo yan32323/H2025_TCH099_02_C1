@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Profil - Planigo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles/style-profil.css" />
+  <script src="assets/js/profil.js"></script>
+</head>
+<body>
+
+  <header class="barre-haut">
+    <h1 class="logo">Planigo</h1>
+    <nav class="liens-nav">
+      <a href="recettes.html">Mes recettes</a>
+      <a href="plan.html">Planificateur</a>
+      <a href="#">Liste d'épicerie</a>
+      <a href="stockage.html">Stock</a>
+      <a href="page-profil.html">Profil</a>
+    </nav>
+    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+  </header>
+
+  <main class="content-container">
+    <section class="profile-section">
+      <h1 id="titre-profil" class="profile-title">Mon profil</h1>
+      <div class="profile-header">
+        <div class="profile-header-left">
+          <img src="assets/image/blank-pfp.png" alt="Avatar" class="avatar-image" />
+          <div class="profile-name">John Doe</div>
+          <p class="profile-bio">Bonjour le monde, je suis John Doe, votre influenceur.</p>
+          <div class="profile-stats">
+            <div class="profile-stat">
+              <div class="stat-number">58</div>
+              <div class="stat-label">Recettes</div>
+            </div>
+            <div class="profile-stat">
+              <div class="stat-number">14k</div>
+              <div class="stat-label">Abonnés</div>
+            </div>
+            <div class="profile-stat">
+              <div class="stat-number">120</div>
+              <div class="stat-label">Abonnements</div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-right">
+          <button id="modifier-profil-btn"class="modify-profile-btn">Modifier le profil</button>
+          <button id="suivre-profil-btn" class="modify-profile-btn" style="display: none;">Suivre</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="my-recipes-section">
+      <h2 class="section-title">Mes recettes</h2>
+      <div class="recipe-grid">
+        <div class="recipe-card">
+          <img src="assets/image/image_tmp_recette.png" alt="Salade tropicale">
+          <div class="recipe-content">
+            <div class="recipe-title">Salade tropicale</div>
+            <div class="recipe-info">
+              <span>30 Minutes</span>
+              <span>Santé</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="assets/image/recette1.png" alt="Poulet au citron">
+          <div class="recipe-content">
+            <div class="recipe-title">Poulet au citron</div>
+            <div class="recipe-info">
+              <span>25 Minutes</span>
+              <span>Rapide</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="assets/image/recette2.png" alt="Tacos végé">
+          <div class="recipe-content">
+            <div class="recipe-title">Tacos végé</div>
+            <div class="recipe-info">
+              <span>20 Minutes</span>
+              <span>Mexicain</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="assets/image/recette6.png" alt="Soupe asiatique">
+          <div class="recipe-content">
+            <div class="recipe-title">Soupe asiatique</div>
+            <div class="recipe-info">
+              <span>15 Minutes</span>
+              <span>Asiatique</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="recipe-grid">
+        <div class="recipe-card">
+          <img src="assets/image/recette3.png" alt="Salade tropicale">
+          <div class="recipe-content">
+            <div class="recipe-title">Salade tropicale</div>
+            <div class="recipe-info">
+              <span>30 Minutes</span>
+              <span>Santé</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="assets/image/recette4.png" alt="Poulet au citron">
+          <div class="recipe-content">
+            <div class="recipe-title">Poulet au citron</div>
+            <div class="recipe-info">
+              <span>25 Minutes</span>
+              <span>Rapide</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="assets/image/recette5.png" alt="Tacos végé">
+          <div class="recipe-content">
+            <div class="recipe-title">Tacos végé</div>
+            <div class="recipe-info">
+              <span>20 Minutes</span>
+              <span>Mexicain</span>
+            </div>
+          </div>
+        </div>
+        <div class="recipe-card">
+          <img src="assets/image/semaine-gourmande.jpg" alt="Soupe asiatique">
+          <div class="recipe-content">
+            <div class="recipe-title">Soupe asiatique</div>
+            <div class="recipe-info">
+              <span>15 Minutes</span>
+              <span>Asiatique</span>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="weekly-plan-section">
+      <h2 class="section-title">Plan de la semaine</h2>
+      <div class="grille-semaines">
+        <div class="ligne-semaines">
+          <!-- Génération dynamique pour 7 jours -->
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Lundi</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Gruau"><h3>Gruau</h3><p>⏱ 10 Minutes</p><p>🍴 Déjeuner</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Salade de quinoa"><h3>Salade de quinoa</h3><p>⏱ 15 Minutes</p><p>🍴 Santé</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Poulet rôti"><h3>Poulet rôti</h3><p>⏱ 35 Minutes</p><p>🍴 Dîner</p></div>
+            </div>
+          </div>
+  
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Mardi</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Omelette"><h3>Omelette</h3><p>⏱ 8 Minutes</p><p>🍴 Déjeuner</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Wrap veggie"><h3>Wrap veggie</h3><p>⏱ 20 Minutes</p><p>🍴 Lunch</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Poisson grillé"><h3>Poisson grillé</h3><p>⏱ 30 Minutes</p><p>🍴 Dîner</p></div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="ligne-semaines">
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Mercredi</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Porridge banane"><h3>Porridge banane</h3><p>⏱ 10 Minutes</p><p>🍴 Déjeuner</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Soupe miso"><h3>Soupe miso</h3><p>⏱ 15 Minutes</p><p>🍴 Asiatique</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Curry vert"><h3>Curry vert</h3><p>⏱ 25 Minutes</p><p>🍴 Végétarien</p></div>
+            </div>
+          </div>
+  
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Jeudi</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Smoothie bowl"><h3>Smoothie bowl</h3><p>⏱ 7 Minutes</p><p>🍴 Déjeuner</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Pâtes tomates"><h3>Pâtes tomates</h3><p>⏱ 20 Minutes</p><p>🍴 Italien</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Pizza maison"><h3>Pizza maison</h3><p>⏱ 40 Minutes</p><p>🍴 Gourmand</p></div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="ligne-semaines">
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Vendredi</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Pancakes"><h3>Pancakes</h3><p>⏱ 12 Minutes</p><p>🍴 Brunch</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Buddha bowl"><h3>Buddha bowl</h3><p>⏱ 25 Minutes</p><p>🍴 Vegan</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Tacos de poisson"><h3>Tacos de poisson</h3><p>⏱ 30 Minutes</p><p>🍴 Mexicain</p></div>
+            </div>
+          </div>
+  
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Samedi</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Croissant maison"><h3>Croissant maison</h3><p>⏱ 60 Minutes</p><p>🍴 Brunch</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Salade grecque"><h3>Salade grecque</h3><p>⏱ 15 Minutes</p><p>🍴 Méditerranéen</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Lasagnes"><h3>Lasagnes</h3><p>⏱ 45 Minutes</p><p>🍴 Four</p></div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="ligne-semaines">
+          <div class="bloc-semaine">
+            <div class="etiquette-semaine">Dimanche</div>
+            <div class="cartes">
+              <div class="carte"><img src="assets/image/recette1.png" alt="Tartines avocat"><h3>Tartines avocat</h3><p>⏱ 5 Minutes</p><p>🍴 Petit-déj</p></div>
+              <div class="carte"><img src="assets/image/recette2.png" alt="Riz sauté"><h3>Riz sauté</h3><p>⏱ 20 Minutes</p><p>🍴 Rapide</p></div>
+              <div class="carte"><img src="assets/image/recette3.png" alt="Boeuf bourguignon"><h3>Boeuf bourguignon</h3><p>⏱ 90 Minutes</p><p>🍴 Tradition</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
+        <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
+      </div>
+      <div class="footer-right">
+        <a href="#">À propos de nous</a>
+        <a href="#">FAQ</a>
+        <a href="#">Page de soutien</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelector(".modify-profile-btn").addEventListener("click", function () {
+      window.location.href = "page-modifier-profil.html";
+    });
+  </script>
+
+</body>
+</html>

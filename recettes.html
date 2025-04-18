@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liste des Recettes - Planigo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <link rel="stylesheet" href="assets/styles/style-affichage-recettes.css">
+</head>
+<body>
+
+  <header class="barre-haut">
+    <h1 class="logo">Planigo</h1>
+    <nav class="liens-nav">
+      <a href="recettes.html">Mes recettes</a>
+      <a href="plan.html">Planificateur</a>
+      <a href="#">Liste d'épicerie</a>
+      <a href="stockage.html">Stock</a>
+      <a href="page-profil.html">Profil</a>
+    </nav>
+    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+  </header>
+
+  <main class="conteneur">
+    <h1 class="titre-section">Mes Recettes</h1>
+
+    
+    <!-- Ajout du carousel pour les catégories -->
+    <div id="carouselCategoriesBootstrap" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🍳</div>
+              <div class="texte-categorie">Voir tout</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🥓</div>
+              <div class="texte-categorie">Déjeuner</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🥗</div>
+              <div class="texte-categorie">Dîner</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍲</div>
+              <div class="texte-categorie">Souper</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🍏</div>
+              <div class="texte-categorie">Collation</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍷</div>
+              <div class="texte-categorie">Apéritif</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🥣</div>
+              <div class="texte-categorie">Entrée</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍽️</div>
+              <div class="texte-categorie">Plat principal</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center flex-wrap">
+            <div class="categorie">
+              <div class="emoji">🍰</div>
+              <div class="texte-categorie">Dessert</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">⏱️</div>
+              <div class="texte-categorie">Rapide</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">❤️</div>
+              <div class="texte-categorie">Favoris</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🌿</div>
+              <div class="texte-categorie">Végétarien</div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+    
+    <div class="grille-recettes">
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Burger maison</h3>
+          <p class="info-carte">🍽 Souper · 25 min</p>
+        </div>
+      </div>
+      
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/image_tmp_recette.png" alt="Salade" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Salade César</h3>
+          <p class="info-carte">🥗 Dîner · 15 min</p>
+        </div>
+      </div>
+      
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Pâtes" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Pâtes carbonara</h3>
+          <p class="info-carte">🍝 Souper · 20 min</p>
+        </div>
+      </div>
+      
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Omelette" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Omelette aux légumes</h3>
+          <p class="info-carte">🍳 Déjeuner · 10 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Soupe" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Soupe de légumes</h3>
+          <p class="info-carte">🥣 Dîner · 35 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Poulet rôti" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Poulet rôti aux herbes</h3>
+          <p class="info-carte">🍗 Souper · 45 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Pancakes" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Pancakes aux fruits rouges</h3>
+          <p class="info-carte">🥞 Déjeuner · 15 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Smoothie" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Smoothie énergétique</h3>
+          <p class="info-carte">🍹 Collation · 5 min</p>
+        </div>
+      </div>
+
+      <div class="carte">
+        <button class="btn-like" aria-label="Aimer">
+          <svg viewBox="0 0 24 24" class="coeur-svg">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
+                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
+                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </button>
+        <img src="assets/image/semaine-gourmande.jpg" alt="Tarte" class="image-carte" />
+        <div class="contenu-carte">
+          <h3>Tarte aux pommes</h3>
+          <p class="info-carte">🍰 Dessert · 50 min</p>
+        </div>
+      </div>
+      <button class="btn-charger">Creer une recette</button>
+    </div>
+  </main>
+
+  <footer class="pied">
+    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+    <div class="liens-pied">
+      <a href="#">À propos</a>
+      <a href="#">FAQ</a>
+      <a href="#">Page de soutien</a>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialisation du carrousel Bootstrap
+      const carousel = new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap'), {
+        interval: 5000, // temps entre les slides en ms
+        wrap: true
+      });
+      
+      // Pour les cartes de recettes
+      const cards = document.querySelectorAll('.carte');
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          // Ne pas déclencher si on clique sur le bouton like
+          if (!e.target.closest('.btn-like')) {
+            window.location.href = 'consulter-recette.html';
+          }
+        });
+      });
+    })
+    document.querySelector(".btn-charger").addEventListener("click", function () {
+      window.location.href = "creationRecettes.html";
+    });
+      </script>

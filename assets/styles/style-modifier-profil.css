@@ -1,0 +1,264 @@
+/* ====== Import des polices ====== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
+
+:root {
+  --teal: #14817A;
+  --vert: #004B46;
+  --accent: #57be9c;
+  --gris-clair: #F8FAFC;
+  --gris-texte: #4B5563;
+  --fond-carte: #FFFFFF;
+  --fond-bloc: #E6F4F1;
+  --ombre: rgba(0, 0, 0, 0.05);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Saira', 'Inter', sans-serif;
+  background-color: #f8f8f8;
+  color: #1f2937;
+  line-height: 1.6;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+header {
+  background-color: white;
+  box-shadow: 0 4px 10px var(--ombre);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.hautdepage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-wrapper ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-wrapper a,
+.logout-link a {
+  text-decoration: none;
+  color: var(--teal);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-wrapper a:hover,
+.logout-link a:hover {
+  color: var(--accent);
+  animation: pulse 0.4s ease-in-out;
+}
+
+.logout-link a:hover {
+  color: #f04f4c;
+}
+
+.content-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: var(--vert);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section1 h4,
+.section h4 {
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.section1 p,
+.section p {
+  color: var(--gris-texte);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.section,
+.section1 {
+  margin-bottom: 2rem;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--teal);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.profile-pic-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.upload-btn,
+.delete-btn,
+.delete-account-btn,
+.save-btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.upload-btn:hover,
+.delete-btn:hover,
+.delete-account-btn:hover,
+.save-btn:hover {
+  transform: translateY(-2px);
+}
+
+.upload-btn {
+  background-color: var(--accent);
+  color: white;
+}
+
+.delete-btn {
+  background-color: #d86563;
+  color: white;
+}
+
+.delete-account-btn {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.save-btn {
+  background-color: var(--teal);
+  color: white;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+label input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.footer {
+  background-color: white;
+  padding: 2rem;
+  border-top: 1px solid #e0e0e0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  max-width: 80px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-right a {
+  color: var(--teal);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-right a:hover {
+  color: var(--accent);
+  animation: pulse 0.4s ease-in-out;
+}

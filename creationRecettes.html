@@ -4,39 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planigo - Recipes</title>
-    <link rel="stylesheet" href="assets/styles/styles-creation-recettes.css" />
+    <link rel="stylesheet" href="assets/styles/style-creations-recettes.css" />
     <script src="assets/js/creationRecettes.js"></script>
   </head>
   <body>
-    <div class="container">
-      <header>
-        <div class="hautdepage">
-          <div class="logo">
-            <a href="accueil-recette.html"> <img src="assets/image/logo.png" alt="Planigo Logo"></a>
-          </div>
-          <div class="nav-wrapper">
-            <nav>
-              <ul>
-                <li><a href="liste_recette_hebdo.html">Mes recettes</a></li>
-                <li><a href="liste_plan_hebdo.html">Plannificateur</a></li>
-                <li><a href="#">Liste d'épicerie</a></li>
-                <li><a href="stockage.html">Stock</a></li>
-                <li><a href="page_profil.html">Profil</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="logout-link">
-            <a href="index.html" class="nav-item" id="logoutButton"
-            >Se déconnecter</a>
-          </div>
-        </div>
-      </header>
-
+    <header class="barre-haut">
+      <h1 class="logo">Planigo</h1>
+      <nav class="liens-nav">
+        <a href="recettes.html">Mes recettes</a>
+        <a href="plan.html">Planificateur</a>
+        <a href="#">Liste d'épicerie</a>
+        <a href="stockage.html">Stock</a>
+        <a href="page-profil.html">Profil</a>
+      </nav>
+      <a href="#" class="lien-deconnexion">Se déconnecter</a>
+    </header>
+      
       <!-- Mobile Header Section -->
-      <header class="header-mobile">
+      <!-- <header class="header-mobile">
         <h2 class="logo">Planigo</h2>
         <div class="menu-icon">
-          <!-- Placeholder for menu icon -->
+           Placeholder for menu icon
           <img
             src="https://placehold.co/24x24/000000/000000"
             alt="Menu"
@@ -63,20 +51,13 @@
               class="social-icon"
           /></a>
         </div>
-      </header>
+      </header> -->
 
 
 
-      <div class="content-container">    
+      <div class="content-container animate-fade-in-up">
+       
       <main id="contenu-principal">
-
-        <button class = "delete-recipe-button"
-        id="btn-suppression-recette"
-        type="submit"
-        class="send-button"
-      >
-        SUPPRIMER LA RECETTE
-      </button>
       <div class = "titre">
         <h1>Création d'une recette</h1>
         <h2>Détails sur la recette :</h2>
@@ -103,77 +84,89 @@
                   required
                 ></textarea>
               </div>
+
+              <div class="range-group">
+                <div class="form-group time-group">
+                  <p>Temps que prends la recette environ : </p>
+                  <div class="time-slider-container">
+                    <input id="estimation-temps" class="slider" type="range" min="1" max="181" value="30" >
+                    <span id="temps-estime">30 minutes</span>
+                  </div>
+                </div>
+    
+                <div class="form-group time-group">
+                  <p>Nombre de portions que produit la recette : </p>
+                  <div class="time-slider-container">
+                    <input id="estimation-portions" class="slider" type="range" min="1" max="17" value="2" >
+                    <span id="portions-estime">2 portions</span>
+                  </div>
+                </div>
+                </div>
             </div>
 
             <div class="right-column">
               <div id="zone-images" class="form-group file-upload-group">
-                <label for="prochaine-image">Glissez-déposez vos photos ici ou cliquez pour chercher <span class="required">*</span></label>
-                <div class= "file-upload-box" id="nouvelles-images-recette">
-                  <p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+                <label for="prochaine-image">Ajouter une image <span class="required">*</span></label>
+                <div class="file-upload-box" id="nouvelles-images-recette">
+                  <p class="texte-drop">Glissez-déposez vos photos ici ou cliquez pour chercher</p>
+                  <label for="prochaine-image" class="custom-file-upload">Chercher une photo</label>
                   <input
                     type="file"
                     class="image-recette"
                     id="prochaine-image"
                     name="image"
                     accept="image/png, image/jpeg, image/jpg"
-                    multiple="multiple"
                   />
+                  <div id="aperçu-image" class="aperçu-image">
+                    <button id="supprimer-image" style="display: none;">Supprimer l’image</button>
+                  </div>
                 </div>
+                
               </div>
-            </div>
-          </div>
 
-          <div class="detail">
-            <div class="form-group time-group">
-              <p>Temps que prends la recette environ : </p>
-              <div class="time-slider-container">
-                <input id="estimation-temps" class="slider" type="range" min="1" max="181" value="30" >
-                <span id="temps-estime">30 minutes</span>
-              </div>
-            </div>
-
-            <div class="form-group time-group">
-              <p>Nombre de portions que produit la recette : </p>
-              <div class="time-slider-container">
-                <input id="estimation-portions" class="slider" type="range" min="1" max="17" value="2" >
-                <span id="portions-estime">2 portions</span>
-              </div>
-            </div>
-
+              
             <div class="form-group difficulty-group">
               <label for="difficulte">Veuillez selectionner la difficulte de la recette : <span class="required">*</span></label>
               <fieldset id="difficulte" class="difficulty-fieldset">
                 <div class="difficulty-options">
-                  <input
+                    
+                  <label for="facile">
+                    <input
                     type="radio"
                     id="facile"
                     name="difficulte"
                     value="1"
                     required
-                  />
-                  <label for="facile">Facile</label>
+                  />Facile</label>
     
-                  <input
+                  
+                  <label for="moyen">
+                    <input
                     type="radio"
                     id="moyen"
                     name="difficulte"
                     value="2"
                     required
-                  />
-                  <label for="moyen">Moyen</label>
+                  />Moyen</label>
     
-                  <input
+                  
+                  <label for="difficile">
+                    <input
                     type="radio"
                     id="difficile"
                     name="difficulte"
                     value="3"
                     required
-                  />
-                  <label for="difficile">Difficile</label>
+                  />Difficile</label>
                 </div>
               </fieldset>
             </div>
+          
+            </div>
           </div>
+
+        
+
             
           <div class="ingredients-section">
             <h2>INGRÉDIENTS</h2>
@@ -224,16 +217,39 @@
               Ajouter l'etape
             </button>
           </div>
-
+          <div class="section animate-fade-in-up">
+            <label>Catégories</label>
+            <div class="categories">
+              <label><input type="checkbox"> Breakfast</label>
+              <label><input type="checkbox"> Lunch</label>
+              <label><input type="checkbox"> Dinner</label>
+              <label><input type="checkbox"> Appetizer</label>
+              <label><input type="checkbox"> Dessert</label>
+              <label><input type="checkbox"> Vegetarian</label>
+              <label><input type="checkbox"> Vegan</label>
+              <label><input type="checkbox"> Gluten-Free</label>
+              <label><input type="checkbox"> Low-Carb</label>
+              <label><input type="checkbox"> Quick & Easy</label>
+            </div>
+          </div>
           <div class="form-group save-button-group">
+              <button class = "delete-recipe-button"
+        id="btn-suppression-recette"
+        type="submit"
+        class="send-button"
+      >
+        SUPPRIMER LA RECETTE
+      </button>
             <button id="btn-envoi-recette" type="submit" class="send-button save-recipe-button">
               J'ai termine
             </button>
           </div>
         </form>
-
+      </div>
       </main>
     </div>
+
+    
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-left">
