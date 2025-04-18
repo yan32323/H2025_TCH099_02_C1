@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/profil.php", {
+    fetch("./api/profil.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function afficheProfil(profilData) {
 
         // Vérifie si l'utilisateur est déjà suivi
         fetch(
-            "http://localhost/planigo/H2025_TCH099_02_C1/api/suivreUser.php",
+            "./api/suivreUser.php",
             {
                 method: "POST",
                 headers: {
@@ -84,7 +84,7 @@ function afficheProfil(profilData) {
         // Suivre un utilisateur
         suivreBtn.addEventListener("click", () => {
             fetch(
-                "http://localhost/planigo/H2025_TCH099_02_C1/api/suivreUser.php",
+                "./api/suivreUser.php",
                 {
                     method: "POST",
                     headers: {

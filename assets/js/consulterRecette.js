@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/consulterRecette.php", {
+    fetch("./api/consulterRecette.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -181,7 +181,7 @@ function afficherRecette(recette, userId) {
                 likeButton.addEventListener("click", async () => {
                     try {
                         const response = await fetch(
-                            "http://localhost/planigo/H2025_TCH099_02_C1/api/likeCommentaire.php",
+                            "./api/likeCommentaire.php",
                             {
                                 method: "POST",
                                 headers: {
@@ -248,7 +248,7 @@ function afficherRecette(recette, userId) {
 
         const userId = sessionStorage.getItem("identifiant");
 
-        fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/ajouterCommentaire.php", {
+        fetch("./api/ajouterCommentaire.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

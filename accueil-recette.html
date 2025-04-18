@@ -22,7 +22,7 @@
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
-    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+    <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
   <main class="conteneur">
     <div class="zone-recherche conteneur">
@@ -32,6 +32,7 @@
       </div>
     </div>  
     
+    <h2 class="titre-section">Types :</h2>
     <div id="carouselCategoriesBootstrap" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         
@@ -59,6 +60,10 @@
         <div class="carousel-item">
           <div class="d-flex justify-content-center flex-wrap">
             <div class="categorie">
+              <div class="emoji">🍰</div>
+              <div class="texte-categorie">Souper</div>
+            </div>
+            <div class="categorie">
               <div class="emoji">🥬</div>
               <div class="texte-categorie">Collation</div>
             </div>
@@ -80,9 +85,41 @@
         <div class="carousel-item">
           <div class="d-flex justify-content-center flex-wrap">
             <div class="categorie">
+              <div class="emoji">🍴</div>
+              <div class="texte-categorie">Entrée</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍽️</div>
+              <div class="texte-categorie">Plat principal</div>
+            </div>
+            <div class="categorie">
               <div class="emoji">🍰</div>
               <div class="texte-categorie">Dessert</div>
             </div>
+          </div>
+        </div>
+
+      
+        
+      </div>
+      
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+    
+    <h2 class="titre-section">Restrictions :</h2>
+    <div id="carouselCategoriesBootstrap2" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        
+        <div class="carousel-item active">
+
+          <div class="d-flex justify-content-center flex-wrap">
             <div class="categorie">
               <div class="emoji">📖</div>
               <div class="texte-categorie">Mes recettes</div>
@@ -97,6 +134,7 @@
             </div>
           </div>
         </div>
+
         
         <div class="carousel-item">
           <div class="d-flex justify-content-center flex-wrap">
@@ -121,11 +159,11 @@
         
       </div>
       
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap2" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Précédent</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap2" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Suivant</span>
       </button>
@@ -134,10 +172,10 @@
     
     
     
-    
 
     <h2 class="titre-section">Recettes simples et savoureuses</h2>
-    <div class="grille-recettes">
+    <div id="message-erreur"></div>
+    <div class="grille-recettes" id="contenant-recettes">
         <div class="carte">
             <button class="coeur"><i class="fas fa-heart"></i></button>
             <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
@@ -145,7 +183,7 @@
               <h3>Burger</h3>
               <p class="info-carte">🍽 Snack · 10 min</p>
             </div>
-          </div>
+        </div>
 
       <div class="carte">
         <button class="coeur"><i class="fas fa-heart"></i></button>
@@ -235,33 +273,7 @@
     </div>
   </footer>
 
-  <script>
-  // Remplacer votre fonction slideCarousel par ceci
-document.addEventListener('DOMContentLoaded', () => {
-  // Initialisation du carrousel Bootstrap
-  const carousel = new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap'), {
-    interval: 5000, // temps entre les slides en ms
-    wrap: true
-  });
   
-  // Pour les cartes de recettes
-  const cards = document.querySelectorAll('.carte');
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      window.location.href = 'consulter-recette.html'; 
-    });
-  });
-  
-  // Pour les boutons coeur
-  document.querySelectorAll('.coeur').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation(); // Empêche la propagation au parent (carte)
-      btn.classList.toggle('aime');
-    });
-  });
-});
-
-  </script>
 
 </body>
 </html>

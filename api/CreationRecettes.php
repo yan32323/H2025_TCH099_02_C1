@@ -262,6 +262,12 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
 
             //On récupère les résultats de la requête et on les encode en JSON
             $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultat as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
             echo json_encode(['statut' => 'success', 'listeRecette' => $resultat]);
             exit();
 

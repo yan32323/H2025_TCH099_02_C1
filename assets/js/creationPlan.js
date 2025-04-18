@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           //tentative de suppression du plan cote serveur
           try {
             let response = await fetch(
-              "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationPlans.php/plans/supprimer/" +
+              "./api/CreationPlans.php/plans/supprimer/" +
                 planLocal,
               {
                 method: "POST",
@@ -691,7 +691,7 @@ updateImages();
     async function fetchPlan(plan) {
       try {
         let response = await fetch(
-          "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationPlans.php/plans/" + plan );
+          "./api/CreationPlans.php/plans/" + plan );
   
         if (!response(error)){
         for(let i = 1; i <= 5; i++){
@@ -740,7 +740,7 @@ updateImages();
   
     async function fetchRecettes() {
       try {
-        //let response = await fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/CreationPlans.php/recettes/");
+        //let response = await fetch("./api/CreationPlans.php/recettes/");
   
         //let resultat = await response.json();
         let resultat = [
@@ -830,7 +830,7 @@ updateImages();
         paquet.append("json", objPlanJSON);  
   
         let response = await fetch(
-          "http://localhost/planigo/H2025_TCH099_02_C1/api/CreationPlans.php/plans/creer/",
+          "./api/CreationPlans.php/plans/creer/",
           {
             method: "POST",
             headers: {
