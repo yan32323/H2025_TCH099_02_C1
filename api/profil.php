@@ -1,18 +1,15 @@
 <?php
-session_start();
-header("Content-Type: application/json; charset=UTF-8");
-require_once '../includes/conection.php';
+header("Content-Type: application/json");
+include '../includes/config.php';
+include '../includes/conection.php';
 
-if (!isset($_GET['user'])) {
-    echo json_encode(["success" => false, "message" => "ID de user manquant"]);
-    exit;
-}
-
-$utilisateur = $_GET['user'];
+$data = json_decode(file_get_contents("php://input"), true);
+$userId = $data['user'] ?? null;
+$userConnecte = $data['nom_utilisateur'] ?? null;
 
 // Récupérer les infos du client
 $stmtClient = $pdo->prepare("SELECT nom_utilisateur, nom, prenom, COALESCE(description, 'Aucune Description') AS description FROM Clients WHERE nom_utilisateur = ?");
-$stmtClient->execute([$utilisateur]);
+$stmtClient->execute([$userConnecte]);
 $client = $stmtClient->fetch(PDO::FETCH_ASSOC);
 
 if (!$client) {
@@ -22,7 +19,7 @@ if (!$client) {
 
 // Récupérer les recettes créées par ce client
 $stmtRecettes = $pdo->prepare("SELECT id, nom, description, image FROM Recettes WHERE createur_nom_utilisateur = ?");
-$stmtRecettes->execute([$utilisateur]);
+$stmtRecettes->execute([$userConnecte]);
 $recettes = $stmtRecettes->fetchAll(PDO::FETCH_ASSOC);
 
 // Vérifier et convertir l'image en base64 si elle existe
@@ -41,7 +38,7 @@ echo json_encode([
     "profil" => [
         "utilisateur" => $client,
         "recettes" => $recettes,
-        "est_connecte" => $_SESSION['user_id'] ?? null
+        "est_connecte" => $userConnecte ?? null
     ]
 ]);
 ?>

@@ -17,40 +17,31 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Vérifier si la recette est déjà en sessionStorage
-    let recetteData = sessionStorage.getItem(`recette_${recetteId}`);
-    if (recetteData) {
-        const data = JSON.parse(recetteData);
-        afficherRecette(data.recette, data.user_id);
-    } else {
-        // Requête POST pour récupérer la recette
-        fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/consulterRecette.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: new URLSearchParams({
-                id: recetteId,
-                nom_utilisateur: utilisateurId
-            })
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                sessionStorage.setItem(`recette_${recetteId}`, JSON.stringify(data));
-                afficherRecette(data.recette, data.user_id);
-            } else {
-                alert("Erreur : " + data.message);
-                console.log(data);
-            }
-        })
-        .catch((error) => {
-            console.error("Erreur réseau :", error);
-            alert("Erreur lors du chargement de la recette.");
-        });
-    }
-});
 
+    fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/consulterRecette.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: recetteId,
+            nom_utilisateur: utilisateurId
+        })
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.success) {
+            afficherRecette(data.recette, data.user_id);
+        } else {
+            alert("Erreur : " + data.message);
+            console.log(data);
+        }
+    })
+    .catch((error) => {
+        console.error("Erreur réseau :", error);
+        alert("Erreur lors du chargement de la recette.");
+    });
+});
 
 function afficherNoteMoyenne(noteSur5, nbVotes) {
     const etoilesContainer = document.getElementById("etoiles-container");
@@ -92,7 +83,7 @@ function afficherRecette(recette, userId) {
     authorNameElement.textContent =
         recette.createur.prenom + " " + recette.createur.nom;
     authorNameElement.addEventListener("click", () => {
-        window.location.href = `page_profil.html?user=${recette.createur.nom_utilisateur}`;
+        window.location.href = `page-profil.html?user=${recette.createur.nom_utilisateur}`;
     });
 
     document.getElementById("time-value").textContent =
@@ -153,7 +144,7 @@ function afficherRecette(recette, userId) {
     commentsSection.style.paddingRight = "10px";
 
     if (Array.isArray(recette.commentaires) && recette.commentaires.length > 0) {
-        const sessionUserId = sessionStorage.getItem('user_id');
+        const sessionUserId = userId;
         recette.commentaires.forEach((commentaire) => {
             const commentWrapper = document.createElement("div");
             commentWrapper.classList.add("commentaire");
@@ -195,9 +186,9 @@ function afficherRecette(recette, userId) {
                                 method: "POST",
                                 headers: {
                                     "Content-Type":
-                                        "application/x-www-form-urlencoded",
+                                        "application/json",
                                 },
-                                body: `id_commentaire=${commentaire.id}`,
+                                body: JSON.stringify({id_commentaire: commentaire.id})
                             }
                         );
 
@@ -260,9 +251,13 @@ function afficherRecette(recette, userId) {
         fetch("http://localhost/planigo/H2025_TCH099_02_C1/api/ajouterCommentaire.php", {
             method: "POST",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Type": "application/json",
             },
-            body: `id=${recette.id}&nom_utilisateur=${userId}&texte=${commentaireText}`,
+            body: JSON.stringify({
+                recette_id: recette.id,
+                nom_utilisateur: userId,
+                commentaire: commentaireText,
+            })
         })
             .then((response) => response.json())
             .then((data) => {
