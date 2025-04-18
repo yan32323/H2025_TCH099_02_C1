@@ -32,6 +32,7 @@
       </div>
     </div>  
     
+    <h2 class="titre-section">Types :</h2>
     <div id="carouselCategoriesBootstrap" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         
@@ -59,6 +60,10 @@
         <div class="carousel-item">
           <div class="d-flex justify-content-center flex-wrap">
             <div class="categorie">
+              <div class="emoji">🍰</div>
+              <div class="texte-categorie">Souper</div>
+            </div>
+            <div class="categorie">
               <div class="emoji">🥬</div>
               <div class="texte-categorie">Collation</div>
             </div>
@@ -80,9 +85,41 @@
         <div class="carousel-item">
           <div class="d-flex justify-content-center flex-wrap">
             <div class="categorie">
+              <div class="emoji">🍴</div>
+              <div class="texte-categorie">Entrée</div>
+            </div>
+            <div class="categorie">
+              <div class="emoji">🍽️</div>
+              <div class="texte-categorie">Plat principal</div>
+            </div>
+            <div class="categorie">
               <div class="emoji">🍰</div>
               <div class="texte-categorie">Dessert</div>
             </div>
+          </div>
+        </div>
+
+      
+        
+      </div>
+      
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Précédent</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Suivant</span>
+      </button>
+    </div>
+    
+    <h2 class="titre-section">Restrictions :</h2>
+    <div id="carouselCategoriesBootstrap2" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        
+        <div class="carousel-item active">
+
+          <div class="d-flex justify-content-center flex-wrap">
             <div class="categorie">
               <div class="emoji">📖</div>
               <div class="texte-categorie">Mes recettes</div>
@@ -97,6 +134,7 @@
             </div>
           </div>
         </div>
+
         
         <div class="carousel-item">
           <div class="d-flex justify-content-center flex-wrap">
@@ -121,16 +159,15 @@
         
       </div>
       
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselCategoriesBootstrap2" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Précédent</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselCategoriesBootstrap2" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Suivant</span>
       </button>
     </div>
-    
     
     
     
@@ -260,6 +297,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap2'), {
+    interval: 5000,
+    wrap: true
+  });
+
 
   </script>
 

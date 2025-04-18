@@ -161,79 +161,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-/* Carousel pour les catégories */
-#carouselCategoriesBootstrap {
-  margin-bottom: 4rem;
-  padding: 1rem 2.5rem;
-}
 
-#carouselCategoriesBootstrap .carousel-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-#carouselCategoriesBootstrap .carousel-item .d-flex {
-  justify-content: center;
-  max-width: 100%;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-#carouselCategoriesBootstrap .categorie {
-  background-color: var(--couleur-carte);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  text-align: center;
-  min-width: 11rem;
-  max-width: 14rem;
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  margin: 0.5rem;
-  border: 1px solid rgba(94, 48, 35, 0.1);
-}
-
-#carouselCategoriesBootstrap .categorie:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  background-color: var(--couleur-carte-hover);
-  border-color: rgba(94, 48, 35, 0.2);
-}
-
-#carouselCategoriesBootstrap .emoji {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-#carouselCategoriesBootstrap .texte-categorie {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--couleur-texte);
-  font-family: 'Saira', sans-serif;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(94, 48, 35, 0.8);
-  border-radius: 50%;
-  padding: 1.5rem;
-  background-size: 40%;
-  box-shadow: var(--shadow-md);
-}
-
-.carousel-control-prev {
-  left: -10px;
-}
-
-.carousel-control-next {
-  right: -10px;
-}
 
 /* Grille de recettes */
 .grille-recettes {
@@ -300,7 +228,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.5rem;
 }
 
-/* Bouton like amélioré */
+
 .btn-like {
   position: absolute;
   top: 1rem;
@@ -369,51 +297,60 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--couleur-principale);
 }
 
-/* Responsive ajustements */
 @media (max-width: 992px) {
-  .titre-section {
-    font-size: 2.5rem;
+  .zone-recherche {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  .sous-titre {
-    font-size: 1.5rem;
+
+  .filtre {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
-  
-  #carouselCategoriesBootstrap .categorie {
+
+  .champ-recherche {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  #carouselCategoriesBootstrap .categorie,
+  #carouselCategoriesBootstrap2 .categorie {
     min-width: 10rem;
     height: 9rem;
   }
-  
-  #carouselCategoriesBootstrap .emoji {
+
+  #carouselCategoriesBootstrap .emoji,
+  #carouselCategoriesBootstrap2 .emoji {
     font-size: 2.25rem;
   }
 }
 
 @media (max-width: 768px) {
+  .barre-haut {
+    padding: 1rem;
+  }
+
   .conteneur {
-    padding: 0 1rem;
-    margin: 1.5rem auto;
+    padding: 1rem;
   }
-  
+
   .titre-section {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
-  
-  .sous-titre {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  
-  #carouselCategoriesBootstrap {
+
+  #carouselCategoriesBootstrap,
+  #carouselCategoriesBootstrap2 {
     padding: 0.5rem 1.5rem;
   }
-  
-  #carouselCategoriesBootstrap .categorie {
+
+  #carouselCategoriesBootstrap .categorie,
+  #carouselCategoriesBootstrap2 .categorie {
     min-width: 9rem;
     height: 8.5rem;
     padding: 1.25rem;
   }
-  
+
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
     padding: 1.25rem;
@@ -421,28 +358,104 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 576px) {
-  .titre-section {
-    font-size: 1.75rem;
+  .zone-recherche {
+    margin: 1.5rem auto 2.5rem;
   }
-  
-  #carouselCategoriesBootstrap .categorie {
+
+  #carouselCategoriesBootstrap .categorie,
+  #carouselCategoriesBootstrap2 .categorie {
     min-width: 8rem;
     height: 8rem;
   }
-  
-  #carouselCategoriesBootstrap .emoji {
+
+  #carouselCategoriesBootstrap .emoji,
+  #carouselCategoriesBootstrap2 .emoji {
     font-size: 2rem;
   }
-  
+
   .carousel-control-prev {
     left: -8px;
   }
-  
+
   .carousel-control-next {
     right: -8px;
   }
-  
-  .grille-recettes {
-    grid-template-columns: 1fr;
-  }
+}
+
+#carouselCategoriesBootstrap,
+#carouselCategoriesBootstrap2 {
+  margin-bottom: 4rem;
+  padding: 1rem 2.5rem;
+}
+
+#carouselCategoriesBootstrap .carousel-inner,
+#carouselCategoriesBootstrap2 .carousel-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#carouselCategoriesBootstrap .carousel-item .d-flex,
+#carouselCategoriesBootstrap2 .carousel-item .d-flex  {
+  justify-content: center;
+  max-width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+#carouselCategoriesBootstrap .categorie,
+#carouselCategoriesBootstrap2 .categorie {
+  background-color: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  text-align: center;
+  min-width: 11rem;
+  max-width: 14rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  margin: 0.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+#carouselCategoriesBootstrap .categorie:hover,
+#carouselCategoriesBootstrap2 .categorie:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(20, 129, 122, 0.2);
+}
+
+#carouselCategoriesBootstrap .emoji,
+#carouselCategoriesBootstrap2 .emoji {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+#carouselCategoriesBootstrap .texte-categorie,
+#carouselCategoriesBootstrap2 .texte-categorie  {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--couleur-texte);
+  font-family: 'Saira', sans-serif;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: var(--couleur-principale);
+  border-radius: 50%;
+  padding: 1.5rem;
+  background-size: 40%;
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-control-prev {
+  left: -10px;
+}
+
+.carousel-control-next {
+  right: -10px;
 }
