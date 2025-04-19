@@ -1,16 +1,18 @@
 <?php
 require_once '../includes/conection.php';
+header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Récupérer les données envoyées dans la requête POST
-    $id_commentaire = $_POST["id_commentaire"] ?? null;
-    $nom_utilisateur = $_POST["user_id"] ?? null;  // Récupérer user_id depuis la requête POST
+    // Lire le corps de la requête JSON
+    $input = json_decode(file_get_contents("php://input"), true);
 
-    // Vérifier que les paramètres nécessaires sont présents
-    if (!$id_commentaire || !$nom_utilisateur) {
+    if (!isset($input['id_commentaire']) || !isset($input['user_id'])) {
         echo json_encode(["success" => false, "message" => "Paramètres manquants."]);
         exit;
     }
+
+    $id_commentaire = $input['id_commentaire'];
+    $nom_utilisateur = $input['user_id'];
 
     try {
         // Vérifie si ce like existe déjà
@@ -37,4 +39,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 } else {
     echo json_encode(["success" => false, "message" => "Requête invalide."]);
 }
-?>

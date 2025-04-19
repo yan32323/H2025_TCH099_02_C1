@@ -2,11 +2,13 @@
 require_once 'Router.php'; 
 // Inclure la connexion à la base de données
 
+
 $router = new Router();
 
 // Route pour récupérer les ingrédients (GET)
-$router->get('/CreationRecettes.php/ingredients', function (){
+$router->get('/CreationRecettes.php/ingredients', function () {
     try {
+        require_once '../includes/conection.php';
         // Récupérer les ingrédients depuis la base de données
         $stmt = $pdo->query("SELECT * FROM ingredients");
         $ingredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,18 +24,13 @@ $router->get('/CreationRecettes.php/ingredients', function (){
 });
 
 // Route pour créer ou modifier une recette (POST)
-$router->post('/CreationRecettes.php/recettes/creer', function (){
+$router->post('/CreationRecettes.php/recettes/creer', function () {
     header('Content-Type: application/json');
+    require_once '../includes/conection.php';
 
     $packet = file_get_contents("php://input");
     $infos = json_decode($packet, true);
 
-    // Vérifier la présence des données nécessaires
-    if (
-        isset($infos["edit"]) && isset($infos["titre"]) && isset($infos["description"]) &&
-        isset($infos["ingredients"]) && isset($infos["etapes"]) &&
-        isset($infos["identifiant"]) && isset($infos["difficulte"])
-    ) {
         
         // Traitement de l'image
         if (empty($infos["image"])) {
@@ -102,15 +99,12 @@ $router->post('/CreationRecettes.php/recettes/creer', function (){
                     }
                 }
 
-                echo json_encode(["success" => true, "message" => "Recette ajoutée"]);
+                echo json_encode(["status" => "ok", "message" => "Recette ajoutée"]);
             }
 
         } catch (PDOException $e) {
             echo json_encode(["error" => true, "message" => "Erreur base de données", "details" => $e->getMessage()]);
         }
-    } else {
-        echo json_encode(["error" => true, "message" => "Données manquantes"]);
-    }
 });
 
 
@@ -155,6 +149,7 @@ $router->post('/CreationRecettes.php/recettes/{recette}', function ($recette) {
 // Route pour la suppression de recettes
 $router->post('/CreationRecettes.php/recettes/supprimer', function () {
     header('Content-Type: application/json');
+    require_once '../includes/conection.php';
 
     $packet = file_get_contents("php://input");
     $infos = json_decode($packet, true);
@@ -163,16 +158,6 @@ $router->post('/CreationRecettes.php/recettes/supprimer', function () {
 
     if (isset($infos["id"])) {
         try {
-            // Connexion à la base de données
-            $pdo = new PDO(
-                "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8",
-                $config['username'],
-                $config['password'],
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                ]
-            );
 
             // Suppression de la recette
             $requete = $pdo->prepare("DELETE FROM Recettes WHERE id=:id");
@@ -191,17 +176,9 @@ $router->post('/CreationRecettes.php/recettes/supprimer', function () {
 $router->get('/CreationRecettes.php/ingredients', function () {
     header('Content-Type: application/json');
     $config = require '../includes/config.php';
+    require_once '../includes/conection.php';
 
     try {
-        $pdo = new PDO(
-            "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8",
-            $config['username'],
-            $config['password'],
-            [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]
-        );
 
         $stmt = $pdo->query("SELECT id, nom, unite_de_mesure FROM Ingredients ORDER BY nom ASC");
         $ingredients = $stmt->fetchAll();

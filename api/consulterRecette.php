@@ -2,14 +2,16 @@
 header("Content-Type: application/json; charset=UTF-8");
 require_once '../includes/conection.php';
 
-// Vérifie si les données nécessaires sont envoyées en POST
-if (!isset($_POST['id']) || !isset($_POST['nom_utilisateur'])) {
+// Lire le corps JSON brut
+$input = json_decode(file_get_contents("php://input"), true);
+
+// Vérifie si les données nécessaires sont présentes
+if (!isset($input['id']) || !isset($input['nom_utilisateur'])) {
     echo json_encode(["success" => false, "message" => "Paramètres requis manquants"]);
     exit;
 }
-
-$id = intval($_POST['id']);
-$nom_utilisateur = $_POST['nom_utilisateur'];
+$id = intval($input['id']);
+$nom_utilisateur = $input['nom_utilisateur'];
 
 // Récupérer les infos de la recette
 $sql = "SELECT r.*, c.nom AS nom_client, c.prenom 

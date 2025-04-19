@@ -118,8 +118,6 @@ effacerRecette.addEventListener("click", async function () {
                 );
 
                 let text = await response.text();
-                console.log("Réponse suppression brute:", text);
-
                 let reponse = JSON.parse(text);
 
                 if (reponse.status === "ok") {
@@ -306,6 +304,7 @@ effacerRecette.addEventListener("click", async function () {
             erreurFetchRecette();
         }
     }
+    
 
     async function fetchIngredients() {
         try {
@@ -349,6 +348,15 @@ effacerRecette.addEventListener("click", async function () {
         }
     }
 
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result); // contient le prefix data:image/png;base64,...
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
     async function sendRecette() {
         const identifiant = sessionStorage.getItem('identifiant');
 
@@ -365,6 +373,9 @@ effacerRecette.addEventListener("click", async function () {
             };
         });
 
+        const imagefile = imageRecette.files[0];
+        let imageBase64 = await toBase64(imagefile);
+
         const bodyData = {
             edit: false,
             titre: texteTitre.value.trim(),
@@ -378,7 +389,8 @@ effacerRecette.addEventListener("click", async function () {
                 : diffiulte2.checked
                 ? 2
                 : 3,
-            identifiant: identifiant
+            identifiant: identifiant,
+            image: imageBase64,
         };
     
         // Envoie du corps au serveur
@@ -390,13 +402,12 @@ effacerRecette.addEventListener("click", async function () {
             });
     
             let text = await response.text();
-            console.log("Réponse suppression brute:", text);
 
             let result = JSON.parse(text);
     
             if (result.status === "ok") {
                 alert("Recette envoyée !");
-                back();
+                //back();
             } else {
                 alert("Erreur lors de l’envoi.");
             }

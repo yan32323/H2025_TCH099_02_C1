@@ -24,30 +24,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
 
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Ajout du suivi
     $data = json_decode(file_get_contents("php://input"), true);
 
-    if (isset($data['suivi_id']) && isset($data['nom_utilisateur'])) {
-        $suivi_id = $data['suivi_id'];
-        $nom_utilisateur = $data['nom_utilisateur'];
+    if (!isset($data['action'])) {
+        http_response_code(400);
+        echo json_encode(["message" => "Action non spécifiée."]);
+        exit;
+    }
 
-        try {
-            $stmt = $pdo->prepare("INSERT INTO utilisateurs_suivi (nom_utilisateur, user_suivi_id) VALUES (:nom_utilisateur, :suivi_id)");
+    if ($data['action'] === "verifier_suivi") {
+        if (isset($data['suivi_id']) && isset($data['nom_utilisateur'])) {
+            $suivi_id = $data['suivi_id'];
+            $nom_utilisateur = $data['nom_utilisateur'];
+
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM utilisateurs_suivi WHERE nom_utilisateur = :nom_utilisateur AND user_suivi_id = :suivi_id");
             $stmt->execute([
                 ':nom_utilisateur' => $nom_utilisateur,
                 ':suivi_id' => $suivi_id
             ]);
+            $suivi = $stmt->fetchColumn() > 0;
 
-            echo json_encode(["success" => true, "message" => "Suivi effectué avec succès."]);
-        } catch (PDOException $e) {
-            http_response_code(500);
-            echo json_encode(["success" => false, "message" => "Erreur SQL : " . $e->getMessage()]);
+            echo json_encode(["suivi" => $suivi]);
+        } else {
+            http_response_code(400);
+            echo json_encode(["message" => "Paramètres requis manquants pour vérification."]);
+        }
+    } elseif ($data['action'] === "ajouter_suivi") {
+        if (isset($data['suivi_id']) && isset($data['nom_utilisateur'])) {
+            $suivi_id = $data['suivi_id'];
+            $nom_utilisateur = $data['nom_utilisateur'];
+
+            try {
+                $stmt = $pdo->prepare("INSERT INTO utilisateurs_suivi (nom_utilisateur, user_suivi_id) VALUES (:nom_utilisateur, :suivi_id)");
+                $stmt->execute([
+                    ':nom_utilisateur' => $nom_utilisateur,
+                    ':suivi_id' => $suivi_id
+                ]);
+
+                echo json_encode(["success" => true, "message" => "Suivi effectué avec succès."]);
+            } catch (PDOException $e) {
+                http_response_code(500);
+                echo json_encode(["success" => false, "message" => "Erreur SQL : " . $e->getMessage()]);
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode(["message" => "Paramètres requis manquants pour ajout."]);
         }
     } else {
         http_response_code(400);
-        echo json_encode(["message" => "Paramètres requis manquants (suivi_id ou nom_utilisateur)."]);
+        echo json_encode(["message" => "Action inconnue."]);
     }
-
 } else {
     http_response_code(405);
     echo json_encode(["message" => "Méthode non autorisée."]);
