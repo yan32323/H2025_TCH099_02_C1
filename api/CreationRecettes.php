@@ -242,7 +242,7 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
                             $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r");
                             $requete->execute();
                         break;
-                        case 'sauvegarder':
+                        case 'Favoris':
                             $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN recettes_sauvegardees AS r_s ON r.id = r_s.recette_id WHERE r_s.nom_utilisateur = :identifiant");
                             $requete->execute([':identifiant' => $identifiant]);
                             break;
@@ -261,7 +261,7 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
                             $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r WHERE r.type = :typeChoisi");
                             $requete->execute([':typeChoisi' => $filtreType]);
                             break;
-                        case 'sauvegarder':
+                        case 'Favoris':
                             $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN recettes_sauvegardees AS r_s ON r.id = r_s.recette_id WHERE r_s.nom_utilisateur = :identifiant AND r.type = :typeChoisi");
                             $requete->execute([':identifiant' => $identifiant, ':typeChoisi' => $filtreType]);
                             break;
@@ -276,23 +276,31 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
                     }
                 }
 
+                //On récupère les résultats de la requête et on les encode en JSON
+                $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($resultat as &$recette) {
+                    // Convertir l'image BLOB en base64 si elle existe
+                    if (!empty($recette['image'])) {
+                        $recette['image'] = base64_encode($recette['image']);
+                    }
+
+                }
+
+                //Récupéré les recettes sauvegardées (aimé) par l'utilisateur
+                $requeteLike = $pdo->prepare("SELECT recette_id FROM Recettes_Sauvegardees WHERE nom_utilisateur = :identifiant");
+                $requeteLike->execute([':identifiant' => $identifiant]);
+                $recettesLike = $requeteLike->fetchAll(PDO::FETCH_COLUMN, 0);
+
+                
+                echo json_encode(['statut' => 'success', 'listeRecette' => $resultat, 'listeRecetteAime' => $recettesLike]);
+                exit();
+
             //Erreur de la requête SQL
             }catch(PDOException $e){
                 http_response_code(400); 
                 echo json_encode(['statut' => 'error', 'message' => 'Le type et/ou la restrictions fournis n\'est pas valide.']);
                 exit();
             }
-
-            //On récupère les résultats de la requête et on les encode en JSON
-            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($resultat as &$recette) {
-                // Convertir l'image BLOB en base64 si elle existe
-                if (!empty($recette['image'])) {
-                    $recette['image'] = base64_encode($recette['image']);
-                }
-            }
-            echo json_encode(['statut' => 'success', 'listeRecette' => $resultat]);
-            exit();
 
         }else{
             //Cas où l'authentification a échoué
@@ -310,7 +318,7 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
 
 
 //Route pour récupérer une recette spécifique avec toutes c'est informations (détail recette + liste des ingrédients + liste des étapes + liste de restricctions)
-$router->post('/CreationRecettes.php/recuperer-recette-complete/', function () {
+$router->post('/CreationRecettes.php/recuperer-recette-complete', function () {
     require_once '../includes/conection.php';
     header('Content-Type: application/json');
 
@@ -374,6 +382,78 @@ $router->post('/CreationRecettes.php/recuperer-recette-complete/', function () {
         }
 
         
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+});
+
+
+// Route pour ajouter une like (sauvegarder) une recette
+$router->post('/CreationRecettes.php/ajouter-recette-aime', function() {
+
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+        //extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+        $idRecette = trim($data['idRecette']);
+
+        //Si le client exite dans la base de donnée, on ajoute la recette à ses recettes aimées
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+            $requete = $pdo->prepare("INSERT INTO recettes_sauvegardees (recette_id, nom_utilisateur) VALUES (:idRecette, :nom_utilisateur)");
+            $requete->execute([':idRecette' => $idRecette, ':nom_utilisateur' => $identifiant]);
+            echo json_encode(['statut' => 'success']);
+            exit();
+
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+});
+
+
+// Route pour supprimer une like (sauvegarder) une recette
+$router->delete('/CreationRecettes.php/delete-recette-aime', function() {
+
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+        //extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+        $idRecette = trim($data['idRecette']);
+
+        //Si le client exite dans la base de donnée, on ajoute la recette à ses recettes aimées
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+            $requete = $pdo->prepare("DELETE FROM recettes_sauvegardees WHERE recette_id = :idRecette AND nom_utilisateur = :nom_utilisateur");
+            $requete->execute([':idRecette' => $idRecette, ':nom_utilisateur' => $identifiant]);
+            echo json_encode(['statut' => 'success']);
+            exit();
+
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
     } catch (PDOException $e) {
         http_response_code(401); 
         echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);

@@ -98,7 +98,6 @@ CREATE TABLE Stock_Ingredients (
 CREATE TABLE Recettes_Sauvegardees (
     nom_utilisateur VARCHAR(255) NOT NULL,
     recette_id INT NOT NULL,
-    PRIMARY KEY (nom_utilisateur, recette_id),
     FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
     FOREIGN KEY (recette_id) REFERENCES Recettes (id)
 );

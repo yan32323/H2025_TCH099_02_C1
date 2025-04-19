@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let filtreType = 'tout';
     let filtreRestriction = 'tout';
     let listeRecettesActuel = [];
+    let listeRecetteAimee = [];
 
     // Check if user is logged in (identifiant and motDePasse are in sessionStorage)
     if (!IDENTIFIANT || !MOT_DE_PASSE) {
@@ -29,20 +30,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     // Pour les cartes de recettes
-    const cards = document.querySelectorAll('.carte');
+    /*const cards = document.querySelectorAll('.carte');
     cards.forEach(card => {
         card.addEventListener('click', () => {
         window.location.href = 'consulter-recette.html'; 
         });
-    });
+    });*/
     
     // Pour les boutons coeur
-    document.querySelectorAll('.coeur').forEach(btn => {
+    /*document.querySelectorAll('.coeur').forEach(btn => {
         btn.addEventListener('click', (e) => {
         e.stopPropagation(); // Empêche la propagation au parent (carte)
         btn.classList.toggle('aime');
         });
-    });
+    });*/
 
     new bootstrap.Carousel(document.getElementById('carouselCategoriesBootstrap2'), {
         interval: 5000,
@@ -56,7 +57,44 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'index.html'; // Redirect to login page
     });
 
+    //Mettre à jour la liste des recettes en fonction du filtre sélectionné
+    document.querySelectorAll('.categorie').forEach(categorie => {
+        categorie.addEventListener('click', function (){
+            
+            let valeurDiv = categorie.querySelector('.texte-categorie').textContent.trim();
+            const typeAutorise = ['Déjeuner', 'Dîner', 'Souper', 'Collation', 'Apéritif', 'Entrée', 'Plat principal', 'Dessert'];
+            const restrictionAutorise = ['Végétarien','Végan','Sans gluten','Sans lactose', 'Pescatarien', 'Favoris'];
 
+            // Modifier la valeur du filtre et arrêter l'exécution si la valeur n'est pas reconnue
+            if(typeAutorise.includes(valeurDiv)){
+                filtreType = valeurDiv;
+            }else if(restrictionAutorise.includes(valeurDiv)){
+                filtreRestriction = valeurDiv;
+            }else if(valeurDiv === 'Mes recettes'){
+                filtreRestriction = 'miennes';
+            }else if(valeurDiv === 'Aucune'){
+                filtreRestriction = 'tout';
+            }else if(valeurDiv === 'Voir tout'){
+                filtreType = 'tout';
+            }else{
+                return;
+            }
+
+            // Mettre à jour la liste des recettes en fonction des filtres sélectionnés
+            updateListeRecettesActuel(filtreType, filtreRestriction);
+        });
+    });
+
+    //Faire la sélection des recettes en fonction de la barre de recherche
+    const barreRecherche = document.getElementById('zone-recherche');
+    barreRecherche.addEventListener('input', function(){
+        if(barreRecherche.value.length === 0){
+            genereItemsRecettes(listeRecettesActuel, listeRecetteAimee);
+        }
+        let motEnCreation = barreRecherche.value.trim();
+        let nouvelleListeRecette = listeRecettesActuel.filter((recette) => recette.nom.toLowerCase().includes(motEnCreation.toLowerCase()));
+        genereItemsRecettes(nouvelleListeRecette, listeRecetteAimee);
+    });
 
     /**
      * Méthode pour générer la nouvelle liste des recettes en fonctions des filtres données.
@@ -65,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     async function updateListeRecettesActuel(filtreType, filtreRestriction) {
         event.preventDefault();
+
         //Plannifier le message d'erreur
         const grilleRecettes = document.getElementById('contenant-recettes');
         grilleRecettes.innerHTML = '';
@@ -81,7 +120,17 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if(data.statut === 'success'){
-                genereItemsRecettes(data.listeRecette);
+                //vérifier si on a des éléments dans la liste des recettes
+                listeRecettesActuel = data.listeRecette;
+                listeRecetteAimee = data.listeRecetteAime;
+                const motEncreation = document.getElementById('zone-recherche').value.trim();
+                let listeRecetteFiltrerRecherche = data.listeRecette.filter((recette) => recette.nom.toLowerCase().includes(motEncreation.toLowerCase()));
+                MSG_ERREUR.textContent = "";
+                if(listeRecetteFiltrerRecherche.length === 0){
+                    MSG_ERREUR.textContent = "Aucune recette trouvée avec les filtres sélectionnés.";
+                }
+                //filtrer selon le texte inscrit dans la bare de recherche
+                genereItemsRecettes(listeRecetteFiltrerRecherche, data.listeRecetteAime);
             }else{
                 MSG_ERREUR.textContent = data.message + " Lors de l'intialisation des recettes";
             }
@@ -100,8 +149,9 @@ document.addEventListener('DOMContentLoaded', function () {
     /**
      * Gènère les éléments d'une recette abrégé dans la grille des recettes.
      * @param {Array} nouvelleListeRecette La liste des recettes à afficher
+     * @param {Array} listeRecetteAime La liste des recettes aimées par l'utilisateur
      */
-    function genereItemsRecettes(nouvelleListeRecette){
+    function genereItemsRecettes(nouvelleListeRecette, listeRecetteAime){
         // Vider la liste actuelle
         const grilleRecettes = document.getElementById('contenant-recettes');
         grilleRecettes.innerHTML = '';
@@ -110,16 +160,37 @@ document.addEventListener('DOMContentLoaded', function () {
         nouvelleListeRecette.forEach(recette =>{
             const carte = document.createElement('div');
             carte.className = 'carte';
+            //Rediriger vers la page des détails des recettes 
+            carte.addEventListener('click', () => {
+                window.location.href = 'consulter-recette.html?id=' + recette.id;
+            });
 
+            //Créer le bouton coeur (il sera remplie si il est aimé)
             const button = document.createElement('button');
-            button.className = 'coeur';
+            if(listeRecetteAime.includes(recette.id)){
+                button.className = 'coeur aime';
+            }else{
+                button.className = 'coeur';
+            }
+            //Ajouter le like et faire la requête à la base de données 
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Empêche la propagation au parent (carte)
+                button.classList.toggle('aime');
+                let ajouterLike = false;
+                if(button.classList.contains('aime')){
+                    ajouterLike = true;
+                }
+                ajouterRetirerLike(recette.id, ajouterLike);
+            });
             button.innerHTML = '<i class="fas fa-heart"></i>';
 
+            //Créer l'image de la recette
             const image = document.createElement('img');
             image.src = `data:image/jpeg;base64,${recette.image}`;
             image.alt = recette.nom;
             image.className = 'image-carte';
 
+            //Créer les informations de la recette
             const contenuCarte = document.createElement('div');
             contenuCarte.className = 'contenu-carte';
             const titre = document.createElement('h3');
@@ -128,6 +199,8 @@ document.addEventListener('DOMContentLoaded', function () {
             description.textContent = imageType(recette.type) + ' ' + recette.type + ' · ' + recette.temps_de_cuisson + ' min';
             description.className = 'info-carte';
 
+
+            //Ajouter les éléments 
             contenuCarte.appendChild(titre);
             contenuCarte.appendChild(description);
 
@@ -136,6 +209,68 @@ document.addEventListener('DOMContentLoaded', function () {
             carte.appendChild(contenuCarte);
             grilleRecettes.appendChild(carte);
         });
+    }
+
+
+    async function ajouterRetirerLike(idRecette, ajouterLike) {
+
+        event.preventDefault();
+        let dataJSON = {identifiant: IDENTIFIANT, motDePasse: MOT_DE_PASSE, idRecette: idRecette};
+
+        if(ajouterLike){
+            //lancer une demande pour ajouter un like
+            fetch('./api/CreationRecettes.php/ajouter-recette-aime', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataJSON)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.statut === 'success'){
+
+                } else {
+                    MSG_ERREUR.textContent = data.message;
+                }
+            }).catch(error => {
+                if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
+                    // Si c'est une erreur attendu (rédiger par nous même dans l'API)
+                    MSG_ERREUR.textContent = error["message"];
+                } else {
+                    // Si l'erreur n'est pas formatée comme prévu (autre source)
+                    console.error("Erreur inattendue :", error);
+                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                }
+            });
+        }else{
+
+            //lancer une demande pour retirer un like
+            fetch('./api/CreationRecettes.php/delete-recette-aime', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataJSON)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.statut === 'success'){
+
+                } else {
+                    MSG_ERREUR.textContent = data.message;
+                }
+            }).catch(error => {
+                if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
+                    // Si c'est une erreur attendu (rédiger par nous même dans l'API)
+                    MSG_ERREUR.textContent = error["message"];
+                } else {
+                    // Si l'erreur n'est pas formatée comme prévu (autre source)
+                    console.error("Erreur inattendue :", error);
+                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                }
+            });
+        }
     }
 
     /**
