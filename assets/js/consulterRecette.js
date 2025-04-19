@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    fetch("./api/consulterRecette.php", {
+    fetch("./api/consulterRecette.php/afficher", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
