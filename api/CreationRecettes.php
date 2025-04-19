@@ -216,38 +216,38 @@ $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function ()
                 if(strcmp($filtreType, "tout") == 0){
                     switch ($filtreRestriction) {
                         case 'tout': 
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r");
                             $requete->execute();
                         break;
                         case 'Favoris':
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN recettes_sauvegardees AS r_s ON r.id = r_s.recette_id WHERE r_s.nom_utilisateur = :identifiant");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r INNER JOIN recettes_sauvegardees AS r_s ON r.id = r_s.recette_id WHERE r_s.nom_utilisateur = :identifiant");
                             $requete->execute([':identifiant' => $identifiant]);
                             break;
                         case 'miennes':
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r WHERE r.createur_nom_utilisateur = :identifiant");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r WHERE r.createur_nom_utilisateur = :identifiant");
                             $requete->execute([':identifiant' => $identifiant]);
                             break;
                         default:
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.recette_id INNER JOIN Restrictions AS res ON r_r.restriction_id = res.id WHERE res.nom = :restriction");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.recette_id INNER JOIN Restrictions AS res ON r_r.restriction_id = res.id WHERE res.nom = :restriction");
                             $requete->execute([':restriction' => $filtreRestriction]);
                             break;
                     }
                 }else{
                     switch ($filtreRestriction) {
                         case 'tout': 
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r WHERE r.type = :typeChoisi");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r WHERE r.type = :typeChoisi");
                             $requete->execute([':typeChoisi' => $filtreType]);
                             break;
                         case 'Favoris':
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN recettes_sauvegardees AS r_s ON r.id = r_s.recette_id WHERE r_s.nom_utilisateur = :identifiant AND r.type = :typeChoisi");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r INNER JOIN recettes_sauvegardees AS r_s ON r.id = r_s.recette_id WHERE r_s.nom_utilisateur = :identifiant AND r.type = :typeChoisi");
                             $requete->execute([':identifiant' => $identifiant, ':typeChoisi' => $filtreType]);
                             break;
                         case 'miennes':
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r WHERE r.createur_nom_utilisateur = :identifiant AND r.type = :typeChoisi");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r WHERE r.createur_nom_utilisateur = :identifiant AND r.type = :typeChoisi");
                             $requete->execute([':identifiant' => $identifiant, ':typeChoisi' => $filtreType]);
                             break;
                         default:
-                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image FROM recettes AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.recette_id INNER JOIN Restrictions AS res ON r_r.restriction_id = res.id WHERE res.nom = :restriction AND r.type = :typeChoisi");
+                            $requete = $pdo->prepare("SELECT r.id, r.nom, r.temps_de_cuisson, r.type, r.image, r.createur_nom_utilisateur FROM recettes AS r INNER JOIN Recettes_Restrictions AS r_r ON r.id = r_r.recette_id INNER JOIN Restrictions AS res ON r_r.restriction_id = res.id WHERE res.nom = :restriction AND r.type = :typeChoisi");
                             $requete->execute([':restriction' => $filtreRestriction, ':typeChoisi' => $filtreType]);
                             break;
                     }
