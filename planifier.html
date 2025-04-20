@@ -80,5 +80,16 @@
   boutonCreer.addEventListener('click', () => {
     window.location.href = 'creationPlan.html';
   });
+
+ 
+  document.addEventListener('DOMContentLoaded', function () {
+  const logo = document.querySelector('.logo'); 
+  logo.style.cursor = 'pointer';
+  logo.addEventListener('click', function () {
+    window.location.href = 'accueil-recette.html'; 
+  });
+});
+
+
 </script>
 </html>

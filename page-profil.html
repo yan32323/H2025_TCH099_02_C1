@@ -235,6 +235,17 @@
     document.querySelector(".modify-profile-btn").addEventListener("click", function () {
       window.location.href = "page-modifier-profil.html";
     });
+
+    
+  document.addEventListener('DOMContentLoaded', function () {
+  const logo = document.querySelector('.logo'); 
+  logo.style.cursor = 'pointer';
+  logo.addEventListener('click', function () {
+    window.location.href = 'accueil-recette.html'; 
+  });
+});
+
+
   </script>
 
 </body>
