@@ -280,13 +280,13 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function imageType(typeRecette){
         switch(typeRecette){
-            case 'Déjeuner': return '🍙';
-            case 'Dîner': return '🥪';
-            case 'Souper': return '🍜';
-            case 'Collation': return '🍪';
-            case 'Apéritif': return '🍷';
-            case 'Entrée': return '🍴';
-            case 'Plat principal': return '🍽️';
+            case 'Déjeuner': return '🍳';
+            case 'Dîner': return '🍝';
+            case 'Souper': return '🍲';
+            case 'Collation': return '🧃';
+            case 'Apéritif': return '🍙';
+            case 'Entrée': return '🥗';
+            case 'Plat principal': return '🍛';
             case 'Dessert': return '🍰';
             default: return '🥪';
         }

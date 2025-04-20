@@ -273,4 +273,87 @@ function afficherRecette(recette, userId) {
                 alert("Erreur lors de l'ajout du commentaire.");
             });
     });
+
+    let noteChoisie = 0;
+    document
+        .getElementById("ajouter-note-btn")
+        .addEventListener("click", () => {
+            document.getElementById("popup-note").style.display = "flex";
+        });
+
+    // Gestion clic sur étoiles
+    document.querySelectorAll("#etoiles-selection .star").forEach((star) => {
+        star.addEventListener("click", () => {
+            noteChoisie = parseInt(star.dataset.value);
+
+            document
+                .querySelectorAll("#etoiles-selection .star")
+                .forEach((s) => {
+                    s.classList.toggle(
+                        "active",
+                        parseInt(s.dataset.value) <= noteChoisie
+                    );
+                });
+        });
+    });
+
+    document
+        .getElementById("annuler-note-btn")
+        .addEventListener("click", () => {
+            document.getElementById("popup-note").style.display = "none";
+        });
+
+    document
+        .getElementById("valider-note-btn")
+        .addEventListener("click", async () => {
+            if (noteChoisie < 1 || noteChoisie > 5) {
+                alert("Veuillez sélectionner une note entre 1 et 5.");
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    "./api/ajouterNote.php",
+                    {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/JSON",
+                        },
+                        body: JSON.stringify({
+                            recette_id: recette.id,
+                            note: noteChoisie,
+                            nom_utilisateur: sessionStorage.getItem("identifiant"),
+                        }),
+                    }
+                );
+
+                const text = await response.text();
+                let data;
+
+                try {
+                    data = JSON.parse(text);
+                } catch (e) {
+                    alert("Réponse invalide du serveur.");
+                    return;
+                }
+
+                if (data.success) {
+                    alert("Merci pour votre note !");
+                    document.getElementById("ajouter-note-btn").style.display =
+                        "none";
+                    document.getElementById("popup-note").style.display =
+                        "none";
+
+                    afficherNoteMoyenne(
+                        data.nouvelle_moyenne,
+                        data.nouveau_nombre_votes
+                    );
+                } else {
+                    alert("Erreur : " + data.message);
+                }
+            } catch (error) {
+                console.error("Erreur réseau :", error);
+                alert("Impossible d'envoyer la note.");
+            }
+        });
 }

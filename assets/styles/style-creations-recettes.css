@@ -593,4 +593,124 @@ input[type="file"]:hover {
 
 
 
+.groupe_ingredient {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.groupe_ingredient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.nom_ingredient {
+  flex: 2;
+  font-weight: 600;
+  color: var(--teal);
+  margin-right: 0.75rem;
+}
+
+.zone_ingredient {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  max-width: 80px;
+}
+
+.unite_ingredient {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  max-width: 100px;
+}
+
+.zone_ingredient:hover,
+.unite_ingredient:hover {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(20, 129, 122, 0.1);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn_ingredient,
+.remove-item-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn_ingredient:hover,
+.remove-item-button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.1);
+}
+
+#zone-etape div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+#zone-etape div p {
+  flex: 1;
+  margin: 0;
+}
+
+#zone-etape div button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#zone-etape div button:hover {
+  background-color: #d32f2f;
+  transform: scale(1.1);
+}
+
+
+#prochain-ingredient-s {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+#prochain-ingredient-s:hover,
+#prochain-ingredient-s:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 2px rgba(20, 129, 122, 0.1);
+}
+
 
