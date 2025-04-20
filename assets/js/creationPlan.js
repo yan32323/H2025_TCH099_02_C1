@@ -136,7 +136,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesLundi.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
+
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesLundi[i].nom+"</p><p>"+tableauRecettesLundi[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -144,7 +147,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesLundi[i].nom +
-          "</p><input id='heure-l"+i+"' value='"+tableauRecettesLundi[i].heure+"'type='time'><button id='supr-rec-l" +
+          "</p><input id='heure-l"+i+"' value='"+tableauRecettesLundi[i].heure+"'type='time'><button class='remove-item-button' id='supr-rec-l" +
           i +"'>X</button></div>";
           affichageRecetteLundi.appendChild(divRecette);
           aAfficher.style.display = "none";
@@ -213,7 +216,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesMardi.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesMardi[i].nom+"</p><p>"+tableauRecettesMardi[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -221,7 +226,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesMardi[i].nom +
-          "</p><input id='heure-ma"+i+"' value='"+tableauRecettesMardi[i].heure+"'type='time'><button id='supr-rec-ma" +
+          "</p><input id='heure-ma"+i+"' value='"+tableauRecettesMardi[i].heure+"'type='time'><button class='remove-item-button' id='supr-rec-ma" +
           i +"'>X</button></div>";
           affichageRecetteMardi.appendChild(divRecette);
           aAfficher.style.display = "none";
@@ -233,6 +238,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         aAfficher.style.border = "1px solid black";
         affichageRecetteMardi.appendChild(aAfficher);
         let buttonIng = document.getElementById("supr-rec-ma" + i);
+        
         let heure = document.getElementById("heure-ma"+i);
         buttonIng.addEventListener("click", function () {
           tableauRecettesMardi = remove(tableauRecettesMardi, i);
@@ -290,7 +296,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesMercredi.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesMercredi[i].nom+"</p><p>"+tableauRecettesMercredi[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -298,7 +306,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesMercredi[i].nom +
-          "</p><input id='heure-me"+i+"' value='"+tableauRecettesMercredi[i].heure+"'type='time'><button id='supr-rec-me" +
+          "</p><input id='heure-me"+i+"' value='"+tableauRecettesMercredi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-me" +
           i +"'>X</button></div>";
           affichageRecetteMercredi.appendChild(divRecette);
           aAfficher.style.display = "none";
@@ -366,7 +374,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesJeudi.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesJeudi[i].nom+"</p><p>"+tableauRecettesJeudi[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -374,7 +384,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesJeudi[i].nom +
-          "</p><input id='heure-j"+i+"' value='"+tableauRecettesJeudi[i].heure+"'type='time'><button id='supr-rec-j" +
+          "</p><input id='heure-j"+i+"' value='"+tableauRecettesJeudi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-j" +
           i +"'>X</button></div>";
           affichageRecetteJeudi.appendChild(divRecette);
           aAfficher.style.display = "none";
@@ -442,7 +452,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesVendredi.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesVendredi[i].nom+"</p><p>"+tableauRecettesVendredi[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -450,7 +462,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesVendredi[i].nom +
-          "</p><input id='heure-v"+i+"' value='"+tableauRecettesVendredi[i].heure+"'type='time'><button id='supr-rec-v" +
+          "</p><input id='heure-v"+i+"' value='"+tableauRecettesVendredi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-v" +
           i +"'>X</button></div>";
           affichageRecetteVendredi.appendChild(divRecette);
           aAfficher.style.display = "none";
@@ -518,7 +530,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesSamedi.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesSamedi[i].nom+"</p><p>"+tableauRecettesSamedi[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -526,7 +540,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesSamedi[i].nom +
-          "</p><input id='heure-s"+i+"' value='"+tableauRecettesSamedi[i].heure+"'type='time'><button id='supr-rec-s" +
+          "</p><input id='heure-s"+i+"' value='"+tableauRecettesSamedi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-s" +
           i +"'>X</button></div>";
           affichageRecetteSamedi.appendChild(divRecette);
           aAfficher.style.display = "none";
@@ -594,7 +608,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   
       for (let i = 0; i < tableauRecettesDimanche.length; i++) {
         let divRecette = document.createElement("div");
+        divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
+        aAfficher.className = "recipe-preview";
         aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesDimanche[i].nom+"</p><p>"+tableauRecettesDimanche[i].description+"</p>";
 
         divRecette.innerHTML =
@@ -602,7 +618,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           i +
           "'>" +
           tableauRecettesDimanche[i].nom +
-          "</p><input id='heure-d"+i+"' value='"+tableauRecettesDimanche[i].heure+"'type='time'><button id='supr-rec-d" +
+          "</p><input id='heure-d"+i+"' value='"+tableauRecettesDimanche[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-d" +
           i +"'>X</button></div>";
           affichageRecetteDimanche.appendChild(divRecette);
           aAfficher.style.display = "none";
