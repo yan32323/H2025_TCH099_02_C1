@@ -204,7 +204,7 @@
                   id="prochaine-etape"
                   name="message"
                   placeholder="Écrivez la prochaine etape ici..."
-                  required
+                  
                 ></textarea>
               </div>
             </div>
@@ -218,20 +218,34 @@
             </button>
           </div>
           <div class="section animate-fade-in-up">
-            <label>Catégories</label>
-            <div class="categories">
-              <label><input type="checkbox"> Breakfast</label>
-              <label><input type="checkbox"> Lunch</label>
-              <label><input type="checkbox"> Dinner</label>
-              <label><input type="checkbox"> Appetizer</label>
-              <label><input type="checkbox"> Dessert</label>
-              <label><input type="checkbox"> Vegetarian</label>
-              <label><input type="checkbox"> Vegan</label>
-              <label><input type="checkbox"> Gluten-Free</label>
-              <label><input type="checkbox"> Low-Carb</label>
-              <label><input type="checkbox"> Quick & Easy</label>
+            <label class= "titre" for="types">Types</label>
+            <div class="types-options">
+              <label><input type="radio" name="type" value="dejeuner"> Déjeuner</label>
+              <label><input type="radio" name="type" value="diner"> Dîner</label>
+              <label><input type="radio" name="type" value="souper"> Souper</label>
+              <label><input type="radio" name="type" value="collation"> Collation</label>
+              <label><input type="radio" name="type" value="aperitif"> Apéritif</label>
+              <label><input type="radio" name="type" value="entree"> Entrée</label>
+              <label><input type="radio" name="type" value="plat"> Plat principal</label>
+              <label><input type="radio" name="type" value="dessert"> Dessert</label>
             </div>
           </div>
+          
+          <div class="section animate-fade-in-up">
+            <label class= "titre" for="restrictions">Restrictions</label>
+            <div class="restrictions-options">
+              <label><input type="checkbox" name="restriction" value="vegetarien"> Végétarien</label>
+              <label><input type="checkbox" name="restriction" value="vegan"> Végan</label>
+              <label><input type="checkbox" name="restriction" value="sans-gluten"> Sans gluten</label>
+              <label><input type="checkbox" name="restriction" value="sans-lactose"> Sans lactose</label>
+              <label><input type="checkbox" name="restriction" value="pescatarien"> Pescatarien</label>
+            </div>
+          </div>
+          
+          
+
+
+
           <div class="form-group save-button-group">
               <button class = "delete-recipe-button"
         id="btn-suppression-recette"
