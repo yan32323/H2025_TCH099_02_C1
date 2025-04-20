@@ -299,8 +299,9 @@
         </div>
       </div>
       -->
-      <button class="btn-charger">Creer une recette</button>
+     
     </div>
+    <button class="btn-charger">Creer une recette</button>
   </main>
 
   <footer class="pied">
@@ -319,6 +320,11 @@
   logo.addEventListener('click', function () {
     window.location.href = 'accueil-recette.html'; 
   });
+});
+
+const btnCharger = document.querySelector('.btn-charger');
+btnCharger.addEventListener('click', function () {
+  window.location.href = 'creationRecettes.html'; 
 });
 
 </script>

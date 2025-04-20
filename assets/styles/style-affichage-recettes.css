@@ -459,3 +459,32 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-control-next {
   right: -10px;
 }
+
+.conteneur .btn-charger {
+  background-color: var(--couleur-principale);
+  color: white;
+  font-family: 'Saira', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-self: center;
+  
+  
+}
+
+.conteneur .btn-charger:hover {
+  background-color: var(--couleur-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.conteneur .btn-charger:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-sm);
+}
