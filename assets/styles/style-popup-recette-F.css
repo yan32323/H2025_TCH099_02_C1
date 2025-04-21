@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Saira:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap');
+ 
+
+body {
+    font-family: sans-serif; 
+    color: #000000; 
+    background-color: #f0f0f0; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.popup-recette {
+    background-color: #ffffff; 
+    width: 100%;
+    max-width: 1060px; 
+    margin-top: 96px; 
+    margin-bottom: 96px; 
+    padding-left: 20px; 
+    padding-right: 20px; 
+    border: 6px solid #1B5B4E; 
+    border-radius: 50px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column; 
+    gap: 40px; 
+    padding-top: 32px; 
+    padding-bottom: 32px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%; 
+}
+
+.recipe-image {
+    width: 100%; 
+    aspect-ratio: 1.41; 
+    object-fit: contain; 
+}
+
+.recipe-description {
+    padding-top: 32px; 
+    line-height: 28px; 
+    text-align: center; 
+    font-size: 16px; 
+}
+
+.right-column {
+    width: 100%; 
+}
+
+.info-value{
+    text-align: center;
+}
+.ingredients-box {
+    background-color: rgba(29, 116, 113, 0.3); 
+    border-radius: 20px; 
+    padding: 28px 64px; 
+    padding-bottom: 24px; 
+    display: flex;
+    flex-direction: column;
+    align-items:center 
+}
+
+.ingredients-title {
+    text-align: center; 
+    font-size: 2.6em; 
+    font-weight: bold; 
+    color: #1B5B4E; 
+    margin: 0 auto; 
+}
+
+.recipe-info-section {
+    padding-top: 28px; 
+}
+
+.info-title {
+    font-size: 1.1em; 
+    color: #1B5B4E;
+    letter-spacing: 0.1px; 
+    font-weight: medium; 
+    margin-bottom: 0;
+}
+
+.info-value {
+    
+    letter-spacing: -0.05px; 
+    color: #1B5B4E;
+    font-size: 1.1em; 
+    margin-top: 0;
+}
+
+
+@media (min-width: 768px) { 
+    .popup-recette {
+        padding-left: 64px; 
+        padding-right: 64px;
+        margin-top: 320px; 
+        margin-bottom: 160px; 
+    }
+
+    .popup-content {
+        flex-direction: row; 
+        gap: 20px; 
+    }
+
+    .left-column, .right-column {
+        width: 100%; 
+    }
+
+    .recipe-image {
+        aspect-ratio: 1.41; 
+    }
+}
+
+.recipe-info-section:nth-child(2) { padding-top: 28px; } 
+.recipe-info-section:nth-child(3) { padding-top: 32px; } 
+.recipe-info-section:nth-child(4) { padding-top: 32px; }
+.recipe-info-section:nth-child(5) { padding-top: 32px; } 
+.recipe-info-section:nth-child(6) { padding-top: 32px; } 
+
+
+
+body {
+    font-family: sans-serif; 
+    margin: 0;
+    padding: 20px; 
+    background-color: #f0f0f0; 
+}
+
+.time-input-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto; 
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 24px;
+    overflow: hidden; 
+}
+
+.title-row {
+    display: flex;
+    align-items: baseline; 
+}
+
+.title-text {
+    font-size: 18px;
+    font-weight: 600; 
+    color: #1E293B;
+    z-index: 10; 
+    margin: 0; 
+}
+
+.required-star {
+    font-size: 18px;
+    font-weight: 600; 
+    color: #14817A;
+    padding-left: 4px;
+    margin: 0; 
+}
+
+.options-box {
+    width: 100%;
+    padding-top: 8px;
+    background-color: white;
+    border-radius: 24px;
+    border: 1.15px solid #CBD5E1;
+    height: 58px;
+    display: flex;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    width: 100%;
+    height: 100%;
+}
+
+.difficulty-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 102px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.checkbox-container {
+    width: 23px;
+    height: 23px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.checkbox-border {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 1.15px solid #CBD5E1;
+    background-color: white;
+}
+
+.difficulty-option.selected .checkbox-container {
+    background-color: white; 
+}
+
+.check-icon {
+    width: 23px;
+    height: 23px;
+    border-radius: 8px;
+    object-fit: contain; 
+}
+
+.option-text {
+    font-size: 18px;
+    font-weight: 600; 
+    color: #1E293B;
+    text-align: center;
+    margin-left: 12px;
+    flex-grow: 1; 
+}
