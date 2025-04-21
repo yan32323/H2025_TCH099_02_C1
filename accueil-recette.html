@@ -11,6 +11,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   <script src="assets/js/forum.js" defer></script>
 </head>
+<style>
+
+</style>
 <body class="fond texte-couleur">
 
   <header class="barre-haut">
@@ -22,8 +25,88 @@
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
+    <div class="header-right">
+      <div class="notification-container">
+        <button class="notification-bell" id="notificationBell">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge">3</span>
+        </button>
+        
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notification-header">
+            <h3>Notifications</h3>
+            <a href="#" id="markAllRead">Tout marquer comme lu</a>
+          </div>
+          
+          <div class="notification-list">
+            <div class="notification-item unread">
+              <div class="notification-item-flex">
+                <div class="notification-icon recipe">
+                  <i class="fas fa-utensils"></i>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-title">Nouvelle recette ajoutée</div>
+                  <div class="notification-text">La recette "Burger maison" a été ajoutée à vos favoris</div>
+                  <div class="notification-time">Il y a 5 minutes</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="notification-item unread">
+              <div class="notification-item-flex">
+                <div class="notification-icon stock">
+                  <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-title">Stock bas</div>
+                  <div class="notification-text">La quantité de lait est faible. Pensez à en racheter</div>
+                  <div class="notification-time">Il y a 1 heure</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="notification-item unread">
+              <div class="notification-item-flex">
+                <div class="notification-icon planning">
+                  <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-title">Rappel de planification</div>
+                  <div class="notification-text">N'oubliez pas de planifier vos repas pour la semaine prochaine</div>
+                  <div class="notification-time">Il y a 2 heures</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="notification-item">
+              <div class="notification-item-flex">
+                <div class="notification-icon recipe">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="notification-content">
+                  <div class="notification-title">Recette populaire</div>
+                  <div class="notification-text">La recette "Salade césar" est l'une des plus consultées cette semaine</div>
+                  <div class="notification-time">Hier</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="notification-footer">
+            <a href="notifications.html">Voir toutes les notifications</a>
+          </div>
+        </div>
+      </div>
     <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
+
+
+
+
+
+
+
+
   <main class="conteneur">
     <div class="zone-recherche conteneur">
       <div class="champ-recherche">
@@ -268,5 +351,55 @@
   
 
 </body>
-
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const notificationBell = document.getElementById('notificationBell');
+      const notificationDropdown = document.getElementById('notificationDropdown');
+      const markAllReadBtn = document.getElementById('markAllRead');
+      
+      // Toggle dropdown
+      notificationBell.addEventListener('click', function(e) {
+        e.stopPropagation();
+        notificationDropdown.classList.toggle('show');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+          notificationDropdown.classList.remove('show');
+        }
+      });
+      
+      // Mark all as read
+      markAllReadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const unreadItems = document.querySelectorAll('.notification-item.unread');
+        unreadItems.forEach(item => item.classList.remove('unread'));
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+          badge.textContent = '0';
+          badge.style.display = 'none';
+        }
+      });
+      
+      // Handle notification item clicks
+      document.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.remove('unread');
+          
+          // Update badge counter
+          const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+          const badge = document.querySelector('.notification-badge');
+          if (badge) {
+            if (unreadCount > 0) {
+              badge.textContent = unreadCount;
+              badge.style.display = 'block';
+            } else {
+              badge.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+      </script>
 </html>
