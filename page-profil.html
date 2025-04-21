@@ -14,7 +14,7 @@
     <h1 class="logo">Planigo</h1>
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
-      <a href="plan.html">Planificateur</a>
+      <a href="planifier.html">Planifier</a>
       <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
@@ -235,6 +235,17 @@
     document.querySelector(".modify-profile-btn").addEventListener("click", function () {
       window.location.href = "page-modifier-profil.html";
     });
+
+    
+  document.addEventListener('DOMContentLoaded', function () {
+  const logo = document.querySelector('.logo'); 
+  logo.style.cursor = 'pointer';
+  logo.addEventListener('click', function () {
+    window.location.href = 'accueil-recette.html'; 
+  });
+});
+
+
   </script>
 
 </body>

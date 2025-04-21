@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
 }
 
 html, body {
@@ -229,17 +230,25 @@ textarea {
 }
 
 
-.slider {
-  width: 100%;
-  height: 6px;
+.time-slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
   margin-top: 0.5rem;
-  accent-color: var(--teal);
-  border-radius: 5px;
 }
 
-.time-slider-container {
-  margin-top: 0.5rem;
+.time-slider-container input[type="range"] {
+  width: 100%;
+  max-width: 300px;
 }
+
+.time-slider-container span {
+  font-weight: 500;
+  color: var(--noir); 
+  font-size: 0.95rem;
+}
+
 
 /* === DIFFICULTÉ === */
 .difficulty-options {
@@ -714,3 +723,48 @@ input[type="file"]:hover {
 }
 
 
+.types-options,
+.restrictions-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.types-options label,
+.restrictions-options label {
+  background-color: white;
+  border: 1px solid #ccc;
+  color: var(--teal);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.types-options input[type="radio"],
+.restrictions-options input[type="checkbox"] {
+  accent-color: var(--teal);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
+.types-options label:hover,
+.restrictions-options label:hover {
+  background-color: #def5f4;
+  transform: scale(1.03);
+}
+
+.types-options input[type="checkbox"],
+.restrictions-options input[type="checkbox"] {
+  accent-color: var(--teal);
+}
+
+.titre{
+  margin-top: 2rem;
+}

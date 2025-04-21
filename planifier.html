@@ -13,7 +13,7 @@
     <h1 class="logo">Planigo</h1>
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
-      <a href="plan.html">Planificateur</a>
+      <a href="planifier.html">Planifier</a>
       <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
@@ -28,22 +28,22 @@
     </p>
 
     <section class="mb-12">
-      <h3 class="titre-section text-left">Ma semaine gourmandes</h3>
+      <h3 class="titre-section text-left">Plan 1</h3>
       <img src="assets/image/semaine-gourmande.jpg" alt="gourmandes" class="image-categorie" />
     </section>
 
     <section class="mb-12">
-      <h3 class="titre-section text-left">Défis santé</h3>
+      <h3 class="titre-section text-left">Plan 2</h3>
       <img src="assets/image/semaine-gourmande.jpg" alt="sante" class="image-categorie" />
     </section>
 
     <section class="mb-12">
-      <h3 class="titre-section text-left">Session intense d’université</h3>
+      <h3 class="titre-section text-left">Plan 3</h3>
       <img src="assets/image/semaine-gourmande.jpg" alt="uni" class="image-categorie" />
     </section>
 
     <section class="mb-12">
-      <h3 class="titre-section text-left">Saveurs de printemps</h3>
+      <h3 class="titre-section text-left">Plan 4</h3>
       <img src="assets/image/semaine-gourmande.jpg" alt="Saveurs du printemps" class="image-categorie" />
     </section>
 
@@ -63,10 +63,10 @@
 <script>
   const sections = document.querySelectorAll('.mb-12');
   const liens = [
-    'affichage-plan-liste.html', // Lien pour Végétarien
-    'affichage-plan-liste.html', // Lien pour Repas rapides
-    'affichage-plan-liste.html', // Lien pour Soupes et salades
-    'aaffichage-plan-liste.html'  // Lien pour Saveurs du monde
+    'plan.html',
+    'plan.html', 
+    'plan.html', 
+    'plan.html'  
   ];
 
   sections.forEach((section, index) => {
@@ -78,7 +78,18 @@
 
   const boutonCreer = document.querySelector('.btn-creer');
   boutonCreer.addEventListener('click', () => {
-    window.location.href = 'creation-plan.html';
+    window.location.href = 'creationPlan.html';
   });
+
+ 
+  document.addEventListener('DOMContentLoaded', function () {
+  const logo = document.querySelector('.logo'); 
+  logo.style.cursor = 'pointer';
+  logo.addEventListener('click', function () {
+    window.location.href = 'accueil-recette.html'; 
+  });
+});
+
+
 </script>
 </html>
