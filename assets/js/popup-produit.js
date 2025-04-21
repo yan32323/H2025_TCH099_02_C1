@@ -56,7 +56,7 @@ document.addEventListener('lancer-popup', function () {
             fetch('./api/stockage.php/recuperer-ingredient/')
             .then(response => response.json())
             .then(data => {
-
+                
                 if(data.statut === 'success'){
                     listeIngredient = data.listeIngredient;
                 }
@@ -64,10 +64,12 @@ document.addEventListener('lancer-popup', function () {
                 if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
                     // Si c'est une erreur attendu (rédiger par nous même dans l'API)
                     MSG_ERREUR.textContent = error["message"];
+                    MSG_ERREUR.style.display = "block";
                 } else {
                     // Si l'erreur n'est pas formatée comme prévu (autre source)
                     console.error("Erreur inattendue :", error);
                     MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                    MSG_ERREUR.style.display = "block";
                 }
             });
         }else{
@@ -124,6 +126,7 @@ document.addEventListener('lancer-popup', function () {
         const LISTE_INGREDIENT_CONCORDANT = document.getElementById("liste-ingredient-concordant");
         LISTE_INGREDIENT_CONCORDANT.innerHTML = "";
 
+
         //Récupéré les ingredients concordant
         let motEnCreation = T_INGREDIENT.value.trim();
         let listeIngredientConcordant = listeIngredient.filter((ingredientObjetListe) => ingredientObjetListe.nom.toLowerCase().includes(motEnCreation.toLowerCase()));
@@ -159,9 +162,11 @@ document.addEventListener('lancer-popup', function () {
             }
 
             MSG_ERREUR.textContent = "";
+            MSG_ERREUR.style.display = "none";
 
         }else{
             MSG_ERREUR.textContent = "Attention! L'ingrédient donné est invalide. Vérifier l\'orthographe, puis réessayer, sinon communiquer avec l\'administrateur";
+            MSG_ERREUR.style.display = "block";
         } 
     });
 
@@ -172,6 +177,7 @@ document.addEventListener('lancer-popup', function () {
         //Vérifier si le formulaire est valide
         if(document.getElementsByTagName('form')[0].checkValidity() === false){
             MSG_ERREUR.textContent = "Veuillez remplir tous les champs obligatoires";
+            MSG_ERREUR.style.display = "block";
             return;
         }
         
@@ -206,30 +212,36 @@ document.addEventListener('lancer-popup', function () {
                             revenirPageAcceuil();
                         }else if(data2.statut === 'error'){
                             MSG_ERREUR.textContent = data2.message;
+                            MSG_ERREUR.style.display = "block";
                         }
                     }).catch(error => {
                         if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
                             // Si c'est une erreur attendu (rédiger par nous même dans l'API)
                             MSG_ERREUR.textContent = error["message"];
+                            MSG_ERREUR.style.display = "block";
                         } else {
                             // Si l'erreur n'est pas formatée comme prévu (autre source)
                             console.error("Erreur inattendue :", error);
                             MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                            MSG_ERREUR.style.display = "block";
                         }
                     });
     
                 }else if(data.statut === 'error'){ //afficher une erreur si le produit n'existe pas dans la base de données
                     MSG_ERREUR.textContent = data.message;
+                    MSG_ERREUR.style.display = "block";
                 }
 
             }).catch(error => {
                 if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
                     // Si c'est une erreur attendu (rédiger par nous même dans l'API)
                     MSG_ERREUR.textContent = error["message"];
+                    MSG_ERREUR.style.display = "block";
                 } else {
                     // Si l'erreur n'est pas formatée comme prévu (autre source)
                     console.error("Erreur inattendue :", error);
                     MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                    MSG_ERREUR.style.display = "block";
                 }
             });
 
@@ -257,10 +269,12 @@ document.addEventListener('lancer-popup', function () {
                     if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
                         // Si c'est une erreur attendu (rédiger par nous même dans l'API)
                         MSG_ERREUR.textContent = error["message"];
+                        MSG_ERREUR.style.display = "block";
                     } else {
                         // Si l'erreur n'est pas formatée comme prévu (autre source)
                         console.error("Erreur inattendue :", error);
                         MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                        MSG_ERREUR.style.display = "block";
                     }
                 });
         }
