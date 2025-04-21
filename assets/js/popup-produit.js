@@ -4,7 +4,8 @@ document.addEventListener('lancer-popup', function () {
     const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
     const ACTION = sessionStorage.getItem('action');
 
-    const H1_TITRE = document.getElementsByTagName('h1')[1];
+    const H1_TITRE = document.getElementById('titre-popup');
+    const SOUS_TITRE = document.getElementById('sous-titre-popup');
     const T_INGREDIENT = document.getElementById('ingredient');
     const T_QUANTITE = document.getElementById('quantite');
     const T_UNITE = document.getElementById('unite');
@@ -29,6 +30,7 @@ document.addEventListener('lancer-popup', function () {
 
         //Pré-remplir le formulaire et modifier le titre
         H1_TITRE.textContent = 'Modifier la quantité du produit';
+        SOUS_TITRE.textContent = 'Modifier la quantité de l\'ingrédient dans le stockage';
         T_INGREDIENT.value = ingredient;
         T_INGREDIENT.setAttribute('readonly', true);
         T_UNITE.value = unite;
@@ -42,40 +44,39 @@ document.addEventListener('lancer-popup', function () {
 
         }
 
-    }else {
-        if(ACTION === 'add'){
+    }else if(ACTION === 'add'){
 
-            //Configurer la configuration initial du formulaire
-            H1_TITRE.textContent = 'Ajouter un produit';
-            T_INGREDIENT.value = "";
-            T_INGREDIENT.removeAttribute('readonly');
-            T_UNITE.value = "Selon l'ingredient";
-            T_QUANTITE.value = "";
+        //Configurer la configuration initial du formulaire
+        H1_TITRE.textContent = 'Ajouter un produit';
+        SOUS_TITRE.textContent = 'Ajouter un ingrédient au stockage';
+        T_INGREDIENT.value = "";
+        T_INGREDIENT.removeAttribute('readonly');
+        T_UNITE.value = "Selon l'ingredient";
+        T_QUANTITE.value = "";
 
-            //Récupéré les ingrédients dans la base de données et remplir la liste local
-            fetch('./api/stockage.php/recuperer-ingredient/')
-            .then(response => response.json())
-            .then(data => {
-                
-                if(data.statut === 'success'){
-                    listeIngredient = data.listeIngredient;
-                }
-            }).catch(error => {
-                if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
-                    // Si c'est une erreur attendu (rédiger par nous même dans l'API)
-                    MSG_ERREUR.textContent = error["message"];
-                    MSG_ERREUR.style.display = "block";
-                } else {
-                    // Si l'erreur n'est pas formatée comme prévu (autre source)
-                    console.error("Erreur inattendue :", error);
-                    MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
-                    MSG_ERREUR.style.display = "block";
-                }
-            });
-        }else{
-            //erreur on redirige vers la page de navigation
-            window.location.href = 'accueil-recette.html';
-        }
+        //Récupéré les ingrédients dans la base de données et remplir la liste local
+        fetch('./api/stockage.php/recuperer-ingredient/')
+        .then(response => response.json())
+        .then(data => {
+            
+            if(data.statut === 'success'){
+                listeIngredient = data.listeIngredient;
+            }
+        }).catch(error => {
+            if (error && typeof error === "object" && error.statut === "error" && typeof error["message"] === "string") {
+                // Si c'est une erreur attendu (rédiger par nous même dans l'API)
+                MSG_ERREUR.textContent = error["message"];
+                MSG_ERREUR.style.display = "block";
+            } else {
+                // Si l'erreur n'est pas formatée comme prévu (autre source)
+                console.error("Erreur inattendue :", error);
+                MSG_ERREUR.textContent = "Une erreur imprévue est survenue. Veuillez réessayer.";
+                MSG_ERREUR.style.display = "block";
+            }
+        });
+    }else{
+        //erreur on redirige vers la page de navigation
+        window.location.href = 'accueil-recette.html';
     }
 
 
