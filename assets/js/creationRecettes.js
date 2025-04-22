@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
+    const chemin ="http://localhost/planigo/H2025_TCH099_02_C1";
+
     let effacerRecette = document.getElementById("btn-suppression-recette");
     let imageRecette = document.getElementById("prochaine-image");
     let aperçu = document.getElementById("aperçu-image");
@@ -105,7 +107,7 @@ effacerRecette.addEventListener("click", async function () {
                 back();
             } else {
                 let response = await fetch(
-                    "./api/CreationRecettes.php/recettes/supprimer/" +
+                    chemin+ "/api/CreationRecettes.php/recettes/supprimer/" +
                         recetteLocale,
                     {
                         method: "POST",
@@ -241,7 +243,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchRecette(recette) {
         try {
             let response = await fetch(
-                "./api/CreationRecettes.php/recettes/" +
+                chemin+"/api/CreationRecettes.php/recettes/" +
                     recette
             );
             let objRecette = await response.json();
@@ -309,8 +311,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchIngredients() {
         try {
             let response = await fetch(
-                "./api/CreationRecettes.php/ingredients"
-            );
+                chemin + "/api/CreationRecettes.php/ingredients");
 
             if (!response.ok) {
                 throw new Error(
@@ -341,9 +342,7 @@ effacerRecette.addEventListener("click", async function () {
             }
         } catch (error) {
             console.error(error);
-            alert(
-                "Une erreur s'est produite lors du chargement des ingrédients."
-            );
+
             erreurFetchIngredients();
         }
     }
@@ -372,10 +371,16 @@ effacerRecette.addEventListener("click", async function () {
                 unite_de_mesure: uniteInput.value.trim(),
             };
         });
-
-        const imagefile = imageRecette.files[0];
-        let imageBase64 = await toBase64(imagefile);
-
+        let imageBase64 
+        if (imageRecette.files.length > 0) {
+        // Vérifie si une image a été sélectionné
+        // Convertit l'image en base64
+                   const imagefile = imageRecette.files[0];
+         imageBase64 = await toBase64(imagefile);
+        } else {
+         imageBase64 = null;
+        }
+ alert("ok0");
         const bodyData = {
             edit: false,
             titre: texteTitre.value.trim(),
@@ -392,15 +397,15 @@ effacerRecette.addEventListener("click", async function () {
             identifiant: identifiant,
             image: imageBase64,
         };
-    
+ alert("ok1");
         // Envoie du corps au serveur
         try {
-            const response = await fetch("./api/CreationRecettes.php/recettes/creer", {
+            const response = await fetch(chemin+"/api/CreationRecettes.php/recettes/creer", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(bodyData)
             });
-    
+        alert("ok2");
             let text = await response.text();
 
             let result = JSON.parse(text);

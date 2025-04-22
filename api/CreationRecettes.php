@@ -10,7 +10,7 @@ $router->get('/CreationRecettes.php/ingredients', function () {
     try {
         require_once '../includes/conection.php';
         // Récupérer les ingrédients depuis la base de données
-        $stmt = $pdo->query("SELECT * FROM ingredients");
+        $stmt = $pdo->query("SELECT * FROM Ingredients");
         $ingredients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Retourner les ingrédients en format JSON
@@ -31,7 +31,6 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
     $packet = file_get_contents("php://input");
     $infos = json_decode($packet, true);
 
-        
         // Traitement de l'image
         if (empty($infos["image"])) {
             $defaultImagePath = '../assets/image/recetteDefaut.png';

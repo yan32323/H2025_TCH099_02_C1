@@ -111,13 +111,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesLundi.length; i++) {
-          if (tableauRecettesLundi[i].nom==textProchainRecette){
+          if (tableauRecettesLundi[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -139,14 +139,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         divRecette.className = "recipe-entry";
 
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesLundi[i].nom+"</p><p>"+tableauRecettesLundi[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesLundi[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesLundi[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesLundi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesLundi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesLundi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesLundi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesLundi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesLundi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-l" +
           i +
           "'>" +
-          tableauRecettesLundi[i].nom +
+          tableauRecettesLundi[i].titre +
           "</p><input id='heure-l"+i+"' value='"+tableauRecettesLundi[i].heure+"'type='time'><button class='remove-item-button' id='supr-rec-l" +
           i +"'>X</button></div>";
           affichageRecetteLundi.appendChild(divRecette);
@@ -191,13 +199,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesMardi.length; i++) {
-          if (tableauRecettesMardi[i].nom==textProchainRecette){
+          if (tableauRecettesMardi[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -218,14 +226,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         let divRecette = document.createElement("div");
         divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesMardi[i].nom+"</p><p>"+tableauRecettesMardi[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesMardi[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesMardi[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesMardi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesMardi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesMardi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesMardi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesMardi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesMardi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-ma" +
           i +
           "'>" +
-          tableauRecettesMardi[i].nom +
+          tableauRecettesMardi[i].titre +
           "</p><input id='heure-ma"+i+"' value='"+tableauRecettesMardi[i].heure+"'type='time'><button class='remove-item-button' id='supr-rec-ma" +
           i +"'>X</button></div>";
           affichageRecetteMardi.appendChild(divRecette);
@@ -271,13 +287,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesMercredi.length; i++) {
-          if (tableauRecettesMercredi[i].nom==textProchainRecette){
+          if (tableauRecettesMercredi[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -298,14 +314,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         let divRecette = document.createElement("div");
         divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesMercredi[i].nom+"</p><p>"+tableauRecettesMercredi[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesMercredi[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesMercredi[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesMercredi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesMercredi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesMercredi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesMercredi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesMercredi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesMercredi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-me" +
           i +
           "'>" +
-          tableauRecettesMercredi[i].nom +
+          tableauRecettesMercredi[i].titre +
           "</p><input id='heure-me"+i+"' value='"+tableauRecettesMercredi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-me" +
           i +"'>X</button></div>";
           affichageRecetteMercredi.appendChild(divRecette);
@@ -349,13 +373,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesJeudi.length; i++) {
-          if (tableauRecettesJeudi[i].nom==textProchainRecette){
+          if (tableauRecettesJeudi[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -376,14 +400,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         let divRecette = document.createElement("div");
         divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesJeudi[i].nom+"</p><p>"+tableauRecettesJeudi[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesJeudi[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesJeudi[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesJeudi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesJeudi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesJeudi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesJeudi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesJeudi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesJeudi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-j" +
           i +
           "'>" +
-          tableauRecettesJeudi[i].nom +
+          tableauRecettesJeudi[i].titre +
           "</p><input id='heure-j"+i+"' value='"+tableauRecettesJeudi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-j" +
           i +"'>X</button></div>";
           affichageRecetteJeudi.appendChild(divRecette);
@@ -427,13 +459,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesVendredi.length; i++) {
-          if (tableauRecettesVendredi[i].nom==textProchainRecette){
+          if (tableauRecettesVendredi[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -454,14 +486,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         let divRecette = document.createElement("div");
         divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesVendredi[i].nom+"</p><p>"+tableauRecettesVendredi[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesVendredi[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesVendredi[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesVendredi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesVendredi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesVendredi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesVendredi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesVendredi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesVendredi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-v" +
           i +
           "'>" +
-          tableauRecettesVendredi[i].nom +
+          tableauRecettesVendredi[i].titre +
           "</p><input id='heure-v"+i+"' value='"+tableauRecettesVendredi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-v" +
           i +"'>X</button></div>";
           affichageRecetteVendredi.appendChild(divRecette);
@@ -505,13 +545,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesSamedi.length; i++) {
-          if (tableauRecettesSamedi[i].nom==textProchainRecette){
+          if (tableauRecettesSamedi[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -532,14 +572,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         let divRecette = document.createElement("div");
         divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesSamedi[i].nom+"</p><p>"+tableauRecettesSamedi[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesSamedi[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesSamedi[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesSamedi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesSamedi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesSamedi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesSamedi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesSamedi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesSamedi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-s" +
           i +
           "'>" +
-          tableauRecettesSamedi[i].nom +
+          tableauRecettesSamedi[i].titre +
           "</p><input id='heure-s"+i+"' value='"+tableauRecettesSamedi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-s" +
           i +"'>X</button></div>";
           affichageRecetteSamedi.appendChild(divRecette);
@@ -583,13 +631,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesDimanche.length; i++) {
-          if (tableauRecettesDimanche[i].nom==textProchainRecette){
+          if (tableauRecettesDimanche[i].titre==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].nom == textProchainRecette) {
+          if (objListeTousRecettes[i].titre == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -610,14 +658,22 @@ document.addEventListener("DOMContentLoaded", async function () {
         let divRecette = document.createElement("div");
         divRecette.className = "recipe-entry";
         let aAfficher = document.createElement("div");
-        aAfficher.className = "recipe-preview";
-        aAfficher.innerHTML = "<img src='https://picsum.photos/200'><p>"+tableauRecettesDimanche[i].nom+"</p><p>"+tableauRecettesDimanche[i].description+"</p>";
+        aAfficher.className = "popup-recette";
+        let imgSrc;
+        if (tableauRecettesDimanche[i].image) {
+          imgSrc= `data:image/jpeg;base64,${tableauRecettesDimanche[i].image}`;
+      } else {
+        imgSrc= "assets/image/image_tmp_recette.png"; 
+
+      }
+
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesDimanche[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesDimanche[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesDimanche[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesDimanche[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesDimanche[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesDimanche[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-d" +
           i +
           "'>" +
-          tableauRecettesDimanche[i].nom +
+          tableauRecettesDimanche[i].titre +
           "</p><input id='heure-d"+i+"' value='"+tableauRecettesDimanche[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-d" +
           i +"'>X</button></div>";
           affichageRecetteDimanche.appendChild(divRecette);
@@ -759,10 +815,21 @@ updateImages();
         //let response = await fetch("./api/CreationPlans.php/recettes/");
   
         //let resultat = await response.json();
+        let tableauIngredients = ["sdf", "dfsfd", "sdf"];
+        let tableauEtapes = ["sdf", "dfsfd", "sdf"];
         let resultat = [
           { error: false },
-          { id: 1, nom: "Recette 1", description : "efvevrfvrf"},
-          { id: 2, nom: "Recette 2", description : "grvrvecedxedx" }
+          { id: 1, titre: "Recette 1", description : "efvevrfvrf",
+            ingredients: tableauIngredients,
+            etapes: tableauEtapes,
+            temps: 5,
+            portion: 5,
+            difficulte: 2},
+          { id: 2, titre: "Recette 2", description : "grvrvecedxedx",ingredients: tableauIngredients,
+            etapes: tableauEtapes,
+            temps: 5,
+            portion: 5,
+            difficulte: 2 }
         ];
   
         if (resultat[0].error) {
@@ -770,7 +837,7 @@ updateImages();
         } else {
           for (let i = 1; i < resultat.length; i++) {
             let divRecette = document.createElement("option");
-            divRecette.innerHTML = resultat[i].nom;
+            divRecette.innerHTML = resultat[i].titre;
             divRecette.id = resultat[i].id;
             listeRecettesLundi.appendChild(divRecette.cloneNode(true));
             listeRecettesMardi.appendChild(divRecette.cloneNode(true));
