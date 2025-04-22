@@ -357,6 +357,7 @@ effacerRecette.addEventListener("click", async function () {
       }
 
     async function sendRecette() {
+        event.preventDefault();
         const identifiant = sessionStorage.getItem('identifiant');
 
         tableauIngredients = tableauIngredients.map((ingredient, i) => {
@@ -414,7 +415,7 @@ effacerRecette.addEventListener("click", async function () {
                 alert("Recette envoyée !");
                 //back();
             } else {
-                alert("Erreur lors de l’envoi.");
+                alert("Erreur lors de l’envoi."+ result.status);
             }
         } catch (error) {
             console.error("Erreur fetch :", error);

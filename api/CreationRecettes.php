@@ -102,7 +102,7 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
             }
 
         } catch (PDOException $e) {
-            echo json_encode(["error" => true, "message" => "Erreur base de données", "details" => $e->getMessage()]);
+            echo json_encode(["status" => $e->getMessage(), "message" => "Erreur base de données", "details" => $e->getMessage()]);
         }
 });
 
