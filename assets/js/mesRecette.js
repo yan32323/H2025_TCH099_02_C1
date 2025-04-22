@@ -194,7 +194,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
+    /**
+     * Obtenir l'image coorespondant au type de la recette.
+     * @param {String} typeRecette Le type de la recette
+     * @returns l'image coorespondant au type de la recette
+     */
     async function ajouterRetirerLike(idRecette, ajouterLike) {
 
         event.preventDefault();
