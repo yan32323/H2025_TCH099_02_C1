@@ -107,9 +107,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const TEXT = document.createElement("p");
                 TEXT.className = "text_produit";
 
-                //AJOUTER LE POINT NOIR ICI
-                //ITEM.append(pointnoir);
-
                 //Sélectionner le texte bon texte de l'objet à afficher
                 switch(nuItems){
                     case 0:

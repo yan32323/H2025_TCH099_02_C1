@@ -61,7 +61,6 @@ $router->get('/stockage.php/recuperer-ingredient/', function() {
         $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
         
         if($resultat){
-
             echo json_encode(['statut' => 'success', 'listeIngredient' => $resultat]);
             exit();
 
@@ -232,7 +231,13 @@ $router->put('/stockage.php/update-produit/', function() {
 });
 
 
-// Function to validate user credentials (reusable for all API endpoints)
+/**
+ * Vérifier si l'usager est valide
+ * @param string $identifiant L'identifiant de l'utilisateur
+ * @param string $motDePasse Le mot de passe de l'utilisateur
+ * @param PDO $pdo L'objet PDO pour la connexion à la base de données
+ * @return boolean Vraie si l'utilisateur est valide, faux sinon
+ */
 function validateUserCredentials($identifiant, $motDePasse, $pdo) {
 
     $requete = $pdo->prepare("SELECT mot_de_passe FROM clients WHERE nom_utilisateur = :identifiant");

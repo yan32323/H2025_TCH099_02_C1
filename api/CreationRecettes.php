@@ -438,7 +438,13 @@ $router->delete('/CreationRecettes.php/delete-recette-aime', function() {
 });
 
 
-
+/**
+ * Vérifier si l'usager est valide
+ * @param string $identifiant L'identifiant de l'utilisateur
+ * @param string $motDePasse Le mot de passe de l'utilisateur
+ * @param PDO $pdo L'objet PDO pour la connexion à la base de données
+ * @return boolean Vraie si l'utilisateur est valide, faux sinon
+ */
 function validateUserCredentials($identifiant, $motDePasse, $pdo) {
 
     $requete = $pdo->prepare("SELECT mot_de_passe FROM clients WHERE nom_utilisateur = :identifiant");

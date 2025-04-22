@@ -269,6 +269,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    /**
+     * Ajouter ou retirer un like à une recette.
+     * @param {int} idRecette L'identifiant de la recette
+     * @param {boolean} ajouterLike True si on veut ajouter un like, false si on veut le retirer
+     */
     async function ajouterRetirerLike(idRecette, ajouterLike) {
         event.preventDefault();
         let dataJSON = {
