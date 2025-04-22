@@ -29,74 +29,24 @@
       <div class="notification-container">
         <button class="notification-bell" id="notificationBell">
           <i class="fas fa-bell"></i>
-          <span class="notification-badge">3</span>
+          <span class="notification-badge" id="notificationBadge">0</span>
         </button>
-        
+      
         <div class="notification-dropdown" id="notificationDropdown">
           <div class="notification-header">
             <h3>Notifications</h3>
             <a href="#" id="markAllRead">Tout marquer comme lu</a>
           </div>
-          
-          <div class="notification-list">
-            <div class="notification-item unread">
-              <div class="notification-item-flex">
-                <div class="notification-icon recipe">
-                  <i class="fas fa-utensils"></i>
-                </div>
-                <div class="notification-content">
-                  <div class="notification-title">Nouvelle recette ajoutée</div>
-                  <div class="notification-text">La recette "Burger maison" a été ajoutée à vos favoris</div>
-                  <div class="notification-time">Il y a 5 minutes</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="notification-item unread">
-              <div class="notification-item-flex">
-                <div class="notification-icon stock">
-                  <i class="fas fa-exclamation-circle"></i>
-                </div>
-                <div class="notification-content">
-                  <div class="notification-title">Stock bas</div>
-                  <div class="notification-text">La quantité de lait est faible. Pensez à en racheter</div>
-                  <div class="notification-time">Il y a 1 heure</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="notification-item unread">
-              <div class="notification-item-flex">
-                <div class="notification-icon planning">
-                  <i class="fas fa-calendar-alt"></i>
-                </div>
-                <div class="notification-content">
-                  <div class="notification-title">Rappel de planification</div>
-                  <div class="notification-text">N'oubliez pas de planifier vos repas pour la semaine prochaine</div>
-                  <div class="notification-time">Il y a 2 heures</div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="notification-item">
-              <div class="notification-item-flex">
-                <div class="notification-icon recipe">
-                  <i class="fas fa-star"></i>
-                </div>
-                <div class="notification-content">
-                  <div class="notification-title">Recette populaire</div>
-                  <div class="notification-text">La recette "Salade césar" est l'une des plus consultées cette semaine</div>
-                  <div class="notification-time">Hier</div>
-                </div>
-              </div>
-            </div>
+      
+          <div class="notification-list" id="notificationList">
           </div>
-          
+      
           <div class="notification-footer">
             <a href="notifications.html">Voir toutes les notifications</a>
           </div>
         </div>
       </div>
+      
     <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
 

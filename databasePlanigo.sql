@@ -140,6 +140,89 @@ CREATE TABLE Utilisateurs_suivi (
     FOREIGN KEY (user_suivi_id) REFERENCES Clients (nom_utilisateur)
 );
 
+CREATE TABLE Notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom_utilisateur VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
+    est_lue TINYINT(1) DEFAULT 0,
+    type VARCHAR(255) NOT NULL,
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE
+);
+
+
+--Creation des trigger
+
+
+DELIMITER //
+
+CREATE TRIGGER notifier_commentaire_sur_recette
+AFTER INSERT ON Commentaires
+FOR EACH ROW
+BEGIN
+    DECLARE auteur_recette VARCHAR(255);
+
+    -- Récupère l'auteur de la recette
+    SELECT createur_nom_utilisateur
+    INTO auteur_recette
+    FROM Recettes
+    WHERE id = NEW.recette_id;
+
+    -- Si l'auteur de la recette n'est pas celui qui a commenté
+    IF auteur_recette != NEW.nom_utilisateur THEN
+        INSERT INTO Notifications (nom_utilisateur, message, type)
+        VALUES (
+            auteur_recette,
+            CONCAT('Nouvelle activité : ', NEW.nom_utilisateur, ' a commenté votre recette.'),
+            'Nouveau Commentaire'
+        );
+    END IF;
+END;
+//
+
+
+CREATE TRIGGER after_new_follow
+AFTER INSERT ON Utilisateurs_suivi
+FOR EACH ROW
+BEGIN
+    DECLARE suivi VARCHAR(255);
+    DECLARE suiveur VARCHAR(255);
+
+    SET suiveur = NEW.nom_utilisateur;
+    SET suivi = NEW.user_suivi_id;
+
+    -- Crée une notification pour l'utilisateur suivi
+    INSERT INTO Notifications (nom_utilisateur, message, type)
+    VALUES (
+        suivi,
+        CONCAT(suiveur, ' a commencé à vous suivre.'),
+        'Nouvel Abonné'
+    );
+END//
+
+
+
+
+CREATE TRIGGER notif_nouvelle_recette
+AFTER INSERT ON Recettes
+FOR EACH ROW
+BEGIN
+    -- Insère une notification à tous les utilisateurs qui suivent le créateur de la recette
+    INSERT INTO Notifications (nom_utilisateur, message, type)
+    SELECT nom_utilisateur, 
+           CONCAT('La personne que vous suivez (', NEW.createur_nom_utilisateur, ') a publié une nouvelle recette : ', NEW.nom),
+           'Nouvelle Recette'
+    FROM Utilisateurs_suivi
+    WHERE user_suivi_id = NEW.createur_nom_utilisateur;
+END//
+
+DELIMITER ;
+
+
+
+
+
+
 -- Insertion des données dans les tables
 
 INSERT INTO Clients (nom_utilisateur, mot_de_passe, prenom, nom, description)
