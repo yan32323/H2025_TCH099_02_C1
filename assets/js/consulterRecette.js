@@ -181,14 +181,14 @@ function afficherRecette(recette, userId) {
                 likeButton.addEventListener("click", async () => {
                     try {
                         const response = await fetch(
-                            "./api/likeCommentaire.php",
+                            "./api/consulterRecette.php/likeCommentaire",
                             {
                                 method: "POST",
                                 headers: {
                                     "Content-Type":
                                         "application/json",
                                 },
-                                body: JSON.stringify({id_commentaire: commentaire.id})
+                                body: JSON.stringify({id_commentaire: commentaire.id, user_id: sessionStorage.getItem("identifiant")})
                             }
                         );
 
@@ -248,7 +248,7 @@ function afficherRecette(recette, userId) {
 
         const userId = sessionStorage.getItem("identifiant");
 
-        fetch("./api/ajouterCommentaire.php", {
+        fetch("./api/consulterRecette.php/ajouterCommentaire", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -313,7 +313,7 @@ function afficherRecette(recette, userId) {
 
             try {
                 const response = await fetch(
-                    "./api/ajouterNote.php",
+                    "./api/consulterRecette.php/ajouterNote",
                     {
                         method: "POST",
                         headers: {

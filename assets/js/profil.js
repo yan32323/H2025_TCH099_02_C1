@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch("./api/profil.php", {
+    fetch("./api/profil.php/afficher", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
         .then((response) => response.text())
         .then((text) => {
-            console.log(text);
             return JSON.parse(text);
         })
         .then((data) => {
@@ -57,7 +56,7 @@ function afficheProfil(profilData) {
 
         // Vérifie si l'utilisateur est déjà suivi
         fetch(
-            "./api/suivreUser.php",
+            "./api/profil.php/suivre-user",
             {
                 method: "POST",
                 headers: {
@@ -84,7 +83,7 @@ function afficheProfil(profilData) {
         // Suivre un utilisateur
         suivreBtn.addEventListener("click", () => {
             fetch(
-                "./api/suivreUser.php",
+                "./api/profil.php/suivre-user",
                 {
                     method: "POST",
                     headers: {

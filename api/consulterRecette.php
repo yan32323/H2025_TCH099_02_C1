@@ -1,13 +1,13 @@
 <?php
-require_once 'Router.php'; 
+require_once 'Router.php';
 // Inclure la connexion à la base de données
 
 
 $router = new Router();
 
-$router->post('/consulterRecette.php/afficher', function() {
+$router->post('/consulterRecette.php/afficher', function () {
 
-    
+
     require_once '../includes/conection.php';
     header("Content-Type: application/json");
 
@@ -124,6 +124,131 @@ $router->post('/consulterRecette.php/afficher', function() {
         "user_id" => $nom_utilisateur
     ]);
 
+});
+
+$router->post('/consulterRecette.php/ajouterCommentaire', function () {
+    require_once '../includes/config.php';
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    // Lire les données JSON
+    $donneesJSON = json_decode(file_get_contents("php://input"), true);
+
+    // Récupérer les données avec null par défaut
+    $commentaire = $donneesJSON['commentaire'] ?? null;
+    $recetteId = $donneesJSON['recette_id'] ?? null;
+    $nomUtilisateur = $donneesJSON['nom_utilisateur'] ?? null;
+
+    // Validation simple
+    if (empty($commentaire) || empty($recetteId) || empty($nomUtilisateur)) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Le commentaire, l\'ID de la recette ou le nom d\'utilisateur est manquant.'
+        ]);
+        exit;
+    }
+
+    try {
+        // Préparer la requête d'insertion
+        $stmt = $pdo->prepare("INSERT INTO Commentaires (recette_id, nom_utilisateur, texte, date_commentaire) VALUES (?, ?, ?, NOW())");
+        $stmt->execute([$recetteId, $nomUtilisateur, $commentaire]);
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Commentaire ajouté avec succès.'
+        ]);
+    } catch (PDOException $e) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'Erreur lors de l\'ajout du commentaire : ' . $e->getMessage()
+        ]);
+    }
+});
+
+$router->post('/consulterRecette.php/likeCommentaire', function () {
+    require_once '../includes/config.php';
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    $input = json_decode(file_get_contents("php://input"), true);
+
+    if (!isset($input['id_commentaire']) || !isset($input['user_id'])) {
+        echo json_encode(["success" => false, "message" => "Paramètres manquants."]);
+        exit;
+    }
+
+    $id_commentaire = $input['id_commentaire'];
+    $nom_utilisateur = $input['user_id'];
+
+    try {
+        // Vérifie si ce like existe déjà
+        $stmt = $pdo->prepare("SELECT * FROM Likes_Commentaires WHERE commentaire_id = ? AND nom_utilisateur = ?");
+        $stmt->execute([$id_commentaire, $nom_utilisateur]);
+
+        if ($stmt->fetch()) {
+            echo json_encode(["success" => false, "message" => "Vous avez déjà liké ce commentaire."]);
+            exit;
+        }
+
+        // Ajoute le like
+        $stmt = $pdo->prepare("INSERT INTO Likes_Commentaires (commentaire_id, nom_utilisateur) VALUES (?, ?)");
+        $stmt->execute([$id_commentaire, $nom_utilisateur]);
+
+        // Incrémente le compteur de likes
+        $stmt = $pdo->prepare("UPDATE Commentaires SET nb_likes = nb_likes + 1 WHERE id = ?");
+        $stmt->execute([$id_commentaire]);
+
+        echo json_encode(["success" => true]);
+    } catch (PDOException $e) {
+        echo json_encode(["success" => false, "message" => "Erreur serveur : " . $e->getMessage()]);
+    }
+
+});
+
+$router->post('/consulterRecette.php/ajouterNote', function () {
+    require_once '../includes/conection.php';
+
+    // Lire les données JSON
+    $donneesJSON = json_decode(file_get_contents("php://input"), true);
+
+    // Récupération des données
+    $idUtilisateur = $donneesJSON['nom_utilisateur'] ?? null;
+    $recette_id = $donneesJSON['recette_id'] ?? null;
+    $note = $donneesJSON['note'] ?? null;
+
+    // Vérification de la présence des données
+    if (!$idUtilisateur || !$recette_id || !$note) {
+        echo json_encode(['success' => false, 'message' => 'Données incomplètes']);
+        exit;
+    }
+
+    try {
+        // Vérifier si déjà notée
+        $stmt = $pdo->prepare("SELECT * FROM Recettes_Notes WHERE nom_utilisateur = ? AND recette_id = ?");
+        $stmt->execute([$idUtilisateur, $recette_id]);
+
+        if ($stmt->rowCount() > 0) {
+            echo json_encode(['success' => false, 'message' => 'Vous avez déjà noté cette recette']);
+            exit;
+        }
+
+        // Insérer la note
+        $stmt = $pdo->prepare("INSERT INTO Recettes_Notes (nom_utilisateur, recette_id, note) VALUES (?, ?, ?)");
+        $stmt->execute([$idUtilisateur, $recette_id, $note]);
+
+        // Recalculer moyenne et nombre de votes
+        $stmt = $pdo->prepare("SELECT AVG(note) as moyenne, COUNT(*) as total FROM Recettes_Notes WHERE recette_id = ?");
+        $stmt->execute([$recette_id]);
+        $row = $stmt->fetch();
+
+        echo json_encode([
+            'success' => true,
+            'nouvelle_moyenne' => round($row['moyenne'], 1),
+            'nouveau_nombre_votes' => $row['total']
+        ]);
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => 'Erreur serveur']);
+    }
 });
 
 
