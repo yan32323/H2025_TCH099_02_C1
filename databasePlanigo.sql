@@ -285,17 +285,17 @@ VALUES
 
 INSERT INTO Plan_de_repas (nom_utilisateur)
 VALUES
-    ('john_doe'),
-    ('jane_doe'),
-    ('alice_smith');
+    ('Plan1','descriptions du plan 1','john_doe'),
+    ('Plan2','descriptions du plan 2','jane_doe'),
+    ('Plan3','descriptions du plan 3','alice_smith');
 
 INSERT INTO Repas_Planifies (plan_id, recette_id, journee, heure)
 VALUES
-    (1, 1, '2025-03-25', '12:00:00'),
-    (1, 2, '2025-03-26', '18:00:00'),
-    (2, 3, '2025-03-27', '19:00:00'),
-    (3, 1, '2025-03-28', '20:00:00'),
-    (3, 2, '2025-03-29', '13:00:00');
+    (1, 1, 'Lundi', '12:00:00'),
+    (1, 2, 'Mardi', '18:00:00'),
+    (2, 3, 'Mercredi', '19:00:00'),
+    (3, 1, 'Jeudi', '20:00:00'),
+    (3, 2, 'Vendredi', '13:00:00');
 
 INSERT INTO Promotions (nom_enseigne, url_promotion)
 VALUES
