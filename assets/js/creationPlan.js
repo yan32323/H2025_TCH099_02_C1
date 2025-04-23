@@ -72,8 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           //tentative de suppression du plan cote serveur
           try {
             let response = await fetch(
-              chemin +"/api/CreationPlans.php/plans/supprimer/" +
-                planLocal,
+              chemin +"/api/CreationPlans.php/planSupprimer/",
               {
                 method: "POST",
                 headers: {
@@ -757,7 +756,6 @@ updateImages();
 
     envoyerPlan.addEventListener("click", sendPlan);
 
-    //TODO : fix fetchPlan
     /**
      * recuperation du plan dans la base de donnee via son id
      * @param {String} plan l'id du plan a recuperer
@@ -765,7 +763,13 @@ updateImages();
     async function fetchPlan(plan) {
       try {
         let response = await fetch(
-          chemin+"/api/CreationPlans.php/plans/" + plan );
+          chemin+"/api/CreationPlans.php/plans/" + plan,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            }
+          } );
   
         if (!response(error)){
         for(let i = 1; i <= 5; i++){
@@ -890,8 +894,7 @@ updateImages();
           description: description,
           images: tableauImages,
           recettes: tableauRecettes,
-    //      username: sessionStorage.getItem("username"),
-    username:"test",
+          username: sessionStorage.getItem("username"),
         });
         let paquet = new FormData();
         for (let i = 0; i < tableauImages.length; i++) {
@@ -903,7 +906,7 @@ updateImages();
         paquet.append("json", objPlanJSON);  
   
         let response = await fetch(
-          chemin+"/api/CreationPlans.php/plans/creer/",
+          chemin+"/api/CreationPlans.php/plans/creer",
           {
             method: "POST",
             headers: {
