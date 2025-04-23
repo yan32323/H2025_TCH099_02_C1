@@ -69,7 +69,6 @@ CREATE TABLE Repas_Planifies (
     recette_id INT NOT NULL,
     journee VARCHAR(255) NOT NULL,
     heure TIME NOT NULL,
-    PRIMARY KEY (id),
     FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,
     FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE
 );
@@ -283,7 +282,7 @@ VALUES
     (3, 4, 'Faire griller des tranches de pain avec du fromage râpé.'),
     (3, 5, 'Servir la soupe chaude avec les tranches de pain gratiné.');
 
-INSERT INTO Plan_de_repas (nom_utilisateur)
+INSERT INTO Plan_de_repas (titre, descriptions, nom_utilisateur)
 VALUES
     ('Plan1','descriptions du plan 1','john_doe'),
     ('Plan2','descriptions du plan 2','jane_doe'),
