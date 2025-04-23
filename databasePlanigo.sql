@@ -57,27 +57,21 @@ CREATE TABLE Recettes_Etapes (
 
 CREATE TABLE Plan_de_repas (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    date DATE NOT NULL,
+    titre VARCHAR(255) NOT NULL,
+    descriptions TEXT,
     nom_utilisateur VARCHAR(255) NOT NULL,
     FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur)
 );
 
 CREATE TABLE Repas_Planifies (
-    plan_id INT NOT NULL,
-    recette_id INT NOT NULL,
-    PRIMARY KEY (plan_id, recette_id),
-    FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,
-    FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE
-);
-
-CREATE TABLE Liste_de_courses (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     plan_id INT NOT NULL,
-    ingredient_id INT NOT NULL,
-    quantite DECIMAL(10,2) NOT NULL,
-    achete TINYINT(1) NOT NULL,
+    recette_id INT NOT NULL,
+    journee VARCHAR(255) NOT NULL,
+    heure TIME NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY (plan_id) REFERENCES Plan_de_repas (id) ON DELETE CASCADE,
-    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id) ON DELETE CASCADE
+    FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Promotions (
@@ -289,17 +283,19 @@ VALUES
     (3, 4, 'Faire griller des tranches de pain avec du fromage râpé.'),
     (3, 5, 'Servir la soupe chaude avec les tranches de pain gratiné.');
 
-INSERT INTO Plan_de_repas (date, nom_utilisateur)
+INSERT INTO Plan_de_repas (nom_utilisateur)
 VALUES
-    ('2025-03-26', 'john_doe'),
-    ('2025-03-27', 'jane_doe'),
-    ('2025-03-28', 'alice_smith');
+    ('john_doe'),
+    ('jane_doe'),
+    ('alice_smith');
 
-INSERT INTO Repas_Planifies (plan_id, recette_id)
+INSERT INTO Repas_Planifies (plan_id, recette_id, journee, heure)
 VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3);
+    (1, 1, '2025-03-25', '12:00:00'),
+    (1, 2, '2025-03-26', '18:00:00'),
+    (2, 3, '2025-03-27', '19:00:00'),
+    (3, 1, '2025-03-28', '20:00:00'),
+    (3, 2, '2025-03-29', '13:00:00');
 
 INSERT INTO Promotions (nom_enseigne, url_promotion)
 VALUES
@@ -313,24 +309,6 @@ VALUES
     ('jane_doe', 6, 500),
     ('jane_doe', 7, 200),
     ('alice_smith', 5, 300);
-
-INSERT INTO Liste_de_courses (plan_id, ingredient_id, quantite, achete)
-VALUES
-    (1, 1, 0, 0),
-    (1, 2, 150, 0),
-    (1, 3, 100, 0),
-    (1, 4, 0, 0),
-    (1, 5, 75, 0),
-    (2, 6, 0, 0),
-    (2, 7, 100, 0),
-    (2, 8, 400, 0),
-    (2, 9, 150, 0),
-    (2, 10, 25, 0),
-    (3, 9, 250, 0),
-    (3, 11, 200, 0),
-    (3, 12, 50, 0),
-    (3, 13, 100, 0),
-    (3, 14, 750, 0);
 
 INSERT INTO Recettes_Sauvegardees (nom_utilisateur, recette_id)
 VALUES

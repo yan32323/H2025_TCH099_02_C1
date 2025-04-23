@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     let effacerPlan = document.getElementById("btn-suppression-plan");
     let prochaineImage = document.getElementById("prochaine-image");
+    const chemin ="http://localhost/planigo/H2025_TCH099_02_C1";
     
     let prochaineRecetteLundi = document.getElementById("prochaine-recette-lundi");
     let prochaineRecetteMardi = document.getElementById("prochaine-recette-mardi");
@@ -9,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     let prochaineRecetteVendredi = document.getElementById("prochaine-recette-vendredi");
     let prochaineRecetteSamedi = document.getElementById("prochaine-recette-samedi");
     let prochaineRecetteDimanche = document.getElementById("prochaine-recette-dimanche");
+    
     let ajouterRecetteLundi = document.getElementById("btn-creation-plan-recette-lundi");
     let ajouterRecetteMardi = document.getElementById("btn-creation-plan-recette-mardi");
     let ajouterRecetteMercredi = document.getElementById("btn-creation-plan-recette-mercredi");
@@ -70,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           //tentative de suppression du plan cote serveur
           try {
             let response = await fetch(
-              "./api/CreationPlans.php/plans/supprimer/" +
+              chemin +"/api/CreationPlans.php/plans/supprimer/" +
                 planLocal,
               {
                 method: "POST",
@@ -111,13 +113,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesLundi.length; i++) {
-          if (tableauRecettesLundi[i].titre==textProchainRecette){
+          if (tableauRecettesLundi[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -148,13 +150,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesLundi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesLundi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesLundi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesLundi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesLundi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesLundi[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesLundi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesLundi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesLundi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesLundi[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesLundi[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesLundi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-l" +
           i +
           "'>" +
-          tableauRecettesLundi[i].titre +
+          tableauRecettesLundi[i].nom +
           "</p><input id='heure-l"+i+"' value='"+tableauRecettesLundi[i].heure+"'type='time'><button class='remove-item-button' id='supr-rec-l" +
           i +"'>X</button></div>";
           affichageRecetteLundi.appendChild(divRecette);
@@ -199,13 +201,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesMardi.length; i++) {
-          if (tableauRecettesMardi[i].titre==textProchainRecette){
+          if (tableauRecettesMardi[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -235,13 +237,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesMardi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesMardi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesMardi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesMardi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesMardi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesMardi[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesMardi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesMardi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesMardi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesMardi[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesMardi[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesMardi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-ma" +
           i +
           "'>" +
-          tableauRecettesMardi[i].titre +
+          tableauRecettesMardi[i].nom +
           "</p><input id='heure-ma"+i+"' value='"+tableauRecettesMardi[i].heure+"'type='time'><button class='remove-item-button' id='supr-rec-ma" +
           i +"'>X</button></div>";
           affichageRecetteMardi.appendChild(divRecette);
@@ -287,13 +289,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesMercredi.length; i++) {
-          if (tableauRecettesMercredi[i].titre==textProchainRecette){
+          if (tableauRecettesMercredi[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -323,13 +325,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesMercredi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesMercredi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesMercredi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesMercredi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesMercredi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesMercredi[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesMercredi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesMercredi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesMercredi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesMercredi[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesMercredi[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesMercredi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-me" +
           i +
           "'>" +
-          tableauRecettesMercredi[i].titre +
+          tableauRecettesMercredi[i].nom +
           "</p><input id='heure-me"+i+"' value='"+tableauRecettesMercredi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-me" +
           i +"'>X</button></div>";
           affichageRecetteMercredi.appendChild(divRecette);
@@ -373,13 +375,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesJeudi.length; i++) {
-          if (tableauRecettesJeudi[i].titre==textProchainRecette){
+          if (tableauRecettesJeudi[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -409,13 +411,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesJeudi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesJeudi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesJeudi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesJeudi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesJeudi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesJeudi[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesJeudi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesJeudi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesJeudi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesJeudi[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesJeudi[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesJeudi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-j" +
           i +
           "'>" +
-          tableauRecettesJeudi[i].titre +
+          tableauRecettesJeudi[i].nom +
           "</p><input id='heure-j"+i+"' value='"+tableauRecettesJeudi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-j" +
           i +"'>X</button></div>";
           affichageRecetteJeudi.appendChild(divRecette);
@@ -459,13 +461,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesVendredi.length; i++) {
-          if (tableauRecettesVendredi[i].titre==textProchainRecette){
+          if (tableauRecettesVendredi[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -495,13 +497,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesVendredi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesVendredi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesVendredi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesVendredi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesVendredi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesVendredi[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesVendredi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesVendredi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesVendredi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesVendredi[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesVendredi[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesVendredi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-v" +
           i +
           "'>" +
-          tableauRecettesVendredi[i].titre +
+          tableauRecettesVendredi[i].nom +
           "</p><input id='heure-v"+i+"' value='"+tableauRecettesVendredi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-v" +
           i +"'>X</button></div>";
           affichageRecetteVendredi.appendChild(divRecette);
@@ -545,13 +547,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesSamedi.length; i++) {
-          if (tableauRecettesSamedi[i].titre==textProchainRecette){
+          if (tableauRecettesSamedi[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -581,13 +583,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesSamedi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesSamedi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesSamedi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesSamedi[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesSamedi[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesSamedi[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesSamedi[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesSamedi[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesSamedi[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesSamedi[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesSamedi[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesSamedi[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-s" +
           i +
           "'>" +
-          tableauRecettesSamedi[i].titre +
+          tableauRecettesSamedi[i].nom +
           "</p><input id='heure-s"+i+"' value='"+tableauRecettesSamedi[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-s" +
           i +"'>X</button></div>";
           affichageRecetteSamedi.appendChild(divRecette);
@@ -631,13 +633,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         let indexDansListe = -1;
         let estNouveau = true;
         for (let i = 0; i < tableauRecettesDimanche.length; i++) {
-          if (tableauRecettesDimanche[i].titre==textProchainRecette){
+          if (tableauRecettesDimanche[i].nom==textProchainRecette){
             estNouveau=false;
           }
         }
         if (estNouveau){
         for (let i = 1; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].titre == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -667,13 +669,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       }
 
-        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesDimanche[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesDimanche[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesDimanche[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesDimanche[i].ingredients.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesDimanche[i].etapes.length+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesDimanche[i].portion+" Portions</p></div></div></div></div>";
+        aAfficher.innerHTML = "<div class='popup-content'><div class='left-column'><img class='recipe-image' src='"+imgSrc+"' alt='Recipe Image'><p class='recipe-description'>"+tableauRecettesDimanche[i].description+"</p></div><div class='right-column'><div class='ingredients-box'><h2 class='ingredients-title'>DÉTAILS</h2><div class='recipe-info-section'><h3 class='info-title'>NOMBRE DE PORTIONS</h3><p class='info-value'>"+tableauRecettesDimanche[i].portion+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>TEMPS DE PRÉPARATION</h3><p class='info-value'>"+tableauRecettesDimanche[i].temps+" Minutes</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'INGRÉDIENTS</h3><p class='info-value'>"+tableauRecettesDimanche[i].nombre_ingredients+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>NOMBRE D'ÉTAPES</h3><p class='info-value'>"+tableauRecettesDimanche[i].nombre_etapes+" Portions</p></div><div class='recipe-info-section'><h3 class='info-title'>ÉVALUATION</h3><p class='info-value'>"+tableauRecettesDimanche[i].portion+" Portions</p></div></div></div></div>";
 
         divRecette.innerHTML =
           "<div style='border=1px solid black'><p id='rec-d" +
           i +
           "'>" +
-          tableauRecettesDimanche[i].titre +
+          tableauRecettesDimanche[i].nom +
           "</p><input id='heure-d"+i+"' value='"+tableauRecettesDimanche[i].heure+"'type='time'><button  class='remove-item-button' id='supr-rec-d" +
           i +"'>X</button></div>";
           affichageRecetteDimanche.appendChild(divRecette);
@@ -763,7 +765,7 @@ updateImages();
     async function fetchPlan(plan) {
       try {
         let response = await fetch(
-          "./api/CreationPlans.php/plans/" + plan );
+          chemin+"/api/CreationPlans.php/plans/" + plan );
   
         if (!response(error)){
         for(let i = 1; i <= 5; i++){
@@ -812,32 +814,20 @@ updateImages();
   
     async function fetchRecettes() {
       try {
-        //let response = await fetch("./api/CreationPlans.php/recettes/");
-  
-        //let resultat = await response.json();
-        let tableauIngredients = ["sdf", "dfsfd", "sdf"];
-        let tableauEtapes = ["sdf", "dfsfd", "sdf"];
-        let resultat = [
-          { error: false },
-          { id: 1, titre: "Recette 1", description : "efvevrfvrf",
-            ingredients: tableauIngredients,
-            etapes: tableauEtapes,
-            temps: 5,
-            portion: 5,
-            difficulte: 2},
-          { id: 2, titre: "Recette 2", description : "grvrvecedxedx",ingredients: tableauIngredients,
-            etapes: tableauEtapes,
-            temps: 5,
-            portion: 5,
-            difficulte: 2 }
-        ];
+        let response = await fetch(chemin+"/api/CreationPlans.php/recettes");
+        if (!response.ok) {
+          throw new Error(
+              "Erreur lors de la récupération des recettes"
+          );
+      }
+        let resultat = await response.json();
   
         if (resultat[0].error) {
           erreurFetchRecettes();
         } else {
           for (let i = 1; i < resultat.length; i++) {
             let divRecette = document.createElement("option");
-            divRecette.innerHTML = resultat[i].titre;
+            divRecette.innerHTML = resultat[i].nom;
             divRecette.id = resultat[i].id;
             listeRecettesLundi.appendChild(divRecette.cloneNode(true));
             listeRecettesMardi.appendChild(divRecette.cloneNode(true));
@@ -900,10 +890,10 @@ updateImages();
           description: description,
           images: tableauImages,
           recettes: tableauRecettes,
-          username: sessionStorage.getItem("username"),
+    //      username: sessionStorage.getItem("username"),
+    username:"test",
         });
-  
-        let paquet = new formData();
+        let paquet = new FormData();
         for (let i = 0; i < tableauImages.length; i++) {
   
           paquet.append("image" + i, tableauImages[i].src);
@@ -913,7 +903,7 @@ updateImages();
         paquet.append("json", objPlanJSON);  
   
         let response = await fetch(
-          "./api/CreationPlans.php/plans/creer/",
+          chemin+"/api/CreationPlans.php/plans/creer/",
           {
             method: "POST",
             headers: {
