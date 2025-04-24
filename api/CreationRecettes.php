@@ -106,8 +106,6 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
         }
 });
 
-
-
 // Route pour la récupération de recettes
 $router->post('/CreationRecettes.php/recettes/{recette}', function ($recette) {
     header('Content-Type: application/json');
@@ -187,7 +185,6 @@ $router->get('/CreationRecettes.php/ingredients', function () {
         echo json_encode(["error" => true, "message" => "Erreur lors de la récupération des ingrédients."]);
     }
 });
-
 
 // Route pour récupéré toutes les recettes selon les 2 filtres données
 $router->post('/CreationRecettes.php/recuperer-recettes-filtrer', function () 

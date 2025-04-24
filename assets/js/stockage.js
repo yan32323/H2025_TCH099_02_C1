@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
     // Si l'usager n'est pas loguer, on le redirige vers la page de connextion
-    if (!IDENTIFIANT || !MOT_DE_PASSE) {
-        window.location.href = 'index.html';
-    }
+    // if (!IDENTIFIANT || !MOT_DE_PASSE) {
+    //     window.location.href = 'index.html';
+    // }
 
     //Afficher le message de base si présent
     if(sessionStorage.getItem('message_affichage')){
