@@ -25,7 +25,7 @@ $router->post('/getListeEpicerie.php/liste', function () {
         );
 
         // Récupérer le plan
-        $requete = $pdo->prepare("SELECT i.id, i.nom, SUM(ri.quantite) AS quantite_requise, COALESCE(si.quantite_disponible, 0)AS quantite_disponible, (SUM(ri.quantite) - COALESCE(si.quantite_disponible, 0)) AS quantite_manquante
+        $requete = $pdo->prepare("SELECT i.id, i.unite_de_mesure, i.nom, SUM(ri.quantite) AS quantite_requise, COALESCE(si.quantite_disponible, 0)AS quantite_disponible, (SUM(ri.quantite) - COALESCE(si.quantite_disponible, 0)) AS quantite_manquante
 FROM Repas_Planifies rp
 JOIN Plan_de_repas p ON rp.plan_id = p.id
 JOIN Recettes_Ingredients ri ON rp.recette_id = ri.recette_id
