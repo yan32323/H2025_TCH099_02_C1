@@ -50,6 +50,48 @@ $router->post('/profil.php/afficher', function () {
     ]);
 });
 
+//Route pour afficher les informations d'un usager
+$router->post('/profil.php/afficher-compte/', function () {
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+        //extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+        $userAVoir = trim($data['userAVoir']); //Usager qu'on veut afficher
+
+        //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+            $requete = $pdo->prepare("SELECT nom, prenom, COALESCE(description, 'Aucune Description') AS description 
+            FROM Clients WHERE nom_utilisateur = :nom_utilisateur");
+            $requete->execute([':nom_utilisateur' => $userAVoir]);
+            $client = $requete->fetch(PDO::FETCH_ASSOC);
+            if($client){
+                echo json_encode(['statut' => 'success','client' => $client]);
+                exit();
+            }else{
+                //Cas où l'usager n'existe pas dans la base de donnée
+                http_response_code(404); 
+                echo json_encode(['statut' => 'error', 'message' => 'Utilisateur introuvable.']);
+                exit();
+            }
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+});
+
 $router->post('/profil.php/suivre-user', function () {
     header("Content-Type: application/json; charset=UTF-8");
     require_once '../includes/conection.php';
@@ -192,6 +234,27 @@ $router->post('/profil.php/nb-abonne-nb-abonnement', function () {
         "nb_abonnements" => (int)$nbAbonnements
     ]);
 });
+
+
+/**
+ * Vérifier si l'usager est valide
+ * @param string $identifiant L'identifiant de l'utilisateur
+ * @param string $motDePasse Le mot de passe de l'utilisateur
+ * @param PDO $pdo L'objet PDO pour la connexion à la base de données
+ * @return boolean Vraie si l'utilisateur est valide, faux sinon
+ */
+function validateUserCredentials($identifiant, $motDePasse, $pdo) {
+
+    $requete = $pdo->prepare("SELECT mot_de_passe FROM clients WHERE nom_utilisateur = :identifiant");
+    $requete->execute([':identifiant' => $identifiant]);
+    $user = $requete->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($motDePasse, $user['mot_de_passe'])) {
+        return true; 
+    } else {
+        return false; 
+    }
+}
 
 // Acheminer la requête
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
