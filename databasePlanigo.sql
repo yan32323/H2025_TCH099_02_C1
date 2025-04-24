@@ -16,7 +16,7 @@ CREATE TABLE Recettes (
     image MEDIUMBLOB,
     portions INT NOT NULL DEFAULT 1,
     createur_nom_utilisateur VARCHAR(255) NOT NULL,
-    FOREIGN KEY (createur_nom_utilisateur) REFERENCES Clients (nom_utilisateur)
+    FOREIGN KEY (createur_nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE
 );
 
 CREATE TABLE Ingredients (
@@ -60,7 +60,7 @@ CREATE TABLE Plan_de_repas (
     titre VARCHAR(255) NOT NULL,
     descriptions TEXT,
     nom_utilisateur VARCHAR(255) NOT NULL,
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur)
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Repas_Planifies (
@@ -84,14 +84,14 @@ CREATE TABLE Stock_Ingredients (
     ingredient_id INT NOT NULL,
     quantite_disponible DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (nom_utilisateur, ingredient_id),
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE,
     FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id)
 );
 
 CREATE TABLE Recettes_Sauvegardees (
     nom_utilisateur VARCHAR(255) NOT NULL,
     recette_id INT NOT NULL,
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE,
     FOREIGN KEY (recette_id) REFERENCES Recettes (id)
 );
 
@@ -121,7 +121,7 @@ CREATE TABLE Recettes_Notes (
     recette_id INT NOT NULL,
     note INT DEFAULT 5 NOT NULL,
     PRIMARY KEY (nom_utilisateur, recette_id),
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE,
     FOREIGN KEY (recette_id) REFERENCES Recettes (id)
 );
 
@@ -129,8 +129,8 @@ CREATE TABLE Utilisateurs_suivi (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom_utilisateur VARCHAR(255) NOT NULL,
     user_suivi_id VARCHAR(255),
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur),
-    FOREIGN KEY (user_suivi_id) REFERENCES Clients (nom_utilisateur)
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE,
+    FOREIGN KEY (user_suivi_id) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE
 );
 
 CREATE TABLE Notifications (
@@ -140,7 +140,7 @@ CREATE TABLE Notifications (
     date_creation DATETIME DEFAULT CURRENT_TIMESTAMP,
     est_lue TINYINT(1) DEFAULT 0,
     type VARCHAR(255) NOT NULL,
-    FOREIGN KEY (nom_utilisateur) REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE
+    FOREIGN KEY (nom_utilisateur) REFERENCES Clients(nom_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -218,83 +218,100 @@ DELIMITER ;
 
 -- Insertion des données dans les tables
 
-INSERT INTO Clients (nom_utilisateur, mot_de_passe, prenom, nom, description)
+INSERT INTO Clients (nom_utilisateur, mot_de_passe, nom, prenom, description)
 VALUES
-    ('john_doe', 'password123', 'John', 'Doe', 'Passionné de cuisine et de voyages'),
-    ('jane_doe', 'mypassword', 'Jane', 'Doe', 'Amatrice de cuisine italienne'),
-    ('alice_smith', 'alicepassword', 'Alice', 'Smith', 'Cuisinière végétarienne et expérimentée');
+('chef_anna', 'secure123', 'Dupont', 'Anna', 'Chef pâtissière passionnée par les desserts français.'),
+('healthy_mike', 'fitlife', 'Martin', 'Mike', 'Coach nutritionnel adepte de la cuisine saine.'),
+('veggie_sophie', 'plants4life', 'Lemoine', 'Sophie', 'Végétarienne depuis 10 ans, créatrice de recettes vertes.'),
+('quick_luke', 'fastandgood', 'Moreau', 'Lucas', 'Spécialiste des repas rapides pour étudiants pressés.'),
+('grandma_marie', 'souvenirs1920', 'Durand', 'Marie', 'Recettes traditionnelles transmises depuis des générations.');
 
-INSERT INTO Recettes (nom, description, type, difficulter, temps_de_cuisson, image, portions, createur_nom_utilisateur)
-VALUES
-    ('Salade César', 'Une salade avec du poulet, de la laitue et de la sauce César', 'Dîner', 'facile', 15, NULL, 2, 'john_doe'),
-    ('Spaghetti Bolognese', 'Des pâtes avec une sauce bolognaise savoureuse', 'Plat principal', 'moyen', 30, NULL, 4, 'jane_doe'),
-    ('Soupe à l\'oignon', 'Une soupe chaude avec des oignons caramélisés', 'Entrée', 'facile', 45, NULL, 2, 'alice_smith');
 
-INSERT INTO Ingredients (unite_de_mesure, nom)
-VALUES
-    ('g', 'Poulet'),
-    ('g', 'Laitue Romaine'),
-    ('ml', 'Sauce César'),
-    ('g', 'Fromage Parmesan'),
-    ('g', 'Croutons'),
-    ('g', 'Pâtes'),
-    ('ml', 'Sauce tomate'),
-    ('g', 'Viande hachée'),
-    ('g', 'Oignon'),
-    ('g', 'Ail'),
-    ('g', 'Pain'),
-    ('g', 'Beurre'),
-    ('g', 'Fromage Gruyère'),
-    ('ml', 'Bouillon de boeuf');
 
-INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite)
+    INSERT INTO Recettes (nom, description, type, difficulter, temps_de_cuisson, image, portions, createur_nom_utilisateur)
 VALUES
-    (1, 1, 200),
-    (1, 2, 150),
-    (1, 3, 100),
-    (1, 4, 50),
-    (1, 5, 75),
-    (2, 6, 250),
-    (2, 7, 300),
-    (2, 8, 400),
-    (2, 9, 150),
-    (2, 10, 25),
-    (3, 9, 500),
-    (3, 11, 200),
-    (3, 12, 50),
-    (3, 13, 100),
-    (3, 14, 750);
+('Tarte aux pommes rustique', 'Recette traditionnelle avec une pâte maison et des pommes caramélisées.', 'Dessert', 'moyen', 50, NULL, 6, 'chef_anna'),
+('Buddha Bowl', 'Un bol équilibré avec quinoa, légumes rôtis et houmous.', 'Dîner', 'facile', 20, NULL, 2, 'healthy_mike'),
+('Lasagnes végétariennes', 'Version sans viande avec courgettes, épinards et fromage.', 'Plat principal', 'moyen', 45, NULL, 4, 'veggie_sophie'),
+('Wrap au thon', 'Wrap rapide au thon, maïs et sauce yaourt.', 'Déjeuner', 'facile', 10, NULL, 1, 'quick_luke'),
+('Soupe à la courge', 'Soupe onctueuse à la courge butternut et lait de coco.', 'Souper', 'facile', 30, NULL, 3, 'grandma_marie');
+
+
+    INSERT INTO Ingredients (unite_de_mesure, nom)
+VALUES
+('g', 'Pommes'),
+('g', 'Pâte brisée'),
+('g', 'Quinoa'),
+('g', 'Courgettes'),
+('g', 'Épinards'),
+('ml', 'Lait de coco'),
+('g', 'Fromage râpé'),
+('g', 'Thon'),
+('g', 'Maïs'),
+('ml', 'Yaourt'),
+('g', 'Courge butternut'),
+('g', 'Carottes');
+
+    INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite)
+VALUES
+(1, 1, 300), (1, 2, 200),
+(2, 3, 150),
+(3, 4, 200), (3, 5, 150), (3, 7, 100),
+(4, 8, 120), (4, 9, 80), (4, 10, 50),
+(5, 11, 250), (5, 12, 100), (5, 6, 100);
+
 
 INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte)
 VALUES
-    (1, 1, 'Laver la laitue et la couper grossièrement.'),
-    (1, 2, 'Faire griller les morceaux de poulet jusqu’à ce qu’ils soient dorés.'),
-    (1, 3, 'Préparer la sauce César.'),
-    (1, 4, 'Assembler la salade avec le poulet, la laitue, la sauce et du fromage râpé.'),
-    (2, 1, 'Faire revenir l’oignon haché dans une poêle.'),
-    (2, 2, 'Ajouter la viande hachée et faire cuire jusqu’à ce qu’elle soit bien dorée.'),
-    (2, 3, 'Verser la sauce tomate et laisser mijoter pendant 20 minutes.'),
-    (2, 4, 'Cuire les pâtes selon les instructions.'),
-    (2, 5, 'Mélanger les pâtes avec la sauce et servir chaud.'),
-    (3, 1, 'Éplucher et couper les oignons en fines lamelles.'),
-    (3, 2, 'Faire caraméliser les oignons dans une casserole avec un peu d’huile.'),
-    (3, 3, 'Ajouter de l’eau ou du bouillon et laisser mijoter 30 minutes.'),
-    (3, 4, 'Faire griller des tranches de pain avec du fromage râpé.'),
-    (3, 5, 'Servir la soupe chaude avec les tranches de pain gratiné.');
+(1, 1, 'Préchauffez le four à 180°C.'),
+(1, 2, 'Étalez la pâte brisée dans un moule à tarte.'),
+(1, 3, 'Épluchez et tranchez les pommes en fines lamelles.'),
+(1, 4, 'Disposez les pommes en rosace sur la pâte.'),
+(1, 5, 'Saupoudrez de sucre et enfournez pendant 45 minutes.');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte)
+VALUES
+(2, 1, 'Faites cuire le quinoa selon les instructions du paquet.'),
+(2, 2, 'Rôtissez les légumes de saison (carottes, patates douces, etc.) au four avec un filet d’huile d’olive.'),
+(2, 3, 'Préparez une sauce à base de tahini, citron, ail et eau.'),
+(2, 4, 'Assemblez dans un bol : quinoa, légumes, pois chiches, avocat, et versez la sauce.'),
+(2, 5, 'Parsemez de graines de sésame ou de tournesol pour le croquant.');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte)
+VALUES
+(3, 1, 'Préchauffez le four à 190°C.'),
+(3, 2, 'Faites revenir les courgettes et épinards à la poêle avec un filet d’huile.'),
+(3, 3, 'Alternez dans un plat : feuilles de lasagne, légumes, sauce tomate et fromage râpé.'),
+(3, 4, 'Répétez les couches jusqu’à épuisement des ingrédients.'),
+(3, 5, 'Enfournez 35 minutes. Laissez reposer 5 minutes avant de servir.');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte)
+VALUES
+(4, 1, 'Mélangez le thon égoutté avec le maïs et le yaourt.'),
+(4, 2, 'Ajoutez des épices au goût (curry ou paprika).'),
+(4, 3, 'Garnissez une tortilla avec le mélange.'),
+(4, 4, 'Roulez fermement le wrap et servez immédiatement ou emballez pour plus tard.');
+
+INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte)
+VALUES
+(5, 1, 'Épluchez et coupez la courge et les carottes en morceaux.'),
+(5, 2, 'Faites revenir dans une casserole avec un peu d’huile.'),
+(5, 3, 'Ajoutez de l’eau à hauteur et laissez cuire 20 minutes.'),
+(5, 4, 'Mixez la soupe et ajoutez le lait de coco.'),
+(5, 5, 'Assaisonnez et servez chaud avec quelques graines grillées en topping.');
 
 INSERT INTO Plan_de_repas (titre, descriptions, nom_utilisateur)
 VALUES
-    ('Plan1','descriptions du plan 1','john_doe'),
-    ('Plan2','descriptions du plan 2','jane_doe'),
-    ('Plan3','descriptions du plan 3','alice_smith');
+('Semaine Détox', 'Plan de repas léger pour une semaine équilibrée.', 'healthy_mike'),
+('Végé Tous Les Jours', 'Repas végétariens simples et savoureux.', 'veggie_sophie');
+
 
 INSERT INTO Repas_Planifies (plan_id, recette_id, journee, heure)
 VALUES
-    (1, 1, 'Lundi', '12:00:00'),
-    (1, 2, 'Mardi', '18:00:00'),
-    (2, 3, 'Mercredi', '19:00:00'),
-    (3, 1, 'Jeudi', '20:00:00'),
-    (3, 2, 'Vendredi', '13:00:00');
+(1, 2, 'Lundi', '12:00:00'),
+(1, 5, 'Mercredi', '19:00:00'),
+(2, 3, 'Mardi', '18:30:00');
+
 
 INSERT INTO Promotions (nom_enseigne, url_promotion)
 VALUES
@@ -303,11 +320,12 @@ VALUES
 
 INSERT INTO Stock_Ingredients (nom_utilisateur, ingredient_id, quantite_disponible)
 VALUES
-    ('john_doe', 1, 300),
-    ('john_doe', 4, 100),
-    ('jane_doe', 6, 500),
-    ('jane_doe', 7, 200),
-    ('alice_smith', 5, 300);
+('healthy_mike', 3, 500),
+('veggie_sophie', 4, 300),
+('chef_anna', 1, 200),
+('quick_luke', 8, 150),
+('grandma_marie', 11, 400);
+
 
 INSERT INTO Recettes_Sauvegardees (nom_utilisateur, recette_id)
 VALUES
@@ -317,15 +335,16 @@ VALUES
 
 INSERT INTO Commentaires (recette_id, nom_utilisateur, texte, date_commentaire)
 VALUES
-    (1, 'john_doe', 'Excellente recette!', '2025-03-25 10:00:00'),
-    (2, 'jane_doe', 'Vraiment savoureux, à refaire.', '2025-03-25 10:30:00'),
-    (3, 'alice_smith', 'Très réconfortant en hiver.', '2025-03-25 11:00:00');
+(1, 'grandma_marie', 'Un vrai délice, cette tarte rappelle les goûters d’antan.', '2025-04-20 16:00:00'),
+(2, 'veggie_sophie', 'Super bowl! Très équilibré et rapide à faire.', '2025-04-21 13:30:00'),
+(3, 'chef_anna', 'Les lasagnes sont savoureuses, bravo!', '2025-04-22 18:45:00');
 
 INSERT INTO Likes_Commentaires (commentaire_id, nom_utilisateur)
 VALUES
-    (1, 'jane_doe'),
-    (2, 'alice_smith'),
-    (3, 'john_doe');
+(1, 'chef_anna'),
+(2, 'quick_luke'),
+(3, 'healthy_mike');
+
 
 INSERT INTO Restrictions (nom)
 VALUES

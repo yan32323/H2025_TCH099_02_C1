@@ -398,7 +398,7 @@ effacerRecette.addEventListener("click", async function () {
             identifiant: identifiant,
             image: imageBase64,
         };
- alert("ok1");
+
         // Envoie du corps au serveur
         try {
             const response = await fetch(chemin+"/api/CreationRecettes.php/recettes/creer", {
@@ -406,14 +406,14 @@ effacerRecette.addEventListener("click", async function () {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(bodyData)
             });
-        alert("ok2");
+
             let text = await response.text();
 
             let result = JSON.parse(text);
     
             if (result.status === "ok") {
                 alert("Recette envoyée !");
-                //back();
+
             } else {
                 alert("Erreur lors de l’envoi."+ result.status);
             }

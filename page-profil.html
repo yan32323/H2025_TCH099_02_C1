@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Profil - Planigo</title>
+  <title>Profil - Planigo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles/style-profil.css" />
   <script src="assets/js/profil.js"></script>
@@ -150,8 +150,9 @@
   </footer>
 
   <script>
-    document.querySelector(".modify-profile-btn").addEventListener("click", function () {
-      window.location.href = "page-modifier-profil.html";
+    document.querySelector("#modifier-profil-btn").addEventListener("click", function () {
+      const userId = sessionStorage.getItem("identifiant");
+      window.location.href = `page-modifier-profil.html?user=${userId}`;
     });
 
     

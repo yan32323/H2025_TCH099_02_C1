@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Saira:wght@300;500;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@100;400;700&family=Satisfy&display=swap');
 :root {
-  --couleur-principale: #5e3023;
-  --couleur-hover: #7c3f2d;
-  --couleur-fond: #eddcd2;
+  --couleur-principale: #dd6213;
+  --couleur-hover: #a0501f;
+  --couleur-fond: #eddcbdf2;
   --couleur-carte: #f0efeb;
-  --couleur-carte-hover: #d0ada7;
+  --couleur-carte-hover: #fab082;
   --couleur-texte: #1f2937;
   --couleur-texte-leger: #6b7280;
   --shadow-sm: 0 2px 4px rgba(94, 48, 35, 0.1);
@@ -15,24 +15,28 @@
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
 }
-
 /* Base */
+* {
+  font-family: "Manjari", sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Manjari", sans-serif;
   background-color: var(--couleur-fond);
+  background: var(--couleur-fond);
   color: var(--couleur-texte);
   line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Saira', sans-serif;
+  font-family: "Atma", system-ui;
 }
 
 /* Header */
 .barre-haut {
   padding: 1rem 2rem;
-  background-color: rgba(232, 209, 197, 0.95);
+  background-color: #e9d1a5f2;
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
@@ -44,11 +48,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--couleur-principale);
-  font-family: 'Saira', sans-serif;
-  letter-spacing: -0.5px;
+  font-family: "Atma", system-ui;
+  letter-spacing: 0.5px;
 }
 
 .liens-nav {
@@ -100,10 +104,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .lien-deconnexion:hover {
   color: #dc2626;
-  background-color: #fce8e6;
-  border-color: #fecaca;
-}
 
+}
 @media (max-width: 767px) {
   .liens-nav {
     display: none;
@@ -134,24 +136,37 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Titres */
 .titre-section {
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
   color: var(--couleur-principale);
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
   text-align: center;
   position: relative;
 }
 
-.titre-section::after {
+
+
+.sous-titre-section {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--couleur-hover);
+  margin-bottom: 0px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 1rem;  
+}
+
+.sous-titre-section::after {
   content: '';
   position: absolute;
   left: 50%;
   bottom: -0.75rem;
   width: 80px;
   height: 3px;
-  background-color: var(--couleur-principale);
+  background-color: var(--couleur-hover);
   transform: translateX(-50%);
 }
+
 
 .sous-titre {
   font-size: 1.75rem;
@@ -427,6 +442,7 @@ h1, h2, h3, h4, h5, h6 {
 #carouselCategoriesBootstrap2 .categorie:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
+  font-family: "Manjari", sans-serif;
   border-color: rgba(20, 129, 122, 0.2);
 }
 
@@ -441,7 +457,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--couleur-texte);
-  font-family: 'Saira', sans-serif;
+  font-family: "Manjari", sans-serif;
 }
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -463,9 +479,9 @@ h1, h2, h3, h4, h5, h6 {
 .conteneur .btn-charger {
   background-color: var(--couleur-principale);
   color: white;
-  font-family: 'Saira', sans-serif;
+  font-family: "Manjari", sans-serif;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 1000;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: var(--radius-md);
