@@ -82,12 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         DIV_CONTENEUR_PLAN.innerHTML = '';
         MSG_ERREUR.textContent = ''; 
 
-        //Image par défaut pour les plans de repas
-        const IMAGE_PLAN = document.createElement('img');
-        IMAGE_PLAN.src = 'assets/image/semaine-gourmande.jpg'; 
-        IMAGE_PLAN.alt = 'gourmandes';
-        IMAGE_PLAN.className = 'image-categorie';
-
+        
         //Créer chaque item de plan de repas dans le compteneur
         for(let i = 0; i < listePlans.length; i++) {
             const PLAN = listePlans[i];
@@ -100,6 +95,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const DESCRIPTION_PLAN = document.createElement('p');
             DESCRIPTION_PLAN.textContent = PLAN.descriptions;
+
+            //Image par défaut pour les plans de repas
+            const IMAGE_PLAN = document.createElement('img');
+            IMAGE_PLAN.src = 'assets/image/semaine-gourmande.jpg'; 
+            IMAGE_PLAN.alt = 'gourmandes';
+            IMAGE_PLAN.className = 'image-categorie';
 
             ITEM_PLAN.appendChild(TITRE_PLAN);
             ITEM_PLAN.appendChild(DESCRIPTION_PLAN);
