@@ -29,19 +29,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+//TODO: Vérifier ci dessous
 function modifierProfil() {
     let newNom = document.getElementById("new_username");
     let newDescription = document.getElementById("new_description");
     let idConnecte = sessionStorage.getItem("identifiant");
+    let motDePasse = sessionStorage.getItem("motDePasse")
+    let verif_motDePasse = document.getElementById("passVerif")
+    let nouveau_motDePasse1 = document.getElementById("newPass1");
+    let nouveau_motDePasse2 = document.getElementById("newPass2");
+    let nouveau_motDePasse = null;
+
+    if(motDePasse == verif_motDePasse){
+        if(nouveau_motDePasse1 == nouveau_motDePasse2){
+            nouveau_motDePasse = nouveau_motDePasse1;
+        }else{
+            alert("Les deux champs de nouveau mot de passe doivent être identiques.")
+        }
+    }else{
+        alert("Le mot de passe actuel est incorrecte.")
+    }
+
+    
+
 
     let data = {
-        nom_utilisateur: idConnecte,
-        new_username: newNom.value,
+        identifiant: idConnecte,
+        motDePasse: motDePasse,
+        nouveau_identifiant: newNom.value,
+        nouveau_motDePasse:nouveau_motDePasse,
         new_description: newDescription.value,
-        new_imagebase64: null,
     };
+    
 
-    fetch("./api/profil.php/modifier", {
+    fetch("./api/profil.php/modifer-client", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -56,12 +77,13 @@ function modifierProfil() {
     .then((result) => {
         if (result.success) {
             alert("Profil mis à jour avec succès !");
-            if(result.changedUsername) {
-                alert("Votre nom d'utilisateur a été changé");
-                sessionStorage.setItem("identifiant", result.newUsername);
-                let newUsername = result.newUsername;
-                window.location.href = `page-profil.html?user=${newUsername}`;
+            if(newNom.value != ""){
+            sessionStorage.setItem("identifiant", newNom.value);
             }
+            if(nouveau_motDePasse != null){
+                sessionStorage.setItem("motDePasse", nouveau_motDePasse);
+            }
+            window.location.href = `page-profil.html?user=${sessionStorage.getItem("identifiant")}`; // Redirige vers la page de profil
             
         } else {
             alert("Erreur : " + result.message);
@@ -72,6 +94,10 @@ function modifierProfil() {
         alert("Erreur lors de la mise à jour du profil.");
     });
 }
+//TODO: Vérifier ci dessus
+
+
+
 function consulterNotifications(userId) {
     fetch("./api/consulterNotifications.php/afficher", {
         method: "POST",
