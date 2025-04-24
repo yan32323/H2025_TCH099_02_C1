@@ -613,3 +613,50 @@ body {
     border-right: none;
   }
 }
+.plan-hebdo {
+  background-color: var(--fond-carte); /* Fond blanc comme les cartes de recette */
+  border-radius: 1rem;                 /* Coins arrondis */
+  box-shadow: 0 4px 10px var(--ombre); /* Ombre subtile pour la profondeur */
+  padding: 2rem;                       /* Espacement interne */
+  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Effet de transition */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;                    /* Largeur maximale de la carte */
+  margin: 1rem;                        /* Marges autour de la carte */
+}
+
+.plan-hebdo:hover {
+  transform: translateY(-4px);         /* Légère élévation au survol */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); /* Ombre plus prononcée au survol */
+}
+
+.plan-hebdo .image-plan {
+  width: 100%;
+  max-width: 280px;                    /* Limite la largeur de l'image */
+  height: 180px;                       /* Hauteur fixe pour uniformité */
+  object-fit: cover;                   /* Couvre l'espace sans déformation */
+  border-radius: 1rem;                 /* Coins arrondis pour l'image */
+}
+
+.plan-hebdo h3 {
+  font-size: 1.25rem;
+  color: var(--vert);                  /* Couleur du titre */
+  margin: 1rem 0;                      /* Espacement autour du titre */
+}
+
+.plan-hebdo button {
+  background-color: var(--accent);     /* Couleur du bouton */
+  color: white;                        /* Texte en blanc */
+  border: none;
+  padding: 0.75rem 1.5rem;             /* Espacement interne du bouton */
+  border-radius: 0.5rem;               /* Coins arrondis du bouton */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease; /* Transition sur la couleur du bouton */
+}
+
+.plan-hebdo button:hover {
+  background-color: var(--teal);       /* Couleur de fond au survol */
+}
