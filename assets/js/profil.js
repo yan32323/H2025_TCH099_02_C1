@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get("user");
+    let userId = urlParams.get("user");
     const idConnecte = sessionStorage.getItem("identifiant");
+    const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
 
-    if (!userId && !idConnecte) {
-        alert("Aucun utilisateur spécifié.");
-        return;
+    // Si l'usager n'est pas loguer, on le redirige vers la page de connextion
+    if (!idConnecte || !MOT_DE_PASSE) {
+        window.location.href = 'index.html';
     }
-    else if(!userId) {
-        window.location.href = `page-profil.html?user=${idConnecte}`;
+    if(!userId) {
+        userId = idConnecte;
     }
 
     fetch("./api/profil.php/afficher", {
