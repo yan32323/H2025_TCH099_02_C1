@@ -49,11 +49,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-  font-size: 1.75rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--couleur-principale);
   font-family: "Atma", system-ui;
-  letter-spacing: -0.5px;
+  letter-spacing: 0.5px;
 }
 
 .liens-nav {
@@ -105,8 +105,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .lien-deconnexion:hover {
   color: #dc2626;
-  background-color: #fce8e6;
-  border-color: #fecaca;
 }
 
 @media (max-width: 767px) {
