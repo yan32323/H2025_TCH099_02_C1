@@ -167,14 +167,6 @@ $router->post('/profil.php/modifier',function(){
         $stmt->bindParam(':nom_utilisateur', $userId);
         $stmt->execute();
     }
-
-    if($imagebase64 != null){
-        $image = base64_decode($imagebase64);
-        $stmt = $pdo->prepare("UPDATE Clients SET image = :image WHERE nom_utilisateur = :nom_utilisateur");
-        $stmt->bindParam(':image', $image, PDO::PARAM_LOB);
-        $stmt->bindParam(':nom_utilisateur', $userId);
-        $stmt->execute();
-    }
 });
 
 $router->post('/profil.php/nb-abonne-nb-abonnement', function () {
