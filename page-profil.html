@@ -150,8 +150,9 @@
   </footer>
 
   <script>
-    document.querySelector(".modify-profile-btn").addEventListener("click", function () {
-      window.location.href = "page-modifier-profil.html";
+    document.querySelector("#modifier-profil-btn").addEventListener("click", function () {
+      const userId = sessionStorage.getItem("identifiant");
+      window.location.href = `page-modifier-profil.html?user=${userId}`;
     });
 
     

@@ -131,6 +131,51 @@ $router->post('/profil.php/suivre-user', function () {
         echo json_encode(["message" => "Méthode non autorisée."]);
     }
 });
+$router->post('/profil.php/modifier',function(){
+    header("Content-Type: application/json; charset=UTF-8");
+    include '../includes/config.php';
+    include '../includes/conection.php';
+
+    $data = json_decode(file_get_contents("php://input"), true);
+    $userId = $data['nom_utilisateur'] ?? null;
+    $new_username = $data['new_username'] ?? null;
+    $description = $data['new_description'] ?? null;
+    $imagebase64 = $data['new_imagebase64'] ?? null;
+
+    if($new_username != null){
+
+        $stmtCheck = $pdo->prepare("SELECT COUNT(*) FROM Clients WHERE nom_utilisateur = :new_username");
+        $stmtCheck->execute([':new_username' => $new_username]);
+        $count = $stmtCheck->fetchColumn();
+
+        if ($count != 1) {
+            $stmtUpdate = $pdo->prepare("UPDATE Clients SET nom_utilisateur = :new_username WHERE nom_utilisateur = :current_username");
+            $stmtUpdate->execute([
+                ':new_username' => $new_username,
+                ':current_username' => $userId
+            ]);
+            echo json_encode(["success" => true, "message" => "Nom d'utilisateur mis à jour avec succès.", "changedUsername" => true, "newUsername" => $new_username]);
+        } else {
+            echo json_encode(["success" => false, "message" => "Le nouveau nom d'utilisateur est déjà pris."]);
+        }
+    
+    }
+
+    if($description != null){
+        $stmt = $pdo->prepare("UPDATE Clients SET description = :description WHERE nom_utilisateur = :nom_utilisateur");
+        $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':nom_utilisateur', $userId);
+        $stmt->execute();
+    }
+
+    if($imagebase64 != null){
+        $image = base64_decode($imagebase64);
+        $stmt = $pdo->prepare("UPDATE Clients SET image = :image WHERE nom_utilisateur = :nom_utilisateur");
+        $stmt->bindParam(':image', $image, PDO::PARAM_LOB);
+        $stmt->bindParam(':nom_utilisateur', $userId);
+        $stmt->execute();
+    }
+});
 
 // Acheminer la requête
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

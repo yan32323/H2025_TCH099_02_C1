@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/styleS/style-modifier-profil.css" />
+    <script src="assets/js/modifierProfil.js"></script>
 </head>
 <body>
   <header class="barre-haut">
@@ -29,25 +30,21 @@
 
     <div class="section">
       <h4>Nom d'utilisateur</h4>
-      <input type="text" placeholder="Nom" />
-    </div>
-    <div class="section">
-      <h4>Numéro de téléphone</h4>
-      <input type="text" placeholder="Numéro de téléphone" />
+      <input id="new_username" type="text" placeholder="Nom" />
     </div>
     <div class="section">
       <h4>Photo de profil</h4>
       <div class="profile-pic-container">
         <img src="assets/image/blank-pfp.png" alt="Photo de profil" class="profile-pic" />
         <div class="button-actions">
-          <button class="upload-btn">Modifier</button>
-          <button class="delete-btn">Supprimer</button>
+          <button id="upload_image-btn" class="upload-btn">Modifier</button>
+          <button id="delete_image-btn" class="delete-btn">Supprimer</button>
         </div>
       </div>
     </div>
     <div class="section">
       <h4>Biographie</h4>
-      <textarea placeholder="Écrivez votre biographie ici"></textarea>
+      <textarea id="new_description" placeholder="Écrivez votre biographie ici"></textarea>
     </div>
     <div class="section">
       <h4>Changer le mot de passe</h4>
@@ -63,7 +60,7 @@
     <div class="section1">
       <div class="button-group">
         <button class="delete-account-btn">Annuler</button>
-        <button class="save-btn">Enregistrer les modifications</button>
+        <button id="save-btn" class="save-btn" onclick="modifierProfil()">Enregistrer les modifications</button>
       </div>
     </div>
   </main>

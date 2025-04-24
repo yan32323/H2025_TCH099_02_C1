@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get("user");
+    const idConnecte = sessionStorage.getItem("identifiant");
 
-    if (!userId) {
+    if (!userId && !idConnecte) {
         alert("Aucun utilisateur spécifié.");
         return;
+    }
+    else if(!userId) {
+        window.location.href = `page-profil.html?user=${idConnecte}`;
     }
 
     fetch("./api/profil.php/afficher", {
@@ -55,20 +59,17 @@ function afficheProfil(profilData) {
         suivreBtn.style.display = "inline-block";
 
         // Vérifie si l'utilisateur est déjà suivi
-        fetch(
-            "./api/profil.php/suivre-user",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    action: "verifier_suivi",
-                    suivi_id: profil.nom_utilisateur,
-                    nom_utilisateur: idConnecte,
-                }),
-            }
-        )
+        fetch("./api/profil.php/suivre-user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                action: "verifier_suivi",
+                suivi_id: profil.nom_utilisateur,
+                nom_utilisateur: idConnecte,
+            }),
+        })
             .then((res) => res.json())
             .then((data) => {
                 if (data.suivi) {
@@ -82,20 +83,17 @@ function afficheProfil(profilData) {
 
         // Suivre un utilisateur
         suivreBtn.addEventListener("click", () => {
-            fetch(
-                "./api/profil.php/suivre-user",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        action: "ajouter_suivi",
-                        suivi_id: profil.nom_utilisateur,
-                        nom_utilisateur: idConnecte,
-                    }),
-                }
-            )
+            fetch("./api/profil.php/suivre-user", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    action: "ajouter_suivi",
+                    suivi_id: profil.nom_utilisateur,
+                    nom_utilisateur: idConnecte,
+                }),
+            })
                 .then((res) => res.json())
                 .then((result) => {
                     if (result.success) {
@@ -147,4 +145,5 @@ function afficheProfil(profilData) {
             grid.appendChild(card);
         });
     }
+    
 }
