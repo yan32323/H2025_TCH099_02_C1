@@ -94,7 +94,7 @@ async function scrapeMetroPage(url) {
 } while (!done);
 let produitsTrouvesJSON = JSON.stringify(produitsTrouves);
 let response = await fetch(
-  "http://localhost/planigo/H2025_TCH099_02_C1/api/UploadNouvProduits/",
+  "http://localhost/planigo/H2025_TCH099_02_C1/api/UploadNouvProduits.php",
   {
     method: "POST",
     headers: {

@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async function () {
+
     const chemin ="http://localhost/planigo/H2025_TCH099_02_C1";
 
     let effacerRecette = document.getElementById("btn-suppression-recette");
@@ -13,21 +14,26 @@ document.addEventListener("DOMContentLoaded", async function () {
     let ajouterEtape = document.getElementById("btn-creation-recette-etape");
     let envoyerRecette = document.getElementById("btn-envoi-recette");
 
+      // sliders de temps et de portions
     let sliderTemps = document.getElementById("estimation-temps");
     let texteTemps = document.getElementById("temps-estime");
     let sliderPortions = document.getElementById("estimation-portions");
     let textePortions = document.getElementById("portions-estime");
 
+      // boutons radio des difficultes
     let diffiulte1 = document.getElementById("facile");
     let diffiulte2 = document.getElementById("moyen");
     let diffiulte3 = document.getElementById("difficile");
 
+      // differentes zones de texte
     let zoneIngredient = document.getElementById("zone-ingredients");
     let zoneImages = document.getElementById("zone-images");
+
     let zoneEtape = document.getElementById("zone-etape");
     let texteTitre = document.getElementById("titre-recette");
     let texteDescription = document.getElementById("description-recette");
 
+      // variables de la recette
     let objRecetteJSON = null;
     let editRecette = false;
     let objRecette = null;
@@ -39,9 +45,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     let tableauEtapes = [];
     let description = "";
 
+    /**
+     * Ecouteur d'événement pour le bouton d'image
+     */
     imageRecette.addEventListener("change", function () {
         aperçu.querySelectorAll("img").forEach((img) => img.remove());
-
+        
         const fichier = this.files[0];
         if (!fichier) {
             boutonSupprimer.style.display = "none";
@@ -57,7 +66,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         };
         reader.readAsDataURL(fichier);
     });
-
+/**
+ * Ecouteur d'événement pour le bouton de suppression d'image
+ */
     boutonSupprimerImage.addEventListener("click", function (e) {
         e.preventDefault();
         aperçu.querySelectorAll("img").forEach((img) => img.remove());
@@ -97,15 +108,22 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     let identifiant = sessionStorage.getItem('identifiant');
 
+    /**
+     * Ecouteur d'événement pour le bouton de suppression de la recette
+     */
 effacerRecette.addEventListener("click", async function () {
-    event.preventDefault();
+    e.preventDefault();
 
     if (confirm("Etes-vous sûr de vouloir supprimer cette recette?")) {
         try {
+
+            // si pas une recette presente dans la base de donnees
             if (!editRecette) {
                 alert("Recette supprimee.");
                 back();
             } else {
+
+                //demande de suppression cote serveur
                 let response = await fetch(
                     chemin+ "/api/CreationRecettes.php/recettes/supprimer/" +
                         recetteLocale,
@@ -135,7 +153,9 @@ effacerRecette.addEventListener("click", async function () {
     }
 });
 
-
+    /**
+     * Ecouteur d'événement pour le slider d'estimation du temps
+     */
     sliderTemps.oninput = function () {
         texteTemps.textContent =
             this.value < 2
@@ -145,6 +165,9 @@ effacerRecette.addEventListener("click", async function () {
                 : this.value + " minutes";
     };
 
+    /**
+     * Ecouteur d'événement pour le slider d'estimation des portions
+     */
     sliderPortions.oninput = function () {
         textePortions.textContent =
             this.value < 2
@@ -153,15 +176,19 @@ effacerRecette.addEventListener("click", async function () {
                 ? "16 portions et +"
                 : this.value + " portions";
     };
-
+/**
+ * Ecouteur d'événement pour le bouton d'ajout d'ingrédients
+ */
     ajouterIngredient.addEventListener("click", function () {
-        event.preventDefault();
+        e.preventDefault();
         const zoneProchainIngredient = document.getElementById(
             "prochain-ingredient-s"
         );
+        // Récupérer l'ingrédient sélectionné
         const nomIngredient = zoneProchainIngredient.value.trim();
         zoneProchainIngredient.value = "";
 
+        // seulement mettre a jour si du texte a ete recu et est valide
         if (!nomIngredient) return;
 
         // Cherche l'objet ingredient dans la liste complète
@@ -180,7 +207,7 @@ effacerRecette.addEventListener("click", async function () {
         );
         if (dejaAjoute) return;
 
-        // Ajoute à la liste
+        // Ajouter à la liste
         tableauIngredients.push({
             id: ingredientTrouve.id,
             nom: ingredientTrouve.nom,
@@ -190,43 +217,11 @@ effacerRecette.addEventListener("click", async function () {
         updateIngredient();
     });
 
-    document
-        .getElementById("btn-creation-recette-ingredient")
-        .addEventListener("click", function () {
-            // Récupérer l'ingrédient sélectionné
-            const ingredient = document.getElementById(
-                "prochain-ingredient-s"
-            ).value;
-
-            // Vérifier si l'ingrédient n'est pas vide
-            if (ingredient) {
-                // Créer un div pour l'ingrédient
-                const ingredientDiv = document.createElement("div");
-                ingredientDiv.classList.add("ingredient");
-
-                // Ajouter l'ingrédient dans le div
-                const ingredientText = document.createElement("span");
-                ingredientText.textContent = ingredient;
-                ingredientDiv.appendChild(ingredientText);
-
-                // Créer un input pour la quantité
-                const quantityInput = document.createElement("input");
-                quantityInput.type = "number";
-                quantityInput.placeholder = "Quantité";
-                ingredientDiv.appendChild(quantityInput);
-
-                // Ajouter l'élément à la zone des ingrédients
-                document
-                    .getElementById("zone-ingredients")
-                    .appendChild(ingredientDiv);
-
-                // Réinitialiser le champ d'entrée
-                document.getElementById("prochain-ingredient-s").value = "";
-            }
-        });
-
+  /**
+   * Ajoute une etape a la recette
+   */
     ajouterEtape.addEventListener("click", function () {
-        event.preventDefault();
+        e.preventDefault();
         let zoneProchaineEtape = document.getElementById("prochaine-etape");
         let texteProchaineEtape = zoneProchaineEtape.value.trim();
         zoneProchaineEtape.classList.add("zone-instruction");
@@ -240,28 +235,37 @@ effacerRecette.addEventListener("click", async function () {
 
     envoyerRecette.addEventListener("click", sendRecette);
 
+    /**
+     * Fonction recuperant la recette a editer
+     * @param {*} recette l'identifiant de la recette a editer
+     */
     async function fetchRecette(recette) {
         try {
             let response = await fetch(
-                chemin+"/api/CreationRecettes.php/recettes/" +
-                    recette
-            );
-            let objRecette = await response.json();
+                chemin+"/api/CreationRecettes.php/recuperer-recette-complete", 
+            { 
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({"identifiant":sessionStorage.getItem("identifiant"),"motDePasse" : sessionStorage.getItem("motDePasse"), "idRecette" : recette})
+            });;
+            let objReponse = await response.json();
 
-            if (!objRecette.error) {
-                titre = objRecette.titre;
+            let objRecette = objReponse.recetteComplete;
+
+            if (!objRecette["error"]!=null) {
+                texteTitre.value = objRecette.nom;
                 imageUnique = objRecette.image;
                 tableauIngredients = objRecette.ingredients;
                 tableauEtapes = objRecette.etapes;
-                description = objRecette.description;
+                texteDescription.value = objRecette.description;
                 sliderTemps.value = objRecette.temps;
                 sliderPortions.value = objRecette.portion;
                 sliderTemps.oninput();
                 sliderPortions.oninput();
 
-                if (objRecette.difficulte === 3) diffiulte3.checked = true;
-                else if (objRecette.difficulte === 2) diffiulte2.checked = true;
-                else diffiulte1.checked = true;
+                if (objRecette.difficulter == "facile") diffiulte1.checked = true;
+                else if (objRecette.difficulter == "moyen") diffiulte2.checked = true;
+                else diffiulte3.checked = true;
 
                 if (imageUnique) {
                     let divImage = document.createElement("div");
@@ -274,7 +278,7 @@ effacerRecette.addEventListener("click", async function () {
                     divIngredient.classList.add("groupe_ingredient");
                     divIngredient.innerHTML = `
             <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
-            <input class='zone_ingredient' id='mesure${i}' placeholder='Entrez une valeur' required></input>
+            <input class='zone_ingredient' id='mesure${i}' placeholder='Entrez une valeur' value='${ingredient.quantite}' required></input>
             <p class='mesure_ingredient'>${ingredient.unite_de_mesure}</p>
             <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>X</button>`;
                     zoneIngredient.appendChild(divIngredient);
@@ -307,7 +311,9 @@ effacerRecette.addEventListener("click", async function () {
         }
     }
     
-
+/**
+ * Fonction pour recuperer la liste des ingredients
+ */
     async function fetchIngredients() {
         try {
             let response = await fetch(
@@ -322,7 +328,7 @@ effacerRecette.addEventListener("click", async function () {
 
             let resultat = await response.json();
 
-            if (resultat.error) {
+            if (resultat["error"]!=null) {
                 erreurFetchIngredients();
             } else {
                 let ajouterIngredientListe =
@@ -381,7 +387,7 @@ effacerRecette.addEventListener("click", async function () {
         } else {
          imageBase64 = null;
         }
- alert("ok0");
+
         const bodyData = {
             edit: false,
             titre: texteTitre.value.trim(),
@@ -399,7 +405,7 @@ effacerRecette.addEventListener("click", async function () {
             image: imageBase64,
         };
 
-        // Envoie du corps au serveur
+        // Envoi du corps au serveur
         try {
             const response = await fetch(chemin+"/api/CreationRecettes.php/recettes/creer", {
                 method: "POST",
@@ -423,13 +429,16 @@ effacerRecette.addEventListener("click", async function () {
         }
     }
     
-
+    /**
+     * Fonction pour mettre à jour la liste des ingrédients
+     */
     function updateIngredient() {
         zoneIngredient.innerHTML = "";
         tableauIngredients.forEach((ingredient, i) => {
             let divIngredient = document.createElement("div");
             divIngredient.classList.add("groupe_ingredient");
 
+            // Creation de l'element HTML de l'ingrédient
             divIngredient.innerHTML = `
         <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
         <input class='zone_ingredient' id='quantite${i}' placeholder='Quantité' required>
@@ -448,10 +457,15 @@ effacerRecette.addEventListener("click", async function () {
         });
     }
 
+    /**
+     * Fonction pour mettre à jour la liste des étapes
+     */
     function updateEtape() {
         zoneEtape.innerHTML = "";
         tableauEtapes.forEach((etape, i) => {
             let divEtape = document.createElement("div");
+
+            // Creation de l'element HTML de l'étape
             divEtape.innerHTML = `<p id='etape${i}'>${etape}</p><button id='supr-etape${i}'>X</button>`;
             zoneEtape.appendChild(divEtape);
 
@@ -464,9 +478,14 @@ effacerRecette.addEventListener("click", async function () {
         });
     }
 
-    function remove(tableau, index) {
-        return tableau.filter((_, i) => i !== index);
-    }
+    function remove(tableau, i) {
+        if (i > -1&&i<tableau.length) {
+          tableau.splice(i, 1);
+        }
+        return tableau;
+      }
+
+    // Fonctions lancees en cas d'erreurs
 
     function erreurFetchRecette() {
         alert("Erreur lors de la récupération de la recette.");
@@ -487,7 +506,27 @@ effacerRecette.addEventListener("click", async function () {
     function back() {
         window.history.back();
     }
+   // Récupérer les données utilisateur de sessionStorage
+   const utilisateurId = sessionStorage.getItem("identifiant");
+   const utilisateurMotDePasse = sessionStorage.getItem("motDePasse");
 
+    // if (!utilisateurId || !utilisateurMotDePasse) {
+    //     alert("Vous devez être connecté pour interagir avec cette page.");
+    //     window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
+    //     return;
+    // }
+
+    //if (localStorage.getItem("recette-a-editer") != null) {
+
+        // Recuperation du plan
+  //      planLocal = localStorage.getItem("recette-a-editer");
+  planLocal=1;
+        editRecette = true;
+        fetchRecette(planLocal);
+  
+    //   } else {
+    //     editRecette = null;
+    //   }
     // Initialisation
     await fetchIngredients();
 });

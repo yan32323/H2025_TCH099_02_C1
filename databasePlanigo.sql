@@ -21,6 +21,8 @@ CREATE TABLE Recettes (
 
 CREATE TABLE Ingredients (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    prix DECIMAL(10,2) NOT NULL DEFAULT 0,
+    magasin VARCHAR(255),
     unite_de_mesure VARCHAR(255) NOT NULL,
     nom VARCHAR(255) NOT NULL
 );
@@ -44,7 +46,7 @@ CREATE TABLE Recettes_Ingredients (
     unite_de_mesure VARCHAR(255) NULL,
     PRIMARY KEY (recette_id, ingredient_id),
     FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE,
-    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id)
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Recettes_Etapes (
@@ -85,14 +87,14 @@ CREATE TABLE Stock_Ingredients (
     quantite_disponible DECIMAL(10,2) NOT NULL,
     PRIMARY KEY (nom_utilisateur, ingredient_id),
     FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE,
-    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id)
+    FOREIGN KEY (ingredient_id) REFERENCES Ingredients (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Recettes_Sauvegardees (
     nom_utilisateur VARCHAR(255) NOT NULL,
     recette_id INT NOT NULL,
     FOREIGN KEY (nom_utilisateur) REFERENCES Clients (nom_utilisateur) ON UPDATE CASCADE,
-    FOREIGN KEY (recette_id) REFERENCES Recettes (id)
+    FOREIGN KEY (recette_id) REFERENCES Recettes (id) ON DELETE CASCADE
 );
 
 CREATE TABLE Commentaires (
@@ -237,20 +239,20 @@ VALUES
 ('Soupe à la courge', 'Soupe onctueuse à la courge butternut et lait de coco.', 'Souper', 'facile', 30, NULL, 3, 'grandma_marie');
 
 
-    INSERT INTO Ingredients (unite_de_mesure, nom)
+    INSERT INTO Ingredients (prix,magasin, unite_de_mesure, nom)
 VALUES
-('g', 'Pommes'),
-('g', 'Pâte brisée'),
-('g', 'Quinoa'),
-('g', 'Courgettes'),
-('g', 'Épinards'),
-('ml', 'Lait de coco'),
-('g', 'Fromage râpé'),
-('g', 'Thon'),
-('g', 'Maïs'),
-('ml', 'Yaourt'),
-('g', 'Courge butternut'),
-('g', 'Carottes');
+(5.99,'SUPERC','g', 'Pommes'),
+(5.99,'SUPERC','g', 'Pâte brisée'),
+(5.99,'SUPERC','g', 'Quinoa'),
+(5.99,'SUPERC','g', 'Courgettes'),
+(5.99,'SUPERC','g', 'Épinards'),
+(5.99,'SUPERC','ml', 'Lait de coco'),
+(5.99,'SUPERC','g', 'Fromage râpé'),
+(5.99,'SUPERC','g', 'Thon'),
+(5.99,'SUPERC','g', 'Maïs'),
+(5.99,'SUPERC','ml', 'Yaourt'),
+(5.99,'SUPERC','g', 'Courge butternut'),
+(5.99,'SUPERC','g', 'Carottes');
 
     INSERT INTO Recettes_Ingredients (recette_id, ingredient_id, quantite)
 VALUES
@@ -329,9 +331,9 @@ VALUES
 
 INSERT INTO Recettes_Sauvegardees (nom_utilisateur, recette_id)
 VALUES
-    ('john_doe', 1),
-    ('jane_doe', 2),
-    ('alice_smith', 3);
+    ('quick_luke', 1),
+    ('quick_luke', 2),
+    ('quick_luke', 3);
 
 INSERT INTO Commentaires (recette_id, nom_utilisateur, texte, date_commentaire)
 VALUES

@@ -106,42 +106,6 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
         }
 });
 
-// Route pour la récupération de recettes
-$router->post('/CreationRecettes.php/recettes/{recette}', function ($recette) {
-    header('Content-Type: application/json');
-    $config = require '../includes/config.php';
-
-    try {
-        // Connexion à la base de données
-        $pdo = new PDO(
-            "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8",
-            $config['username'],
-            $config['password'],
-            [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]
-        );
-
-        // Récupérer la recette
-        $requete = $pdo->prepare("SELECT * FROM Recettes WHERE id=:id");
-        $requete->execute(['id' => $recette]);
-        $resultat = $requete->fetch();
-
-        if ($resultat) {
-            // Convertir l'image BLOB en base64 si elle existe
-            if (!empty($resultat['image'])) {
-                $resultat['image'] = base64_encode($resultat['image']);
-            }
-
-            echo json_encode($resultat);
-        } else {
-            echo json_encode(["error" => true, "message" => "Recette non trouvée"]);
-        }
-    } catch (PDOException $e) {
-        echo json_encode(["error" => true, "message" => "Erreur de base de données", "details" => $e->getMessage()]);
-    }
-});
 
 // Route pour la suppression de recettes
 $router->post('/CreationRecettes.php/recettes/supprimer', function () {
@@ -157,7 +121,7 @@ $router->post('/CreationRecettes.php/recettes/supprimer', function () {
         try {
 
             // Suppression de la recette
-            $requete = $pdo->prepare("DELETE FROM Recettes WHERE id=:id");
+            $requete = $pdo->prepare("DELETE FROM `Ingredients` WHERE `id` = :id");
             $requete->execute(['id' => $infos["id"]]);
 
             echo json_encode(["success" => true, "message" => "Recette supprimée"]);
@@ -166,23 +130,6 @@ $router->post('/CreationRecettes.php/recettes/supprimer', function () {
         }
     } else {
         echo json_encode(["error" => true, "message" => "ID de recette manquant"]);
-    }
-});
-
-// Route pour la récupération des ingrédients
-$router->get('/CreationRecettes.php/ingredients', function () {
-    header('Content-Type: application/json');
-    $config = require '../includes/config.php';
-    require_once '../includes/conection.php';
-
-    try {
-
-        $stmt = $pdo->query("SELECT id, nom, unite_de_mesure FROM Ingredients ORDER BY nom ASC");
-        $ingredients = $stmt->fetchAll();
-
-        echo json_encode($ingredients);
-    } catch (PDOException $e) {
-        echo json_encode(["error" => true, "message" => "Erreur lors de la récupération des ingrédients."]);
     }
 });
 
@@ -306,7 +253,9 @@ $router->post('/CreationRecettes.php/recuperer-recette-complete', function () {
         $idRecette = trim($data['idRecette']);
 
         //Si le client exite dans la base de donnée, on récupère les recettes dans la base de données selon les filtres données
-        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+       // if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+            
+            require_once '../includes/conection.php';
 
             // Récupérer la recette
             $requete = $pdo->prepare("SELECT * FROM Recettes WHERE id=:id");
@@ -347,12 +296,12 @@ $router->post('/CreationRecettes.php/recuperer-recette-complete', function () {
             echo json_encode(["statut" => "success", "recetteComplete" => $resultat]);
             exit();
 
-        }else{
-            //Cas où l'authentification a échoué
-            http_response_code(401); 
-            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
-            exit();
-        }
+        // }else{
+        //     //Cas où l'authentification a échoué
+        //     http_response_code(401); 
+        //     echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+        //     exit();
+        // }
 
         
     } catch (PDOException $e) {
