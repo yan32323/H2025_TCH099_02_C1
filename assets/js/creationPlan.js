@@ -1124,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         description: description,
         images: tableauImages,
         recettes: tableauRecettes,
-        username: sessionStorage.getItem("username"),
+        username: IDENTIFIANT,
       });
 
       let paquet = new FormData();
