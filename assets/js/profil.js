@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
             console.error("Erreur réseau :", error);
-            alert("Erreur lors du chargement de la page de profil.");
         });
 });
 
@@ -108,6 +107,42 @@ function afficheProfil(profilData) {
         modifierBtn.style.display = "inline-block";
     }
 
+    // Mise à jour des statistiques de profil
+    document.querySelector(
+        ".profile-stat:nth-child(1) .stat-number"
+    ).textContent = recettes.length;
+    // Requête pour récupérer le nombre d'abonnés et d'abonnements
+    fetch("./api/profil.php/nb-abonne-nb-abonnement", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ user: profil.nom_utilisateur }),
+    })
+        .then((res) => res.json())
+        .then((stats) => {
+            if (stats.success) {
+                document.querySelector(
+                    ".profile-stat:nth-child(2) .stat-number"
+                ).textContent = formatNombre(stats.nb_abonnes);
+                document.querySelector(
+                    ".profile-stat:nth-child(3) .stat-number"
+                ).textContent = formatNombre(stats.nb_abonnements);
+            } else {
+                console.error(
+                    "Erreur lors de la récupération des stats :",
+                    stats
+                );
+            }
+        })
+        .catch((err) => console.error("Erreur réseau stats :", err));
+
+    function formatNombre(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
+        if (n >= 1000) return (n / 1000).toFixed(1) + "k";
+        return n;
+    }
+
     // Affichage des recettes
     const grid = document.querySelector(".recipe-grid");
     grid.innerHTML = "";
@@ -145,5 +180,4 @@ function afficheProfil(profilData) {
             grid.appendChild(card);
         });
     }
-    
 }

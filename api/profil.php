@@ -177,5 +177,29 @@ $router->post('/profil.php/modifier',function(){
     }
 });
 
+$router->post('/profil.php/nb-abonne-nb-abonnement', function () {
+    header("Content-Type: application/json; charset=UTF-8");
+    include '../includes/conection.php';
+
+    $data = json_decode(file_get_contents("php://input"), true);
+    $userId = $data['user'] ?? null;
+
+    // Récupérer le nombre d'abonnés
+    $stmtAbonnes = $pdo->prepare("SELECT COUNT(*) AS nb_abonnes FROM utilisateurs_suivi WHERE user_suivi_id = ?");
+    $stmtAbonnes->execute([$userId]);
+    $nbAbonnes = $stmtAbonnes->fetchColumn();
+
+    // Récupérer le nombre d'abonnements
+    $stmtAbonnements = $pdo->prepare("SELECT COUNT(*) AS nb_abonnements FROM utilisateurs_suivi WHERE nom_utilisateur = ?");
+    $stmtAbonnements->execute([$userId]);
+    $nbAbonnements = $stmtAbonnements->fetchColumn();
+
+    echo json_encode([
+        "success" => true,
+        "nb_abonnes" => (int)$nbAbonnes,
+        "nb_abonnements" => (int)$nbAbonnements
+    ]);
+});
+
 // Acheminer la requête
 $router->dispatch($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
