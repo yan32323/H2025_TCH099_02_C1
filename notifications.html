@@ -7,12 +7,13 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <script src="assets/js/notifications.js"></script>
 <link rel="stylesheet" href="assets/styles/style-notifications.css">
 </head>
 
 <body>
   <header class="barre-haut">
-    <a href="index.html" class="logo">Planigo</a>
+    <a href="accueil-recette.html" class="logo">Planigo</a>
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
       <a href="planifier.html">Planifier</a>
@@ -27,7 +28,7 @@
           <span class="notification-badge" id="notificationBadge">5</span>
         </button>
       </div>
-      <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
+      <a href="index.html" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
     </div>
   </header>
 
@@ -40,7 +41,6 @@
         <button class="btn-filtre" data-filtre="recette">Recettes</button>
         <button class="btn-filtre" data-filtre="commentaire">Commentaires</button>
         <button class="btn-filtre" data-filtre="jaime">J'aime</button>
-        <button class="btn-filtre" data-filtre="systeme">Système</button>
       </div>
       <button class="btn-marquer-lus" id="btnMarquerLus">Tout marquer comme lu</button>
     </div>
@@ -60,132 +60,8 @@
         </div>
       </div>
 
-      <div class="notification-item non-lu" data-type="commentaire">
-        <div class="notification-icone commentaire">
-          <i class="fas fa-comment"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Nouveau commentaire sur votre recette</div>
-          <div class="notification-message">Jean a commenté votre recette de Spaghetti Carbonara : "C'était délicieux ! Toute la famille a adoré."</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 5 heures</span>
-            <span class="notification-categorie commentaire">Commentaire</span>
-          </div>
-        </div>
-      </div>
 
-      <div class="notification-item non-lu" data-type="jaime">
-        <div class="notification-icone jaime">
-          <i class="fas fa-heart"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Votre recette a reçu 5 nouveaux j'aime</div>
-          <div class="notification-message">Votre recette de Pizza maison est tendance ! Elle a reçu 5 nouveaux j'aime aujourd'hui.</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Hier</span>
-            <span class="notification-categorie jaime">J'aime</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="notification-item non-lu" data-type="systeme">
-        <div class="notification-icone systeme">
-          <i class="fas fa-cog"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Paramètres du compte mis à jour</div>
-          <div class="notification-message">Votre mot de passe a été modifié avec succès. Si ce n'était pas vous, veuillez contacter le support.</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 2 jours</span>
-            <span class="notification-categorie systeme">Système</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="notification-item non-lu" data-type="recette">
-        <div class="notification-icone recette">
-          <i class="fas fa-utensils"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Suggestions de recettes hebdomadaires</div>
-          <div class="notification-message">Découvrez ces 5 recettes méditerranéennes que nous avons sélectionnées pour vous selon vos préférences.</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 2 jours</span>
-            <span class="notification-categorie recette">Nouvelle recette</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Notifications lues -->
-      <div class="notification-item" data-type="commentaire">
-        <div class="notification-icone commentaire">
-          <i class="fas fa-comment"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Réponse à votre commentaire</div>
-          <div class="notification-message">Chef Alex a répondu à votre commentaire sur le Bœuf Wellington : "Merci pour votre retour ! Je suis ravi que vous l'ayez apprécié."</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 3 jours</span>
-            <span class="notification-categorie commentaire">Commentaire</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="notification-item" data-type="jaime">
-        <div class="notification-icone jaime">
-          <i class="fas fa-heart"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Recette sauvegardée par 10 utilisateurs</div>
-          <div class="notification-message">Votre recette de Brownies au chocolat vegan a été sauvegardée par 10 utilisateurs cette semaine !</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 4 jours</span>
-            <span class="notification-categorie jaime">J'aime</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="notification-item" data-type="systeme">
-        <div class="notification-icone systeme">
-          <i class="fas fa-cog"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Fonctionnalités Premium débloquées</div>
-          <div class="notification-message">Merci d'avoir passé à Premium ! Vous avez maintenant accès à des recettes et fonctionnalités exclusives.</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 1 semaine</span>
-            <span class="notification-categorie systeme">Système</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="notification-item" data-type="recette">
-        <div class="notification-icone recette">
-          <i class="fas fa-utensils"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Nouvelle collection ajoutée : Barbecue d'été</div>
-          <div class="notification-message">Juste à temps pour la saison ! Découvrez notre nouvelle collection de recettes BBQ.</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 1 semaine</span>
-            <span class="notification-categorie recette">Nouvelle recette</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="notification-item" data-type="commentaire">
-        <div class="notification-icone commentaire">
-          <i class="fas fa-comment"></i>
-        </div>
-        <div class="notification-contenu">
-          <div class="notification-titre">Commentaire présenté dans la newsletter</div>
-          <div class="notification-message">Votre commentaire utile sur les techniques de pétrissage a été présenté dans la newsletter de cette semaine !</div>
-          <div class="notification-meta">
-            <span class="notification-temps">Il y a 2 semaines</span>
-            <span class="notification-categorie commentaire">Commentaire</span>
-          </div>
-        </div>
-      </div>
+      
     </div>
 
   
@@ -211,83 +87,5 @@
       <a href="#">Page de soutien</a>
     </div>
   </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Éléments DOM
-      const btnFiltres = document.querySelectorAll('.btn-filtre');
-      const notificationItems = document.querySelectorAll('.notification-item');
-      const etatVide = document.getElementById('etatVide');
-      const btnMarquerLus = document.getElementById('btnMarquerLus');
-      const notificationBadge = document.getElementById('notificationBadge');
-      const notificationBell = document.getElementById('notificationBell');
-      
-     
-      function mettreAJourBadge() {
-        const nombreNonLus = document.querySelectorAll('.notification-item.non-lu').length;
-        notificationBadge.textContent = nombreNonLus;
-        
-        if (nombreNonLus === 0) {
-          notificationBadge.style.display = 'none';
-        } else {
-          notificationBadge.style.display = 'block';
-        }
-      }
-      
-  
-      btnFiltres.forEach(btn => {
-        btn.addEventListener('click', function() {
-          // Mettre à jour le bouton actif
-          btnFiltres.forEach(b => b.classList.remove('actif'));
-          this.classList.add('actif');
-          
-          const filtre = this.getAttribute('data-filtre');
-          let elementsVisibles = 0;
-          
-          notificationItems.forEach(item => {
-            if (filtre === 'tout' || item.getAttribute('data-type') === filtre) {
-              item.style.display = 'flex';
-              elementsVisibles++;
-            } else {
-              item.style.display = 'none';
-            }
-          });
-          
-         
-          if (elementsVisibles === 0) {
-            etatVide.style.display = 'block';
-          } else {
-            etatVide.style.display = 'none';
-          }
-        });
-      });
-      
-   
-      btnMarquerLus.addEventListener('click', function() {
-        notificationItems.forEach(item => {
-          item.classList.remove('non-lu');
-        });
-        mettreAJourBadge();
-      });
-      
-     
-      notificationItems.forEach(item => {
-        item.addEventListener('click', function() {
-          this.classList.remove('non-lu');
-          mettreAJourBadge();
-        });
-      });
-      
-     
-      const btnPagination = document.querySelectorAll('.btn-pagination');
-      btnPagination.forEach(btn => {
-        btn.addEventListener('click', function() {
-          btnPagination.forEach(b => b.classList.remove('actif'));
-          this.classList.add('actif');
-      
-        });
-      });
-    });
-  </script>
 </body>
 </html>

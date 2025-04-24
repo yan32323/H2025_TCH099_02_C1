@@ -427,6 +427,20 @@ h1, h2, h3, h4, h5, h6 {
 .liens-pied a:hover {
   color: var(--couleur-principale);
 }
+.notification-vide {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.notification-vide .notification-icone {
+  background-color: #e0e0e0;
+}
+
+.notification-vide .notification-message {
+  font-style: italic;
+  color: #666;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {

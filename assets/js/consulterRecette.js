@@ -69,7 +69,6 @@ function afficherNoteMoyenne(noteSur5, nbVotes) {
 
 function afficherRecette(recette, userId) {
     // Stocker l'ID utilisateur en sessionStorage pour les commentaires et actions
-    sessionStorage.setItem('user_id', userId);
 
     document.getElementById("recipe-title").textContent = recette.nom;
     afficherNoteMoyenne(recette.moyenne_note, recette.nombre_votes);
