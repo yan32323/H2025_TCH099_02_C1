@@ -6,6 +6,7 @@ $router = new Router();
 
 // Route pour récupérer les recettes (GET)
 $router->get('/CreationPlans.php/recettes', function () {
+    header('Content-Type: application/json');
     try {
         require '../includes/conection.php';
         // Récupérer les ingrédients depuis la base de données
@@ -28,11 +29,9 @@ $router->get('/CreationPlans.php/recettes', function () {
         $recettes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // Retourner les ingrédients en format JSON
-        header('Content-Type: application/json');
         echo json_encode($recettes);
     } catch (PDOException $e) {
         // Si une erreur se produit, renvoyer une erreur JSON
-        header('Content-Type: application/json');
         echo json_encode(["error" => "Erreur lors de la récupération des recettes", "details" => $e->getMessage()]);
     }
 });
@@ -89,6 +88,7 @@ $router->post('/CreationPlans.php/plans/creer', function () {
 
                 // Récupérer l'ID du plan ajouté
                 $plan_id = $pdo->lastInsertId();
+
                 // Insérer les recettes dans la table Recettes_Planifiees
                 for ($i=0;$i<count($infos['recettes']); $i++) {
                     $journee="";
@@ -130,6 +130,7 @@ $router->post('/CreationPlans.php/plans/creer', function () {
 
 // Route pour la récupération de plans
 $router->post('/CreationPlans.php/plans/{plan}', function ($plan) {
+
     header('Content-Type: application/json');
     $config = require '../includes/config.php';
 
@@ -146,7 +147,7 @@ $router->post('/CreationPlans.php/plans/{plan}', function ($plan) {
         );
 
         // Récupérer le plan
-        $requete = $pdo->prepare("SELECT p.titre, p.description, p.id AS plan_id,  p.nom_utilisateur, rp.journee, DATE_FORMAT(rp.heure, '%H:%i'), r.id AS recette_id, r.nom AS recette_nom,
+        $requete = $pdo->prepare("SELECT p.titre, p.descriptions, p.id AS plan_id,  p.nom_utilisateur, rp.journee, DATE_FORMAT(rp.heure, '%H:%i') AS heure, r.id AS recette_id, r.nom AS recette_nom,
     r.description, r.type, r.difficulter, r.temps_de_cuisson, r.portions
     FROM Plan_de_repas p JOIN Repas_Planifies rp ON p.id = rp.plan_id JOIN Recettes r ON rp.recette_id = r.id WHERE p.id = :id
     ORDER BY  FIELD(rp.journee, 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'), rp.heure;
@@ -157,7 +158,7 @@ $router->post('/CreationPlans.php/plans/{plan}', function ($plan) {
         if ($resultat) {
             echo json_encode($resultat);
         } else {
-            echo json_encode(["error" => true, "message" => "Recette non trouvée"]);
+            echo json_encode(["error" => true, "message" => "Plan non trouvé"]);
         }
     } catch (PDOException $e) {
         echo json_encode(["error" => true, "message" => "Erreur de base de données", "details" => $e->getMessage()]);
@@ -350,12 +351,14 @@ $router->post('/CreationPlans.php/recuperer-plant-personnel/', function(){
 
 // Route pour la suppression de plans
 $router->post('/CreationPlans.php/planSupprimer/', function () {
+
     header('Content-Type: application/json');
     require '../includes/conection.php';
 
     $packet = file_get_contents("php://input");
     $infos = json_decode($packet, true);
 
+    // Vérifier si l'identifiant du plan est présent
     if (isset($infos["id"])) {
         try {
             $pdo = new PDO(
@@ -368,7 +371,7 @@ $router->post('/CreationPlans.php/planSupprimer/', function () {
             $requete = $pdo->prepare("DELETE FROM Plan_de_repas WHERE id=:id");
             $requete->execute(['id' => $infos["id"]]);
 
-            echo json_encode(["success" => true, "message" => "Recette supprimée"]);
+            echo json_encode(["success" => true, "message" => "Plan supprimé"]);
         } catch (PDOException $e) {
             echo json_encode(["error" => true, "message" => "Erreur de base de données", "details" => $e->getMessage()]);
         }
