@@ -153,21 +153,28 @@ document.addEventListener('DOMContentLoaded', () => {
             //Créer le bouton coeur (il sera remplie si il est aimé)
             const button = document.createElement('button');
             if(listeRecetteAime.includes(recette.id)){
-                button.className = 'coeur aime';
+                button.className = 'btn-like liked';
             }else{
-                button.className = 'coeur';
+                button.className = 'btn-like';
             }
             //Ajouter le like et faire la requête à la base de données 
             button.addEventListener('click', (e) => {
                 e.stopPropagation(); // Empêche la propagation au parent (carte)
-                button.classList.toggle('aime');
+                button.classList.toggle('liked');
                 let ajouterLike = false;
-                if(button.classList.contains('aime')){
+                if(button.classList.contains('liked')){
                     ajouterLike = true;
                 }
                 ajouterRetirerLike(recette.id, ajouterLike);
             });
-            button.innerHTML = '<i class="fas fa-heart"></i>';
+           button.innerHTML = `
+        <svg class="coeur-svg" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 21l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+             2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81
+             4.5 2.09C13.09 3.81 14.76 3
+             16.5 3 19.58 3 22 5.42 22 8.5c0
+             3.78-3.4 6.86-8.55 11.18L12 21z"/>
+        </svg>`;
 
             //Créer l'image de la recette
             const image = document.createElement('img');
