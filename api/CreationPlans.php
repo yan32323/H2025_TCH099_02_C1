@@ -40,7 +40,7 @@ $router->get('/CreationPlans.php/recettes', function () {
 // Route pour créer ou modifier un plan (POST)
 $router->post('/CreationPlans.php/plans/creer', function () {
     header('Content-Type: application/json');
-    require '../includes/conection.php';
+    require_once '../includes/conection.php';
 
     $packet = file_get_contents("php://input");
     $infos = json_decode($packet, true);
@@ -164,6 +164,190 @@ $router->post('/CreationPlans.php/plans/{plan}', function ($plan) {
     }
 });
 
+//Route pour récupérer le plan splécifier
+$router->post('/CreationPlans.php/recuperer-plan-specifique/', function(){
+
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+        //extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+        $id = trim($data['id']);
+
+        //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+
+            // Récupérer le plan de repas
+            $requete1 = $pdo->prepare("SELECT id, titre, descriptions, nom_utilisateur FROM plan_de_repas WHERE id = :id");
+            $requete1->execute(['id' => $id]);
+            $resultat1 = $requete1->fetch(PDO::FETCH_ASSOC);
+
+            if (!$resultat1) {
+                echo json_encode(['statut' => 'error', 'message' => 'Plan non trouvé']);
+                exit();
+            }
+
+
+            // Récupérer les recettes planifiées selon le jours avec l'image  bien encoder
+            $requeteLundi = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE r_p.plan_id = :id AND r_p.journee = 'Lundi' ORDER BY r_p.heure;");
+            $requeteLundi->execute(['id' => $id]);
+            $resultatLundi = $requeteLundi->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatLundi as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            $requeteMardi = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE plan_id = :id AND journee = 'Mardi' ORDER BY heure;");
+            $requeteMardi->execute(['id' => $id]);
+            $resultatMardi = $requeteMardi->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatMardi as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            $requeteMercredi = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE plan_id = :id AND journee = 'Mercredi' ORDER BY heure;");
+            $requeteMercredi->execute(['id' => $id]);
+            $resultatMercredi = $requeteMercredi->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatMercredi as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            $requeteJeudi = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE plan_id = :id AND journee = 'Jeudi' ORDER BY heure;");
+            $requeteJeudi->execute(['id' => $id]);
+            $resultatJeudi = $requeteJeudi->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatJeudi as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            $requeteVendredi = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE plan_id = :id AND journee = 'Vendredi' ORDER BY heure;");
+            $requeteVendredi->execute(['id' => $id]);
+            $resultatVendredi = $requeteVendredi->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatVendredi as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            $requeteSamedi = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE plan_id = :id AND journee = 'Samedi' ORDER BY heure;");
+            $requeteSamedi->execute(['id' => $id]);
+            $resultatSamedi = $requeteSamedi->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatSamedi as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            $requeteDimanche = $pdo->prepare("SELECT r.id, r.nom, r.type, r.temps_de_cuisson, r.image, DATE_FORMAT(r_p.heure, '%H:%i') AS heure
+                    FROM Repas_Planifies AS r_p 
+                    INNER JOIN Recettes AS r ON r.id = r_p.recette_id
+                    WHERE plan_id = :id AND journee = 'Dimanche' ORDER BY heure;");
+            $requeteDimanche->execute(['id' => $id]);
+            $resultatDimanche = $requeteDimanche->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($resultatDimanche as &$recette) {
+                // Convertir l'image BLOB en base64 si elle existe
+                if (!empty($recette['image'])) {
+                    $recette['image'] = base64_encode($recette['image']);
+                }
+            }
+
+            // Renvoyer le plan de repas et les recettes planifiées si on a réussit à le récupéré
+            if ($resultat1) {
+                echo json_encode(['statut' => 'success', 'planification' => $resultat1, 'listeRecettesLundi' => $resultatLundi,
+                 'listeRecettesMardi' => $resultatMardi, 'listeRecettesMercredi' => $resultatMercredi, 'listeRecettesJeudi' => $resultatJeudi,
+                  'listeRecettesVendredi' => $resultatVendredi, 'listeRecettesSamedi' => $resultatSamedi, 'listeRecettesDimanche' => $resultatDimanche]);
+            } else {
+                echo json_encode(['statut' => 'error', 'message' => 'Erreur pour récupéré le plan']);
+            }
+            exit();
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+});
+
+// Route pour récupéré tout les plans d'un utilisateur
+$router->post('/CreationPlans.php/recuperer-plant-personnel/', function(){
+
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+        //extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+
+        //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+
+            $requete = $pdo->prepare("SELECT id, titre, descriptions FROM plan_de_repas WHERE nom_utilisateur = :identifiant");
+            $requete->execute(['identifiant' => $identifiant]);
+            $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+
+            if($resultat){
+
+                echo json_encode(['statut' => 'success', 'listePlans' => $resultat]);
+                exit();
+            }
+            exit();
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+
+});
+
 // Route pour la suppression de plans
 $router->post('/CreationPlans.php/planSupprimer/', function () {
     header('Content-Type: application/json');
@@ -200,15 +384,8 @@ $router->post('/CreationPlans.php/planSupprimer/', function () {
  * @param PDO $pdo L'objet PDO pour la connexion à la base de données
  * @return boolean Vraie si l'utilisateur est valide, faux sinon
  */
-function validateUserCredentials($identifiant, $motDePasse) {
-        // Connexion à la base de données
-    require '../includes/conection.php';
-    $pdo = new PDO(
-        "mysql:host={$config['host']};dbname={$config['dbname']};charset=utf8",
-        $config['username'],
-        $config['password'],
-        $options
-    );
+function validateUserCredentials($identifiant, $motDePasse, $pdo) {
+
     $requete = $pdo->prepare("SELECT mot_de_passe FROM clients WHERE nom_utilisateur = :identifiant");
     $requete->execute([':identifiant' => $identifiant]);
     $user = $requete->fetch(PDO::FETCH_ASSOC);

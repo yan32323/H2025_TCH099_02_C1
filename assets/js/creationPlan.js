@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", async function () {
+
+  const IDENTIFIANT = sessionStorage.getItem('identifiant');
+    const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
+
     let effacerPlan = document.getElementById("btn-suppression-plan");
     let prochaineImage = document.getElementById("prochaine-image");
     const chemin ="http://localhost/planigo/H2025_TCH099_02_C1";
@@ -886,6 +890,16 @@ updateImages();
         if (editPlan) {
           envoiID = planLocal;
         }
+        console.log("edit: " + editPlan + " id: " + envoiID + " titre: " + titre + " description: " + description + " images: " + tableauImages + " recettes: " + tableauRecettes + " username: " + IDENTIFIANT);
+        console.log(JSON.stringify({
+          edit: editPlan,
+          id: envoiID,
+          titre: titre,
+          description: description,
+          images: tableauImages,
+          recettes: tableauRecettes,
+          username: IDENTIFIANT
+        }));
         paquetTest = new FormData();
         objPlanJSON = JSON.stringify({
           edit: editPlan,
@@ -894,7 +908,7 @@ updateImages();
           description: description,
           images: tableauImages,
           recettes: tableauRecettes,
-          username: sessionStorage.getItem("username"),
+          username: IDENTIFIANT
         });
         let paquet = new FormData();
         for (let i = 0; i < tableauImages.length; i++) {

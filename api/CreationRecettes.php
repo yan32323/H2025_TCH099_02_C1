@@ -131,10 +131,6 @@ $router->post('/CreationRecettes.php/recettes/{recette}', function ($recette) {
         $resultat = $requete->fetch();
 
         if ($resultat) {
-            // Convertir l'image BLOB en base64 si elle existe
-            if (!empty($resultat['image'])) {
-                $resultat['image'] = base64_encode($resultat['image']);
-            }
 
             echo json_encode($resultat);
         } else {
