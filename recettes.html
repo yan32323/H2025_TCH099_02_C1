@@ -21,6 +21,28 @@
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
+    <div class="header-right">
+      <div class="notification-container">
+        <button class="notification-bell" id="notificationBell">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge" id="notificationBadge">0</span>
+        </button>
+      
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notification-header">
+            <h3>Notifications</h3>
+            <a href="#" id="markAllRead">Tout marquer comme lu</a>
+          </div>
+      
+          <div class="notification-list" id="notificationList">
+          </div>
+      
+          <div class="notification-footer">
+            <a href="notifications.html">Voir toutes les notifications</a>
+          </div>
+        </div>
+      </div>
+
     <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
 
@@ -327,4 +349,55 @@ btnCharger.addEventListener('click', function () {
 });
 
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const notificationBell = document.getElementById('notificationBell');
+      const notificationDropdown = document.getElementById('notificationDropdown');
+      const markAllReadBtn = document.getElementById('markAllRead');
+      
+      // Toggle dropdown
+      notificationBell.addEventListener('click', function(e) {
+        e.stopPropagation();
+        notificationDropdown.classList.toggle('show');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+          notificationDropdown.classList.remove('show');
+        }
+      });
+      
+      // Mark all as read
+      markAllReadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const unreadItems = document.querySelectorAll('.notification-item.unread');
+        unreadItems.forEach(item => item.classList.remove('unread'));
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+          badge.textContent = '0';
+          badge.style.display = 'none';
+        }
+      });
+      
+      // Handle notification item clicks
+      document.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.remove('unread');
+          
+          // Update badge counter
+          const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+          const badge = document.querySelector('.notification-badge');
+          if (badge) {
+            if (unreadCount > 0) {
+              badge.textContent = unreadCount;
+              badge.style.display = 'block';
+            } else {
+              badge.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+      </script>
 </html>
