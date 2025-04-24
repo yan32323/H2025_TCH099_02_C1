@@ -480,7 +480,7 @@ effacerRecette.addEventListener("click", async function () {
             temps: parseInt(sliderTemps.value),
             portion: parseInt(sliderPortions.value),
             difficulte: diffiulte1.checked ? "facile" : diffiulte2.checked ? "moyen" : "difficile",
-            personne: 'chef_anna',
+            personne: IDENTIFIANT,
             id: recetteLocale,
             image: imageBase64,
         };
@@ -593,14 +593,14 @@ effacerRecette.addEventListener("click", async function () {
     // Initialisation
 
    // Récupérer les données utilisateur de sessionStorage
-//    const IDENTIFIANT = sessionStorage.getItem('identifiant');
-//    const MOT_DE_PASSE = sessionStorage.getItem("motDePasse");
+   const IDENTIFIANT = sessionStorage.getItem('identifiant');
+   const MOT_DE_PASSE = sessionStorage.getItem("motDePasse");
 
-//     if (!IDENTIFIANT || !MOT_DE_PASSE) {
-//         alert("Vous devez être connecté pour interagir avec cette page.");
-//         window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
-//         return;
-//     }
+    if (!IDENTIFIANT || !MOT_DE_PASSE) {
+        alert("Vous devez être connecté pour interagir avec cette page.");
+        window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
+        return;
+    }
 
         //recuperation de la recette si demande
       const urlParams = new URLSearchParams(window.location.search);
