@@ -25,6 +25,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     let diffiulte2 = document.getElementById("moyen");
     let diffiulte3 = document.getElementById("difficile");
 
+    //checkboxes des restrictions alimentaires
+    let restriction1 = document.getElementById("res-vegetarien");
+    let restriction2 = document.getElementById("res-vegan");
+    let restriction3 = document.getElementById("res-sans-gluten");
+    let restriction4 = document.getElementById("res-sans-lactose");
+    let restriction5 = document.getElementById("res-pescetarien");
+
       // differentes zones de texte
     let zoneIngredient = document.getElementById("zone-ingredients");
     let zoneImages = document.getElementById("zone-images");
@@ -34,16 +41,13 @@ document.addEventListener("DOMContentLoaded", async function () {
     let texteDescription = document.getElementById("description-recette");
 
       // variables de la recette
-    let objRecetteJSON = null;
     let editRecette = false;
-    let objRecette = null;
     let recetteLocale;
-    let titre = "";
     let imageUnique = null;
     let tableauIngredients = [];
     let objListeTousIngredients = [];
     let tableauEtapes = [];
-    let description = "";
+    let idRecette = null;
 
     /**
      * Ecouteur d'événement pour le bouton d'image
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async function () {
  * Ecouteur d'événement pour le bouton de suppression d'image
  */
     boutonSupprimerImage.addEventListener("click", function (e) {
-        e.preventDefault();
+        event.preventDefault();
         aperçu.querySelectorAll("img").forEach((img) => img.remove());
         imageRecette.value = ""; // Réinitialise le champ input
         boutonSupprimerImage.style.display = "none";
@@ -78,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Ajout drag and drop sur toute la zone
     ["dragenter", "dragover"].forEach((eventName) => {
         zoneDragDrop.addEventListener(eventName, (e) => {
-            e.preventDefault();
+            event.preventDefault();
             e.stopPropagation();
             zoneDragDrop.classList.add("dragover");
         });
@@ -86,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     ["dragleave", "drop"].forEach((eventName) => {
         zoneDragDrop.addEventListener(eventName, (e) => {
-            e.preventDefault();
+            event.preventDefault();
             e.stopPropagation();
             zoneDragDrop.classList.remove("dragover");
         });
@@ -112,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
      * Ecouteur d'événement pour le bouton de suppression de la recette
      */
 effacerRecette.addEventListener("click", async function () {
-    e.preventDefault();
+    event.preventDefault();
 
     if (confirm("Etes-vous sûr de vouloir supprimer cette recette?")) {
         try {
@@ -180,7 +184,7 @@ effacerRecette.addEventListener("click", async function () {
  * Ecouteur d'événement pour le bouton d'ajout d'ingrédients
  */
     ajouterIngredient.addEventListener("click", function () {
-        e.preventDefault();
+        event.preventDefault();
         const zoneProchainIngredient = document.getElementById(
             "prochain-ingredient-s"
         );
@@ -212,6 +216,7 @@ effacerRecette.addEventListener("click", async function () {
             id: ingredientTrouve.id,
             nom: ingredientTrouve.nom,
             unite_de_mesure: ingredientTrouve.unite_de_mesure,
+            quantite: "",
         });
 
         updateIngredient();
@@ -221,7 +226,7 @@ effacerRecette.addEventListener("click", async function () {
    * Ajoute une etape a la recette
    */
     ajouterEtape.addEventListener("click", function () {
-        e.preventDefault();
+        event.preventDefault();
         let zoneProchaineEtape = document.getElementById("prochaine-etape");
         let texteProchaineEtape = zoneProchaineEtape.value.trim();
         zoneProchaineEtape.classList.add("zone-instruction");
@@ -281,7 +286,12 @@ effacerRecette.addEventListener("click", async function () {
             <input class='zone_ingredient' id='mesure${i}' placeholder='Entrez une valeur' value='${ingredient.quantite}' required></input>
             <p class='mesure_ingredient'>${ingredient.unite_de_mesure}</p>
             <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>X</button>`;
+
                     zoneIngredient.appendChild(divIngredient);
+
+                    document.getElementById(`quantite${i}`).addEventListener("input", function () {
+                        tableauIngredients[i].quantite = this.value;
+                      });
 
                     document
                         .getElementById(`supr-ing${i}`)
@@ -290,6 +300,29 @@ effacerRecette.addEventListener("click", async function () {
                             updateIngredient();
                         });
                 });
+
+                for (let radio of getElementById("type")) {
+                    if (radio.value == objRecette.type) {
+                        radio.checked = true;
+                        break;
+                    }
+                }
+
+                if(objRecette.restrictions.includes(restriction1.value)){
+                    restriction1.checked = true;
+                }
+                if(objRecette.restrictions.includes(restriction2.value)){
+                    restriction2.checked = true;
+                }
+                if(objRecette.restrictions.includes(restriction3.value)){
+                    restriction3.checked = true;
+                }
+                if(objRecette.restrictions.includes(restriction4.value)){
+                    restriction4.checked = true;
+                }
+                if(objRecette.restrictions.includes(restriction5.value)){
+                    restriction5.checked = true;
+                }
 
                 tableauEtapes.forEach((etape, i) => {
                     let divEtape = document.createElement("div");
@@ -364,21 +397,69 @@ effacerRecette.addEventListener("click", async function () {
 
     async function sendRecette() {
         event.preventDefault();
-        const identifiant = sessionStorage.getItem('identifiant');
 
-        tableauIngredients = tableauIngredients.map((ingredient, i) => {
-            const quantiteInput = document.getElementById(`quantite${i}`);
-            const uniteInput = document.getElementById(
-                `unite_de_mesure${i}`
-            );
+    // Vérification des champs
 
-            return {
-                ...ingredient,
-                quantite: parseFloat(quantiteInput.value),
-                unite_de_mesure: uniteInput.value.trim(),
-            };
-        });
+    if (!texteTitre.value.trim()) {
+      alert("Veuillez entrer un titre pour votre recette.");
+      return;
+    }
+
+    if (!diffiulte1.checked && !diffiulte2.checked && !diffiulte3.checked) {
+      alert("Veuillez entrer une difficulte pour votre recette.");
+      return;
+    }
+
+    if (!texteDescription.value.trim()) {
+      alert("Veuillez entrer une description pour votre recette.");
+      return;
+    }
+    if (tableauEtapes.length == 0) {
+      alert("Veuillez entrer au moins une etape pour votre recette.");
+      return;
+    }
+    if (tableauIngredients.length == 0) {
+      alert("Veuillez entrer au moins un ingredient pour votre recette.");
+      return;
+    }
+    if (tableauIngredients.some(
+        (ing) => ing.quantite == null || ing.quantite == "" || ing.quantite <= 0
+    )){
+       alert("Veuillez entrer une unité de mesure pour chaque ingrédient plus grande que 0.");
+        return; 
+    }
+    let isCheckedType = null;
+    for (let radio of document.getElementsByName("type")) {
+        if (radio.checked) {
+          isCheckedType = radio;
+          break;
+        }
+    }
+    if (isCheckedType == null) {
+        alert("Veuillez choisir un type de recette.");
+        return;
+    }
+
+    // Envoi des données
+        let restrictionsToSend=[];
+        if (restriction1.checked) {
+            restrictionsToSend.push(restriction1.value);
+        }    
+        if (restriction2.checked) {
+            restrictionsToSend.push(restriction2.value);
+        }
+        if (restriction3.checked) {
+            restrictionsToSend.push(restriction3.value);
+        }
+        if (restriction4.checked) {
+            restrictionsToSend.push(restriction4.value);
+        }
+        if (restriction5.checked) {
+            restrictionsToSend.push(restriction5.value);
+        }
+
         let imageBase64 
+
         if (imageRecette.files.length > 0) {
         // Vérifie si une image a été sélectionné
         // Convertit l'image en base64
@@ -389,19 +470,18 @@ effacerRecette.addEventListener("click", async function () {
         }
 
         const bodyData = {
-            edit: false,
+            edit: editRecette,
             titre: texteTitre.value.trim(),
             description: texteDescription.value.trim(),
             ingredients: tableauIngredients,
             etapes: tableauEtapes,
+            type: isCheckedType.value,
+            restrictions: restrictionsToSend,
             temps: parseInt(sliderTemps.value),
             portion: parseInt(sliderPortions.value),
-            difficulte: diffiulte1.checked
-                ? 1
-                : diffiulte2.checked
-                ? 2
-                : 3,
-            identifiant: identifiant,
+            difficulte: diffiulte1.checked ? "facile" : diffiulte2.checked ? "moyen" : "difficile",
+            personne: 'chef_anna',
+            id: recetteLocale,
             image: imageBase64,
         };
 
@@ -417,11 +497,11 @@ effacerRecette.addEventListener("click", async function () {
 
             let result = JSON.parse(text);
     
-            if (result.status === "ok") {
+            if (result.hasOwnProperty("success")) {
                 alert("Recette envoyée !");
 
             } else {
-                alert("Erreur lors de l’envoi."+ result.status);
+                alert("Erreur lors de l’envoi."+ result.message);
             }
         } catch (error) {
             console.error("Erreur fetch :", error);
@@ -441,12 +521,16 @@ effacerRecette.addEventListener("click", async function () {
             // Creation de l'element HTML de l'ingrédient
             divIngredient.innerHTML = `
         <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
-        <input class='zone_ingredient' id='quantite${i}' placeholder='Quantité' required>
-        <input class='unite_ingredient' id='unite_de_mesure${i}' placeholder='Unité' value='${ingredient.unite_de_mesure}' required>
+        <input class='zone_ingredient' id='quantite${i}' placeholder='Quantité' value='${ingredient.quantite}' required>
+        <input class='unite_ingredient' id='unite_de_mesure${i}' placeholder='Unité' value='${ingredient.unite_de_mesure}' readonly>
         <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>X</button>
       `;
 
             zoneIngredient.appendChild(divIngredient);
+
+            document.getElementById(`quantite${i}`).addEventListener("input", function () {
+                tableauIngredients[i].quantite = this.value;
+              });
 
             document
                 .getElementById(`supr-ing${i}`)
@@ -468,7 +552,6 @@ effacerRecette.addEventListener("click", async function () {
             // Creation de l'element HTML de l'étape
             divEtape.innerHTML = `<p id='etape${i}'>${etape}</p><button id='supr-etape${i}'>X</button>`;
             zoneEtape.appendChild(divEtape);
-
             document
                 .getElementById(`supr-etape${i}`)
                 .addEventListener("click", function () {
@@ -506,27 +589,28 @@ effacerRecette.addEventListener("click", async function () {
     function back() {
         window.history.back();
     }
-   // Récupérer les données utilisateur de sessionStorage
-   const utilisateurId = sessionStorage.getItem("identifiant");
-   const utilisateurMotDePasse = sessionStorage.getItem("motDePasse");
-
-    // if (!utilisateurId || !utilisateurMotDePasse) {
-    //     alert("Vous devez être connecté pour interagir avec cette page.");
-    //     window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
-    //     return;
-    // }
-
-    //if (localStorage.getItem("recette-a-editer") != null) {
-
-        // Recuperation du plan
-  //      planLocal = localStorage.getItem("recette-a-editer");
-  planLocal=1;
-        editRecette = true;
-        fetchRecette(planLocal);
-  
-    //   } else {
-    //     editRecette = null;
-    //   }
+    
     // Initialisation
+
+   // Récupérer les données utilisateur de sessionStorage
+//    const IDENTIFIANT = sessionStorage.getItem('identifiant');
+//    const MOT_DE_PASSE = sessionStorage.getItem("motDePasse");
+
+//     if (!IDENTIFIANT || !MOT_DE_PASSE) {
+//         alert("Vous devez être connecté pour interagir avec cette page.");
+//         window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
+//         return;
+//     }
+
+        //recuperation de la recette si demande
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("id")) {
+        idRecette = urlParams.get("id");
+        editRecette = true;
+        fetchRecette(idRecette);
+      } else {
+        editRecette = null;
+      }
+
     await fetchIngredients();
 });
