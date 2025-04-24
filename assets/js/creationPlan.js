@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           let reponse = await response.json();
 
           // supression reussie cote serveur
-          if (reponse.status == "ok") {
+          if (reponse.success) {
             alert("Plan supprime.");
             back();
           } else {
@@ -163,12 +163,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesLundi.length; i++) {
         if (tableauRecettesLundi[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -270,12 +272,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesMardi.length; i++) {
         if (tableauRecettesMardi[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -379,12 +383,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesMercredi.length; i++) {
         if (tableauRecettesMercredi[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -487,12 +493,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesJeudi.length; i++) {
         if (tableauRecettesJeudi[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -594,12 +602,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesVendredi.length; i++) {
         if (tableauRecettesVendredi[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -701,12 +711,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesSamedi.length; i++) {
         if (tableauRecettesSamedi[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -808,12 +820,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       for (let i = 0; i < tableauRecettesDimanche.length; i++) {
         if (tableauRecettesDimanche[i].nom == textProchainRecette) {
           estNouveau = false;
+          break;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
           if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
+            break;
           }
         }
       }
@@ -985,6 +999,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           texteDescription.value = description;
 
         for(let i = 0; i < objPlan.length; i++){
+          objPlan[i].nom=objPlan[i].recette_nom;
         switch (objPlan[i].journee) {
           case "Lundi":
             tableauRecettesLundi.push(objPlan[i]);
@@ -1049,7 +1064,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       } else {
         // Recuperation et creation des recettes
         for (let i = 0; i < resultat.length; i++) {
-
+          resultat[i].recette_id = resultat[i].id;
           let divRecette = document.createElement("option");
           divRecette.innerHTML = resultat[i].nom;
           divRecette.id = resultat[i].id;
@@ -1116,7 +1131,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (editPlan) {
         envoiID = planLocal;
       }
-      paquetTest = new FormData();
       objPlanJSON = JSON.stringify({
         edit: editPlan,
         id: envoiID,
@@ -1127,14 +1141,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         username: IDENTIFIANT,
       });
 
-      let paquet = new FormData();
-
-      for (let i = 0; i < tableauImages.length; i++) {
-        paquet.append("image" + i, tableauImages[i].src);
-      }
-
-      paquet.append("json", objPlanJSON);
-
       let response = await fetch(
         chemin + "/api/CreationPlans.php/plans/creer",
         {
@@ -1142,12 +1148,12 @@ document.addEventListener("DOMContentLoaded", async function () {
           headers: {
             "Content-Type": "application/json",
           },
-          body: paquet,
+          body: objPlanJSON,
         }
       );
 
       let reponse = await response.json();
-      if (reponse.status == "ok") {
+      if (reponse.status == 200) {
         alert("Plan sauvegardee avec succès.");
         back();
       } else {
@@ -1251,6 +1257,10 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
+  function back() {
+    window.location.href='accueil-recette.html';
+}
+
    // Récupérer les données utilisateur de sessionStorage
    const IDENTIFIANT = sessionStorage.getItem('identifiant');
    const MOT_DE_PASSE = sessionStorage.getItem("motDePasse");
@@ -1264,12 +1274,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       //recuperation du plan si demande
       const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.has("id")) {
-        planLocal = urlParams.get("id");
-        editPlan = true;
+     if (urlParams.has("id")) {
+       planLocal = urlParams.get("id");
+    editPlan = true;
         fetchPlan(planLocal);
-      } else {
-        planLocal = null;
+     } else {
+       planLocal = null;
       }
     } else {
       planLocal = null;
