@@ -691,3 +691,199 @@ h2 {
     gap: 10px;
   }
 }
+
+/* Notification Styles */
+.notification-container {
+  position: relative;
+  margin-right: 1.5rem;
+}
+
+.notification-bell {
+  background: none;
+  border: none;
+  color: var(--couleur-texte);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.notification-bell:hover {
+  color: var(--couleur-principale);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 50%;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  min-width: 1.2rem;
+  text-align: center;
+  border: 2px solid white;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 20rem;
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.notification-dropdown.show {
+  display: block;
+}
+
+.notification-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--couleur-texte);
+}
+
+.notification-header a {
+  font-size: 0.875rem;
+  color: var(--couleur-principale);
+  text-decoration: none;
+}
+
+.notification-header a:hover {
+  text-decoration: underline;
+}
+
+.notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+  background-color: #f9fafb;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.unread {
+  background-color: #f0fdf9;
+}
+
+.notification-item-flex {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.notification-icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background-color: #f3f4f6;
+}
+
+.notification-icon.recipe {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.notification-icon.stock {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.notification-icon.planning {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--couleur-texte);
+}
+
+.notification-text {
+  font-size: 0.875rem;
+  color: var(--couleur-texte-leger);
+  margin-bottom: 0.25rem;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.notification-footer {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+}
+
+.notification-footer a {
+  color: var(--couleur-principale);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.notification-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Update header styles to accommodate notifications */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .notification-dropdown {
+    width: 18rem;
+    right: -1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-dropdown {
+    width: 100%;
+    right: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}

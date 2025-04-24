@@ -161,13 +161,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesLundi.length; i++) {
-        if (tableauRecettesLundi[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesLundi[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -175,6 +175,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesLundi.push(objListeTousRecettes[indexDansListe]);
         updateRecetteLundi();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -216,7 +218,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-l" +
         i +
         "'>" +
-        tableauRecettesLundi[i].recette_nom +
+        tableauRecettesLundi[i].nom +
         "</p><input id='heure-l" +
         i +
         "' value='" +
@@ -266,13 +268,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesMardi.length; i++) {
-        if (tableauRecettesMardi[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesMardi[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -280,6 +282,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesMardi.push(objListeTousRecettes[indexDansListe]);
         updateRecetteMardi();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -320,7 +324,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-ma" +
         i +
         "'>" +
-        tableauRecettesMardi[i].recette_nom +
+        tableauRecettesMardi[i].nom +
         "</p><input id='heure-ma" +
         i +
         "' value='" +
@@ -373,13 +377,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesMercredi.length; i++) {
-        if (tableauRecettesMercredi[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesMercredi[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -387,6 +391,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesMercredi.push(objListeTousRecettes[indexDansListe]);
         updateRecetteMercredi();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -427,7 +433,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-me" +
         i +
         "'>" +
-        tableauRecettesMercredi[i].recette_nom +
+        tableauRecettesMercredi[i].nom +
         "</p><input id='heure-me" +
         i +
         "' value='" +
@@ -479,13 +485,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesJeudi.length; i++) {
-        if (tableauRecettesJeudi[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesJeudi[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -493,6 +499,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesJeudi.push(objListeTousRecettes[indexDansListe]);
         updateRecetteJeudi();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -534,7 +542,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-j" +
         i +
         "'>" +
-        tableauRecettesJeudi[i].recette_nom +
+        tableauRecettesJeudi[i].nom +
         "</p><input id='heure-j" +
         i +
         "' value='" +
@@ -584,13 +592,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesVendredi.length; i++) {
-        if (tableauRecettesVendredi[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesVendredi[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -598,6 +606,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesVendredi.push(objListeTousRecettes[indexDansListe]);
         updateRecetteVendredi();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -639,7 +649,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-v" +
         i +
         "'>" +
-        tableauRecettesVendredi[i].recette_nom +
+        tableauRecettesVendredi[i].nom +
         "</p><input id='heure-v" +
         i +
         "' value='" +
@@ -689,13 +699,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesSamedi.length; i++) {
-        if (tableauRecettesSamedi[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesSamedi[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -703,6 +713,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesSamedi.push(objListeTousRecettes[indexDansListe]);
         updateRecetteSamedi();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -744,7 +756,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-s" +
         i +
         "'>" +
-        tableauRecettesSamedi[i].recette_nom +
+        tableauRecettesSamedi[i].nom +
         "</p><input id='heure-s" +
         i +
         "' value='" +
@@ -794,13 +806,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       let indexDansListe = -1;
       let estNouveau = true;
       for (let i = 0; i < tableauRecettesDimanche.length; i++) {
-        if (tableauRecettesDimanche[i].recette_nom == textProchainRecette) {
+        if (tableauRecettesDimanche[i].nom == textProchainRecette) {
           estNouveau = false;
         }
       }
       if (estNouveau) {
         for (let i = 0; i < objListeTousRecettes.length; i++) {
-          if (objListeTousRecettes[i].recette_nom == textProchainRecette) {
+          if (objListeTousRecettes[i].nom == textProchainRecette) {
             indexDansListe = i;
           }
         }
@@ -808,6 +820,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       if (indexDansListe != -1) {
         tableauRecettesDimanche.push(objListeTousRecettes[indexDansListe]);
         updateRecetteDimanche();
+      } else {
+        alert("Cette recette n'est pas dans les recettes disponibles presentement.");
       }
     }
   });
@@ -849,7 +863,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         "<div style='border=1px solid black'><p id='rec-d" +
         i +
         "'>" +
-        tableauRecettesDimanche[i].recette_nom +
+        tableauRecettesDimanche[i].nom +
         "</p><input id='heure-d" +
         i +
         "' value='" +
@@ -1110,7 +1124,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         description: description,
         images: tableauImages,
         recettes: tableauRecettes,
-        username: sessionStorage.getItem("username"),
+        username: IDENTIFIANT,
       });
 
       let paquet = new FormData();
@@ -1238,21 +1252,25 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
    // Récupérer les données utilisateur de sessionStorage
-   const utilisateurId = sessionStorage.getItem("identifiant");
-   const utilisateurMotDePasse = sessionStorage.getItem("motDePasse");
+   const IDENTIFIANT = sessionStorage.getItem('identifiant');
+   const MOT_DE_PASSE = sessionStorage.getItem("motDePasse");
 
-    if (!utilisateurId || !utilisateurMotDePasse) {
+    if (!IDENTIFIANT || !MOT_DE_PASSE) {
         alert("Vous devez être connecté pour interagir avec cette page.");
         window.location.href = 'index.html'; // Redirige vers la page de connexion si non connecté
         return;
     }
     if (localStorage.getItem("plan-a-editer") != null) {
 
-      //recuperation du plan
-      planLocal = localStorage.getItem("plan-a-editer");
-      editPlan = true;
-      fetchPlan(planLocal);
-
+      //recuperation du plan si demande
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("id")) {
+        planLocal = urlParams.get("id");
+        editPlan = true;
+        fetchPlan(planLocal);
+      } else {
+        planLocal = null;
+      }
     } else {
       planLocal = null;
     }

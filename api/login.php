@@ -19,7 +19,7 @@ $router->post('/login.php/login/', function() {
         $identifiant = trim($client_data['identifiant']);
         $motDePasse = trim($client_data['motDePasse']);
 
-        $stmt = $pdo->prepare("SELECT nom_utilisateur, mot_de_passe, nom, prenom FROM clients WHERE nom_utilisateur = :identifiant");
+        $stmt = $pdo->prepare("SELECT nom_utilisateur, mot_de_passe, nom, prenom FROM Clients WHERE nom_utilisateur = :identifiant");
         $stmt->execute([':identifiant' => $identifiant]);
         $user = $stmt->fetch();
 

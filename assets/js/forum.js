@@ -394,7 +394,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 try {
                     const data = JSON.parse(text);
                     if (data.success) {
-                        console.log(data.notifications); // Afficher les notifications dans la console
                         afficherNotifications(data.notifications); // Fonction pour afficher les notifications dans l'UI
                     } else {
                         //alert("Erreur : " + data.message); // Afficher l'erreur
