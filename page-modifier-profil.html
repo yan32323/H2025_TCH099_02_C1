@@ -55,16 +55,6 @@
       <input id="new_username" type="text" placeholder="Nom" />
     </div>
     <div class="section">
-      <h4>Photo de profil</h4>
-      <div class="profile-pic-container">
-        <img src="assets/image/blank-pfp.png" alt="Photo de profil" class="profile-pic" />
-        <div class="button-actions">
-          <button id="upload_image-btn" class="upload-btn">Modifier</button>
-          <button id="delete_image-btn" class="delete-btn">Supprimer</button>
-        </div>
-      </div>
-    </div>
-    <div class="section">
       <h4>Biographie</h4>
       <textarea id="new_description" placeholder="Écrivez votre biographie ici"></textarea>
     </div>
@@ -111,4 +101,55 @@
 });
 
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const notificationBell = document.getElementById('notificationBell');
+      const notificationDropdown = document.getElementById('notificationDropdown');
+      const markAllReadBtn = document.getElementById('markAllRead');
+      
+      // Toggle dropdown
+      notificationBell.addEventListener('click', function(e) {
+        e.stopPropagation();
+        notificationDropdown.classList.toggle('show');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+          notificationDropdown.classList.remove('show');
+        }
+      });
+      
+      // Mark all as read
+      markAllReadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const unreadItems = document.querySelectorAll('.notification-item.unread');
+        unreadItems.forEach(item => item.classList.remove('unread'));
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+          badge.textContent = '0';
+          badge.style.display = 'none';
+        }
+      });
+      
+      // Handle notification item clicks
+      document.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.remove('unread');
+          
+          // Update badge counter
+          const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+          const badge = document.querySelector('.notification-badge');
+          if (badge) {
+            if (unreadCount > 0) {
+              badge.textContent = unreadCount;
+              badge.style.display = 'block';
+            } else {
+              badge.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+      </script>
 </html>
