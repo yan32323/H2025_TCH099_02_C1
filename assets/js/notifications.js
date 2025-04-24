@@ -10,23 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let userId = sessionStorage.getItem("identifiant");
 
     if (userId) {
+        updateNotificationBadge()
         consulterNotifications(userId);
     } else {
         console.error("Aucun identifiant utilisateur trouvé dans le stockage.");
         window.location.href = "index.html";
-    }
-
-    function mettreAJourBadge() {
-        const nombreNonLus = document.querySelectorAll(
-            ".notification-item.non-lu"
-        ).length;
-        notificationBadge.textContent = nombreNonLus;
-
-        if (nombreNonLus === 0) {
-            notificationBadge.style.display = "none";
-        } else {
-            notificationBadge.style.display = "block";
-        }
     }
     
     
@@ -73,14 +61,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     
-        mettreAJourBadge();
+        updateNotificationBadge();
     });
     
 
     notificationItems.forEach((item) => {
         item.addEventListener("click", function () {
             this.classList.remove("non-lu");
-            mettreAJourBadge();
+            updateNotificationBadge();
         });
     });
 
@@ -272,6 +260,7 @@ function updateNotificationBadge() {
                     ".notification-badge"
                 );
                 const unreadCount = data.unreadCount;
+                console.log("Nombre de notifications non lues:", unreadCount);
 
                 // Vérifier si unreadCount est un nombre valide et supérieur à 0
                 if (typeof unreadCount === "number" && unreadCount > 0) {
