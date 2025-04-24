@@ -211,6 +211,61 @@ $router->post('/profil.php/modifier',function(){
     }
 });
 
+//Route pour modifier le mot de passe, l'identifiant et la description d'un usager (vérifie que le nouvelle identifiant n'est pas déjà utilisé)
+$router->post('/profil.php/modifer-client/', function(){
+
+
+    require_once '../includes/conection.php';
+    header('Content-Type: application/json');
+
+    try {
+        //extraire les éléments de l'objet JSON
+        $data_json = file_get_contents("php://input");
+        $data = json_decode($data_json, true);
+
+        $identifiant = trim($data['identifiant']);
+        $motDePasse = trim($data['motDePasse']);
+        $nouveau_identifiant = trim($data['nouveau_identifiant']);
+        $nouveau_motDePasse = trim($data['nouveau_motDePasse']);
+        $description = trim($data['description']);
+
+        //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
+        if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+            try{
+                // Password Hashing
+                $motDePasseHash = password_hash($nouveau_motDePasse, PASSWORD_DEFAULT);
+
+                // Changer les informations de l'utilisateur
+                $requete = $pdo->prepare("UPDATE Clients SET nom_utilisateur = :nouveau_identifiant, mot_de_passe = :mot_de_passe, description = :description WHERE nom_utilisateur = :identifiant");
+                $requete->execute([
+                    ':nouveau_identifiant' => $nouveau_identifiant,
+                    ':mot_de_passe' => $motDePasseHash,
+                    ':description' => $description,
+                    ':identifiant' => $identifiant
+                ]);
+                echo json_encode(['statut' => 'success']);
+                exit();
+
+            //Erreur si l'identifiant est déjà utiliser
+            }catch (PDOException $e) {
+                http_response_code(400); 
+                echo json_encode(['statut' => 'error', 'message' => 'L\'identifiant sont déjà utilisés.']);
+                exit();
+            }
+
+        }else{
+            //Cas où l'authentification a échoué
+            http_response_code(401); 
+            echo json_encode(['statut' => 'error', 'message' => 'Authentification requise.']);
+            exit();
+        }
+    } catch (PDOException $e) {
+        http_response_code(401); 
+        echo json_encode(['statut' => 'error', 'message' => 'Erreur de connexion']);
+        exit();
+    }
+});
+
 $router->post('/profil.php/nb-abonne-nb-abonnement', function () {
     header("Content-Type: application/json; charset=UTF-8");
     include '../includes/conection.php';
