@@ -6,6 +6,7 @@
   <title>Planigo - Mes Recettes</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styles/style-liste.css" />
+  <script src="assets/js/planifier.js" defer></script>
 </head>
 <body class="fond texte-couleur">
 
@@ -23,29 +24,20 @@
 
   <main class="conteneur text-center">
     <h2 class="titre-section">Liste de plan hebdomadaire</h2>
-    <p class="mb-12 max-w-3xl mx-auto text-gray-600">
+    <p class="max-w-3xl mx-auto text-gray-600">
         Organisez vos repas de la semaine comme vous organisez votre musique ! Une Liste de Plan Hebdomadaire vous permet de créer et de sauvegarder des menus complets, prêts à être utilisés. Planifiez à l'avance, gagnez du temps et profitez de repas équilibrés sans stress
     </p>
 
+    <div id="message-erreur"></div>
+    <div id="compteneur-plan-hebdomadaire"></div>
+
+    <!--
     <section class="mb-12">
       <h3 class="titre-section text-left">Plan 1</h3>
+      <p> Semaine Gourmande</p>
       <img src="assets/image/semaine-gourmande.jpg" alt="gourmandes" class="image-categorie" />
     </section>
-
-    <section class="mb-12">
-      <h3 class="titre-section text-left">Plan 2</h3>
-      <img src="assets/image/semaine-gourmande.jpg" alt="sante" class="image-categorie" />
-    </section>
-
-    <section class="mb-12">
-      <h3 class="titre-section text-left">Plan 3</h3>
-      <img src="assets/image/semaine-gourmande.jpg" alt="uni" class="image-categorie" />
-    </section>
-
-    <section class="mb-12">
-      <h3 class="titre-section text-left">Plan 4</h3>
-      <img src="assets/image/semaine-gourmande.jpg" alt="Saveurs du printemps" class="image-categorie" />
-    </section>
+    -->
 
     <button class="btn-creer">Créer un plan</button>
   </main>
@@ -60,36 +52,4 @@
   </footer>
 
 </body>
-<script>
-  const sections = document.querySelectorAll('.mb-12');
-  const liens = [
-    'plan.html',
-    'plan.html', 
-    'plan.html', 
-    'plan.html'  
-  ];
-
-  sections.forEach((section, index) => {
-    section.style.cursor = 'pointer';
-    section.addEventListener('click', () => {
-      window.location.href = liens[index];
-    });
-  });
-
-  const boutonCreer = document.querySelector('.btn-creer');
-  boutonCreer.addEventListener('click', () => {
-    window.location.href = 'creationPlan.html';
-  });
-
- 
-  document.addEventListener('DOMContentLoaded', function () {
-  const logo = document.querySelector('.logo'); 
-  logo.style.cursor = 'pointer';
-  logo.addEventListener('click', function () {
-    window.location.href = 'accueil-recette.html'; 
-  });
-});
-
-
-</script>
 </html>

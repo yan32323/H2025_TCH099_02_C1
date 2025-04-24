@@ -6,6 +6,7 @@
   <title>Plan de la semaine - Planigo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styleS/style-affichage-plan.css" />
+  <script src="assets/js/plan.js" defer></script>
 </head>
 <body class="fond texte-couleur">
 
@@ -25,8 +26,9 @@
     <h1 class="titre-principal">Plan de la semaine</h1>
     <p class="description">Préparez-vous pour une semaine remplie de saveurs ! Chaque jour est accompagné de 3 recettes faciles et délicieuses.</p>
 
-    <div class="grille-semaines">
-      <div class="ligne-semaines">
+    <div id="message-erreur"></div>
+    <div class="grille-semaines" id="conteneur-plan-hebdomadaire">
+
         <!-- Génération dynamique pour 7 jours -->
         <div class="bloc-semaine">
           <div class="etiquette-semaine">Lundi</div>
@@ -45,9 +47,7 @@
             <div class="carte"><img src="assets/image/soupe-salade.jpg" alt="Poisson grillé"><h3>Poisson grillé</h3><p>⏱ 30 Minutes</p><p>🍴 Dîner</p></div>
           </div>
         </div>
-      </div>
 
-      <div class="ligne-semaines">
         <div class="bloc-semaine">
           <div class="etiquette-semaine">Mercredi</div>
           <div class="cartes">
@@ -65,9 +65,7 @@
             <div class="carte"><img src="assets/image/recette3.png" alt="Pizza maison"><h3>Pizza maison</h3><p>⏱ 40 Minutes</p><p>🍴 Gourmand</p></div>
           </div>
         </div>
-      </div>
 
-      <div class="ligne-semaines">
         <div class="bloc-semaine">
           <div class="etiquette-semaine">Vendredi</div>
           <div class="cartes">
@@ -85,9 +83,7 @@
             <div class="carte"><img src="assets/image/recette3.png" alt="Lasagnes"><h3>Lasagnes</h3><p>⏱ 45 Minutes</p><p>🍴 Four</p></div>
           </div>
         </div>
-      </div>
 
-      <div class="ligne-semaines">
         <div class="bloc-semaine">
           <div class="etiquette-semaine">Dimanche</div>
           <div class="cartes">
@@ -96,7 +92,6 @@
             <div class="carte"><img src="assets/image/recette3.png" alt="Boeuf bourguignon"><h3>Boeuf bourguignon</h3><p>⏱ 90 Minutes</p><p>🍴 Tradition</p></div>
           </div>
         </div>
-      </div>
     </div>
 
     <button class="btn-charger">Creer un plan</button>
@@ -111,20 +106,4 @@
     </div>
   </footer>
 </body>
-<script>
-    document.querySelector(".btn-charger").addEventListener("click", function () {
-      window.location.href = "creationPlan.html";
-    });
-
-    
-  document.addEventListener('DOMContentLoaded', function () {
-  const logo = document.querySelector('.logo'); 
-  logo.style.cursor = 'pointer';
-  logo.addEventListener('click', function () {
-    window.location.href = 'accueil-recette.html';
-  });
-});
-
-
-</script>
 </html>
