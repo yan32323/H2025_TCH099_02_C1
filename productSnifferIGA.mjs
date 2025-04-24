@@ -6,7 +6,7 @@ puppeteer.use(StealthPlugin());
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function scrapeSuperCPage(url) {
+async function scrapeMetroPage(url) {
 
   const browser = await puppeteer.launch({
     headless: 'true',
@@ -67,7 +67,7 @@ async function scrapeSuperCPage(url) {
 } else {
   url = pages[compteur]+saut+compteur
 }
-  let html = await scrapeSuperCPage(url);
+  let html = await scrapeMetroPage(url);
   reader.addEventListener("load", function() {
     let pageAVerifier = reader.result;
 
