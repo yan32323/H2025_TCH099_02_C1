@@ -20,6 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateNotificationBadge();
     consulterNotifications(userId);
+
+    const cancelBtn = document.getElementById("cancel-btn");
+
+    cancelBtn.addEventListener("click", (event) => {
+        event.preventDefault(); // Empêche le rechargement de la page
+        window.location.href = `page-profil.html?user=${userId}`; // Redirige vers la page de profil
+    });
 });
 
 function modifierProfil() {

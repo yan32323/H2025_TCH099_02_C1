@@ -108,20 +108,21 @@ $router->post('/CreationPlans.php/plans/creer', function () {
                         $config['password'],
                         $options
                     );
-                    
+
                     $requete = $pdo->prepare("INSERT INTO Repas_Planifies (plan_id, recette_id, journee, heure)
                                             VALUES (:plan_id, :recette_id, :journee, :heure)");
 
                     foreach ($infos["recettes"][$i] as $recettesJournee) {
+
                         $requete->execute([
                             'plan_id' => $plan_id,
-                            'recette_id' => $recettesJournee["id"],
+                            'recette_id' => $recettesJournee["recette_id"],
                             'journee' => $journee,
                             'heure' => $recettesJournee["heure"]
                         ]);
                 }
             }
-                echo json_encode(["status" => "ok", "message" => "Plan ajouté"]);
+                echo json_encode(["status" => 200, "message" => "Plan ajouté"]);
 
         } catch (PDOException $e) {
             echo json_encode(["status" => "error", "message" => "Erreur base de données", "details" => $e->getMessage()]);
