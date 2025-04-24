@@ -1238,21 +1238,25 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
    // Récupérer les données utilisateur de sessionStorage
-   const utilisateurId = sessionStorage.getItem("identifiant");
-   const utilisateurMotDePasse = sessionStorage.getItem("motDePasse");
+   const IDENTIFIANT = sessionStorage.getItem('identifiant');
+   const MOT_DE_PASSE = sessionStorage.getItem("motDePasse");
 
-    if (!utilisateurId || !utilisateurMotDePasse) {
+    if (!IDENTIFIANT || !MOT_DE_PASSE) {
         alert("Vous devez être connecté pour interagir avec cette page.");
         window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
         return;
     }
     if (localStorage.getItem("plan-a-editer") != null) {
 
-      //recuperation du plan
-      planLocal = localStorage.getItem("plan-a-editer");
-      editPlan = true;
-      fetchPlan(planLocal);
-
+      //recuperation du plan si demande
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has("id")) {
+        planLocal = urlParams.get("id");
+        editPlan = true;
+        fetchPlan(planLocal);
+      } else {
+        planLocal = null;
+      }
     } else {
       planLocal = null;
     }

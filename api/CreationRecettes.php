@@ -51,31 +51,73 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
         $infos["image"] = $imageFinale;
 
         try {
+
+            $recette_id=null;
+
             // Si vous modifiez une recette
-            if ($infos["edit"] === "true") {
-                $requete = $pdo->prepare("UPDATE Recettes SET titre=:titre, description=:description, ingredients=:ingredients, image=:image, difficulte=:difficulte WHERE id=:id");
+            if ($infos["edit"] == "true") {
+                $requete = $pdo->prepare("UPDATE Recettes SET nom=:nom, description=:description,type=:type,difficulter=:difficulte, temps_de_cuisson=:temps, image=:image,portions=:portions  WHERE id=:id");
                 $requete->execute([
                     'id' => $infos["id"],
-                    'titre' => $infos["titre"],
+                    'nom' => $infos["titre"],
                     'description' => $infos["description"],
-                    'ingredients' => $infos["ingredients"],
+                    'type' => $infos["type"],
+                    'difficulte' => $infos["difficulte"],
+                    'temps' => $infos["temps"],
+                    'portions' => $infos["portion"],
                     'image' => base64_decode($infos["image"]),
-                    'difficulte' => $infos["difficulte"]
+                    
                 ]);
-                echo json_encode(["success" => true, "message" => "Recette modifiée"]);
+
+                $recette_id = $infos["id"];
+                // Supprimer les anciennes restrictions, ingrédients et étapes
+                $stmtRestrictions = $pdo->prepare("DELETE FROM Recettes_Restrictions WHERE recette_id = :recette_id");
+                $stmtRestrictions->execute(['recette_id' => $recette_id]);
+                $stmtIngredient = $pdo->prepare("DELETE FROM Recettes_Ingredients WHERE recette_id = :recette_id");
+                $stmtIngredient->execute(['recette_id' => $recette_id]);
+                $stmtEtape = $pdo->prepare("DELETE FROM Recettes_Etapes WHERE recette_id = :recette_id");
+                $stmtEtape->execute(['recette_id' => $recette_id]);
+
             } else {
                 // Si vous ajoutez une nouvelle recette
-                $requete = $pdo->prepare("INSERT INTO Recettes (nom, description, image, createur_nom_utilisateur, temps_de_cuisson) 
-                                          VALUES (:nom, :description, :image, :username, :temps_de_cuisson)");
+                $requete = $pdo->prepare("INSERT INTO Recettes ( nom, description, type, difficulter, temps_de_cuisson, image, portions, createur_nom_utilisateur ) 
+                VALUES (:nom, :description, :type, :difficulter, :temps_de_cuisson, :image, :portions, :createur_nom_utilisateur );");
                 $requete->execute([
                     'nom' => $infos["titre"],
                     'description' => $infos["description"],
+                    'type' => $infos["type"],
+                    'difficulter' => $infos["difficulte"],
+                    'portions' => $infos["portion"],
                     'temps_de_cuisson' => $infos["temps"],
                     'image' => base64_decode($infos["image"]),
-                    'username' => $infos['identifiant']
+                    'createur_nom_utilisateur' => $infos['personne']
                 ]);
+            
                 // Récupérer l'ID de la recette ajoutée
                 $recette_id = $pdo->lastInsertId();
+            }
+                // Insérer les restrictions dans la table Recettes_Restrictions
+                if (!empty($infos["restrictions"])) {
+
+                    // Recupérer les ID des restrictions
+                    $idRestrictions=[];
+                    $stmtGetRestrictions = $pdo->prepare("SELECT id FROM Restrictions WHERE nom = :nom");
+                    foreach ($infos["restrictions"] as $restriction) {
+                        $stmtGetRestrictions->execute(['nom' => $restriction]);
+                        $restrictionId = $stmtGetRestrictions->fetchColumn();
+                        if ($restrictionId) {
+                            $idRestrictions[] = $restrictionId;
+                        }
+                    }
+                    $stmtIngredient = $pdo->prepare("INSERT INTO Recettes_Restrictions (recette_id, restriction_id)
+                        VALUES (?, ?)");
+                    foreach ($idRestrictions as $restrictions) {
+                        $stmtIngredient->execute([
+                            $recette_id,
+                            $restrictions, 
+                        ]);
+                    }
+                }
 
                 // Insérer les ingrédients dans la table Recettes_Ingredients
                 if (!empty($infos["ingredients"])) {
@@ -89,7 +131,6 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
                         ]);
                     }
                 }
-
                 // Insérer les étapes dans la table Recettes_Etapes
                 if (!empty($infos["etapes"])) {
                     $stmtEtape = $pdo->prepare("INSERT INTO Recettes_Etapes (recette_id, numero_etape, texte) VALUES (?, ?, ?)");
@@ -97,12 +138,13 @@ $router->post('/CreationRecettes.php/recettes/creer', function () {
                         $stmtEtape->execute([$recette_id, $index + 1, $texteEtape]);
                     }
                 }
-
-                echo json_encode(["status" => "ok", "message" => "Recette ajoutée"]);
-            }
-
+                if ($infos["edit"] === "true") {
+                    echo json_encode(["success" => true, "message" => "Recette modifiée"]);
+                } else {
+                    echo json_encode(["success" => true, "message" => "Recette ajoutée"]);
+                }
         } catch (PDOException $e) {
-            echo json_encode(["status" => $e->getMessage(), "message" => "Erreur base de données", "details" => $e->getMessage()]);
+            echo json_encode(["error" => true, "message" => "Erreur base de données", "details" => $e->getMessage()]);
         }
 });
 
