@@ -212,7 +212,7 @@ $router->post('/profil.php/modifier',function(){
 });
 
 //Route pour modifier le mot de passe, l'identifiant et la description d'un usager (vérifie que le nouvelle identifiant n'est pas déjà utilisé)
-$router->post('/profil.php/modifer-client/', function(){
+$router->post('/profil.php/modifer-client', function(){
 
 
     require_once '../includes/conection.php';

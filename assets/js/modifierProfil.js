@@ -34,12 +34,11 @@ function modifierProfil() {
     let newNom = document.getElementById("new_username");
     let newDescription = document.getElementById("new_description");
     let idConnecte = sessionStorage.getItem("identifiant");
-    let motDePasse = sessionStorage.getItem("motDePasse")
-    let verif_motDePasse = document.getElementById("passVerif")
-    let nouveau_motDePasse1 = document.getElementById("newPass1");
-    let nouveau_motDePasse2 = document.getElementById("newPass2");
+    let motDePasse = sessionStorage.getItem("motDePasse");
+    let verif_motDePasse = document.getElementById("passVerif").value;
+    let nouveau_motDePasse1 = document.getElementById("newPass1").value;
+    let nouveau_motDePasse2 = document.getElementById("newPass2").value;
     let nouveau_motDePasse = null;
-
     if(motDePasse == verif_motDePasse){
         if(nouveau_motDePasse1 == nouveau_motDePasse2){
             nouveau_motDePasse = nouveau_motDePasse1;
@@ -58,7 +57,7 @@ function modifierProfil() {
         motDePasse: motDePasse,
         nouveau_identifiant: newNom.value,
         nouveau_motDePasse:nouveau_motDePasse,
-        new_description: newDescription.value,
+        description: newDescription.value,
     };
     
 
@@ -69,13 +68,9 @@ function modifierProfil() {
         },
         body: JSON.stringify(data),
     })
-    .then((response) => response.text())
-    .then((text) => {
-        console.log("Réponse du serveur :", text);
-        return JSON.parse(text);
-    })
-    .then((result) => {
-        if (result.success) {
+    .then((response) => response.json())
+    .then((data) => {
+        if (data.statut === "success") {
             alert("Profil mis à jour avec succès !");
             if(newNom.value != ""){
             sessionStorage.setItem("identifiant", newNom.value);
@@ -86,7 +81,7 @@ function modifierProfil() {
             window.location.href = `page-profil.html?user=${sessionStorage.getItem("identifiant")}`; // Redirige vers la page de profil
             
         } else {
-            alert("Erreur : " + result.message);
+            alert("Erreur : " + data.message);
         }
     })
     .catch((error) => {
