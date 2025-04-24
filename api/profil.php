@@ -231,6 +231,37 @@ $router->post('/profil.php/modifer-client/', function(){
 
         //Si le client exite dans la base de donnée, on récupère ses produits du stock_ingredients
         if(validateUserCredentials($identifiant, $motDePasse, $pdo)){
+
+            //Vérifier si le nouvel identifiant est déjà utilisé et si le mot de passe respecte les règles
+            $erreurs = [];
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM clients WHERE nom_utilisateur = :identifiant");
+            $stmt->execute(['identifiant' => $nouveau_identifiant]);
+            $count = $stmt->fetchColumn();
+            if ($count > 0) {
+                $erreurs[] = "Cet identifiant est déjà utilisé.\n";
+            }
+
+            // Password Validation (same rules as client-side and gestion_inscription.php)
+            if (strlen($nouveau_motDePasse) < 8 || strlen($nouveau_motDePasse) > 32) {
+                $erreurs[] = "Le mot de passe doit contenir entre 8 et 32 caractères.";
+            }
+            if (!preg_match('/[A-Z]/', $nouveau_motDePasse)) {
+                $erreurs[] = "Le mot de passe doit contenir au moins une majuscule.";
+            }
+            if (!preg_match('/[a-z]/', $nouveau_motDePasse)) {
+                $erreurs[] = "Le mot de passe doit contenir au moins une minuscule.";
+            }
+            if (!preg_match('/[0-9]/', $nouveau_motDePasse)) {
+                $erreurs[] = "Le mot de passe doit contenir au moins un chiffre.";
+            }
+
+            if (!empty($erreurs)) {
+                echo json_encode(['statut' => 'error', 'message' => implode(" ", $erreurs)]); // Send back validation errors
+                exit();
+            }
+
+            //L'identifiant n'est pas déjà utilisé et le mot de passe respecte les règles
+            //On peut donc modifier les informations de l'utilisateur
             try{
                 // Password Hashing
                 $motDePasseHash = password_hash($nouveau_motDePasse, PASSWORD_DEFAULT);
@@ -249,7 +280,7 @@ $router->post('/profil.php/modifer-client/', function(){
             //Erreur si l'identifiant est déjà utiliser
             }catch (PDOException $e) {
                 http_response_code(400); 
-                echo json_encode(['statut' => 'error', 'message' => 'L\'identifiant sont déjà utilisés.']);
+                echo json_encode(['statut' => 'error', 'message' => 'Erreur d\éxécution de l\'update']);
                 exit();
             }
 
