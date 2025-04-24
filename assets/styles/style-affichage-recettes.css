@@ -512,6 +512,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   display: flex;
   justify-self: center;
+  margin-top: 2rem;
   
   
 }
