@@ -107,35 +107,28 @@ function afficheProfil(profilData) {
         modifierBtn.style.display = "inline-block";
     }
 
-    // Mise à jour des statistiques de profil
-    document.querySelector(
-        ".profile-stat:nth-child(1) .stat-number"
-    ).textContent = recettes.length;
-    // Requête pour récupérer le nombre d'abonnés et d'abonnements
-    fetch("./api/profil.php/nb-abonne-nb-abonnement", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user: profil.nom_utilisateur }),
+    // Mettre à jour le nombre de recettes
+document.querySelector("#nbRecetteStat .stat-number").textContent = profilData.recettes.length;
+
+// Mettre à jour le nombre d'abonnés et abonnements via la route API
+fetch("./api/profil.php/nb-abonne-nb-abonnement", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ user: profil.nom_utilisateur }),
+})
+    .then((res) => res.json())
+    .then((stats) => {
+        if (stats.success) {
+            document.querySelector("#nbAbonneStat .stat-number").textContent = formatNombre(stats.nb_abonnes);
+            document.querySelector("#nbAbonnementStat .stat-number").textContent = formatNombre(stats.nb_abonnements);
+        } else {
+            console.error("Erreur lors de la récupération des stats :", stats);
+        }
     })
-        .then((res) => res.json())
-        .then((stats) => {
-            if (stats.success) {
-                document.querySelector(
-                    ".profile-stat:nth-child(2) .stat-number"
-                ).textContent = formatNombre(stats.nb_abonnes);
-                document.querySelector(
-                    ".profile-stat:nth-child(3) .stat-number"
-                ).textContent = formatNombre(stats.nb_abonnements);
-            } else {
-                console.error(
-                    "Erreur lors de la récupération des stats :",
-                    stats
-                );
-            }
-        })
-        .catch((err) => console.error("Erreur réseau stats :", err));
+    .catch((err) => console.error("Erreur réseau stats :", err));
+
 
     function formatNombre(n) {
         if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
