@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planigo</title>
+    <title>Connexion - Planigo</title>
     <link rel="stylesheet" href="assets/styles/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <script src="assets/js/index.js"></script>
 </head>
 
@@ -15,22 +14,23 @@
         <div class="content-area">
             <div class="boite-de-texte">
                 <div class="content-column">
-                    <h1 class="title">Connecter vous a Planigo</h1>
+                    <h1 class="title">Planigo</h1>
+                    <h2 class="subtitle">Connectez-vous !</h2>
                     <div class="membre">
-                        <span class="text-membre">Vous n'etes pas membre?</span>
-                        <a href="inscription.html" class="lien-membre">Creer un compte</a>
+                        <span class="text-membre">Vous n'êtes pas membre ?</span>
+                        <a href="inscription.html" class="lien-membre">Créer un compte</a>
                     </div> 
-                    <div class="erreur" id="loginError"></div>      <!--changer ca-->
-                    <div class="success" id="loginSuccess"></div>   <!--changer ca-->
+                    <div class="erreur" id="loginError"></div>      
+                    <div class="success" id="loginSuccess"></div>   
 
                     <form id="pageAccueil">
-                        <label class= "input-label" for="identifiant">NOM</label>
+                        <label class= "input-label" for="identifiant">Nom</label>
                         <div class = "input-box">
                         <input type="text" class="input-field" id="identifiant" name="identifiant" placeholder="Entrez votre identifiant"
                             required>
                         </div>
 
-                        <label class= "input-label"for="motDePasse">MOT DE PASSE</label>
+                        <label class= "input-label"for="motDePasse">Mot de passe</label>
                         <div class = "input-box">
                         <input type="password" class= "input-field" id="motDePasse" name="motDePasse" placeholder="Entrez votre mot de passe"
                             required>
@@ -47,5 +47,12 @@
     </main>
     
 </body>
+<div class="video-background">
+  <video autoplay muted loop playsinline>
+    <source src="assets/video/video_background.mp4" type="video/mp4">
+    Ton navigateur ne supporte pas la vidéo HTML5.
+  </video>
+</div>
+
 
 </html>
