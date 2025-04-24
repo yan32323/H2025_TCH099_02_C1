@@ -1,46 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@100;400;700&family=Satisfy&display=swap');
+:root {
+    --couleur-principale: #5e3023;
+    --couleur-hover: #7c3f2d;
+    --couleur-fond: #eddcd2;
+    --couleur-carte: #f0efeb;
+    --couleur-carte-hover: #d0ada7;
+    --couleur-texte: #1f2937;
+    --couleur-texte-leger: #6b7280;
+    --shadow-sm: 0 2px 4px rgba(94, 48, 35, 0.1);
+    --shadow-md: 0 4px 8px rgba(94, 48, 35, 0.15);
+    --shadow-lg: 0 8px 16px rgba(94, 48, 35, 0.2);
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+  }
+  
 * {
     box-sizing: border-box;
-    font-family: varela round, sans-serif;
+    font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
- body {
-    font-family: varela round, sans-serif;
+body {
     margin: 0;
-    padding: 0;
-    background-color: #F9F9F9; 
+    font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+    color: var(--couleur-texte);
+    background-color: transparent; 
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
+
+
 .conteneur {
     background-color: #FFFFFF; 
-    border-radius: 24px;
-    overflow: hidden;
+    border-radius: 100px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     max-width: 480px;
-    margin: 20px;
+    padding: 40px 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-.content-column {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: stretch;
-    text-align: left; 
-}
-
-.boite-de-texte {
-    position: relative;
-    padding: 60px 40px;
-    width: 100%;
+    border: 10px solid #d38352;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .membre{
@@ -57,7 +71,7 @@
 }
 
 .lien-membre{
-    color: #38686a; 
+    color: var(--couleur-hover); 
     margin-left: 8px;
     text-decoration: none;
     font-weight: 500;
@@ -68,33 +82,45 @@
 }
 
 h1.title {
-    font-size: 32px;
+    font-size: 70px;
     font-weight: 600;
-    font-family: 'Varela round', sans-serif;
-    color: #333333; 
-    margin-bottom: 20px;
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-style: normal;
+    color: #dd6213; 
+    margin-bottom: 0px;
+    margin-top: 0px;
+    text-shadow: 2px 2px 4px rgba(209, 79, 4, 0.3);
 }
+
+h2.subtitle{
+    font-size: 25px;
+    font-family: "Atma", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color: #863b0b; 
+    margin-bottom: 20px; 
+    margin-top: 0px;
+}
+
 .input-label {
-    font-size: 14px;
-    font-weight: 500;
     letter-spacing: 0.4px;
-    color: #333333;
-    margin-top: 20px;
-    margin-bottom: 15px; 
-    text-align: left;
+    color: var(--couleur-principale);
+    margin-bottom: 0px !important ;
+    
 }
 
 .input-box {
-    background-color: #FFFFFF;
-    border: 1px solid #E0E0E0;
+    background-color: var(--couleur-carte);
+    border: 1px solid var(--couleur-fond);
     border-radius: 12px;
     transition: border-color 0.2s ease;
-    margin-top:10px;
-    margin-bottom: 10px; 
+    
+    margin-bottom: 20px; 
 }
 
 .input-box:focus-within {
-    border-color: #38686a; 
+    border-color: var(--couleur-carte-hover) 
 }
 
 .input-field {
@@ -103,10 +129,12 @@ h1.title {
     font-size: 16px;
     letter-spacing: 0.1px;
     line-height: 24px;
-    color: #333333; 
+    color: var(--couleur-texte); 
     padding: 18px 20px;
     width: 100%;
     background-color: transparent;
+    border-radius: 12px;
+    transition: background-color 0.2s ease;
 }
 
 button {
@@ -123,22 +151,37 @@ button {
     box-sizing: border-box;
 }
 
-button.login {
-    background-color: #38686a;
-    margin-top: 20px; 
-    margin-right: 10px; 
+button.login, button.inscrire {
+    background-color: var(--couleur-hover);
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: "Manjari", sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    margin-right: 10px;
 }
 
-button.login:hover {
-    background-color: #0056b3;
+button.login:hover, button.inscrire:hover {
+    background-color: #d38352
 }
 
 button.reset {
-    background-color:#38686a;
+    background-color:#ce6524;
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    font-weight: 600;
+    font-family: "Manjari", sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0px;
 }
 
 button.reset:hover {
-    background-color: #cc0000;
+    background-color: #d36552;
 }
 
 button.back {
@@ -154,13 +197,6 @@ button.back:hover {
     background-color: #cc0000;
 }
 
-button.inscrire {
-    background-color: #38686a;
-}
-
-button.inscrire:hover {
-    background-color: #218838;
-}
 
 button.ajouter {
     background-color: #28a745;
@@ -201,7 +237,8 @@ button.logout:hover {
 }
 
 .success {
-    color: green;
+    color: rgb(111, 151, 111);
+    font-family: 'Saira', sans-serif;
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
@@ -269,9 +306,19 @@ button.logout:hover {
     gap: 40px;
 }
 
-/*.title{
-    font-family: Varela round, sans-serif;
-}*/
+.boite-de-texte{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
 /*voir comment enlever ca*/
 @media (max-width: 768px) {
     .conteneur {
@@ -283,10 +330,10 @@ button.logout:hover {
         padding: 40px 30px;
     }
 
-    /*.title {
+    .title {
         font-size: 28px;
-        font-family: Varela round, sans-serif;
-    }*/
+        font-family: 'Saira', sans-serif;
+    }
 
     .membre, .input-label, .input-field, .register-button {
         font-size: 15px;
@@ -295,4 +342,28 @@ button.logout:hover {
     .register-button {
         padding: 12px 25px;
     }
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.conteneur {
+    position: relative;
+    z-index: 2;
+    background-color: #EBDAB9;
+    opacity: 0.9;
+    backdrop-filter: blur(4px); 
 }

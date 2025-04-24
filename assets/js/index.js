@@ -51,4 +51,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 loginErrorDiv.textContent = 'Erreur de connexion au serveur.';
             });
     });
+
+    
 });
