@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Satisfy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@100;400;700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@400;700&family=Satisfy&display=swap');
 :root {
   --couleur-principale: #dd6213;
   --couleur-hover: #a0501f;
@@ -16,13 +16,13 @@
   --radius-lg: 1.5rem;
 }
 /* Base */
-* {
-  font-family: "Manjari", sans-serif;
-}
+
 
 body {
   margin: 0;
   font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
   background-color: var(--couleur-fond);
   background: var(--couleur-fond);
   color: var(--couleur-texte);
@@ -40,6 +40,7 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
+  font-weight: 700;
   align-items: center;
   position: sticky;
   top: 0;
@@ -69,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.2s ease;
   position: relative;
   padding: 0.25rem 0;
+  font-weight: 700; 
 }
 
 .liens-nav a:hover {
@@ -91,21 +93,39 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lien-deconnexion {
+  position: relative;
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 600;
+  padding: 0.25rem 0;
   color: var(--couleur-principale);
   text-decoration: none;
   transition: all 0.2s ease;
-  padding: 0.5rem 1rem;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
 }
 
+
+.lien-deconnexion::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0rem;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
+}
+
+.lien-deconnexion:hover::after {
+  width: 100%;
+}
+
+
 .lien-deconnexion:hover {
   color: #dc2626;
-
 }
+
 @media (max-width: 767px) {
   .liens-nav {
     display: none;
@@ -286,12 +306,13 @@ h1, h2, h3, h4, h5, h6 {
   padding: 3rem 0 2rem;
   border-top: 1px solid rgba(94, 48, 35, 0.2);
   margin-top: 5rem;
-  background-color: rgba(232, 209, 197, 0.5);
+  background-color: #e9d1a5f2;
 }
 
 .pied p {
   font-weight: 600;
-  color: var(--couleur-texte);
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
   margin-bottom: 1rem;
 }
 
@@ -304,6 +325,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .liens-pied a {
   color: var(--couleur-texte-leger);
+  font-family: "Manjari", sans-serif;
   text-decoration: none;
   transition: color 0.2s ease;
 }

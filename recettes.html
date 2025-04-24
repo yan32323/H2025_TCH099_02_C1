@@ -17,7 +17,6 @@
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
       <a href="planifier.html">Planifier</a>
-      <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
@@ -42,7 +41,7 @@
           </div>
         </div>
       </div>
-
+      
     <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
 
@@ -176,151 +175,6 @@
     
     <div id="message-erreur"></div>
     <div class="grille-recettes" id="contenant-recettes">
-      <!--
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/burger.png" alt="Burger" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Burger maison</h3>
-          <p class="info-carte">🍽 Souper · 25 min</p>
-        </div>
-      </div>
-      
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/image_tmp_recette.png" alt="Salade" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Salade César</h3>
-          <p class="info-carte">🥗 Dîner · 15 min</p>
-        </div>
-      </div>
-      
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Pâtes" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Pâtes carbonara</h3>
-          <p class="info-carte">🍝 Souper · 20 min</p>
-        </div>
-      </div>
-      
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Omelette" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Omelette aux légumes</h3>
-          <p class="info-carte">🍳 Déjeuner · 10 min</p>
-        </div>
-      </div>
-
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Soupe" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Soupe de légumes</h3>
-          <p class="info-carte">🥣 Dîner · 35 min</p>
-        </div>
-      </div>
-
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Poulet rôti" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Poulet rôti aux herbes</h3>
-          <p class="info-carte">🍗 Souper · 45 min</p>
-        </div>
-      </div>
-
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Pancakes" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Pancakes aux fruits rouges</h3>
-          <p class="info-carte">🥞 Déjeuner · 15 min</p>
-        </div>
-      </div>
-
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Smoothie" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Smoothie énergétique</h3>
-          <p class="info-carte">🍹 Collation · 5 min</p>
-        </div>
-      </div>
-
-      <div class="carte">
-        <button class="btn-like" aria-label="Aimer">
-          <svg viewBox="0 0 24 24" class="coeur-svg">
-            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-                     2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09 
-                     C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 
-                     22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-          </svg>
-        </button>
-        <img src="assets/image/semaine-gourmande.jpg" alt="Tarte" class="image-carte" />
-        <div class="contenu-carte">
-          <h3>Tarte aux pommes</h3>
-          <p class="info-carte">🍰 Dessert · 50 min</p>
-        </div>
-      </div>
-      -->
     </div>
     <button class="btn-charger">Créer une recette !</button>
   </main>
@@ -328,9 +182,9 @@
   <footer class="pied">
     <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
     <div class="liens-pied">
-      <a href="#">À propos</a>
-      <a href="#">FAQ</a>
-      <a href="#">Page de soutien</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="page_faq.html">FAQ</a>
+      <a href="page_de_soutien.html">Page de soutien</a>
     </div>
   </footer>
 </body>
