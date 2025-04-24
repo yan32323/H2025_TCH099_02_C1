@@ -1243,7 +1243,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (!IDENTIFIANT || !MOT_DE_PASSE) {
         alert("Vous devez être connecté pour interagir avec cette page.");
-        window.location.href = 'page-connexion.html'; // Redirige vers la page de connexion si non connecté
+        window.location.href = 'index.html'; // Redirige vers la page de connexion si non connecté
         return;
     }
     if (localStorage.getItem("plan-a-editer") != null) {

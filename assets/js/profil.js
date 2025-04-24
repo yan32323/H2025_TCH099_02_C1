@@ -1,14 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get("user");
+    let userId = urlParams.get("user");
     const idConnecte = sessionStorage.getItem("identifiant");
+    const MOT_DE_PASSE = sessionStorage.getItem('motDePasse');
 
-    if (!userId && !idConnecte) {
-        alert("Aucun utilisateur spécifié.");
-        return;
+    // Si l'usager n'est pas loguer, on le redirige vers la page de connextion
+    if (!idConnecte || !MOT_DE_PASSE) {
+        window.location.href = 'index.html';
     }
-    else if(!userId) {
-        window.location.href = `page-profil.html?user=${idConnecte}`;
+    if(!userId) {
+        userId = idConnecte;
     }
 
     fetch("./api/profil.php/afficher", {
@@ -34,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
             console.error("Erreur réseau :", error);
-            alert("Erreur lors du chargement de la page de profil.");
         });
 });
 
@@ -108,6 +108,35 @@ function afficheProfil(profilData) {
         modifierBtn.style.display = "inline-block";
     }
 
+    // Mettre à jour le nombre de recettes
+document.querySelector("#nbRecetteStat .stat-number").textContent = profilData.recettes.length;
+
+// Mettre à jour le nombre d'abonnés et abonnements via la route API
+fetch("./api/profil.php/nb-abonne-nb-abonnement", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ user: profil.nom_utilisateur }),
+})
+    .then((res) => res.json())
+    .then((stats) => {
+        if (stats.success) {
+            document.querySelector("#nbAbonneStat .stat-number").textContent = formatNombre(stats.nb_abonnes);
+            document.querySelector("#nbAbonnementStat .stat-number").textContent = formatNombre(stats.nb_abonnements);
+        } else {
+            console.error("Erreur lors de la récupération des stats :", stats);
+        }
+    })
+    .catch((err) => console.error("Erreur réseau stats :", err));
+
+
+    function formatNombre(n) {
+        if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
+        if (n >= 1000) return (n / 1000).toFixed(1) + "k";
+        return n;
+    }
+
     // Affichage des recettes
     const grid = document.querySelector(".recipe-grid");
     grid.innerHTML = "";
@@ -145,5 +174,4 @@ function afficheProfil(profilData) {
             grid.appendChild(card);
         });
     }
-    
 }

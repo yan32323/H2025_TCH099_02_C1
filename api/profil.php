@@ -167,14 +167,30 @@ $router->post('/profil.php/modifier',function(){
         $stmt->bindParam(':nom_utilisateur', $userId);
         $stmt->execute();
     }
+});
 
-    if($imagebase64 != null){
-        $image = base64_decode($imagebase64);
-        $stmt = $pdo->prepare("UPDATE Clients SET image = :image WHERE nom_utilisateur = :nom_utilisateur");
-        $stmt->bindParam(':image', $image, PDO::PARAM_LOB);
-        $stmt->bindParam(':nom_utilisateur', $userId);
-        $stmt->execute();
-    }
+$router->post('/profil.php/nb-abonne-nb-abonnement', function () {
+    header("Content-Type: application/json; charset=UTF-8");
+    include '../includes/conection.php';
+
+    $data = json_decode(file_get_contents("php://input"), true);
+    $userId = $data['user'] ?? null;
+
+    // Récupérer le nombre d'abonnés
+    $stmtAbonnes = $pdo->prepare("SELECT COUNT(*) AS nb_abonnes FROM utilisateurs_suivi WHERE user_suivi_id = ?");
+    $stmtAbonnes->execute([$userId]);
+    $nbAbonnes = $stmtAbonnes->fetchColumn();
+
+    // Récupérer le nombre d'abonnements
+    $stmtAbonnements = $pdo->prepare("SELECT COUNT(*) AS nb_abonnements FROM utilisateurs_suivi WHERE nom_utilisateur = ?");
+    $stmtAbonnements->execute([$userId]);
+    $nbAbonnements = $stmtAbonnements->fetchColumn();
+
+    echo json_encode([
+        "success" => true,
+        "nb_abonnes" => (int)$nbAbonnes,
+        "nb_abonnements" => (int)$nbAbonnements
+    ]);
 });
 
 // Acheminer la requête
