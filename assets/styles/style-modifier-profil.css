@@ -1,15 +1,21 @@
 /* ====== Import des polices ====== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@100;400;700&family=Satisfy&display=swap');
 :root {
-  --teal: #14817A;
-  --vert: #004B46;
-  --accent: #57be9c;
-  --gris-clair: #F8FAFC;
-  --gris-texte: #4B5563;
-  --fond-carte: #FFFFFF;
-  --fond-bloc: #E6F4F1;
-  --ombre: rgba(0, 0, 0, 0.05);
+  --couleur-principale: #dd6213;
+  --couleur-hover: #ca5913;
+  --couleur-fond: #eddcbdf2;
+  --couleur-carte: #f0efeb;
+  --couleur-carte-hover: #fab082;
+  --couleur-texte: #1f2937;
+  --couleur-texte-leger: #6b7280;
+  --shadow-sm: 0 2px 4px rgba(94, 48, 35, 0.1);
+  --shadow-md: 0 4px 8px rgba(94, 48, 35, 0.15);
+  --shadow-lg: 0 8px 16px rgba(94, 48, 35, 0.2);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --teal: #dd6213;
 }
 
 @keyframes fadeInUp {
@@ -39,56 +45,103 @@
 }
 
 body {
-  font-family: 'Saira', 'Inter', sans-serif;
-  background-color: #f8f8f8;
-  color: #1f2937;
+  font-family: "Manjari", sans-serif;
+  background-color: var(--couleur-fond);
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
   line-height: 1.6;
   animation: fadeInUp 0.6s ease-in-out;
 }
 
-header {
-  background-color: white;
-  box-shadow: 0 4px 10px var(--ombre);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  animation: fadeInUp 0.6s ease-in-out;
-}
-
-.hautdepage {
+.barre-haut {
+  padding: 1rem 2rem;
+  background-color: #e9d1a5f2;
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-sm);
 }
 
-.logo img {
-  height: 40px;
+.logo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
 }
 
-.nav-wrapper ul {
+.liens-nav {
   display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-
-.nav-wrapper a,
-.logout-link a {
-  text-decoration: none;
-  color: var(--teal);
+  gap: 2rem;
+  font-size: 1rem;
   font-weight: 500;
-  transition: color 0.2s;
+  margin: 0 auto;
 }
 
-.nav-wrapper a:hover,
-.logout-link a:hover {
-  color: var(--accent);
-  animation: pulse 0.4s ease-in-out;
+.liens-nav a {
+  color: var(--couleur-principale);
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0.25rem 0;
 }
 
-.logout-link a:hover {
-  color: #f04f4c;
+.liens-nav a:hover {
+  color: var(--couleur-hover);
 }
+
+.liens-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s;
+}
+
+.liens-nav a:hover::after {
+  width: 100%;
+}
+
+.lien-deconnexion {
+  position: relative;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  padding: 0.25rem 0;
+  color: var(--couleur-principale);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+}
+
+
+.lien-deconnexion::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0rem;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
+}
+
+.lien-deconnexion:hover::after {
+  width: 100%;
+}
+
 
 .content-container {
   max-width: 1000px;
@@ -100,25 +153,30 @@ header {
   animation: fadeInUp 0.8s ease-in-out;
 }
 
-h1 {
-  font-size: 2.5rem;
-  color: var(--vert);
-  margin-bottom: 2rem;
-  text-align: center;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Atma", system-ui;
 }
 
+h1{
+  color:var(--couleur-hover);
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-align: center;
+  animation: fadeInUp 0.6s ease-in-out;
+}
 .section1 h4,
 .section h4 {
-  color: var(--teal);
+  color: var(--couleur-principale);
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
 }
 
 .section1 p,
 .section p {
-  color: var(--gris-texte);
+  color: var(--couleur-texte);
   font-size: 0.95rem;
-  margin-bottom: 1rem;
+  
 }
 
 .section,
@@ -134,13 +192,13 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   font-size: 1rem;
-  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
   transition: border-color 0.3s ease;
 }
 
 input:focus,
 textarea:focus {
-  border-color: var(--teal);
+  border-color: var(--couleur-principale);
   outline: none;
 }
 
@@ -173,6 +231,8 @@ textarea {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: var(--couleur-principale);
+  font-family: "Manjari", sans-serif;
 }
 
 .upload-btn:hover,
@@ -183,7 +243,7 @@ textarea {
 }
 
 .upload-btn {
-  background-color: var(--accent);
+  background-color: var(--couleur-fond);
   color: white;
 }
 
@@ -198,7 +258,7 @@ textarea {
 }
 
 .save-btn {
-  background-color: var(--teal);
+  background-color: var(--couleur-principale);
   color: white;
 }
 
@@ -217,50 +277,39 @@ label {
   margin-bottom: 1.5rem;
 }
 
-.footer {
-  background-color: white;
-  padding: 2rem;
-  border-top: 1px solid #e0e0e0;
-  font-size: 0.9rem;
-  color: #4b5563;
-  animation: fadeInUp 0.6s ease-in-out;
+.pied {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--couleur-texte-leger);
+  padding: 3rem 0 2rem;
+  border-top: 1px solid rgba(94, 48, 35, 0.2);
+  margin-top: 5rem;
+  background-color: #e9d1a5f2;
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
+.pied p {
+  font-weight: 600;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  margin-bottom: 1rem;
+}
+
+.liens-pied {
+  margin-top: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer-logo {
-  max-width: 80px;
-}
-
-.footer-right {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-right a {
-  color: var(--teal);
+.liens-pied a {
+  color: var(--couleur-texte-leger);
+  font-family: "Manjari", sans-serif;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
-.footer-right a:hover {
-  color: var(--accent);
-  animation: pulse 0.4s ease-in-out;
+.liens-pied a:hover {
+  color: var(--couleur-principale);
 }
 
 /* Notification Styles */

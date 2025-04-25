@@ -1,115 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ</title>
-    <link rel="stylesheet" href="assets/styles/style_page_faq.css"> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planigo - FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/styles/style_page_faq.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+        crossorigin="anonymous"></script>
 </head>
-<body>
-   
+
+<body class="fond texte-couleur">
+
     <header class="barre-haut">
         <h1 class="logo">Planigo</h1>
         <nav class="liens-nav">
-          <a href="recettes.html">Mes recettes</a>
-          <a href="planifier.html">Planifier</a>
-          <a href="#">Liste d'épicerie</a>
-          <a href="stockage.html">Stock</a>
-          <a href="page-profil.html">Profil</a>
+            <a href="recettes.html">Mes recettes</a>
+            <a href="planifier.html">Planifier</a>
+            <a href="stockage.html">Stock</a>
+            <a href="page-profil.html">Profil</a>
         </nav>
-        <a href="#" class="lien-deconnexion">Se déconnecter</a>
-      </header>
-          <div class="container">
-        <main>
-            <h1>Questions fréquentes</h1>
+        <div class="header-right">
+            <div class="notification-container">
+                <button class="notification-bell" id="notificationBell">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationBadge">0</span>
+                </button>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Comment créer un plan de repas ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-header">
+                        <h3>Notifications</h3>
+                        <a href="#" id="markAllRead">Tout marquer comme lu</a>
+                    </div>
+
+                    <div class="notification-list" id="notificationList">
+                    </div>
+
+                    <div class="notification-footer">
+                        <a href="notifications.html">Voir toutes les notifications</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Comment fonctionne la liste de courses ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Answer to "Comment fonctionne la liste de courses ?" will be here.</p>
-                </div>
+            <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
+    </header>
+
+    <main class="conteneur">
+        <h1 class="titre-section">Questions fréquentes</h1>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Comment créer un plan de repas ?</h2>
+                <button class="faq-toggle"></button>
             </div>
+            <div class="faq-answer">
+                <p>Pour créer un plan de repas, cliquez sur l’onglet « Planifier » dans le menu.
+                     Faites défiler la page jusqu’en bas, puis cliquez sur 
+                     le bouton « Créer un plan ». Vous pourrez ensuite sélectionner 
+                     les jours de la semaine, ajouter des recettes, et personnaliser 
+                     votre plan selon vos besoins.
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Puis-je utiliser Planigo sur plusieurs appareils ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Answer to "Puis-je utiliser Planigo sur plusieurs appareils ?" will be here.</p>
-                </div>
+                </p>
             </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Comment ajouter des ingrédients à mon stock ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Answer to "Comment ajouter des ingrédients à mon stock ?" will be here.</p>
-                </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Comment fonctionne la liste de courses ?</h2>
+                <button class="faq-toggle"></button>
             </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Planigo est-il gratuit ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Answer to "Planigo est-il gratuit ?" will be here.</p>
-                </div>
+            <div class="faq-answer">
+                <p>Answer to "Comment fonctionne la liste de courses ?" will be here.</p>
             </div>
+        </div>
 
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Quels types de recettes sont disponibles ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Answer to "Quels types de recettes sont disponibles ?" will be here.</p>
-                </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Puis-je utiliser Planigo sur plusieurs appareils ?</h2>
+                <button class="faq-toggle"></button>
             </div>
-
-            <div class="faq-item">
-                <div class="faq-question">
-                    <h2>Comment contacter le support client ?</h2>
-                    <button class="faq-toggle"></button>
-                </div>
-                <div class="faq-answer">
-                    <p>Answer to "Comment contacter le support client ?" will be here.</p>
-                </div>
+            <div class="faq-answer">
+                <p>Oui, Planigo est synchronisé avec votre compte utilisateur. Vous pouvez y accéder depuis plusieurs appareils 
+                    (ordinateur, tablette, téléphone), à condition d’utiliser le même identifiant de connexion.</p>
             </div>
+        </div>
 
-        </main>
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Comment ajouter des ingrédients à mon stock ?</h2>
+                <button class="faq-toggle"></button>
+            </div>
+            <div class="faq-answer">
+                <p>Allez dans l’onglet « Mon stock », puis cliquez sur le bouton « Ajouter un ingrédient ». Vous pouvez renseigner le nom, la quantité, l’unité de mesure et éventuellement une date de péremption. Cela vous permet de mieux suivre ce que vous avez déjà chez vous.</p>
+            </div>
+        </div>
 
-       
-    </div>
-    <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-left">
-            <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
-            <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
-          </div>
-          <div class="footer-right">
-            <a href="a-propos.html">À propos de nous</a>
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Planigo est-il gratuit ?</h2>
+                <button class="faq-toggle"></button>
+            </div>
+            <div class="faq-answer">
+                <p>Oui, Planigo est un site gratuit avec toutes les fonctionnalités disponibles. </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Quels types de recettes sont disponibles ?</h2>
+                <button class="faq-toggle"></button>
+            </div>
+            <div class="faq-answer">
+                <p>Planigo propose une grande variété de recettes : végétariennes, véganes, sans gluten, familiales, rapides, économiques, etc. Vous pouvez filtrer les recettes selon vos préférences ou besoins alimentaires.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h2>Comment contacter le support client ?</h2>
+                <button class="faq-toggle"></button>
+            </div>
+            <div class="faq-answer">
+                <p>Pour contacter le support, rendez-vous dans les paramètres de votre compte et cliquez sur « Aide » ou « Support ». Vous pouvez aussi envoyer un courriel à support@planigo.com ou utiliser le formulaire de contact intégré à l’application.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="pied">
+        <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+        <div class="liens-pied">
+            <a href="a-propos.html">À propos</a>
             <a href="page_faq.html">FAQ</a>
             <a href="page_de_soutien.html">Page de soutien</a>
-          </div>
         </div>
-      </footer>
+    </footer>
+
+
     <script>
         const faqItems = document.querySelectorAll('.faq-item');
 
@@ -119,16 +151,57 @@
                 item.classList.toggle('active');
             });
         });
-        
-  document.addEventListener('DOMContentLoaded', function () {
-  const logo = document.querySelector('.logo'); 
-  logo.style.cursor = 'pointer';
-  logo.addEventListener('click', function () {
-    window.location.href = 'accueil-recette.html'; 
-  });
-});
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const notificationBell = document.getElementById('notificationBell');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            const markAllReadBtn = document.getElementById('markAllRead');
+
+            
+            notificationBell.addEventListener('click', function (e) {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('show');
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+                    notificationDropdown.classList.remove('show');
+                }
+            });
+
+           
+            markAllReadBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const unreadItems = document.querySelectorAll('.notification-item.unread');
+                unreadItems.forEach(item => item.classList.remove('unread'));
+                const badge = document.querySelector('.notification-badge');
+                if (badge) {
+                    badge.textContent = '0';
+                    badge.style.display = 'none';
+                }
+            });
+
+          
+            document.querySelectorAll('.notification-item').forEach(item => {
+                item.addEventListener('click', function () {
+                    this.classList.remove('unread');
+
+                    // Update badge counter
+                    const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+                    const badge = document.querySelector('.notification-badge');
+                    if (badge) {
+                        if (unreadCount > 0) {
+                            badge.textContent = unreadCount;
+                            badge.style.display = 'block';
+                        } else {
+                            badge.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        });        
 
     </script>
 </body>
+
 </html>

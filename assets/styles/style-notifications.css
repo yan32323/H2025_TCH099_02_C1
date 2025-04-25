@@ -396,19 +396,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer */
 .pied {
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--couleur-texte-leger);
-  padding: 3rem 0 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background-color: #e9d1a5f2;
+  padding: 1rem 0;
   border-top: 1px solid rgba(94, 48, 35, 0.2);
+  text-align: center;
   margin-top: 5rem;
-  background-color: rgba(232, 209, 197, 0.5);
 }
 
 .pied p {
+  font-family: "Atma", system-ui;
   font-weight: 600;
-  color: var(--couleur-texte);
+  color: var(--couleur-principale);
   margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
 .liens-pied {
@@ -458,4 +463,19 @@ h1, h2, h3, h4, h5, h6 {
   .liens-nav {
     display: none;
   }
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

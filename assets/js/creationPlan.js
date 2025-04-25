@@ -227,15 +227,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesLundi[i].heure +
         "'type='time'><button class='remove-item-button' id='supr-rec-l" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteLundi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+      
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+     
       affichageRecetteLundi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-l" + i);
       let heure = document.getElementById("heure-l" + i);

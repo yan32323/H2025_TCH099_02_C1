@@ -8,6 +8,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function scrapeSuperCPage(url) {
 
+  // Lancer le navigateur
   const browser = await puppeteer.launch({
     headless: 'true',
     defaultViewport: null,
@@ -22,14 +23,16 @@ async function scrapeSuperCPage(url) {
   // Naviguer a la page
   await page.goto(url, {
     waitUntil: 'networkidle0',
-    timeout: 2240041,
+    timeout: 2240041+ Math.random()*1000,
   });
   
-  await delay(3155);
+  // Delai d'attente
+  await delay(3155+Math.random()*100);
 
   const content = await page.content();
-  await delay(3222);
+  await delay(3222+Math.random()*100);
   
+  // Fermer le navigateur
   await browser.close();
 
   return content;
@@ -51,15 +54,18 @@ async function scrapeSuperCPage(url) {
     "https://www.superc.ca/allees/cuisine-du-monde","https://www.superc.ca/allees/bebe/nourriture-et-preparations"    
   ];
   let saut = "-page-";
+
+  // tableau pour stocker les produits
   let produitsTrouves = [];
 
   for (let i=0; i<pages.length; i++){
       
+  //scrapping
   let compteur = 0;
 
   let done = false;
 
-  do {
+  do {  //continuer tant qu'il y a des pages avec des produits
 
     let url="";
     if (compteur ==0){
@@ -95,6 +101,8 @@ async function scrapeSuperCPage(url) {
   reader.readAsText(html);
 
 } while (!done);
+
+// Envoi des données à l'API
 let produitsTrouvesJSON = JSON.stringify(produitsTrouves);
 let response = await fetch(
   "http://localhost/planigo/H2025_TCH099_02_C1/api/UploadNouvProduits.php",
@@ -115,7 +123,7 @@ let reponse = await response.json();
       }
 }
 
-// Close browser
+// Fermer le navigateur
 await browser.close();
 console.log("Scraping terminé.");
 })();
