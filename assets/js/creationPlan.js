@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
   // URL de l'API
-  const chemin = "http://localhost/planigo/H2025_TCH099_02_C1";
+  const chemin = "http://localhost/H2025_TCH099_02_C1";
 
   // Boutton de suppression du plan
   let effacerPlan = document.getElementById("btn-suppression-plan");
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         //tentative de suppression du plan cote serveur
         try {
           let response = await fetch(
-            chemin + "/api/CreationPlans.php/planSupprimer/",
+            "./api/CreationPlans.php/planSupprimer/",
             {
               method: "POST",
               headers: {
@@ -972,7 +972,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   async function fetchPlan(plan) {
     try {
       let response = await fetch(
-        chemin + "/api/CreationPlans.php/plans/" + plan,
+        "./api/CreationPlans.php/plans/" + plan,
         {
           method: "POST",
           headers: {
@@ -1048,7 +1048,7 @@ document.addEventListener("DOMContentLoaded", async function () {
    */
   async function fetchRecettes() {
     try {
-      let response = await fetch(chemin + "/api/CreationPlans.php/recettes");
+      let response = await fetch("./api/CreationPlans.php/recettes");
       
       // verification de la reponse
       if (!response.ok) {
@@ -1139,7 +1139,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
 
       let response = await fetch(
-        chemin + "/api/CreationPlans.php/plans/creer",
+        "./api/CreationPlans.php/plans/creer",
         {
           method: "POST",
           headers: {

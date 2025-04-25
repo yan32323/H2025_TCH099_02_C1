@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const planId = urlParams.get("plan");
-  const chemin = "http://localhost/planigo/H2025_TCH099_02_C1";
+  const chemin = "http://localhost/H2025_TCH099_02_C1";
   let liste;
 
   // Récupérer les données utilisateur de sessionStorage
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         username: utilisateurId,
         plan: planId,
       };
-      let response = await fetch(chemin + "/api/getListeEpicerie.php/liste", {
+      let response = await fetch("./api/getListeEpicerie.php/liste", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bodyData),

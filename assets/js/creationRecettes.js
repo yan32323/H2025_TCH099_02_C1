@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
 
-    const chemin ="http://localhost/planigo/H2025_TCH099_02_C1";
+    const chemin ="http://localhost/H2025_TCH099_02_C1";
 
     let effacerRecette = document.getElementById("btn-suppression-recette");
     let imageRecette = document.getElementById("prochaine-image");
@@ -129,7 +129,7 @@ effacerRecette.addEventListener("click", async function () {
 
                 //demande de suppression cote serveur
                 let response = await fetch(
-                    chemin+ "/api/CreationRecettes.php/recettes/supprimer/" +
+                    "./api/CreationRecettes.php/recettes/supprimer/" +
                         recetteLocale,
                     {
                         method: "POST",
@@ -247,7 +247,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchRecette(recette) {
         try {
             let response = await fetch(
-                chemin+"/api/CreationRecettes.php/recuperer-recette-complete", 
+                "./api/CreationRecettes.php/recuperer-recette-complete", 
             { 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -350,7 +350,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchIngredients() {
         try {
             let response = await fetch(
-                chemin + "/api/CreationRecettes.php/ingredients");
+                "./api/CreationRecettes.php/ingredients");
 
             if (!response.ok) {
                 throw new Error(
@@ -487,7 +487,7 @@ effacerRecette.addEventListener("click", async function () {
 
         // Envoi du corps au serveur
         try {
-            const response = await fetch(chemin+"/api/CreationRecettes.php/recettes/creer", {
+            const response = await fetch("./api/CreationRecettes.php/recettes/creer", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(bodyData)
