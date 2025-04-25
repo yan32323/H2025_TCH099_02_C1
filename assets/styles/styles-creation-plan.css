@@ -520,20 +520,22 @@ textarea {
   background-color: var(--couleur-hover);
 }
 
-.delete-recipe-button {
-  background-color: #d14c4c;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  border-radius: 30px;
-  padding: 0.6rem 1.4rem;
-  font-weight: 600;
+
+
+.icon-delete {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
-.delete-recipe-button:hover {
-  background-color: rgb(190, 77, 77);
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.15);
+button img.icon-delete {
+  display: block;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .save-recipe-button {
@@ -652,7 +654,7 @@ textarea {
 }
 
 .recipe-delete-btn:hover {
-  background-color: #d32f2f;
+  
   transform: scale(1.05);
 }
 
@@ -801,24 +803,12 @@ textarea {
   outline: none;
 }
 
-.remove-item-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+
+.icon-delete:hover{
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
 }
 
-.remove-item-button:hover {
-  background-color: #d32f2f;
-  transform: scale(1.1);
-}
 
 /* Animations */
 @keyframes fadeInUp {
@@ -876,9 +866,6 @@ textarea {
   }
 }
 
-/* ===========================
-   POPUP RECETTE (Aperçu recette)
-   =========================== */
 
    .popup-recette {
     display: none;
@@ -895,7 +882,7 @@ textarea {
     font-family: 'Manjari', sans-serif;
   }
   
-  /* Contenu structuré en 2 colonnes */
+
   .popup-recette .popup-content {
     display: flex;
     flex-wrap: nowrap;
@@ -903,7 +890,6 @@ textarea {
     align-items: flex-start;
   }
   
-  /* Colonne gauche : image + description */
   .popup-recette .left-column {
     display: flex;
     flex-direction: column;
@@ -934,7 +920,7 @@ textarea {
   
 
   
-  /* Colonne droite : boîte d'ingrédients/détails */
+
   .popup-recette .right-column {
     flex: 1;
     min-width: 220px;
@@ -962,7 +948,7 @@ textarea {
     width: 100%;
   }
   
-  /* Bloc d’infos (portions, temps, etc.) */
+  
   .popup-recette .recipe-info-section {
     width: 45%;
     min-width: 160px;
@@ -981,4 +967,16 @@ textarea {
     font-weight: 600;
     color: var(--couleur-texte);
   }
-  
+
+  .icon-delete {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+button#supr-rec-l0, button[id^="supr-rec-"] {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+

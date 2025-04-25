@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesLundi[i].heure +
         "'type='time'><button class='remove-item-button' id='supr-rec-l" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteLundi.appendChild(divRecette);
       
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";

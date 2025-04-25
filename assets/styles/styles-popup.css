@@ -54,6 +54,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--couleur-principale);
   font-family: "Atma", system-ui;
   letter-spacing: 0.5px;
+  margin-bottom: 0;
 }
 
 .liens-nav {
@@ -66,6 +67,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .liens-nav a {
   color: var(--couleur-principale);
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
   position: relative;
@@ -92,21 +95,41 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .lien-deconnexion {
+  position: relative;
   display: inline-block;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  padding: 0.25rem 0;
   color: var(--couleur-principale);
   text-decoration: none;
   transition: all 0.2s ease;
-  padding: 0.5rem 1rem;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
 }
 
-.lien-deconnexion:hover {
-  color: #dc2626;
 
+.lien-deconnexion::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0rem;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
 }
+
+.lien-deconnexion:hover::after {
+  width: 100%;
+}
+
+
+.pied .plan{
+  font-family: "Atma", system-ui;
+ 
+}
+
 @media (max-width: 767px) {
   .liens-nav {
     display: none;
@@ -566,59 +589,39 @@ h2 {
   border: 1px solid #f5c2c7;
 }
 
-/* Footer Styles */
-.footer {
+
+.pied {
   text-align: center;
   font-size: 0.95rem;
   color: var(--couleur-texte-leger);
   padding: 3rem 0 2rem;
   border-top: 1px solid rgba(94, 48, 35, 0.2);
   margin-top: 5rem;
-  background-color: rgba(232, 209, 197, 0.5);
+  background-color: #e9d1a5f2;
 }
 
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.footer-container img {
-  max-width: 100px;
-  height: auto;
-}
-
-.footer-slogan {
-  font-size: 12px;
-  text-transform: uppercase;
-  color: var(--couleur-texte-leger);
-  margin-top: 5px;
+.pied p {
   font-weight: 600;
-  letter-spacing: 1px;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  margin-bottom: 1rem;
 }
 
-.footer-right {
+.liens-pied {
+  margin-top: 1rem;
   display: flex;
+  justify-content: center;
   gap: 2rem;
 }
 
-.footer-right a {
+.liens-pied a {
   color: var(--couleur-texte-leger);
+  font-family: "Manjari", sans-serif;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
-.footer-right a:hover {
+.liens-pied a:hover {
   color: var(--couleur-principale);
 }
 
@@ -886,4 +889,14 @@ h2 {
     border-left: none;
     border-right: none;
   }
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-container {
+  flex: 1;
 }
