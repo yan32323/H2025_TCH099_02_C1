@@ -139,9 +139,7 @@ function afficherRecette(recette, userId) {
     commentsSection.innerHTML =
         '<h3 class="section-title comments-title">Commentaires</h3>';
 
-    commentsSection.style.maxHeight = "300px";
-    commentsSection.style.overflowY = "auto";
-    commentsSection.style.paddingRight = "10px";
+    
 
     if (Array.isArray(recette.commentaires) && recette.commentaires.length > 0) {
         const sessionUserId = userId;

@@ -14,7 +14,6 @@
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
       <a href="planifier.html">Planifier</a>
-      <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
@@ -39,7 +38,8 @@
           </div>
         </div>
       </div>
-    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+      
+    <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
   <main>
     <h2 class="titre-recette" id="recipe-title">Spaghetti Bolognaise</h2>
@@ -80,7 +80,10 @@
         <button class="btn-charger">Charger plus</button>
       </div>                                                                
     </div>
-
+    <section class="section">
+      <h3>Description</h3>
+      <p id="recipe-description">Une délicieuse recette classique de spaghetti à la sauce bolognaise maison.</p>
+    </section>
     <section class="section">
       <h3>Ingrédients</h3>
       <div id="ingredients-section">
@@ -123,10 +126,7 @@
         </div>
       </section>
 
-    <section class="section">
-      <h3>Description</h3>
-      <p id="recipe-description">Une délicieuse recette classique de spaghetti à la sauce bolognaise maison.</p>
-    </section>
+   
 
     <div style="text-align: center; margin-top: 2rem;">
       <a href="#" class="btn-retour">Retour aux recettes</a>
@@ -134,11 +134,11 @@
   </main>
 
   <footer class="pied">
-    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+    <p><strong class="plan">Planigo</strong> — Organisez, cuisinez, économisez !</p>
     <div class="liens-pied">
-      <a href="#">A propos</a>
-      <a href="#">FAQ</a>
-      <a href="#">Page de soutien</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="page_faq.html">FAQ</a>
+      <a href="page_de_soutien.html">Page de soutien</a>
     </div>
   </footer>
   <div id="popup-note" class="popup-note-overlay" style="display:none;">
@@ -152,8 +152,8 @@
         <i class="fas fa-star star" data-value="5"></i>
       </div>
       <div class="popup-buttons">
-        <button id="valider-note-btn" class="btn-ajouter-note">Valider</button>
         <button id="annuler-note-btn" class="btn-retour">Annuler</button>
+        <button id="valider-note-btn" class="btn-ajouter-note">Valider</button>
       </div>
     </div>
   </div>

@@ -1,24 +1,28 @@
-/* ====== Import des polices ====== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
-
-/* ====== Thème principal ====== */
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@100;400;700&family=Satisfy&display=swap');
 :root {
-  --teal: #14817A;
-  --vert: #004B46;
-  --accent: #10B981;
-  --gris-clair: #F8FAFC;
-  --gris-texte: #4B5563;
-  --fond-carte: #FFFFFF;
-  --fond-bloc: #E6F4F1;
-  --ombre: rgba(0, 0, 0, 0.05);
+  --couleur-principale: #dd6213;
+  --couleur-hover: #ca5913;
+  --couleur-fond: #eddcbdf2;
+  --couleur-carte: #f0efeb;
+  --couleur-carte-hover: #e4bca3;
+  --couleur-texte: #1f2937;
+  --couleur-texte-leger: #6b7280;
+  --shadow-sm: 0 2px 4px rgba(94, 48, 35, 0.1);
+  --shadow-md: 0 4px 8px rgba(94, 48, 35, 0.15);
+  --shadow-lg: 0 8px 16px rgba(94, 48, 35, 0.2);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
 }
 
 
 body {
   margin: 0;
-  font-family: 'Saira', 'Inter', sans-serif;
-  background-color: var(--gris-clair);
-  color: var(--gris-texte);
+  font-family: "Manjari", sans-serif;
+  background-color: var(--couleur-fond);
+  background: var(--couleur-fond);
+  color: var(--couleur-texte);
   animation: fadeIn 0.8s ease-in;
   font-size: 16px;
   line-height: 1.5;
@@ -30,76 +34,156 @@ body {
 }
 
 
+/* Header */
 .barre-haut {
-  background-color: white;
-  padding: 0.75rem 2rem;
-  box-shadow: 0 0.25rem 0.625rem var(--ombre);
-  position: sticky;
-  top: 0;
+  padding: 1rem 2rem;
+  background-color: #e9d1a5f2;
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
   z-index: 10;
+  box-shadow: var(--shadow-sm);
 }
 
 .logo {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--teal);
-  letter-spacing: 0.0625em;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  letter-spacing: 0.5px;
 }
 
 .liens-nav {
   display: flex;
-  gap: 1.25rem;
+  gap: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 auto;
 }
 
 .liens-nav a {
-  color: var(--teal);
-  font-weight: 500;
+  color: var(--couleur-principale);
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
   text-decoration: none;
-  transition: color 0.2s;
-  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0.25rem 0;
 }
 
 .liens-nav a:hover {
-  color: var(--accent);
+  color: var(--couleur-hover);
+}
+
+.liens-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s;
+}
+
+.liens-nav a:hover::after {
+  width: 100%;
 }
 
 .lien-deconnexion {
-  font-weight: 600;
-  color: var(--teal);
+  position: relative;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  padding: 0.25rem 0;
+  color: var(--couleur-principale);
   text-decoration: none;
-  transition: color 0.2s;
-  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
 }
+
+
+.lien-deconnexion::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0rem;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
+}
+
+.lien-deconnexion:hover::after {
+  width: 100%;
+}
+
 
 .lien-deconnexion:hover {
   color: #dc2626;
 }
 
-.titre-principal {
-  font-size: 2.25rem;
+@media (max-width: 767px) {
+  .liens-nav {
+    display: none;
+  }
+  
+  .lien-deconnexion {
+    display: none;
+  }
+  
+  .barre-haut {
+    justify-content: center;
+  }
+}
+
+
+.h2 {
+  font-size: 3rem;
   text-align: center;
   margin-top: 2rem;
-  color: var(--vert);
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  
 }
 
 .titre-section {
   font-size: 1.25rem;
   margin: 1.5rem;
-  color: var(--teal);
+  color: var(--couleur-hover);
   text-align: center;
+  font-family: "Atma", system-ui;
 }
 
-.description {
+.grille-semaines p {
   text-align: center;
   max-width: 60ch;
   margin: 0.75rem auto 2rem;
-  color: var(--gris-texte);
+  color: var(--couleur-texte-leger);
   font-size: 0.9rem;
+  font-family: "Manjari", sans-serif;
 }
 
+.texte-couleur{
+  background-color: var(--couleur-fond);
+}
+.grille-semaines h2 {
+  font-size: 2.5rem;
+  margin-top: 1.5rem ;
+  margin-bottom: 0rem;
+  color: var(--couleur-hover);
+  text-align: center;
+  font-family: "Atma", system-ui;
+  font-weight: 700;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
 
 .grille-semaines {
   display: flex;
@@ -111,6 +195,13 @@ body {
   margin: 0 auto;
 }
 
+.grille-semaines p {
+  font-size: 1rem;
+  margin: 0 auto;
+  color: var(--couleur-texte-leger);
+  text-align: center
+}
+
 .ligne-semaines {
   display: flex;
   gap: 1.25rem;
@@ -119,23 +210,23 @@ body {
 }
 
 .bloc-semaine {
-  background-color: transparent;
   border-radius: 0.75rem;
   padding: 1rem;
   width: 48%;
   min-width: 0;
   box-sizing: border-box;
+  
 }
 
 .bloc-semaine:hover {
   transform: scale(1.01);
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
-  background:#e3e9e8;
+  background:var(--couleur-carte-hover);
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .etiquette-semaine {
-  background-color: var(--teal);
+  background-color: var(--couleur-principale);
   color: white;
   padding: 0.35rem 1rem;
   border-radius: 25px;
@@ -143,6 +234,7 @@ body {
   width: fit-content;
   margin: 0 auto 1rem;
   font-size: 0.9rem;
+  font-family: "Atma", system-ui;
 }
 
 .cartes {
@@ -150,11 +242,47 @@ body {
   justify-content: center;
   gap: 1rem;
   flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+
+
+  
 }
 
+.grille-semaines h3{
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--couleur-principale);
+  margin-left: 1rem;
+  font-family: "Atma", system-ui;
+  font-weight: 700;
+}
+
+.cartes p{
+  font-size: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--couleur-texte-leger);
+  margin-left: 1rem;
+  font-family: "manjari", system-ui;
+  
+  text-align: left;
+  
+}
+
+.grille-semaines h3{
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--couleur-principale);
+  margin-left: 1rem;
+  font-family: "Atma", system-ui;
+  font-weight: 700;
+}
 
 .carte {
-  background-color: var(--fond-carte);
+  background-color: rgb(255, 255, 255);
   border-radius: 1rem;
   padding: 0;
   width: 210px;
@@ -163,12 +291,18 @@ body {
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.3s;
+  margin: 0 auto;
+  min-width: 0;
+
 }
 
 .carte:hover {
   transform: translateY(-5px);
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08);
   cursor: pointer;
+  background: var(--couleur-fond);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  
 }
 
 .carte img {
@@ -179,11 +313,7 @@ body {
   border-top-right-radius: 1rem;
 }
 
-.carte h3 {
-  font-size: 0.95rem;
-  margin: 0.5rem 0.75rem 0.25rem;
-  color: var(--vert);
-}
+
 
 .carte p {
   font-size: 0.8rem;
@@ -193,7 +323,7 @@ body {
 
 
 .btn-charger {
-  background: linear-gradient(to right, var(--teal), var(--accent));
+  background-color: var(--couleur-principale);
   color: white;
   font-weight: 600;
   padding: 0.6rem 1.5rem;
@@ -205,35 +335,49 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease, background-color 0.3s;
   font-size: 0.9rem;
+  font-family: "Manjari", sans-serif;
 }
 
 .btn-charger:hover {
   transform: scale(1.04);
-  background: linear-gradient(to right, var(--accent), var(--teal));
+  background-color: var(--couleur-hover);
 }
 
 
+/* Footer */
 .pied {
   text-align: center;
-  padding: 1.5rem 1rem;
-  font-size: 0.875rem;
-  color: #6b7280;
-  background-color: white;
-  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--couleur-texte-leger);
+  padding: 3rem 0 2rem;
+  
+  margin-top: 5rem;
+  background-color: #e9d1a5f2;
+}
+
+.pied p {
+  font-weight: 600;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  margin-bottom: 1rem;
 }
 
 .liens-pied {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .liens-pied a {
+  color: var(--couleur-texte-leger);
+  font-family: "Manjari", sans-serif;
   text-decoration: none;
-  color: #4b5563;
-  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.liens-pied a:hover {
+  color: var(--couleur-principale);
 }
 
 
@@ -316,5 +460,201 @@ body {
   .carte {
     width: 100%;
     min-width: 0;
+  }
+}
+
+.notification-container {
+  position: relative;
+  margin-right: 1.5rem;
+}
+
+.notification-bell {
+  background: none;
+  border: none;
+  color: var(--couleur-texte);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.notification-bell:hover {
+  color: var(--couleur-principale);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #ef4444;
+  color: white;
+  border-radius: 50%;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
+  min-width: 1.2rem;
+  text-align: center;
+  border: 2px solid white;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 20rem;
+  background-color: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.notification-dropdown.show {
+  display: block;
+}
+
+.notification-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--couleur-texte);
+
+}
+
+.notification-header a {
+  font-size: 0.875rem;
+  color: var(--couleur-principale);
+  text-decoration: none;
+}
+
+.notification-header a:hover {
+  text-decoration: underline;
+}
+
+.notification-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.notification-item:hover {
+  background-color: #f9fafb;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.unread {
+  background-color: #f0fdf9;
+}
+
+.notification-item-flex {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.notification-icon {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  background-color: #f3f4f6;
+}
+
+.notification-icon.recipe {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.notification-icon.stock {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.notification-icon.planning {
+  background-color: #e0f2fe;
+  color: #0284c7;
+}
+
+.notification-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--couleur-texte);
+}
+
+.notification-text {
+  font-size: 0.875rem;
+  color: var(--couleur-texte-leger);
+  margin-bottom: 0.25rem;
+}
+
+.notification-time {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.notification-footer {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+}
+
+.notification-footer a {
+  color: var(--couleur-principale);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.notification-footer a:hover {
+  text-decoration: underline;
+}
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .notification-dropdown {
+    width: 18rem;
+    right: -1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-dropdown {
+    width: 100%;
+    right: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
   }
 }
