@@ -334,15 +334,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesMardi[i].heure +
         "'type='time'><button class='remove-item-button' id='supr-rec-ma" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteMardi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+  
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+      
       affichageRecetteMardi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-ma" + i);
 
@@ -446,15 +443,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesMercredi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-me" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteMercredi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+    
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+     
       affichageRecetteMercredi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-me" + i);
       let heure = document.getElementById("heure-me" + i);
@@ -558,15 +552,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesJeudi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-j" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteJeudi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+     
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+      
       affichageRecetteJeudi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-j" + i);
       let heure = document.getElementById("heure-j" + i);
@@ -668,15 +659,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesVendredi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-v" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteVendredi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+      
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+    
       affichageRecetteVendredi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-v" + i);
       let heure = document.getElementById("heure-v" + i);
@@ -778,15 +766,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesSamedi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-s" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteSamedi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+    
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+      
       affichageRecetteSamedi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-s" + i);
       let heure = document.getElementById("heure-s" + i);
@@ -888,15 +873,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesDimanche[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-d" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteDimanche.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+      
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+     
       affichageRecetteDimanche.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-d" + i);
       let heure = document.getElementById("heure-d" + i);
