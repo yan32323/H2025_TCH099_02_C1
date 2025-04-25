@@ -6,6 +6,7 @@
     <title>Edition d'un plan</title>
     <script src="./assets/js/creationPlan.js"></script>
     <link rel="stylesheet" href="assets/styles/styles-creation-plan.css" />
+   
 </head>
 <body>
   <header class="barre-haut">
@@ -13,7 +14,6 @@
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
       <a href="planifier.html">Planifier</a>
-      <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
@@ -39,8 +39,9 @@
         </div>
       </div>
       
-    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+    <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
+
 
     <main class = "content-container" id="contenu-principal">
         <form class = "recipe-form" id="form-plan">
@@ -53,8 +54,8 @@
             Supprimer le plan
           </button>
           <div class = titre>
-            <h1>Creation d'un plan</h1>
-            <h2>Details sur le plan hebdomadaire:</h2>
+            <h1>Création d'un plan</h1>
+            <h2>Détails sur le plan hebdomadaire:</h2>
           </div>
 
           <div class="form-columns"> 
@@ -80,7 +81,7 @@
           <div id="zone-images" class = "form-group file-upload-group">
             <label for="prochaine-image">Photo du plan : <span class="required">*</span></label>
           <div class = "file-upload-box" id="nouvelles-images-recette" >
-            <p>Glissez-deposez vos photos ici ou cliquez pour chercher</p>
+            <p>Glissez-déposez vos photos ici ou cliquez pour chercher</p>
             <input
               type="file"
               class="image-recette"
@@ -103,7 +104,7 @@
         </div>
 
 
-         <label class= "titre-plan" for="message"><h2>Veuillez creer votre plan</h2></label>
+         <label class= "titre-plan" for="message"><h2>Veuillez créer votre plan</h2></label>
          <div class="plan-container">
           <div class= "ingredients-section" id="zone-recettes-lundi">
             <h4>Lundi</h4>
@@ -111,7 +112,7 @@
             <div class="ingredient-item">
               <div class="ingredient-input">
             
-            <input id="prochaine-recette-lundi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-lundi"/>
+            <input id="prochaine-recette-lundi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-lundi" autocomplete="off"/>
             <datalist id="liste-recette-lundi">
             </datalist>
             </div>
@@ -132,7 +133,7 @@
           <div id="affichage-recettes-mardi"></div>
           <div class="ingredient-item">
             <div class="ingredient-input">
-          <input id="prochaine-recette-mardi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mardi"/>
+          <input id="prochaine-recette-mardi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mardi" autocomplete="off"/>
           <datalist id="liste-recette-mardi">
           </datalist>
         </div>
@@ -151,7 +152,7 @@
           <div id="affichage-recettes-mercredi"></div>
           <div class="ingredient-item">
             <div class="ingredient-input">
-          <input id="prochaine-recette-mercredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mercredi"/>
+          <input id="prochaine-recette-mercredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-mercredi" autocomplete="off"/>
           <datalist id="liste-recette-mercredi">
           </datalist>
         </div>
@@ -170,7 +171,7 @@
           <div id="affichage-recettes-jeudi"></div>
           <div class="ingredient-item">
             <div class="ingredient-input">
-          <input id="prochaine-recette-jeudi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-jeudi"/>
+          <input id="prochaine-recette-jeudi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-jeudi" autocomplete="off"/>
           <datalist id="liste-recette-jeudi">
           </datalist>
         </div>
@@ -189,7 +190,7 @@
           <div id="affichage-recettes-vendredi"></div>
           <div class="ingredient-item">
             <div class="ingredient-input">
-          <input id="prochaine-recette-vendredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-vendredi"/>
+          <input id="prochaine-recette-vendredi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-vendredi" autocomplete="off"/>
           <datalist id="liste-recette-vendredi">
           </datalist>
         </div>
@@ -208,7 +209,7 @@
           <div id="affichage-recettes-samedi"></div>
           <div class="ingredient-item">
             <div class="ingredient-input">
-          <input id="prochaine-recette-samedi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-samedi"/>
+          <input id="prochaine-recette-samedi" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-samedi" autocomplete="off"/>
           <datalist id="liste-recette-samedi">
           </datalist>
         </div>
@@ -227,7 +228,7 @@
           <div id="affichage-recettes-dimanche"></div>
           <div class="ingredient-item">
             <div class="ingredient-input">
-          <input id="prochaine-recette-dimanche" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-dimanche"/>
+          <input id="prochaine-recette-dimanche" type="text" placeholder="Prochaine recette : " class="selecteur1" list="liste-recette-dimanche" autocomplete="off"/>
           <datalist id="liste-recette-dimanche">
           </datalist>
         </div>
@@ -243,37 +244,18 @@
       </div>
       <div class=" form-group save-button-group">
           <button id="btn-envoi-plan" type="submit" class="send-button save-recipe-button">
-            J'ai termine !!!
+           Créer le plan
           </button>
           </div>
-          <button id="test-hover1" type="submit" class="send-button">
-            Test Hover1
-          </button>
-          <button id="test-hover2" type="submit" class="send-button">
-            Test Hover2
-          </button>
-          <button id="test-hover3" type="submit" class="send-button">
-            Test Hover3
-          </button>
-          <button id="test-hover4" type="submit" class="send-button">
-            Test Hover4
-          </button>
-          <button id="test-hover0" type="submit" class="send-button">
-            Test Hover0
-          </button>
+    
         </form>
       </main>
-      <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-left">
-            <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
-            <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
-          </div>
-          <div class="footer-right">
-            <a href="a-propos.html">À propos de nous</a>
-            <a href="page_faq.html">FAQ</a>
-            <a href="page_de_soutien.html">Page de soutien</a>
-          </div>
+      <footer class="pied">
+        <p><strong class="plan">Planigo</strong> — Organisez, cuisinez, économisez !</p>
+        <div class="liens-pied">
+          <a href="a-propos.html">À propos</a>
+          <a href="page_faq.html">FAQ</a>
+          <a href="page_de_soutien.html">Page de soutien</a>
         </div>
       </footer>
 </body>

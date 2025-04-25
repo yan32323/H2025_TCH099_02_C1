@@ -520,11 +520,13 @@ effacerRecette.addEventListener("click", async function () {
 
             // Creation de l'element HTML de l'ingrédient
             divIngredient.innerHTML = `
-        <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
-        <input class='zone_ingredient' id='quantite${i}' placeholder='Quantité' value='${ingredient.quantite}' required>
-        <input class='unite_ingredient' id='unite_de_mesure${i}' placeholder='Unité' value='${ingredient.unite_de_mesure}' readonly>
-        <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>X</button>
-      `;
+            <p class='nom_ingredient' id='ing${i}'>${ingredient.nom}</p>
+            <input class='zone_ingredient' id='quantite${i}' placeholder='Quantité' value='${ingredient.quantite}' required>
+            <input class='unite_ingredient' id='unite_de_mesure${i}' placeholder='Unité' value='${ingredient.unite_de_mesure}' readonly>
+            <button class='btn_ingredient remove-item-button' id='supr-ing${i}'>
+                <img src="assets/image/trash.png" alt="Supprimer" class="icon-delete">
+            </button>
+        `;
 
             zoneIngredient.appendChild(divIngredient);
 
@@ -550,7 +552,11 @@ effacerRecette.addEventListener("click", async function () {
             let divEtape = document.createElement("div");
 
             // Creation de l'element HTML de l'étape
-            divEtape.innerHTML = `<p id='etape${i}'>${etape}</p><button id='supr-etape${i}'>X</button>`;
+            divEtape.innerHTML = `
+                <p id='etape${i}'>${etape}</p>
+                <button id='supr-etape${i}'>
+               <img src="assets/image/trash.png" alt="Supprimer" class="icon-delete">
+                </button>`;
             zoneEtape.appendChild(divEtape);
             document
                 .getElementById(`supr-etape${i}`)

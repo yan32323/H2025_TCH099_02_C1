@@ -1,84 +1,133 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Manjari:wght@100;400;700&family=Satisfy&display=swap');
 
 :root {
-  --teal: #14817A;
-  --vert: #004B46;
-  --gris-clair: #f9fafb;
+  --couleur-principale: #dd6213;
+  --couleur-hover: #ca5913;
+  --couleur-fond: #eddcbdf2;
+  --couleur-carte: #f0efeb;
+  --couleur-carte-hover: #fab082;
+  --couleur-texte: #1f2937;
+  --couleur-texte-leger: #6b7280;
+  --shadow-sm: 0 2px 4px rgba(94, 48, 35, 0.1);
+  --shadow-md: 0 4px 8px rgba(94, 48, 35, 0.15);
+  --shadow-lg: 0 8px 16px rgba(94, 48, 35, 0.2);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --teal: #dd6213; 
+  --vert: #ca5913; 
   --noir: #1f2937;
-  --fond-carte: #ffffff;
 }
+
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  font-family: "Manjari", sans-serif;
 }
 
-html, body {
-  height: 100%;
-  font-family: 'Saira', 'Inter', sans-serif;
-  background-color: var(--gris-clair);
-  color: var(--noir);
-  overflow-x: hidden;
+body {
+  margin: 0;
+  font-family: "Manjari", sans-serif;
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte);
+  line-height: 1.5;
 }
 
-main {
-  flex: 1;
-  width: 80rem;
-  margin: 0 auto;
-  padding: 2.5rem 1rem;
-  box-sizing: border-box;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Atma", system-ui;
+}
+
+.texte-couleur {
+  background: var(--couleur-fond);
 }
 
 
 .barre-haut {
-  width: 100%;
-  height: 64px;
+  padding: 1rem 2rem;
+  background-color: #e9d1a5f2;
+  backdrop-filter: blur(8px);
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  align-items: center;
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: var(--shadow-sm);
 }
 
 .logo {
-  font-size: 1.25rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  color: var(--teal);
-  text-decoration: none;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 .liens-nav {
   display: flex;
   gap: 2rem;
-  justify-content: center;
-  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 auto;
 }
 
 .liens-nav a {
-  color: var(--teal);
-  font-size: 0.95rem;
-  font-weight: 500;
+  color: var(--couleur-principale);
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0.25rem 0;
 }
 
 .liens-nav a:hover {
-  color: #0f5f5a;
+  color: var(--couleur-hover);
+}
+
+.liens-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s;
+}
+
+.liens-nav a:hover::after {
+  width: 100%;
 }
 
 .lien-deconnexion {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--teal);
+  position: relative;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  padding: 0.25rem 0;
+  color: var(--couleur-principale);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.lien-deconnexion::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
+}
+
+.lien-deconnexion:hover::after {
+  width: 100%;
 }
 
 .lien-deconnexion:hover {
@@ -86,24 +135,45 @@ main {
 }
 
 
-form.recipe-form {
-  border-radius: 1rem;
+.content-container {
+  max-width: 80rem;
+  margin: 0 auto;
   padding: 2rem;
 }
 
+main {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  box-sizing: border-box;
+}
+
 .titre h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: var(--teal);
-  margin-bottom: 0.5rem;
+  color: var(--couleur-principale);
+  margin-bottom: 1rem;
   text-align: center;
 }
 
 .titre h2 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 600;
+  color: var(--couleur-texte);
+  margin-bottom: 2rem;
+  text-align: center;
+}
 
-  
+.titre {
+  font-family: "Atma", system-ui;
+  font-size: large;
+}
+
+
+form.recipe-form {
+  border-radius: 1rem;
+  padding: 2rem;
 }
 
 .form-columns {
@@ -119,18 +189,17 @@ form.recipe-form {
   flex-direction: column;
   justify-content: space-between;  
   margin-bottom: 2rem;
-  
- 
 }
- .right-column {
+
+.right-column {
   flex: 1;
   min-width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 3.7rem;
- 
 }
+
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -138,32 +207,19 @@ form.recipe-form {
 .form-group label {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #14817A;
+  color: var(--couleur-principale);
   margin-bottom: 0.5rem;
-  display: block
-}
-
-.save-button-group{
-  display : flex;
-  flex-direction: row;
-  
-  justify-content: right;
-  
+  display: block;
 }
 
 .form-group p {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #14817A;
+  color: var(--couleur-principale);
   margin-bottom: 0.5rem;
-  display: block
+  display: block;
 }
 
-input[type="range"] {
-  width: 180px;
-  margin-top: 0.5rem;
-  accent-color: #14817A;
-}
 input[type="text"],
 textarea {
   width: 100%;
@@ -175,22 +231,11 @@ textarea {
   font-size: 1rem;
 }
 
-input[type="file"] {
-  width: 100%;
-  border: none;
-  padding: 0.6rem 1rem;
-  margin-bottom: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  font-size: 1rem;
-}
-
 input[type="text"]:hover,
 textarea:hover,
 input[type="file"]:hover {
-  border-color: #14817A;
-  box-shadow: 0 0 0 3px rgba(20, 129, 122, 0.1);
+  border-color: var(--couleur-principale);
+  box-shadow: 0 0 0 3px rgba(221, 98, 19, 0.1);
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -198,6 +243,7 @@ textarea {
   resize: vertical;
   min-height: 100px;
 }
+
 
 .range-group {
   display: flex;
@@ -210,25 +256,15 @@ textarea {
   flex-direction: column;
 }
 
-
-.file-upload-box {
-  border: 2px dashed #ccc;
-  padding: 2rem;
-  text-align: center;
-  border-radius: 10px;
-  background-color: #fff;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+input[type="range"] {
+  width: 180px;
+  margin-top: 0.5rem;
+  accent-color: var(--couleur-principale);
+  background: linear-gradient(to right, var(--couleur-principale) 0%, #ccc 0%);
+  height: 5px;
+  border-radius: 5px;
+  outline: none;
 }
-
-.file-upload-box:hover {
-  background-color: #f0fdfa;
-  transform: scale(1.01);
-}
-
-.required {
-  color: red;
-}
-
 
 .time-slider-container {
   display: flex;
@@ -245,192 +281,36 @@ textarea {
 
 .time-slider-container span {
   font-weight: 500;
-  color: var(--noir); 
+  color: var(--couleur-texte);
   font-size: 0.95rem;
 }
 
 
-/* === DIFFICULTÉ === */
-.difficulty-options {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  flex-wrap: wrap;
-
- 
+.file-upload-group {
+  margin-bottom: 2rem;
 }
 
-.difficulty-options label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: white;
-  padding: 0.4rem 0.8rem;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.difficulty-options input[type="radio"] {
-  accent-color: var(--teal);
-}
-
-.difficulty-options label:hover {
-  background-color: #def5f4;
-}
-fieldset {
-  border: none;
-}
-
-button.send-button {
-  padding: 0.6rem 1.4rem;
-  background-color: var(--teal);
-  border: none;
-  color: white;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-button.send-button:hover {
-  background-color: var(--vert);
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-
-
-
-
-.ingredients-section,
-.instructions-section {
-  background-color: white;
+.file-upload-box {
+  border: 2px dashed #ccc;
   padding: 2rem;
-  border-radius: 1rem;
-  margin-top: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.ingredient-input,
-.instruction-input {
-  margin-bottom: 1rem;
-}
-
-.selecteur1,
-textarea.zone-instruction {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: white;
-  font-size: 1rem;
-}
-
-textarea.zone-instruction {
-  height: 120px;
-}
-
-.ingredients-section h2,
-.instructions-section h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--teal);
-  margin-bottom: 1rem;
-}
-
-
-.footer {
-  background-color: white;
-  border-top: 1px solid #e5e7eb;
-  padding: 2rem;
-  margin-top: 4rem;
   text-align: center;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.footer-logo {
-  height: 40px;
-}
-
-.footer-slogan {
-  font-weight: 600;
-  color: var(--vert);
-}
-
-.footer-right {
-  margin-top: 1rem;
-}
-
-.footer-right a {
-  text-decoration: none;
-  color: var(--noir);
-  margin: 0 1rem;
-  font-size: 0.95rem;
-}
-
-.footer-right a:hover {
-  text-decoration: underline;
-}
-
-
-@media (max-width: 768px) {
-  main {
-    width: 100%;
-    padding: 2rem 1rem;
-  }
-
-  .form-columns {
-    flex-direction: column;
-  }
-
-  .liens-nav {
-    display: none;
-  }
-
-  .lien-deconnexion {
-    display: none;
-  }
-}
-.delete-recipe-button {
-  padding: 0.6rem 1.4rem;
-  background-color: #d14c4c;
-  border: none;
-  color: white;
-  border-radius: 30px;
-  font-weight: 600;
+.file-upload-box:hover {
+  background-color: rgb(228, 171, 135);
+  transform: scale(1.01);
   cursor: pointer;
-  
-  margin-right: 1rem;
+  box-shadow: var(--shadow-md);
+  border-color: var(--couleur-principale);
 }
 
- .delete-recipe-button:hover {
-  background-color: rgb(190, 77, 77);
-  transform: scale(1.05) translateY(-2px);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.15);
+.file-upload-box.dragover {
+  border-color: var(--couleur-principale);
+  background-color: rgba(221, 98, 19, 0.05);
 }
-
-
-.left-column button {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.left-column button {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #14817A;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.left-column button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
 
 input[type="file"].image-recette {
   display: none;
@@ -439,7 +319,7 @@ input[type="file"].image-recette {
 .file-upload-box .custom-file-upload {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: var(--teal);
+  background-color: var(--couleur-principale);
   color: rgb(255, 255, 255);
   font-weight: 600;
   border-radius: 6px;
@@ -449,130 +329,22 @@ input[type="file"].image-recette {
 }
 
 .custom-file-upload:hover {
-  background-color: var(--vert);
+  background-color: var(--couleur-hover);
   transform: scale(1.05);
 }
 
 .file-upload-box .texte-drop {
-  font-family: 'Saira', sans-serif;
+  font-family: 'Manjari', sans-serif;
   font-size: 0.95rem;
   font-weight: 400;
-  color: #112958 !important;
+  color: var(--couleur-texte) !important;
   margin-bottom: 1rem;
 }
 
-.section {
-  margin-bottom: 2.5rem;
-}
-
-.section label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--teal);
-}
-
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.categories label {
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  color: var(--teal);
-  padding: 0.4rem 0.8rem;
-  border-radius: 20px;
-  cursor: pointer;
-}@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out both;
-}
-
-.animate-slide-in-left {
-  animation: slideInLeft 0.6s ease-out both;
-}
-
-.animate-fade {
-  animation: fadeIn 1s ease-in-out;
-}
-
-button,
-.add-btn,
-.send-button,
-.custom-file-upload,
-.left-column button,
-.delete-recipe-button {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-button:hover,
-.add-btn:hover,
-.send-button:hover,
-.custom-file-upload:hover,
-.left-column button:hover,
-.delete-recipe-button:hover {
-  transform: scale(1.02) translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-}
-
-.categories label,
-.difficulty-options label {
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.categories label:hover,
-.difficulty-options label:hover {
-  transform: scale(1.03);
-  background-color: #def5f4;
-}
-
-.section input[type="text"]:hover,
-.section textarea:hover,
-.ingredients-section input[type="text"]:hover,
-.instructions-section textarea:hover,
-input[type="text"]:hover,
-textarea:hover,
-input[type="file"]:hover {
-  border-color: #14817A;
-  box-shadow: 0 0 0 2px rgba(20, 129, 122, 0.1);
-  transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-
-.file-upload-box {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.file-upload-box:hover {
-  background-color: #f0fdfa;
-  transform: scale(1.01);
+.aperçu-image img {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 10px;
 }
 
 #supprimer-image {
@@ -589,18 +361,98 @@ input[type="file"]:hover {
   background-color: #d32f2f;
 }
 
-.file-upload-box.dragover {
-  border-color: #2196f3;
-  background-color: #f0f8ff;
+
+.difficulty-options {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap; 
 }
 
-.aperçu-image img {
-  max-width: 100%;
-  max-height: 200px;
-  margin-top: 10px;
+.difficulty-options label {
+  align-items: center;
+  gap: 2rem;
+  background-color: white;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease; 
+}
+
+.difficulty-options input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.difficulty-options input[type="radio"] {
+  accent-color: var(--couleur-principale);
+}
+
+.difficulty-options label:hover {
+  background-color: rgb(228, 171, 135);
+  transform: scale(1.03);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border-color: var(--couleur-principale);
+}
+
+fieldset {
+  border: none;
 }
 
 
+.ingredients-section,
+.instructions-section {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.ingredients-section h2,
+.instructions-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--couleur-principale);
+  margin-bottom: 1rem;
+}
+
+.ingredient-input,
+.instruction-input {
+  margin-bottom: 1rem;
+}
+
+.instructions-section {
+  margin-bottom: 2rem;
+}
+.selecteur1,
+textarea.zone-instruction {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 1rem;
+}
+
+textarea.zone-instruction {
+  height: 120px;
+}
+
+#prochain-ingredient-s {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+#prochain-ingredient-s:hover,
+#prochain-ingredient-s:focus {
+  border-color: var(--couleur-principale);
+  box-shadow: 0 0 0 2px rgba(221, 98, 19, 0.1);
+}
 
 .groupe_ingredient {
   display: flex;
@@ -621,7 +473,7 @@ input[type="file"]:hover {
 .nom_ingredient {
   flex: 2;
   font-weight: 600;
-  color: var(--teal);
+  color: var(--couleur-principale);
   margin-right: 0.75rem;
 }
 
@@ -645,31 +497,34 @@ input[type="file"]:hover {
 
 .zone_ingredient:hover,
 .unite_ingredient:hover {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(20, 129, 122, 0.1);
+  border-color: var(--couleur-principale);
+  box-shadow: 0 0 0 2px rgba(221, 98, 19, 0.1);
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn_ingredient,
-.remove-item-button {
-  background-color: #f44336;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
+.remove-item-button,
+#zone-etape div button {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+
 .btn_ingredient:hover,
-.remove-item-button:hover {
-  background-color: #d32f2f;
+.remove-item-button:hover,
+#zone-etape div button:hover {
   transform: scale(1.1);
 }
+
 
 #zone-etape div {
   display: flex;
@@ -687,41 +542,50 @@ input[type="file"]:hover {
   margin: 0;
 }
 
-#zone-etape div button {
-  background-color: #f44336;
-  color: white;
+button.send-button {
+  padding: 0.6rem 1.4rem;
+  background-color: var(--couleur-principale);
   border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-#zone-etape div button:hover {
-  background-color: #d32f2f;
-  transform: scale(1.1);
+button.send-button:hover {
+  background-color: var(--couleur-hover);
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-
-#prochain-ingredient-s {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+.save-button-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
 }
 
-#prochain-ingredient-s:hover,
-#prochain-ingredient-s:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 2px rgba(20, 129, 122, 0.1);
+.delete-recipe-button {
+  padding: 0.6rem 1.4rem;
+  background-color: #d14c4c;
+  border: none;
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 1rem;
 }
 
+.delete-recipe-button:hover {
+  background-color: rgb(190, 77, 77);
+  transform: scale(1.05) translateY(-2px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.15);
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
 
 .types-options,
 .restrictions-options {
@@ -735,7 +599,7 @@ input[type="file"]:hover {
 .restrictions-options label {
   background-color: white;
   border: 1px solid #ccc;
-  color: var(--teal);
+  color: var(--couleur-principale);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   cursor: pointer;
@@ -746,30 +610,26 @@ input[type="file"]:hover {
   transition: all 0.2s ease;
 }
 
+.types-options label:hover,
+.restrictions-options label:hover {
+  background-color: rgb(228, 171, 135);
+  transform: scale(1.03);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  border-color: var(--couleur-principale);
+}
+
 .types-options input[type="radio"],
 .restrictions-options input[type="checkbox"] {
-  accent-color: var(--teal);
+  accent-color: var(--couleur-principale);
   transform: scale(1.1);
   cursor: pointer;
 }
 
-
-.types-options label:hover,
-.restrictions-options label:hover {
-  background-color: #def5f4;
-  transform: scale(1.03);
+.required {
+  color: red;
 }
 
-.types-options input[type="checkbox"],
-.restrictions-options input[type="checkbox"] {
-  accent-color: var(--teal);
-}
 
-.titre{
-  margin-top: 2rem;
-}
-
-/* Notification Styles */
 .notification-container {
   position: relative;
   margin-right: 1.5rem;
@@ -942,10 +802,109 @@ input[type="file"]:hover {
   text-decoration: underline;
 }
 
-/* Update header styles to accommodate notifications */
+/* Header right section */
 .header-right {
   display: flex;
   align-items: center;
+}
+
+/* Footer */
+.pied {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--couleur-texte-leger);
+  padding: 3rem 0 2rem;
+  border-top: 1px solid rgba(94, 48, 35, 0.2);
+  margin-top: 5rem;
+  background-color: #e9d1a5f2;
+}
+
+.pied p {
+  font-weight: 600;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  margin-bottom: 1rem;
+}
+
+.liens-pied {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.liens-pied a {
+  color: var(--couleur-texte-leger);
+  font-family: "Manjari", sans-serif;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.liens-pied a:hover {
+  color: var(--couleur-principale);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out both;
+}
+
+.animate-fade {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Responsive design */
+@media (max-width: 767px) {
+  .liens-nav {
+    display: none;
+  }
+  
+  .lien-deconnexion {
+    display: none;
+  }
+  
+  .barre-haut {
+    justify-content: center;
+  }
+  
+  .content-container {
+    padding: 1rem;
+  }
+  
+  .form-columns {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 768px) {
@@ -963,4 +922,32 @@ input[type="file"]:hover {
     border-left: none;
     border-right: none;
   }
+}
+
+
+.instructions-section p{
+  color: var(--couleur-principale);
+  font-family: 'manjari', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+
+}
+
+.btn_ingredient, #supr-etape {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  font-family: 'manjari', sans-serif;
+}
+
+.icon-delete {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.btn_ingredient:hover .icon-delete, 
+#supr-etape:hover .icon-delete {
+  transform: scale(1.2);
 }

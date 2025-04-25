@@ -6,7 +6,12 @@
   <title>Plan de la semaine - Planigo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/styleS/style-affichage-plan.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
   <script src="assets/js/plan.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+
 </head>
 <body class="fond texte-couleur">
 
@@ -15,7 +20,6 @@
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
       <a href="planifier.html">Planifier</a>
-      <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
@@ -40,13 +44,12 @@
           </div>
         </div>
       </div>
-
-    <a href="#" class="lien-deconnexion">Se déconnecter</a>
+      
+    <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
   </header>
 
   <main class="conteneur">
-    <h1 class="titre-principal">Plan de la semaine</h1>
-    <p class="description">Préparez-vous pour une semaine remplie de saveurs ! Chaque jour est accompagné de 3 recettes faciles et délicieuses.</p>
+   
 
     <div id="message-erreur"></div>
     <div class="grille-semaines" id="conteneur-plan-hebdomadaire">
@@ -120,11 +123,11 @@
   </main>
 
   <footer class="pied">
-    <p><strong>Planigo</strong> — ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
+    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
     <div class="liens-pied">
-      <a href="#">À propos de nous</a>
-      <a href="#">FAQ</a>
-      <a href="#">Page de soutien</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="page_faq.html">FAQ</a>
+      <a href="page_de_soutien.html">Page de soutien</a>
     </div>
   </footer>
   <script>

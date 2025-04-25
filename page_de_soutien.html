@@ -1,94 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page de soutien</title>
-    <link rel="stylesheet" href="assets/styles/style_page_de_soutien.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planigo - Page de soutien</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles/style_page_de_soutien.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
 </head>
-<body>
+
+<body class="fond texte-couleur">
+
   <header class="barre-haut">
     <h1 class="logo">Planigo</h1>
     <nav class="liens-nav">
       <a href="recettes.html">Mes recettes</a>
       <a href="planifier.html">Planifier</a>
-      <a href="#">Liste d'épicerie</a>
       <a href="stockage.html">Stock</a>
       <a href="page-profil.html">Profil</a>
     </nav>
-    <a href="#" class="lien-deconnexion">Se déconnecter</a>
-  </header>
-      <div class="content-container">   
-      <h1>Page de soutien</h1>
-      <div class="contact-cards">
-        <div class="section">
-          <img src="assets/image/location.png" alt="Photo de profil" class="profile-pic" />
-          <h3>Our Location</h3>
-          <p>1100, rue Notre-Dame Ouest, Montréal (Qc) H3C 1K3</p>
-        </div>
-        <div class="section">
-          <img src="assets/image/message.png" alt="Photo de profil" class="profile-pic" />
-          <h3>Our Email</h3>
-          <p>PlanigoSupportTeam@email.com</p>
-        </div>
-        <div class="section">
-          <img src="assets/image/telephone.png" alt="Photo de profil" class="profile-pic" />
-          <h3>Call Us</h3>
-          <p>+1-514-555-1212</p>
+    <div class="header-right">
+      <div class="notification-container">
+        <button class="notification-bell" id="notificationBell">
+          <i class="fas fa-bell"></i>
+          <span class="notification-badge" id="notificationBadge">0</span>
+        </button>
+
+        <div class="notification-dropdown" id="notificationDropdown">
+          <div class="notification-header">
+            <h3>Notifications</h3>
+            <a href="#" id="markAllRead">Tout marquer comme lu</a>
+          </div>
+
+          <div class="notification-list" id="notificationList">
+          </div>
+
+          <div class="notification-footer">
+            <a href="notifications.html">Voir toutes les notifications</a>
+          </div>
         </div>
       </div>
 
-      <form>
+      <a href="#" class="lien-deconnexion" id="logoutButton">Se déconnecter</a>
+  </header>
+
+  <div class="conteneur">
+    <h1 class="titre-section">Page de soutien</h1>
+    <div class="contact-cards">
+      <div class="section">
+        <img src="assets/image/marker.png" alt="Photo de profil" class="profile-pic"/>
+        <h3>Position</h3>
+        <p>1100, rue Notre-Dame Ouest, Montréal (Qc) H3C 1K3</p>
+      </div>
+      <div class="section">
+        <img src="assets/image/envelope.png" alt="Photo de profil" class="profile-pic" />
+        <h3>Email</h3>
+        <p>PlanigoSupportTeam@email.com</p>
+      </div>
+      <div class="section">
+        <img src="assets/image/phone-flip.png" alt="Photo de profil" class="profile-pic" />
+        <h3>Appelez-nous !</h3>
+        <p>+1-514-555-1212</p>
+      </div>
+    </div>
+
+    <form>
       <div class="information">
-      <h4>Votre nom</h4>
-        <input type="text"/>
+        <h4>Votre nom</h4>
+        <input type="text" />
       </div>
 
       <div class="information">
         <h4>Votre addresse email</h4>
-          <input type="text"/>
-        </div>
-
-        <div class="information">
-        <h4>Sujet</h4>
-            <input type="text"/>
-        </div>
-
-        <div class="information">
-        <h4>Votre message</h4>
-            <textarea placeholder="Remplissez le formulaire ci-dessous pour nous envoyer un message. 
-            Notre équipe d'assistance répondra rapidement à votre demande."></textarea>
-               
-            
-        </div>
-        <div class="information">
-            <button class="submit-btn">Envoyer</button>
-            </div>
-        </form>
-      
+        <input type="text" />
       </div>
-      <footer class="footer">
-        <div class="footer-container">
-          <div class="footer-left">
-            <img src="assets/image/logo.png" alt="Planigo Logo" class="footer-logo">
-            <p class="footer-slogan">ORGANISEZ, CUISINEZ, ÉCONOMISEZ !</p>
-          </div>
-          <div class="footer-right">
-            <a href="a-propos.html">À propos de nous</a>
-            <a href="page_faq.html">FAQ</a>
-            <a href="page_de_soutien.html">Page de soutien</a>
-          </div>
-        </div>
-      </footer>
+
+      <div class="information">
+        <h4>Sujet</h4>
+        <input type="text" />
+      </div>
+
+      <div class="information">
+        <h4>Votre message</h4>
+        <textarea placeholder="Remplissez le formulaire ci-dessous pour nous envoyer un message. 
+            Notre équipe d'assistance répondra rapidement à votre demande."></textarea>
+
+
+      </div>
+      <div class="information">
+        <button class="submit-btn">Envoyer</button>
+      </div>
+    </form>
+
+  </div>
+  <footer class="pied">
+    <p><strong>Planigo</strong> — Organisez, cuisinez, économisez !</p>
+    <div class="liens-pied">
+      <a href="a-propos.html">À propos</a>
+      <a href="page_faq.html">FAQ</a>
+      <a href="page_de_soutien.html">Page de soutien</a>
+    </div>
+  </footer>
 </body>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-  const logo = document.querySelector('.logo'); 
-  logo.style.cursor = 'pointer';
-  logo.addEventListener('click', function () {
-    window.location.href = 'accueil-recette.html'; 
-  });
-});
+    const notificationBell = document.getElementById('notificationBell');
+    const notificationDropdown = document.getElementById('notificationDropdown');
+    const markAllReadBtn = document.getElementById('markAllRead');
 
+    // Toggle dropdown
+    notificationBell.addEventListener('click', function (e) {
+      e.stopPropagation();
+      notificationDropdown.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+        notificationDropdown.classList.remove('show');
+      }
+    });
+
+    // Mark all as read
+    markAllReadBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const unreadItems = document.querySelectorAll('.notification-item.unread');
+      unreadItems.forEach(item => item.classList.remove('unread'));
+      const badge = document.querySelector('.notification-badge');
+      if (badge) {
+        badge.textContent = '0';
+        badge.style.display = 'none';
+      }
+    });
+
+    // Handle notification item clicks
+    document.querySelectorAll('.notification-item').forEach(item => {
+      item.addEventListener('click', function () {
+        this.classList.remove('unread');
+
+        // Update badge counter
+        const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+          if (unreadCount > 0) {
+            badge.textContent = unreadCount;
+            badge.style.display = 'block';
+          } else {
+            badge.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
 </script>
 </html>

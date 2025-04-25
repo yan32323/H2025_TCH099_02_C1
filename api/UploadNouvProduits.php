@@ -27,8 +27,10 @@ $router->post('/UploadNouvProduits.php', function () {
         // Récupérer le plan
         $requete = $pdo->prepare("INSERT INTO Ingredients (prix,magasin, unite_de_mesure, nom)
                 VALUES (:prix,:magasin, :unite_de_mesure, :nom)");
-        $requete->execute(['prix' => $infos['prix'],'magasin' => $infos['magasin'], 'unite_de_mesure' => $infos['unite_de_mesure'], 'nom' => $infos['nom']]);
+            foreach ($infos as $ingredient) {
+                $requete->execute(['prix' => $ingredient['prix'],'magasin' => $ingredient['magasin'], 'unite_de_mesure' => $ingredient['unite_de_mesure'], 'nom' => $ingredient['nom']]);
 
+            }
 
          echo json_encode(["statut" => true, "message" => "Ingredient ajouté avec succès"]);
         

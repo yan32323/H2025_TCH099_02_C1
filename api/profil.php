@@ -234,11 +234,14 @@ $router->post('/profil.php/modifer-client', function(){
 
             //Vérifier si le nouvel identifiant est déjà utilisé et si le mot de passe respecte les règles
             $erreurs = [];
-            $stmt = $pdo->prepare("SELECT COUNT(*) FROM clients WHERE nom_utilisateur = :identifiant");
-            $stmt->execute(['identifiant' => $nouveau_identifiant]);
-            $count = $stmt->fetchColumn();
-            if ($count > 0) {
-                $erreurs[] = "Cet identifiant est déjà utilisé.\n";
+
+            if(strcmp($identifiant, $nouveau_identifiant) !== 0){
+                $stmt = $pdo->prepare("SELECT COUNT(*) FROM clients WHERE nom_utilisateur = :identifiant");
+                $stmt->execute(['identifiant' => $nouveau_identifiant]);
+                $count = $stmt->fetchColumn();
+                if ($count > 0) {
+                    $erreurs[] = "Cet identifiant est déjà utilisé.\n";
+                }
             }
 
             // Password Validation (same rules as client-side and gestion_inscription.php)

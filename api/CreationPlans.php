@@ -13,7 +13,7 @@ $router->get('/CreationPlans.php/recettes', function () {
         $stmt = $pdo->query("SELECT 
     r.id,
     r.nom,
-    r.description,
+    r.description AS descriptions,
     r.type,
     r.difficulter,
     r.temps_de_cuisson,
@@ -334,8 +334,10 @@ $router->post('/CreationPlans.php/recuperer-plant-personnel/', function(){
 
                 echo json_encode(['statut' => 'success', 'listePlans' => $resultat]);
                 exit();
+            } else {
+                echo json_encode(['statut' => 'error', 'message' => 'Aucun plan de repas trouvé.']);
+                exit();
             }
-            exit();
         }else{
             //Cas où l'authentification a échoué
             http_response_code(401); 
