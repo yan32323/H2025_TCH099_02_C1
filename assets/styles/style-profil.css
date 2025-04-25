@@ -1,82 +1,174 @@
-/* ====== Import des polices ====== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Saira:wght@300;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600;700&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Atma&family=Manjari:wght@400;700&family=Satisfy&display=swap');
 :root {
-  --teal: #14817A;
-  --vert: #004B46;
-  --accent: #10B981;
-  --gris-clair: #F8FAFC;
-  --gris-texte: #4B5563;
-  --fond-carte: #FFFFFF;
-  --fond-bloc: #E6F4F1;
-  --ombre: rgba(0, 0, 0, 0.05);
+  --couleur-principale: #dd6213;
+  --couleur-hover: #ca5913;
+  --couleur-fond: #eddcbdf2;
+  --couleur-carte: #ffffff;
+  --couleur-carte-hover: #fab082;
+  --couleur-texte: #1f2937;
+  --couleur-texte-leger: #6b7280;
+  --shadow-sm: 0 2px 4px rgba(94, 48, 35, 0.1);
+  --shadow-md: 0 4px 8px rgba(94, 48, 35, 0.15);
+  --shadow-lg: 0 8px 16px rgba(94, 48, 35, 0.2);
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
 }
 
 body {
-    font-family: 'Saira', 'Inter', sans-serif;
-    margin: 0;
-    background-color: #f8f8f8;
-    color: #1f2937;
-  }
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  margin: 0;
+  font-family: "Manjari", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  background-color: var(--couleur-fond);
+  
+  color: var(--couleur-texte);
+  line-height: 1.5;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Atma", system-ui;
+}
+
+/* Header */
 .barre-haut {
-  background-color: white;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 4px 10px var(--ombre);
-  position: sticky;
-  top: 0;
+  padding: 1rem 2rem;
+  background-color: #e9d1a5f2;
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
   z-index: 10;
+  box-shadow: var(--shadow-sm);
 }
 
-.logo img {
-  height: 40px;
+.logo {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .liens-nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
+  font-size: 1rem;
   font-weight: 500;
+  margin: 0 auto;
 }
 
-.liens-nav a,
-.logout-link a {
+.liens-nav a {
+  color: var(--couleur-principale);
   text-decoration: none;
-  color: var(--teal);
-  transition: color 0.2s;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0.25rem 0;
+  font-weight: 700; 
 }
 
-.liens-nav a:hover,
-.logout-link a:hover {
-  color: var(--accent);
+.liens-nav a:hover {
+  color: var(--couleur-hover);
 }
 
-.profile-title {
-  font-size: 2.75rem;
+.liens-nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s;
+}
+
+.liens-nav a:hover::after {
+  width: 100%;
+}
+
+.lien-deconnexion {
+  position: relative;
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0;
+  color: var(--couleur-principale);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+}
+
+.lien-deconnexion::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0rem;
+  left: 0;
+  background-color: var(--couleur-principale);
+  transition: width 0.3s ease;
+}
+
+.lien-deconnexion:hover::after {
+  width: 100%;
+}
+
+.lien-deconnexion:hover {
+  color: #dc2626;
+}
+
+@media (max-width: 767px) {
+  .liens-nav {
+    display: none;
+  }
+  
+  .lien-deconnexion {
+    display: none;
+  }
+  
+  .barre-haut {
+    justify-content: center;
+  }
+}
+
+.profile-title{
+  font-size: 4em;
+  font-weight: 700;
+  color: var(--couleur-principale);
   text-align: center;
   margin-top: 3rem;
-  color: var(--vert);
+}
+
+.profile-header-left .profile-name {
+  font-family: 'atma', sans-serif ;
+  font-weight: 700 ;
+  font-size: 2rem ;
+  text-align: left ;
+  margin-top: 0;
+  color: var(--couleur-principale);
 }
 
 .section-title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: 2rem 0;
-  color: var(--teal);
+  color: var(--couleur-principale);
   text-align: center;
 }
 
 .content-container {
-  width: 97rem;
+  max-width: 1200px;
   margin: 2rem auto;
   padding: 2rem;
-  border-radius: 1rem;
+  border-radius: 3rem;
+  background-color: white;
+  box-shadow: var(--shadow-md);
+
 }
 
 .profile-header {
@@ -107,42 +199,106 @@ body {
 .profile-stat .stat-number {
   font-weight: 700;
   font-size: 1.25rem;
-  color: var(--teal);
+  color: var(--couleur-principale);
+}
+
+.profile-section{
+  margin: 2rem 0;
+  padding: 1.5rem;
+  margin-top: 0;
+ 
 }
 
 .profile-stat .stat-label {
   font-size: 0.9rem;
-  color: #777;
+  color: var(--couleur-texte-leger);
 }
 
 .modify-profile-btn {
   padding: 0.75rem 1.5rem;
-  background-color: var(--teal);
+  background-color: var(--couleur-principale);
   color: white;
   border: none;
   border-radius: 0.5rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  
 }
 
 .modify-profile-btn:hover {
-  background-color: var(--vert);
+  background-color: var(--couleur-hover);
 }
 
-.recipe-grid,
-.days-grid {
+.recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
 }
 
+/* Weekly plan grid - NEW */
+#conteneur-plan-hebdomadaire {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.plan-hebdo {
+  
+  border-radius: 1rem;                 
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;                       
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  background-color: var(--couleur-fond);
+ 
+}
+
+.plan-hebdo:hover {
+  transform: translateY(-4px);         
+  box-shadow: var(--shadow-lg);
+  background-color: var(--couleur-carte-hover);
+}
+
+.plan-hebdo .image-plan {
+  width: 100%;                  
+  height: 180px;                       
+  object-fit: cover;                   
+  border-radius: 1rem;                 
+}
+
+.plan-hebdo h3 {
+  font-size: 1.25rem;
+  color: var(--couleur-principale);                  
+  margin: 1rem 0;                      
+}
+
+.plan-hebdo button {
+  background-color: var(--couleur-principale);     
+  color: white;                        
+  border: none;
+  padding: 0.75rem 1.5rem;             
+  border-radius: 0.5rem;               
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.plan-hebdo button:hover {
+  background-color: var(--couleur-hover);       
+}
+
 .recipe-card,
 .recipe-card-small {
-  background-color: var(--fond-carte);
+  background-color: var(--couleur-carte);
   border-radius: 1rem;
-  box-shadow: 0 4px 10px var(--ombre);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: transform 0.2s;
 }
@@ -150,6 +306,7 @@ body {
 .recipe-card:hover,
 .recipe-card-small:hover {
   transform: translateY(-4px);
+ 
 }
 
 .recipe-card img,
@@ -162,13 +319,21 @@ body {
 .recipe-content,
 .recipe-content-small {
   padding: 1rem;
-  background-color: var(--fond-carte); /* ou #ffffff */
+  background-color: var(--couleur-carte);
 }
+
+
+.recipe-content:hover,
+.recipe-content-small:hover {
+  transform: translateY(-4px);
+
+}
+
 
 .recipe-title,
 .recipe-title-small {
   font-weight: 600;
-  color: var(--vert);
+  color: var(--couleur-principale);
   font-size: 1.1rem;
 }
 
@@ -177,248 +342,48 @@ body {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--couleur-texte-leger);
 }
 
-.footer {
-  background-color: white;
-  padding: 2rem;
-  border-top: 1px solid #e0e0e0;
+.pied {
   text-align: center;
-  font-size: 0.9rem;
-  color: #4b5563;
+  font-size: 0.95rem;
+  color: var(--couleur-texte-leger);
+  padding: 3rem 0 2rem;
+  border-top: 1px solid rgba(94, 48, 35, 0.2);
+  margin-top: 5rem;
+  background-color: #e9d1a5f2;
 }
 
-.footer-logo {
-  max-width: 80px;
-  margin-bottom: 0.5rem;
+.pied p {
+  font-weight: 600;
+  color: var(--couleur-principale);
+  font-family: "Atma", system-ui;
+  margin-bottom: 1rem;
 }
 
-.footer-right {
+.liens-pied {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.footer-right a {
-  color: var(--teal);
+.liens-pied a {
+  color: var(--couleur-texte-leger);
+  font-family: "Manjari", sans-serif;
   text-decoration: none;
-  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.footer-right a:hover {
-  color: var(--accent);
+.liens-pied a:hover {
+  color: var(--couleur-principale);
 }
 
-body {
-    font-family: 'Saira', 'Inter', sans-serif;
-    margin: 0;
-    background-color: #f8f8f8;
-    color: #1f2937;
-  }
-  
-  .weekly-plan-section {
-    padding-top: 2rem;
-  }
-  
-  .days-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 0 2rem;
-  }
-  
-  .ligne-jours {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .day-section {
-    flex: 1;
-    min-width: 300px;
-    background-color: #E6F4F1;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    margin-top: 0;
-  }
-  
-  .day-title {
-    font-size: 1.5rem;
-    color: #004B46;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  .day-recipes {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 1.5rem;
-    padding: 1rem 0;
-  }
-  
-  .recipe-card-small {
-    background-color: white;
-    border-radius: 1rem;
-    width: 260px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease;
-    flex: 0 0 auto;
-  }
-  
-  .recipe-card-small:hover {
-    transform: translateY(-5px);
-  }
-  
-  .recipe-card-small img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-  }
-  
-  .recipe-content-small {
-    padding: 1rem;
-  }
-  
-  .recipe-title-small {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #14817A;
-  }
-  
-  .recipe-info-small {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    color: #4B5563;
-    font-size: 0.9rem;
-  }
+.weekly-plan-section {
+  padding-top: 2rem;
+}
 
-  .grille-semaines {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    padding: 0 2rem;
-  }
-  
-  .ligne-semaines {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100em;
-  }
-  
-  .bloc-semaine {
-      background-color: transparent;
-  
-      backdrop-filter: blur(4px);     
-      border-radius: 1rem;
-      padding: 2rem;
-      min-width: 300px;
-      flex: 1;
-      
-    }
-    
-  .bloc-semaine:hover {
-      transform: scale(1.015);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-      background:#e3e9e8;
-      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-  .etiquette-semaine {
-    background-color: var(--teal);
-    color: white;
-    padding: 0.5rem 1.25rem;
-    border-radius: 50px;
-    font-weight: 600;
-    width: fit-content;
-    margin: 0 auto 1.5rem;
-  }
-  
-  .cartes {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding: 1rem 0;
-  }
-  
-  /* ====== Carte recette ====== */
-  .carte {
-    background-color: var(--fond-carte);
-    border-radius: 1.25rem;
-    padding: 0;
-    width: 260px;
-    box-shadow: 0 6px 20px var(--ombre);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.3s;
-  }
-  
-  .carte:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-  cursor: pointer;
-  }
-  
-  .carte img {
-    display: block;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-top-left-radius: 1.25rem;
-    border-top-right-radius: 1.25rem;
-  }
-  
-
-  
-  
-  .carte h3 {
-    font-size: 1.1rem;
-    margin: 0.75rem 1rem 0.25rem;
-    color: var(--vert);
-  }
-  
-  .carte p {
-    font-size: 0.9rem;
-    margin: 0 1rem 0.5rem;
-    color: #6b7280;
-  }
-
-  .no-recipes-message {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--gris-texte);
-    background-color: var(--fond-bloc);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    text-align: left;
-    box-shadow: 0 4px 10px var(--ombre);
-    margin-top: 2rem;
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .no-recipes-message:hover {
-    background-color: var(--fond-carte);
-  }
-  /* Notification Styles */
 .notification-container {
   position: relative;
   margin-right: 1.5rem;
@@ -517,146 +482,21 @@ body {
 }
 
 .notification-item.unread {
-  background-color: #f0fdf9;
+  background-color: #f0eef8;
 }
 
-.notification-item-flex {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.notification-icon {
-  flex-shrink: 0;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  background-color: #f3f4f6;
-}
-
-.notification-icon.recipe {
-  background-color: #fef3c7;
-  color: #d97706;
-}
-
-.notification-icon.stock {
-  background-color: #fee2e2;
-  color: #dc2626;
-}
-
-.notification-icon.planning {
-  background-color: #e0f2fe;
-  color: #0284c7;
-}
-
-.notification-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.notification-title {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: var(--couleur-texte);
-}
-
-.notification-text {
-  font-size: 0.875rem;
-  color: var(--couleur-texte-leger);
-  margin-bottom: 0.25rem;
-}
-
-.notification-time {
-  font-size: 0.75rem;
-  color: #9ca3af;
-}
-
-.notification-footer {
-  padding: 1rem;
-  text-align: center;
-  border-top: 1px solid #e5e7eb;
-}
-
-.notification-footer a {
-  color: var(--couleur-principale);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.notification-footer a:hover {
-  text-decoration: underline;
-}
-
-/* Update header styles to accommodate notifications */
 .header-right {
   display: flex;
   align-items: center;
 }
 
+/* Responsive fixes */
 @media (max-width: 768px) {
-  .notification-dropdown {
-    width: 18rem;
-    right: -1rem;
+  .content-container {
+    padding: 1rem;
   }
-}
-
-@media (max-width: 480px) {
-  .notification-dropdown {
-    width: 100%;
-    right: 0;
-    border-radius: 0;
-    border-left: none;
-    border-right: none;
+  
+  #conteneur-plan-hebdomadaire {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
-}
-.plan-hebdo {
-  background-color: var(--fond-carte); /* Fond blanc comme les cartes de recette */
-  border-radius: 1rem;                 /* Coins arrondis */
-  box-shadow: 0 4px 10px var(--ombre); /* Ombre subtile pour la profondeur */
-  padding: 2rem;                       /* Espacement interne */
-  transition: transform 0.2s ease, box-shadow 0.3s ease; /* Effet de transition */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 300px;                    /* Largeur maximale de la carte */
-  margin: 1rem;                        /* Marges autour de la carte */
-}
-
-.plan-hebdo:hover {
-  transform: translateY(-4px);         /* Légère élévation au survol */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08); /* Ombre plus prononcée au survol */
-}
-
-.plan-hebdo .image-plan {
-  width: 100%;
-  max-width: 280px;                    /* Limite la largeur de l'image */
-  height: 180px;                       /* Hauteur fixe pour uniformité */
-  object-fit: cover;                   /* Couvre l'espace sans déformation */
-  border-radius: 1rem;                 /* Coins arrondis pour l'image */
-}
-
-.plan-hebdo h3 {
-  font-size: 1.25rem;
-  color: var(--vert);                  /* Couleur du titre */
-  margin: 1rem 0;                      /* Espacement autour du titre */
-}
-
-.plan-hebdo button {
-  background-color: var(--accent);     /* Couleur du bouton */
-  color: white;                        /* Texte en blanc */
-  border: none;
-  padding: 0.75rem 1.5rem;             /* Espacement interne du bouton */
-  border-radius: 0.5rem;               /* Coins arrondis du bouton */
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease; /* Transition sur la couleur du bouton */
-}
-
-.plan-hebdo button:hover {
-  background-color: var(--teal);       /* Couleur de fond au survol */
 }
