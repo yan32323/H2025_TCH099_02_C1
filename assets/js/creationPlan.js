@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", async function () {
   let effacerPlan = document.getElementById("btn-suppression-plan");
   let prochaineImage = document.getElementById("prochaine-image");
 
+
+  const identifiant = sessionStorage.getItem("identifiant");
+  
+
+  updateNotificationBadge();
+  consulterNotifications(identifiant);
+
   // Zones de texte pour les recettes
   let prochaineRecetteLundi = document.getElementById(
     "prochaine-recette-lundi"
@@ -249,7 +256,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
       document.getElementById("rec-l" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
+        
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -332,15 +341,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesMardi[i].heure +
         "'type='time'><button class='remove-item-button' id='supr-rec-ma" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteMardi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+  
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+      
       affichageRecetteMardi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-ma" + i);
 
@@ -361,6 +367,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-ma" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -443,15 +450,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesMercredi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-me" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteMercredi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+    
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+     
       affichageRecetteMercredi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-me" + i);
       let heure = document.getElementById("heure-me" + i);
@@ -471,6 +475,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-me" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -554,15 +559,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesJeudi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-j" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteJeudi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+     
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+      
       affichageRecetteJeudi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-j" + i);
       let heure = document.getElementById("heure-j" + i);
@@ -580,6 +582,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-j" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -663,15 +666,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesVendredi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-v" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteVendredi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+      
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+    
       affichageRecetteVendredi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-v" + i);
       let heure = document.getElementById("heure-v" + i);
@@ -689,6 +689,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-v" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -772,15 +773,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesSamedi[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-s" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteSamedi.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+    
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+      
       affichageRecetteSamedi.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-s" + i);
       let heure = document.getElementById("heure-s" + i);
@@ -798,6 +796,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-s" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -881,15 +880,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         tableauRecettesDimanche[i].heure +
         "'type='time'><button  class='remove-item-button' id='supr-rec-d" +
         i +
-        "'>X</button></div>";
+        "'><img src='assets/image/trash.png' alt='Supprimer' class='icon-delete'></button></div>";
       affichageRecetteDimanche.appendChild(divRecette);
-      aAfficher.style.display = "none";
-      aAfficher.style.position = "absolute";
+      
       aAfficher.style.top = divRecette.offsetTop + 50 + "px";
       aAfficher.style.left = divRecette.offsetLeft + 50 + "px";
-      aAfficher.style.width = "400px";
-      aAfficher.style.height = "300px";
-      aAfficher.style.border = "1px solid black";
+     
       affichageRecetteDimanche.appendChild(aAfficher);
       let buttonIng = document.getElementById("supr-rec-d" + i);
       let heure = document.getElementById("heure-d" + i);
@@ -907,6 +903,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-d" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -1267,19 +1264,144 @@ document.addEventListener("DOMContentLoaded", async function () {
         window.location.href = 'index.html'; // Redirige vers la page de connexion si non connecté
         return;
     }
-    if (localStorage.getItem("plan-a-editer") != null) {
 
       //recuperation du plan si demande
       const urlParams = new URLSearchParams(window.location.search);
      if (urlParams.has("id")) {
        planLocal = urlParams.get("id");
-    editPlan = true;
+      editPlan = true;
         fetchPlan(planLocal);
      } else {
        planLocal = null;
       }
-    } else {
-      planLocal = null;
-    }
     fetchRecettes();
+
+    function consulterNotifications(userId) {
+      fetch("./api/consulterNotifications.php/afficher", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              user_id: userId,
+          }),
+      })
+          .then((response) => response.text())
+          .then((text) => {
+              //console.log("Réponse brute:", text); // Afficher la réponse brute dans la console
+              try {
+                  const data = JSON.parse(text);
+                  if (data.success) {
+                      afficherNotifications(data.notifications);
+                  } else {
+                      //alert("Erreur : " + data.message);
+                  }
+              } catch (e) {
+                  console.error("Erreur de parsing JSON:", e);
+              }
+          })
+          .catch((error) => {
+              console.error(
+                  "Erreur lors de la récupération des notifications :",
+                  error
+              );
+          });
+  }
+  // Fonction pour afficher les notifications
+  function afficherNotifications(notifications) {
+      const notificationList = document.querySelector(".notification-list");
+      notificationList.innerHTML = ""; // Réinitialiser la liste de notifications
+  
+      notifications.forEach((notification) => {
+          const notificationItem = document.createElement("div");
+          notificationItem.classList.add("notification-item");
+  
+          // Ajout de l'attribut data-id pour cibler la notification
+          notificationItem.setAttribute("data-id", notification.id); 
+  
+          if (notification.est_lue === 0) {
+              notificationItem.classList.add("unread");
+          }
+  
+          // Ajoute le contenu de la notification
+          notificationItem.innerHTML = `
+          <div class="notification-item-flex">
+              <div class="notification-icon">
+                  <i class="fas fa-utensils"></i>
+              </div>
+              <div class="notification-content">
+                  <div class="notification-title">${notification.message}</div>
+                  <div class="notification-time">${notification.date_creation}</div>
+              </div>
+          </div>
+      `;
+  
+          // Ajout d'un gestionnaire de clic pour marquer comme lue
+          notificationItem.addEventListener("click", () => {
+              marquerNotificationLue(notification.id);
+          });
+  
+          notificationList.appendChild(notificationItem);
+      });
+      updateNotificationBadge();
+  }
+  
+  
+  // Fonction pour marquer une notification comme lue
+  function marquerNotificationLue(notificationId) {
+      fetch("./api/consulterNotifications.php/marquerNotificationLue", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: notificationId }),
+      })
+          .then((response) => response.json())
+          .then((data) => {
+              if (data.success) {
+                  // Mettre à jour l'interface (enlève la classe 'unread' et met à jour le badge)
+                  const notificationItem = document.querySelector(
+                      `.notification-item[data-id="${notificationId}"]`
+                  );
+                  if (notificationItem) {
+                      notificationItem.classList.remove("unread");
+                  }
+  
+                  // Mise à jour du badge de notification non lue
+                  updateNotificationBadge();
+              } else {
+                  alert("Erreur lors de la mise à jour de la notification.");
+              }
+          });
+  }
+  // Fonction pour mettre à jour le badge de notification avec le nombre de notifications non lues
+  function updateNotificationBadge() {
+      fetch("./api/consulterNotifications.php/nombre-Notifications-non-lue", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              user_id: sessionStorage.getItem("identifiant"),
+          }),
+      })
+          .then((response) => response.json())
+          .then((data) => {
+              if (data.success) {
+                  const notificationBadge = document.querySelector(".notification-badge");
+                  const unreadCount = data.unreadCount;
+  
+                  if (typeof unreadCount === 'number' && unreadCount > 0) {
+                      notificationBadge.textContent = unreadCount;
+                      notificationBadge.style.display = "block";
+                  } else {
+                      notificationBadge.style.display = "none";
+                  }
+              }
+          })
+          .catch((error) => console.error("Erreur:", error));
+  }
+  
+  
+
 });

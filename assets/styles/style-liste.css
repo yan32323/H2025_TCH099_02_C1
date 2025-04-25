@@ -233,7 +233,7 @@ html, body {
   }
   
   .btn-creer:hover {
-    background-color: #0f5f5a;
+    background-color: var(--couleur-hover);
   }
 
   /* Notification Styles */
