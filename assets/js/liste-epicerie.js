@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const planId = urlParams.get("plan");
+  const planId = urlParams.get("id");
   const chemin = "http://localhost/planigo/H2025_TCH099_02_C1";
   let liste;
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //verifier qu'on a les parametres requis
   if (!utilisateurId || !planId) {
-    alert("Aucun utilisateur spécifié.");
+    alert("Aucun utilisateur et/ou ID spécifié.");
     return;
   }
   fetchListe(utilisateurId, planId, chemin);
