@@ -1,5 +1,4 @@
 <?php
-echo "suck my god damn penis you";
 
 $ch = curl_init();
 
