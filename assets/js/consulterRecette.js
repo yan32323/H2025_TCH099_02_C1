@@ -356,6 +356,17 @@ function afficherRecette(recette, userId) {
                 alert("Impossible d'envoyer la note.");
             }
         });
+
+        //gestion du bouton de modification de la recette
+        const modifierRecetteBtn = document.getElementById("btn-modifier-recette");
+        if (recette.createur.nom_utilisateur === sessionStorage.getItem("identifiant")) {
+            modifierRecetteBtn.style.display = "block";
+            modifierRecetteBtn.addEventListener("click", () => {
+                window.location.href = `CreationRecettes.html?id=${recette.id}`;
+            });
+        } else {
+            modifierRecetteBtn.style.display = "none";
+        }
 }
 function consulterNotifications(userId) {
     fetch("./api/consulterNotifications.php/afficher", {
@@ -482,3 +493,4 @@ function updateNotificationBadge() {
         })
         .catch((error) => console.error("Erreur:", error));
 }
+
