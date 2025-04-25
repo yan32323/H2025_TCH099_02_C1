@@ -13,7 +13,7 @@ $router->get('/CreationPlans.php/recettes', function () {
         $stmt = $pdo->query("SELECT 
     r.id,
     r.nom,
-    r.description,
+    r.description AS descriptions,
     r.type,
     r.difficulter,
     r.temps_de_cuisson,
