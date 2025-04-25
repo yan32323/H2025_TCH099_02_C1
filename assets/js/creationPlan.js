@@ -249,7 +249,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
       document.getElementById("rec-l" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
+        
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -361,6 +363,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-ma" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -471,6 +474,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-me" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -580,6 +584,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-j" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -689,6 +694,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-v" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -798,6 +804,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-s" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
@@ -907,6 +914,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       document.getElementById("rec-d" + i).addEventListener("mouseout", () => {
         aAfficher.style.display = "none";
       });
+      aAfficher.style.display = "none";
     }
   }
 
