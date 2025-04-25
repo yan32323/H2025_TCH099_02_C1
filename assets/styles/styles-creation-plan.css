@@ -469,9 +469,9 @@ textarea {
 #affichage-recettes-samedi div, 
 #affichage-recettes-dimanche div {
   background-color: white;
-  padding: 0.75rem;
+  padding: 0.8rem;
   border-radius: 4px;
-  margin-bottom: 0.5rem;
+  margin-bottom: -0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -598,7 +598,7 @@ button {
   background-color: white;
   padding: 1rem;
   border-radius: 12px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: 1px solid #e5e7eb;
@@ -875,9 +875,11 @@ button {
     border: 1px solid #e5e7eb;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    width: 700px;
+    width: 677px;
+    height: 350px;
     max-width: 90vw;
-    padding: 1.5rem;
+    padding: 1.2rem;
+    margin-bottom: -0.5rem;
     animation: fadeIn 0.3s ease-out;
     font-family: 'Manjari', sans-serif;
   }
@@ -886,7 +888,7 @@ button {
   .popup-recette .popup-content {
     display: flex;
     flex-wrap: nowrap;
-    gap: 1.5rem;
+    margin-bottom: -0.5rem;
     align-items: flex-start;
   }
   
@@ -897,7 +899,7 @@ button {
   
   .popup-recette .recipe-description {
     margin-top: 1rem;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     line-height: 1.5;
     color: var(--couleur-texte);
     text-align: justify;
@@ -936,7 +938,6 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 1rem;
   }
   
   .popup-recette .ingredients-title {
@@ -951,7 +952,7 @@ button {
   
   .popup-recette .recipe-info-section {
     width: 45%;
-    min-width: 160px;
+    min-width: 270px;
   }
   
   .popup-recette .info-title {

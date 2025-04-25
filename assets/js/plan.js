@@ -30,6 +30,17 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'accueil-recette.html';
     });
 
+    // Gestion de la modification du plan de la semaine
+    document.getElementById('btn-modifier-plan').addEventListener('click', function () {
+        window.location.href = 'creationPlan.html?id=' + recetteId;
+    });
+
+    // Gestion de la liste d'épicerie
+    document.getElementById('btn-liste-epicerie').addEventListener('click', function () {
+        window.location.href = 'liste-epicerie.html?id=' + recetteId;
+    });
+
+
     initialiserPlanDesSemaine(); 
 
     /**

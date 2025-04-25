@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async function () {
 
-    const chemin ="http://localhost/planigo/H2025_TCH099_02_C1";
+    const chemin ="http://localhost/H2025_TCH099_02_C1";
 
     let effacerRecette = document.getElementById("btn-suppression-recette");
     let imageRecette = document.getElementById("prochaine-image");
@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     let objListeTousIngredients = [];
     let tableauEtapes = [];
     let idRecette = null;
+
+    const idConnecte = sessionStorage.getItem("identifiant");
+
+    updateNotificationBadge();
+    consulterNotifications(idConnecte);
 
     /**
      * Ecouteur d'événement pour le bouton d'image
@@ -129,7 +134,7 @@ effacerRecette.addEventListener("click", async function () {
 
                 //demande de suppression cote serveur
                 let response = await fetch(
-                    chemin+ "/api/CreationRecettes.php/recettes/supprimer/" +
+                    "./api/CreationRecettes.php/recettes/supprimer/" +
                         recetteLocale,
                     {
                         method: "POST",
@@ -247,7 +252,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchRecette(recette) {
         try {
             let response = await fetch(
-                chemin+"/api/CreationRecettes.php/recuperer-recette-complete", 
+                "./api/CreationRecettes.php/recuperer-recette-complete", 
             { 
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -350,7 +355,7 @@ effacerRecette.addEventListener("click", async function () {
     async function fetchIngredients() {
         try {
             let response = await fetch(
-                chemin + "/api/CreationRecettes.php/ingredients");
+                "./api/CreationRecettes.php/ingredients");
 
             if (!response.ok) {
                 throw new Error(
@@ -487,7 +492,7 @@ effacerRecette.addEventListener("click", async function () {
 
         // Envoi du corps au serveur
         try {
-            const response = await fetch(chemin+"/api/CreationRecettes.php/recettes/creer", {
+            const response = await fetch("./api/CreationRecettes.php/recettes/creer", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(bodyData)
@@ -619,4 +624,130 @@ effacerRecette.addEventListener("click", async function () {
       }
 
     await fetchIngredients();
+
+    function consulterNotifications(userId) {
+        fetch("./api/consulterNotifications.php/afficher", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: userId,
+            }),
+        })
+            .then((response) => response.text())
+            .then((text) => {
+                //console.log("Réponse brute:", text); // Afficher la réponse brute dans la console
+                try {
+                    const data = JSON.parse(text);
+                    if (data.success) {
+                        afficherNotifications(data.notifications);
+                    } else {
+                        //alert("Erreur : " + data.message);
+                    }
+                } catch (e) {
+                    console.error("Erreur de parsing JSON:", e);
+                }
+            })
+            .catch((error) => {
+                console.error(
+                    "Erreur lors de la récupération des notifications :",
+                    error
+                );
+            });
+    }
+    // Fonction pour afficher les notifications
+    function afficherNotifications(notifications) {
+        const notificationList = document.querySelector(".notification-list");
+        notificationList.innerHTML = ""; // Réinitialiser la liste de notifications
+    
+        notifications.forEach((notification) => {
+            const notificationItem = document.createElement("div");
+            notificationItem.classList.add("notification-item");
+    
+            // Ajout de l'attribut data-id pour cibler la notification
+            notificationItem.setAttribute("data-id", notification.id); 
+    
+            if (notification.est_lue === 0) {
+                notificationItem.classList.add("unread");
+            }
+    
+            // Ajoute le contenu de la notification
+            notificationItem.innerHTML = `
+            <div class="notification-item-flex">
+                <div class="notification-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">${notification.message}</div>
+                    <div class="notification-time">${notification.date_creation}</div>
+                </div>
+            </div>
+        `;
+    
+            // Ajout d'un gestionnaire de clic pour marquer comme lue
+            notificationItem.addEventListener("click", () => {
+                marquerNotificationLue(notification.id);
+            });
+    
+            notificationList.appendChild(notificationItem);
+        });
+        updateNotificationBadge();
+    }
+    
+    
+    // Fonction pour marquer une notification comme lue
+    function marquerNotificationLue(notificationId) {
+        fetch("./api/consulterNotifications.php/marquerNotificationLue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: notificationId }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    // Mettre à jour l'interface (enlève la classe 'unread' et met à jour le badge)
+                    const notificationItem = document.querySelector(
+                        `.notification-item[data-id="${notificationId}"]`
+                    );
+                    if (notificationItem) {
+                        notificationItem.classList.remove("unread");
+                    }
+    
+                    // Mise à jour du badge de notification non lue
+                    updateNotificationBadge();
+                } else {
+                    alert("Erreur lors de la mise à jour de la notification.");
+                }
+            });
+    }
+    // Fonction pour mettre à jour le badge de notification avec le nombre de notifications non lues
+    function updateNotificationBadge() {
+        fetch("./api/consulterNotifications.php/nombre-Notifications-non-lue", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                user_id: sessionStorage.getItem("identifiant"),
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    const notificationBadge = document.querySelector(".notification-badge");
+                    const unreadCount = data.unreadCount;
+    
+                    if (typeof unreadCount === 'number' && unreadCount > 0) {
+                        notificationBadge.textContent = unreadCount;
+                        notificationBadge.style.display = "block";
+                    } else {
+                        notificationBadge.style.display = "none";
+                    }
+                }
+            })
+            .catch((error) => console.error("Erreur:", error));
+    }
 });

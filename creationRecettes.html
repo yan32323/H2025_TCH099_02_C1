@@ -6,6 +6,8 @@
     <title>Planigo - Recipes</title>
     <link rel="stylesheet" href="assets/styles/style-creations-recettes.css" />
     <script src="assets/js/creationRecettes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/js/all.min.js"></script>
+
   </head>
   <body>
     <header class="barre-haut">
@@ -282,6 +284,55 @@
   logo.addEventListener('click', function () {
     window.location.href = 'accueil-recette.html'; 
   });
+
+  const notificationBell = document.getElementById('notificationBell');
+      const notificationDropdown = document.getElementById('notificationDropdown');
+      const markAllReadBtn = document.getElementById('markAllRead');
+      
+      // Toggle dropdown
+      notificationBell.addEventListener('click', function(e) {
+        e.stopPropagation();
+        notificationDropdown.classList.toggle('show');
+      });
+      
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!notificationDropdown.contains(e.target) && e.target !== notificationBell) {
+          notificationDropdown.classList.remove('show');
+        }
+      });
+      
+      // Mark all as read
+      markAllReadBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const unreadItems = document.querySelectorAll('.notification-item.unread');
+        unreadItems.forEach(item => item.classList.remove('unread'));
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+          badge.textContent = '0';
+          badge.style.display = 'none';
+        }
+      });
+      
+      // Handle notification item clicks
+      document.querySelectorAll('.notification-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.remove('unread');
+          
+          // Update badge counter
+          const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+          const badge = document.querySelector('.notification-badge');
+          if (badge) {
+            if (unreadCount > 0) {
+              badge.textContent = unreadCount;
+              badge.style.display = 'block';
+            } else {
+              badge.style.display = 'none';
+            }
+          }
+        });
+      });
+
 });
 
 
