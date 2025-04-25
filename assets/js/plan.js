@@ -30,6 +30,12 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'accueil-recette.html';
     });
 
+    // Gestion de la modification du plan de la semaine
+    document.getElementById('btn-modifier-plan').addEventListener('click', function () {
+        window.location.href = 'creationPlan.html?id=' + recetteId;
+    });
+
+
     initialiserPlanDesSemaine(); 
 
     /**

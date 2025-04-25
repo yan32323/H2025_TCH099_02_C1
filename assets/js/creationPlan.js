@@ -1267,19 +1267,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         window.location.href = 'index.html'; // Redirige vers la page de connexion si non connecté
         return;
     }
-    if (localStorage.getItem("plan-a-editer") != null) {
 
       //recuperation du plan si demande
       const urlParams = new URLSearchParams(window.location.search);
      if (urlParams.has("id")) {
        planLocal = urlParams.get("id");
-    editPlan = true;
+      editPlan = true;
         fetchPlan(planLocal);
      } else {
        planLocal = null;
       }
-    } else {
-      planLocal = null;
-    }
     fetchRecettes();
+
 });
