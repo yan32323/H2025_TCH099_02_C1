@@ -153,6 +153,13 @@
         });
 
         document.addEventListener('DOMContentLoaded', function () {
+
+            const logo = document.querySelector('.logo'); 
+            logo.style.cursor = 'pointer';
+            logo.addEventListener('click', function () {
+                window.location.href = 'accueil-recette.html';
+            });
+
             const notificationBell = document.getElementById('notificationBell');
             const notificationDropdown = document.getElementById('notificationDropdown');
             const markAllReadBtn = document.getElementById('markAllRead');
